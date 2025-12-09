@@ -4,25 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Prodi extends Model
+class AmiPeriod extends Model
 {
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'ami_periods';
+
     protected $guarded = [];
 
-    /**
-     * Get the accreditations for this prodi.
-     */
-    public function accreditations()
-    {
-        return $this->hasMany(Accreditation::class);
-    }
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'is_active' => 'boolean',
+    ];
 
     /**
-     * Get the AMI targets for this prodi.
+     * Get the AMI targets for this period.
      */
     public function amiTargets()
     {
@@ -30,7 +25,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI activities for this prodi.
+     * Get the AMI activities for this period.
      */
     public function amiActivities()
     {
@@ -38,7 +33,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI auditor decrees for this prodi.
+     * Get the AMI auditor decrees for this period.
      */
     public function amiAuditorDecrees()
     {
@@ -46,7 +41,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI assignment letters for this prodi.
+     * Get the AMI assignment letters for this period.
      */
     public function amiAssignmentLetters()
     {
@@ -54,7 +49,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI performance reports for this prodi.
+     * Get the AMI performance reports for this period.
      */
     public function amiPerformanceReports()
     {
@@ -62,7 +57,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI self evaluations for this prodi.
+     * Get the AMI self evaluations for this period.
      */
     public function amiSelfEvaluations()
     {
@@ -70,7 +65,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI self assessments for this prodi.
+     * Get the AMI self assessments for this period.
      */
     public function amiSelfAssessments()
     {
@@ -78,7 +73,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI auditor assessments for this prodi.
+     * Get the AMI auditor assessments for this period.
      */
     public function amiAuditorAssessments()
     {
@@ -86,7 +81,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI audit findings for this prodi.
+     * Get the AMI audit findings for this period.
      */
     public function amiAuditFindings()
     {
@@ -94,15 +89,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI finding results for this prodi.
-     */
-    public function amiFindingResults()
-    {
-        return $this->hasMany(AmiFindingResult::class);
-    }
-
-    /**
-     * Get the AMI RTM for this prodi.
+     * Get the AMI RTM for this period.
      */
     public function amiRtm()
     {
@@ -110,7 +97,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI official reports for this prodi.
+     * Get the AMI official reports for this period.
      */
     public function amiOfficialReports()
     {
@@ -118,7 +105,7 @@ class Prodi extends Model
     }
 
     /**
-     * Get the AMI final results for this prodi.
+     * Get the AMI final results for this period.
      */
     public function amiFinalResults()
     {
