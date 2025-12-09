@@ -1,169 +1,180 @@
 {
   "menu": [
     {
-      "name": "Dashboards",
+      "name": "Dashboard",
       "url": "admin/dashboard",
       "icon": "menu-icon tf-icons ti ti-smart-home",
       "slug": "admin.dashboard"
     },
     {
-      "menuHeader": "News"
-    },
-    {
-      "name": "Category",
-      "url": "/admin/category",
-      "icon": "menu-icon tf-icons ti ti-folder",
-      "slug": "admin.category."
-    },
-    {
       "name": "News",
-      "url": "/admin/news",
-      "icon": "menu-icon tf-icons ti ti-files",
-      "slug": "admin.news."
+      "icon": "menu-icon tf-icons ti ti-news",
+      "slug": ["admin.category.", "admin.news."],
+      "submenu": [
+        {
+          "name": "Category",
+          "url": "/admin/category",
+          "slug": "admin.category."
+        },
+        {
+          "name": "News",
+          "url": "/admin/news",
+          "slug": "admin.news."
+        }
+      ]
     },
     {
-      "menuHeader": "Activities"
-    },
-    {
-      "name": "Tag",
-      "url": "/admin/tag",
-      "icon": "menu-icon tf-icons ti ti-tag",
-      "slug": "admin.tag."
-    },
-    {
-      "name": "Unit",
-      "url": "/admin/unit",
-      "icon": "menu-icon tf-icons ti ti-building",
-      "slug": "admin.unit."
-    },
-    {
-      "name": "Activity",
-      "url": "/admin/activity",
-      "icon": "menu-icon tf-icons ti ti-list",
-      "slug": "admin.activity."
-    },
-    {
-      "menuHeader": "Accreditation"
-    },
-    {
-      "name": "Prodi",
-      "url": "/admin/prodi",
-      "icon": "menu-icon tf-icons ti ti-crown",
-      "slug": "admin.prodi."
+      "name": "Activities",
+      "icon": "menu-icon tf-icons ti ti-activity",
+      "slug": ["admin.tag.", "admin.unit.", "admin.activity."],
+      "submenu": [
+        {
+          "name": "Tag",
+          "url": "/admin/tag",
+          "slug": "admin.tag."
+        },
+        {
+          "name": "Unit",
+          "url": "/admin/unit",
+          "slug": "admin.unit."
+        },
+        {
+          "name": "Activity",
+          "url": "/admin/activity",
+          "slug": "admin.activity."
+        }
+      ]
     },
     {
       "name": "Accreditation",
-      "url": "/admin/accreditation",
-      "icon": "menu-icon tf-icons ti ti-circle-check",
-      "slug": "admin.accreditation."
-    },
-    {
-      "name": "Certificate",
-      "url": "/admin/sertifikat",
       "icon": "menu-icon tf-icons ti ti-certificate",
-      "slug": "admin.sertifikat."
+      "slug": ["admin.prodi.", "admin.accreditation.", "admin.sertifikat."],
+      "submenu": [
+        {
+          "name": "Prodi",
+          "url": "/admin/prodi",
+          "slug": "admin.prodi."
+        },
+        {
+          "name": "Accreditation",
+          "url": "/admin/accreditation",
+          "slug": "admin.accreditation."
+        },
+        {
+          "name": "Certificate",
+          "url": "/admin/sertifikat",
+          "slug": "admin.sertifikat."
+        }
+      ]
     },
     {
-      "menuHeader": "AMI"
+      "name": "AMI",
+      "icon": "menu-icon tf-icons ti ti-clipboard-data",
+      "slug": [
+        "admin.ami-period.",
+        "admin.ami-category.",
+        "admin.ami-target.",
+        "admin.ami-auditor-decree.",
+        "admin.ami-assignment-letter.",
+        "admin.ami-performance-report.",
+        "admin.ami-self-evaluation.",
+        "admin.ami-self-assessment.",
+        "admin.ami-auditor-assessment.",
+        "admin.ami-audit-finding.",
+        "admin.ami-finding-result.",
+        "admin.ami-rtm.",
+        "admin.ami-official-report.",
+        "admin.ami-final-result."
+      ],
+      "submenu": [
+        {
+          "name": "Periode",
+          "url": "/admin/ami-period",
+          "slug": "admin.ami-period."
+        },
+        {
+          "name": "Kategori",
+          "url": "/admin/ami-category",
+          "slug": "admin.ami-category."
+        },
+        {
+          "name": "Target",
+          "url": "/admin/ami-target",
+          "slug": "admin.ami-target."
+        },
+        {
+          "name": "SK Auditor",
+          "url": "/admin/ami-auditor-decree",
+          "slug": "admin.ami-auditor-decree."
+        },
+        {
+          "name": "Surat Tugas",
+          "url": "/admin/ami-assignment-letter",
+          "slug": "admin.ami-assignment-letter."
+        },
+        {
+          "name": "Laporan Kinerja",
+          "url": "/admin/ami-performance-report",
+          "slug": "admin.ami-performance-report."
+        },
+        {
+          "name": "Evaluasi Diri",
+          "url": "/admin/ami-self-evaluation",
+          "slug": "admin.ami-self-evaluation."
+        },
+        {
+          "name": "Asesmen Diri",
+          "url": "/admin/ami-self-assessment",
+          "slug": "admin.ami-self-assessment."
+        },
+        {
+          "name": "Asesmen Auditor",
+          "url": "/admin/ami-auditor-assessment",
+          "slug": "admin.ami-auditor-assessment."
+        },
+        {
+          "name": "Temuan Audit",
+          "url": "/admin/ami-audit-finding",
+          "slug": "admin.ami-audit-finding."
+        },
+        {
+          "name": "Hasil Temuan",
+          "url": "/admin/ami-finding-result",
+          "slug": "admin.ami-finding-result."
+        },
+        {
+          "name": "RTM",
+          "url": "/admin/ami-rtm",
+          "slug": "admin.ami-rtm."
+        },
+        {
+          "name": "Laporan Resmi",
+          "url": "/admin/ami-official-report",
+          "slug": "admin.ami-official-report."
+        },
+        {
+          "name": "Hasil Akhir",
+          "url": "/admin/ami-final-result",
+          "slug": "admin.ami-final-result."
+        }
+      ]
     },
     {
-      "name": "Periode",
-      "url": "/admin/ami-period",
-      "icon": "menu-icon tf-icons ti ti-calendar",
-      "slug": "admin.ami-period."
-    },
-    {
-      "name": "Kategori",
-      "url": "/admin/ami-category",
-      "icon": "menu-icon tf-icons ti ti-category",
-      "slug": "admin.ami-category."
-    },
-    {
-      "name": "Target",
-      "url": "/admin/ami-target",
-      "icon": "menu-icon tf-icons ti ti-target",
-      "slug": "admin.ami-target."
-    },
-    {
-      "name": "SK Auditor",
-      "url": "/admin/ami-auditor-decree",
-      "icon": "menu-icon tf-icons ti ti-file-certificate",
-      "slug": "admin.ami-auditor-decree."
-    },
-    {
-      "name": "Surat Tugas",
-      "url": "/admin/ami-assignment-letter",
-      "icon": "menu-icon tf-icons ti ti-mail",
-      "slug": "admin.ami-assignment-letter."
-    },
-    {
-      "name": "Laporan Kinerja",
-      "url": "/admin/ami-performance-report",
-      "icon": "menu-icon tf-icons ti ti-file-report",
-      "slug": "admin.ami-performance-report."
-    },
-    {
-      "name": "Evaluasi Diri",
-      "url": "/admin/ami-self-evaluation",
-      "icon": "menu-icon tf-icons ti ti-clipboard-check",
-      "slug": "admin.ami-self-evaluation."
-    },
-    {
-      "name": "Asesmen Diri",
-      "url": "/admin/ami-self-assessment",
-      "icon": "menu-icon tf-icons ti ti-file-check",
-      "slug": "admin.ami-self-assessment."
-    },
-    {
-      "name": "Asesmen Auditor",
-      "url": "/admin/ami-auditor-assessment",
-      "icon": "menu-icon tf-icons ti ti-file-search",
-      "slug": "admin.ami-auditor-assessment."
-    },
-    {
-      "name": "Temuan Audit",
-      "url": "/admin/ami-audit-finding",
-      "icon": "menu-icon tf-icons ti ti-alert-circle",
-      "slug": "admin.ami-audit-finding."
-    },
-    {
-      "name": "Hasil Temuan",
-      "url": "/admin/ami-finding-result",
-      "icon": "menu-icon tf-icons ti ti-list-check",
-      "slug": "admin.ami-finding-result."
-    },
-    {
-      "name": "RTM",
-      "url": "/admin/ami-rtm",
-      "icon": "menu-icon tf-icons ti ti-clipboard-list",
-      "slug": "admin.ami-rtm."
-    },
-    {
-      "name": "Laporan Resmi",
-      "url": "/admin/ami-official-report",
-      "icon": "menu-icon tf-icons ti ti-file-text",
-      "slug": "admin.ami-official-report."
-    },
-    {
-      "name": "Hasil Akhir",
-      "url": "/admin/ami-final-result",
-      "icon": "menu-icon tf-icons ti ti-trophy",
-      "slug": "admin.ami-final-result."
-    },
-    {
-      "menuHeader": "Administrator"
-    },
-    {
-      "name": "User",
-      "url": "/admin/user",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "admin.user."
-    },
-    {
-      "name": "Profile",
-      "url": "/admin/profile",
-      "icon": "menu-icon tf-icons ti ti-id-badge",
-      "slug": "admin.profile."
+      "name": "Administrator",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": ["admin.user.", "admin.profile."],
+      "submenu": [
+        {
+          "name": "User",
+          "url": "/admin/user",
+          "slug": "admin.user."
+        },
+        {
+          "name": "Profile",
+          "url": "/admin/profile",
+          "slug": "admin.profile."
+        }
+      ]
     }
   ]
 }
