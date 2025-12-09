@@ -1,7 +1,5 @@
 # Lembaga Penjaminan Mutu (LPM) UII Dalwa
 
-![LPM UII Dalwa Logo](https://via.placeholder.com/800x300?text=LPM+UII+Dalwa+Logo)
-
 ## Tentang LPM UII Dalwa
 
 Lembaga Penjaminan Mutu (LPM) Universitas Islam Indonesia (UII) Dalwa merupakan unit yang bertanggung jawab dalam menjamin dan meningkatkan mutu penyelenggaraan pendidikan di lingkungan UII Dalwa. LPM UII Dalwa berkomitmen untuk senantiasa meningkatkan kualitas layanan pendidikan melalui sistem penjaminan mutu yang terstruktur dan berkelanjutan.
