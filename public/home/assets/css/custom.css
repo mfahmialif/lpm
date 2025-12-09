@@ -1,0 +1,9 @@
+.menu-link.menu-link-main.active {
+    background-color: var(--bs-dark);
+    border-radius: 10px;
+    color: var(--bs-light);
+    padding: 12px;
+}
+.menu-link.menu-link-main.active:hover {
+    color: #ccc; /* abu-abu muda */
+}

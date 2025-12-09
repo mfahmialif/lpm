@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateActivityUnitTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('activity_unit', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('unit_id')->constrained('units');
+            $table->foreignId('activity_id')->constrained('activities');
+            $table->timestamps();
+            $table->unique(['activity_id', 'unit_id']); // optional, biar tidak dobel
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('activity_unit');
+    }
+}

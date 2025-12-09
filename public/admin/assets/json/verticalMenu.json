@@ -1,0 +1,97 @@
+{
+    "menu": [
+        {
+            "name": "Dashboard",
+            "url": "admin/dashboard",
+            "icon": "menu-icon tf-icons ti ti-smart-home",
+            "slug": "admin.dashboard",
+            "role": "admin,player"
+        },
+        {
+            "menuHeader": "News",
+            "role": "admin"
+        },
+        {
+            "name": "Category",
+            "url": "/admin/category",
+            "icon": "menu-icon tf-icons ti ti-folder",
+            "slug": "admin.category.",
+            "role": "admin"
+        },
+        {
+            "name": "News",
+            "url": "/admin/news",
+            "icon": "menu-icon tf-icons ti ti-files",
+            "slug": "admin.news.",
+            "role": "admin"
+        },
+        {
+            "menuHeader": "Activities",
+            "role": "admin"
+        },
+        {
+            "name": "Tag",
+            "url": "/admin/tag",
+            "icon": "menu-icon tf-icons ti ti-tag",
+            "slug": "admin.tag.",
+            "role": "admin"
+        },
+        {
+            "name": "Unit",
+            "url": "/admin/unit",
+            "icon": "menu-icon tf-icons ti ti-building",
+            "slug": "admin.unit.",
+            "role": "admin"
+        },
+        {
+            "name": "Activity",
+            "url": "/admin/activity",
+            "icon": "menu-icon tf-icons ti ti-list",
+            "slug": "admin.activity.",
+            "role": "admin"
+        },
+        {
+            "menuHeader": "Accreditation",
+            "role": "admin"
+        },
+        {
+            "name": "Prodi",
+            "url": "/admin/prodi",
+            "icon": "menu-icon tf-icons ti ti-crown",
+            "slug": "admin.prodi.",
+            "role": "admin"
+        },
+        {
+            "name": "Accreditation",
+            "url": "/admin/accreditation",
+            "icon": "menu-icon tf-icons ti ti-circle-check",
+            "slug": "admin.accreditation.",
+            "role": "admin"
+        },
+        {
+            "name": "Certificate",
+            "url": "/admin/sertifikat",
+            "icon": "menu-icon tf-icons ti ti-certificate",
+            "slug": "admin.sertifikat.",
+            "role": "admin"
+        },
+        {
+            "menuHeader": "Administrator",
+            "role": "admin,player"
+        },
+        {
+            "name": "User",
+            "url": "/admin/user",
+            "icon": "menu-icon tf-icons ti ti-user",
+            "slug": "admin.user.",
+            "role": "admin"
+        },
+        {
+            "name": "Profile",
+            "url": "/admin/profile",
+            "icon": "menu-icon tf-icons ti ti-id-badge",
+            "slug": "admin.profile.",
+            "role": "admin,player"
+        }
+    ]
+}

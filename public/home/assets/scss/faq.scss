@@ -1,0 +1,79 @@
+.faq .section-headings {
+  padding-inline-end: 100px;
+  position: relative;
+  height: 100%;
+}
+
+.faq .accordion-list > div + div {
+  margin-block-start: 24px;
+}
+
+.faq .image-absolute {
+  position: absolute;
+  bottom: -85px;
+  right: 25%;
+}
+
+.faq-row > * {
+  align-self: flex-start;
+}
+
+// FAQ Page
+.faq-form-wrap {
+  margin-block-start: 50px;
+}
+
+.faq-form {
+  --color-background: rgba(242, 242, 242, 1);
+  background-color: var(--color-background);
+  padding: 40px 30px;
+  display: block;
+}
+
+.faq-form > .field {
+  margin-block-start: 24px;
+}
+
+.faq-form > .button {
+  margin-block-start: 36px;
+  width: 100%;
+}
+@media (max-width: 1199px) {
+  .faq .section-headings {
+    padding-inline-end: 0;
+  }
+
+  .faq .image-absolute {
+    right: 10%;
+  }
+
+  .faq-form {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .faq .accordion-list {
+    margin-block-start: 40px;
+  }
+
+  .faq .image-absolute {
+    bottom: -40px;
+    padding-inline-end: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .image-absolute img {
+    max-width: 90px;
+    height: auto;
+  }
+
+  .faq .image-absolute {
+    right: 0;
+  }
+
+  .faq-form {
+    padding: 24px 15px;
+  }
+}

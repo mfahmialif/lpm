@@ -1,0 +1,8 @@
+.error-media {
+  --height: 278px;
+  position: relative;
+  height: var(--height); }
+
+.error-media img {
+  -o-object-fit: contain;
+  object-fit: contain; }
