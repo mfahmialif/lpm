@@ -22,29 +22,31 @@ class AmiFinalResultController extends Controller
     public function data(Request $request)
     {
         $search = request('search.value');
-        $data = AmiFinalResult::with(['amiPeriod', 'prodi'])->select('ami_final_results.*');
+        $data = AmiFinalResult::select(
+            'ami_final_results.*',
+            'ami_periods.year as ami_period',
+            'prodis.nama as prodi_name'
+        )
+            ->leftJoin('ami_periods', 'ami_final_results.ami_period_id', '=', 'ami_periods.id')
+            ->leftJoin('prodis', 'ami_final_results.prodi_id', '=', 'prodis.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
-                    $query->orWhere('end_score_spme', 'LIKE', "%$search%");
-                    $query->orWhere('score_ikt', 'LIKE', "%$search%");
-                    $query->orWhere('end_score_ami', 'LIKE', "%$search%");
-                    $query->orWhere('rank_ami', 'LIKE', "%$search%");
-                    $query->orWhere('note', 'LIKE', "%$search%");
-                    $query->orWhereHas('amiPeriod', function ($q) use ($search) {
-                        $q->where('year', 'LIKE', "%$search%");
-                    });
-                    $query->orWhereHas('prodi', function ($q) use ($search) {
-                        $q->where('nama', 'LIKE', "%$search%");
-                    });
+                    $query->orWhere('ami_final_results.end_score_spme', 'LIKE', "%$search%");
+                    $query->orWhere('ami_final_results.score_ikt', 'LIKE', "%$search%");
+                    $query->orWhere('ami_final_results.end_score_ami', 'LIKE', "%$search%");
+                    $query->orWhere('ami_final_results.rank_ami', 'LIKE', "%$search%");
+                    $query->orWhere('ami_final_results.note', 'LIKE', "%$search%");
+                    $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
+                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
                 });
             })
-            ->addColumn('ami_period', function ($row) {
-                return $row->amiPeriod ? $row->amiPeriod->year : '-';
+            ->editColumn('ami_period', function ($row) {
+                return $row->ami_period ?: '-';
             })
-            ->addColumn('prodi_name', function ($row) {
-                return $row->prodi ? $row->prodi->nama : '-';
+            ->editColumn('prodi_name', function ($row) {
+                return $row->prodi_name ?: '-';
             })
             ->editColumn('accreditation_status', function ($row) {
                 $colors = ['A' => 'success', 'B' => 'info', 'C' => 'warning', 'Not Accredited' => 'secondary'];

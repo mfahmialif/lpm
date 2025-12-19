@@ -16,7 +16,7 @@ class CreateAmiSelfEvaluationsTable extends Migration
         Schema::create('ami_self_evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ami_period_id')->constrained('ami_periods');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->text('evaluations')->nullable();
             $table->text('filling_guide_name')->nullable();
             $table->string('document')->nullable();

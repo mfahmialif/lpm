@@ -16,7 +16,7 @@ class CreateAmiFindingResultsTable extends Migration
         Schema::create('ami_finding_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('ami_categories');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->string('assessment_question')->nullable();
             $table->string('document')->nullable();
             $table->timestamps();

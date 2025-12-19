@@ -22,25 +22,27 @@ class AmiFindingResultController extends Controller
     public function data(Request $request)
     {
         $search = request('search.value');
-        $data = AmiFindingResult::with(['amiCategory', 'prodi'])->select('ami_finding_results.*');
+        $data = AmiFindingResult::select(
+            'ami_finding_results.*',
+            'ami_categories.name as category_name',
+            'prodis.nama as prodi_name'
+        )
+            ->leftJoin('ami_categories', 'ami_finding_results.ami_category_id', '=', 'ami_categories.id')
+            ->leftJoin('prodis', 'ami_finding_results.prodi_id', '=', 'prodis.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
-                    $query->orWhere('assessment_question', 'LIKE', "%$search%");
-                    $query->orWhereHas('amiCategory', function ($q) use ($search) {
-                        $q->where('name', 'LIKE', "%$search%");
-                    });
-                    $query->orWhereHas('prodi', function ($q) use ($search) {
-                        $q->where('nama', 'LIKE', "%$search%");
-                    });
+                    $query->orWhere('ami_finding_results.assessment_question', 'LIKE', "%$search%");
+                    $query->orWhere('ami_categories.name', 'LIKE', "%$search%");
+                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
                 });
             })
-            ->addColumn('category_name', function ($row) {
-                return $row->amiCategory ? $row->amiCategory->name : '-';
+            ->editColumn('category_name', function ($row) {
+                return $row->category_name ?: '-';
             })
-            ->addColumn('prodi_name', function ($row) {
-                return $row->prodi ? $row->prodi->nama : '-';
+            ->editColumn('prodi_name', function ($row) {
+                return $row->prodi_name ?: '-';
             })
             ->editColumn('document', function ($row) {
                 if ($row->document) {

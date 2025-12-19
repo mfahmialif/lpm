@@ -16,7 +16,7 @@ class CreateAmiRtmTable extends Migration
         Schema::create('ami_rtm', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ami_period_id')->constrained('ami_periods');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->string('lead_auditor')->nullable();
             $table->string('document')->nullable();
             $table->enum('status', ['y', 'n'])->default('n');

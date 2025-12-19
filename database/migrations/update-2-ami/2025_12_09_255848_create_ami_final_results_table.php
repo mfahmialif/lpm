@@ -16,7 +16,7 @@ class CreateAmiFinalResultsTable extends Migration
         Schema::create('ami_final_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ami_period_id')->constrained('ami_periods');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->string('end_score_spme')->nullable();
             $table->string('score_ikt')->nullable();
             $table->string('end_score_ami')->nullable();

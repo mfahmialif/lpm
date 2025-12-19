@@ -1,10 +1,12 @@
 <?php
+
 namespace Database\Seeders;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\ProdiUnitSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ProdiSeeder::class);
+        $this->call(ProdiUnitSeeder::class);
         // $this->call(AccreditationRequirementEvidenceDemoSeeder::class);
 
         DB::table('users')->insert([

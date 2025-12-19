@@ -16,7 +16,7 @@ class CreateAmiAuditorAssessmentsTable extends Migration
         Schema::create('ami_auditor_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ami_period_id')->constrained('ami_periods');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->text('assessment_guide')->nullable();
             $table->string('auditee_name')->nullable();
             $table->string('document')->nullable();

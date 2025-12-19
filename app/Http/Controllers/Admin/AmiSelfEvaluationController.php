@@ -22,26 +22,28 @@ class AmiSelfEvaluationController extends Controller
     public function data(Request $request)
     {
         $search = request('search.value');
-        $data = AmiSelfEvaluation::with(['amiPeriod', 'prodi'])->select('ami_self_evaluations.*');
+        $data = AmiSelfEvaluation::select(
+            'ami_self_evaluations.*',
+            'ami_periods.year as ami_period',
+            'prodis.nama as prodi_name'
+        )
+            ->leftJoin('ami_periods', 'ami_self_evaluations.ami_period_id', '=', 'ami_periods.id')
+            ->leftJoin('prodis', 'ami_self_evaluations.prodi_id', '=', 'prodis.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
-                    $query->orWhere('evaluations', 'LIKE', "%$search%");
-                    $query->orWhere('filling_guide_name', 'LIKE', "%$search%");
-                    $query->orWhereHas('amiPeriod', function ($q) use ($search) {
-                        $q->where('year', 'LIKE', "%$search%");
-                    });
-                    $query->orWhereHas('prodi', function ($q) use ($search) {
-                        $q->where('nama', 'LIKE', "%$search%");
-                    });
+                    $query->orWhere('ami_self_evaluations.evaluations', 'LIKE', "%$search%");
+                    $query->orWhere('ami_self_evaluations.filling_guide_name', 'LIKE', "%$search%");
+                    $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
+                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
                 });
             })
-            ->addColumn('ami_period', function ($row) {
-                return $row->amiPeriod ? $row->amiPeriod->year : '-';
+            ->editColumn('ami_period', function ($row) {
+                return $row->ami_period ?: '-';
             })
-            ->addColumn('prodi_name', function ($row) {
-                return $row->prodi ? $row->prodi->nama : '-';
+            ->editColumn('prodi_name', function ($row) {
+                return $row->prodi_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';

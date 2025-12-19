@@ -16,7 +16,7 @@ class CreateAmiActivitiesTable extends Migration
         Schema::create('ami_activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ami_period_id')->constrained('ami_periods');
-            $table->foreignId('prodi_id')->constrained('prodis');
+            $table->foreignId('prodi_unit_id')->constrained('prodi_units');
             $table->date('filling_date')->nullable();
             $table->date('assessment_date')->nullable();
             $table->string('document')->nullable();
