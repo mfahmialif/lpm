@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiTarget;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,10 +25,10 @@ class AmiTargetController extends Controller
         $data = AmiTarget::select(
             'ami_targets.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_targets.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_targets.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_targets.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
@@ -36,14 +36,14 @@ class AmiTargetController extends Controller
                     $query->orWhere('ami_targets.evaluations', 'LIKE', "%$search%");
                     $query->orWhere('ami_targets.assessment_guide', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -86,8 +86,8 @@ class AmiTargetController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-target.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-target.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -96,7 +96,7 @@ class AmiTargetController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'evaluations' => 'nullable',
                 'assessment_guide' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
@@ -105,7 +105,7 @@ class AmiTargetController extends Controller
 
             $target = new AmiTarget();
             $target->ami_period_id = $request->ami_period_id;
-            $target->prodi_id = $request->prodi_id;
+            $target->prodi_unit_id = $request->prodi_unit_id;
             $target->evaluations = $request->evaluations;
             $target->assessment_guide = $request->assessment_guide;
             $target->status = $request->status ?? 'n';
@@ -137,8 +137,8 @@ class AmiTargetController extends Controller
     public function edit(AmiTarget $amiTarget)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-target.edit.index', compact('periods', 'prodis', 'amiTarget'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-target.edit.index', compact('periods', 'prodiUnits', 'amiTarget'));
     }
 
     public function update(AmiTarget $amiTarget, Request $request)
@@ -147,7 +147,7 @@ class AmiTargetController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'evaluations' => 'nullable',
                 'assessment_guide' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
@@ -155,7 +155,7 @@ class AmiTargetController extends Controller
             ]);
 
             $amiTarget->ami_period_id = $request->ami_period_id;
-            $amiTarget->prodi_id = $request->prodi_id;
+            $amiTarget->prodi_unit_id = $request->prodi_unit_id;
             $amiTarget->evaluations = $request->evaluations;
             $amiTarget->assessment_guide = $request->assessment_guide;
             $amiTarget->status = $request->status ?? 'n';

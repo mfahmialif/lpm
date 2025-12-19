@@ -27,11 +27,8 @@ class AmiAuditorDecree extends Model
         return $this->belongsTo(AmiPeriod::class);
     }
 
-    /**
-     * Get the prodi that owns the auditor decree.
-     */
-    public function prodi()
+    public function prodiUnit()
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(ProdiUnit::class);
     }
 }

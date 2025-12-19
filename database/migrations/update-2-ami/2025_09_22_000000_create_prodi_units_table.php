@@ -15,11 +15,8 @@ return new class extends Migration
     {
         Schema::create('prodi_units', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('kaprodi')->nullable();
-            $table->string('strata')->nullable();
-            $table->string('fakultas')->nullable();
-            $table->string('nohp')->nullable();
+            $table->string('nama')->unique();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

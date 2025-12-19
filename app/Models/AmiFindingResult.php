@@ -21,11 +21,8 @@ class AmiFindingResult extends Model
         return $this->belongsTo(AmiCategory::class, 'category_id');
     }
 
-    /**
-     * Get the prodi that owns the finding result.
-     */
-    public function prodi()
+    public function prodiUnit()
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(ProdiUnit::class);
     }
 }

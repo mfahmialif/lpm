@@ -80,6 +80,13 @@
             "role": "admin"
         },
         {
+            "name": "Prodi Unit",
+            "url": "/admin/prodi-unit",
+            "icon": "menu-icon tf-icons ti ti-building-community",
+            "slug": "admin.prodi-unit.",
+            "role": "admin"
+        },
+        {
             "name": "Periode",
             "url": "/admin/ami-period",
             "icon": "menu-icon tf-icons ti ti-calendar",

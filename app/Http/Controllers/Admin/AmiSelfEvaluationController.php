@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiSelfEvaluation;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,10 +25,10 @@ class AmiSelfEvaluationController extends Controller
         $data = AmiSelfEvaluation::select(
             'ami_self_evaluations.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_self_evaluations.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_self_evaluations.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_self_evaluations.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
@@ -36,14 +36,14 @@ class AmiSelfEvaluationController extends Controller
                     $query->orWhere('ami_self_evaluations.evaluations', 'LIKE', "%$search%");
                     $query->orWhere('ami_self_evaluations.filling_guide_name', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -84,8 +84,8 @@ class AmiSelfEvaluationController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-self-evaluation.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-self-evaluation.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -94,7 +94,7 @@ class AmiSelfEvaluationController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'evaluations' => 'nullable',
                 'filling_guide_name' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
@@ -103,7 +103,7 @@ class AmiSelfEvaluationController extends Controller
 
             $evaluation = new AmiSelfEvaluation();
             $evaluation->ami_period_id = $request->ami_period_id;
-            $evaluation->prodi_id = $request->prodi_id;
+            $evaluation->prodi_unit_id = $request->prodi_unit_id;
             $evaluation->evaluations = $request->evaluations;
             $evaluation->filling_guide_name = $request->filling_guide_name;
             $evaluation->status = $request->status ?? 'n';
@@ -135,8 +135,8 @@ class AmiSelfEvaluationController extends Controller
     public function edit(AmiSelfEvaluation $amiSelfEvaluation)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-self-evaluation.edit.index', compact('periods', 'prodis', 'amiSelfEvaluation'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-self-evaluation.edit.index', compact('periods', 'prodiUnits', 'amiSelfEvaluation'));
     }
 
     public function update(AmiSelfEvaluation $amiSelfEvaluation, Request $request)
@@ -145,7 +145,7 @@ class AmiSelfEvaluationController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'evaluations' => 'nullable',
                 'filling_guide_name' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
@@ -153,7 +153,7 @@ class AmiSelfEvaluationController extends Controller
             ]);
 
             $amiSelfEvaluation->ami_period_id = $request->ami_period_id;
-            $amiSelfEvaluation->prodi_id = $request->prodi_id;
+            $amiSelfEvaluation->prodi_unit_id = $request->prodi_unit_id;
             $amiSelfEvaluation->evaluations = $request->evaluations;
             $amiSelfEvaluation->filling_guide_name = $request->filling_guide_name;
             $amiSelfEvaluation->status = $request->status ?? 'n';

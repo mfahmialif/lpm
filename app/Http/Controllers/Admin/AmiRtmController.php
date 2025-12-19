@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiRtm;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,24 +25,24 @@ class AmiRtmController extends Controller
         $data = AmiRtm::select(
             'ami_rtm.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_rtm.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_rtm.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_rtm.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->orWhere('ami_rtm.lead_auditor', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -79,8 +79,8 @@ class AmiRtmController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-rtm.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-rtm.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -89,7 +89,7 @@ class AmiRtmController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'lead_auditor' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'status' => 'nullable',
@@ -97,7 +97,7 @@ class AmiRtmController extends Controller
 
             $rtm = new AmiRtm();
             $rtm->ami_period_id = $request->ami_period_id;
-            $rtm->prodi_id = $request->prodi_id;
+            $rtm->prodi_unit_id = $request->prodi_unit_id;
             $rtm->lead_auditor = $request->lead_auditor;
             $rtm->status = $request->status ?? 'n';
 
@@ -124,8 +124,8 @@ class AmiRtmController extends Controller
     public function edit(AmiRtm $amiRtm)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-rtm.edit.index', compact('periods', 'prodis', 'amiRtm'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-rtm.edit.index', compact('periods', 'prodiUnits', 'amiRtm'));
     }
 
     public function update(AmiRtm $amiRtm, Request $request)
@@ -134,14 +134,14 @@ class AmiRtmController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'lead_auditor' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'status' => 'nullable',
             ]);
 
             $amiRtm->ami_period_id = $request->ami_period_id;
-            $amiRtm->prodi_id = $request->prodi_id;
+            $amiRtm->prodi_unit_id = $request->prodi_unit_id;
             $amiRtm->lead_auditor = $request->lead_auditor;
             $amiRtm->status = $request->status ?? 'n';
 

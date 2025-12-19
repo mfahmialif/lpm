@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiAuditorDecree;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,24 +25,24 @@ class AmiAuditorDecreeController extends Controller
         $data = AmiAuditorDecree::select(
             'ami_auditor_decrees.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_auditor_decrees.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_auditor_decrees.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_auditor_decrees.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->orWhere('ami_auditor_decrees.number', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -85,8 +85,8 @@ class AmiAuditorDecreeController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-auditor-decree.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-auditor-decree.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -95,7 +95,7 @@ class AmiAuditorDecreeController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'number' => 'nullable',
                 'decree_date' => 'nullable|date',
                 'start_date' => 'nullable|date',
@@ -106,7 +106,7 @@ class AmiAuditorDecreeController extends Controller
 
             $decree = new AmiAuditorDecree();
             $decree->ami_period_id = $request->ami_period_id;
-            $decree->prodi_id = $request->prodi_id;
+            $decree->prodi_unit_id = $request->prodi_unit_id;
             $decree->number = $request->number;
             $decree->decree_date = $request->decree_date;
             $decree->start_date = $request->start_date;
@@ -140,8 +140,8 @@ class AmiAuditorDecreeController extends Controller
     public function edit(AmiAuditorDecree $amiAuditorDecree)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-auditor-decree.edit.index', compact('periods', 'prodis', 'amiAuditorDecree'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-auditor-decree.edit.index', compact('periods', 'prodiUnits', 'amiAuditorDecree'));
     }
 
     public function update(AmiAuditorDecree $amiAuditorDecree, Request $request)
@@ -150,7 +150,7 @@ class AmiAuditorDecreeController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'number' => 'nullable',
                 'decree_date' => 'nullable|date',
                 'start_date' => 'nullable|date',
@@ -160,7 +160,7 @@ class AmiAuditorDecreeController extends Controller
             ]);
 
             $amiAuditorDecree->ami_period_id = $request->ami_period_id;
-            $amiAuditorDecree->prodi_id = $request->prodi_id;
+            $amiAuditorDecree->prodi_unit_id = $request->prodi_unit_id;
             $amiAuditorDecree->number = $request->number;
             $amiAuditorDecree->decree_date = $request->decree_date;
             $amiAuditorDecree->start_date = $request->start_date;

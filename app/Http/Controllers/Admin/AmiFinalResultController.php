@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiFinalResult;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,10 +25,10 @@ class AmiFinalResultController extends Controller
         $data = AmiFinalResult::select(
             'ami_final_results.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_final_results.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_final_results.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_final_results.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
@@ -39,14 +39,14 @@ class AmiFinalResultController extends Controller
                     $query->orWhere('ami_final_results.rank_ami', 'LIKE', "%$search%");
                     $query->orWhere('ami_final_results.note', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('accreditation_status', function ($row) {
                 $colors = ['A' => 'success', 'B' => 'info', 'C' => 'warning', 'Not Accredited' => 'secondary'];
@@ -85,8 +85,8 @@ class AmiFinalResultController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-final-result.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-final-result.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -95,7 +95,7 @@ class AmiFinalResultController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'end_score_spme' => 'nullable',
                 'score_ikt' => 'nullable',
                 'end_score_ami' => 'nullable',
@@ -107,7 +107,7 @@ class AmiFinalResultController extends Controller
 
             $result = new AmiFinalResult();
             $result->ami_period_id = $request->ami_period_id;
-            $result->prodi_id = $request->prodi_id;
+            $result->prodi_unit_id = $request->prodi_unit_id;
             $result->end_score_spme = $request->end_score_spme;
             $result->score_ikt = $request->score_ikt;
             $result->end_score_ami = $request->end_score_ami;
@@ -138,8 +138,8 @@ class AmiFinalResultController extends Controller
     public function edit(AmiFinalResult $amiFinalResult)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-final-result.edit.index', compact('periods', 'prodis', 'amiFinalResult'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-final-result.edit.index', compact('periods', 'prodiUnits', 'amiFinalResult'));
     }
 
     public function update(AmiFinalResult $amiFinalResult, Request $request)
@@ -148,7 +148,7 @@ class AmiFinalResultController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'end_score_spme' => 'nullable',
                 'score_ikt' => 'nullable',
                 'end_score_ami' => 'nullable',
@@ -159,7 +159,7 @@ class AmiFinalResultController extends Controller
             ]);
 
             $amiFinalResult->ami_period_id = $request->ami_period_id;
-            $amiFinalResult->prodi_id = $request->prodi_id;
+            $amiFinalResult->prodi_unit_id = $request->prodi_unit_id;
             $amiFinalResult->end_score_spme = $request->end_score_spme;
             $amiFinalResult->score_ikt = $request->score_ikt;
             $amiFinalResult->end_score_ami = $request->end_score_ami;

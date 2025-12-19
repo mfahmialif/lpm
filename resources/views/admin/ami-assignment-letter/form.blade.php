@@ -10,12 +10,12 @@
     </select>
 </div>
 <div class="mb-6">
-    <label class="form-label">Prodi</label>
-    <select class="select2 form-select" name="prodi_id" required>
-        <option value="">-- Pilih Prodi --</option>
-        @foreach ($prodis as $prodi)
-            <option value="{{ $prodi->id }}" {{ old('prodi_id') == $prodi->id ? 'selected' : '' }}>
-                {{ $prodi->nama }}
+    <label class="form-label">Prodi Unit</label>
+    <select class="select2 form-select" name="prodi_unit_id" required>
+        <option value="">-- Pilih Prodi Unit --</option>
+        @foreach ($prodiUnits as $prodiUnit)
+            <option value="{{ $prodiUnit->id }}" {{ old('prodi_unit_id') == $prodiUnit->id ? 'selected' : '' }}>
+                {{ $prodiUnit->nama }}
             </option>
         @endforeach
     </select>

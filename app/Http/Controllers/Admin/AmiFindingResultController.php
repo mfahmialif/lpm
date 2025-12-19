@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiFindingResult;
 use App\Models\AmiCategory;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,24 +25,24 @@ class AmiFindingResultController extends Controller
         $data = AmiFindingResult::select(
             'ami_finding_results.*',
             'ami_categories.name as category_name',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_categories', 'ami_finding_results.ami_category_id', '=', 'ami_categories.id')
-            ->leftJoin('prodis', 'ami_finding_results.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_finding_results.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->orWhere('ami_finding_results.assessment_question', 'LIKE', "%$search%");
                     $query->orWhere('ami_categories.name', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('category_name', function ($row) {
                 return $row->category_name ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('document', function ($row) {
                 if ($row->document) {
@@ -76,8 +76,8 @@ class AmiFindingResultController extends Controller
     public function add()
     {
         $categories = AmiCategory::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-finding-result.add.index', compact('categories', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-finding-result.add.index', compact('categories', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -86,14 +86,14 @@ class AmiFindingResultController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'category_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'assessment_question' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
             ]);
 
             $result = new AmiFindingResult();
             $result->category_id = $request->category_id;
-            $result->prodi_id = $request->prodi_id;
+            $result->prodi_unit_id = $request->prodi_unit_id;
             $result->assessment_question = $request->assessment_question;
 
             if ($request->hasFile('document')) {
@@ -120,8 +120,8 @@ class AmiFindingResultController extends Controller
     public function edit(AmiFindingResult $amiFindingResult)
     {
         $categories = AmiCategory::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-finding-result.edit.index', compact('categories', 'prodis', 'amiFindingResult'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-finding-result.edit.index', compact('categories', 'prodiUnits', 'amiFindingResult'));
     }
 
     public function update(AmiFindingResult $amiFindingResult, Request $request)
@@ -130,13 +130,13 @@ class AmiFindingResultController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'category_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'assessment_question' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
             ]);
 
             $amiFindingResult->category_id = $request->category_id;
-            $amiFindingResult->prodi_id = $request->prodi_id;
+            $amiFindingResult->prodi_unit_id = $request->prodi_unit_id;
             $amiFindingResult->assessment_question = $request->assessment_question;
 
             if ($request->hasFile('document')) {

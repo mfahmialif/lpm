@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AddActivityController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProdiController;
+use App\Http\Controllers\Admin\ProdiUnitController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ActivityController;
@@ -166,6 +167,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [SertifikatController::class, 'storeSertifikat'])->name('admin.sertifikat.store');
         Route::put('/update', [SertifikatController::class, 'updateSertifikat'])->name('admin.sertifikat.update');
         Route::delete('/delete', [SertifikatController::class, 'deleteSertifikat'])->name('admin.sertifikat.delete');
+    });
+
+    Route::prefix('prodi-unit')->middleware('role:admin')->group(function () {
+        Route::get('/', [ProdiUnitController::class, 'index'])->name('admin.prodi-unit.index');
+        Route::get('/data', [ProdiUnitController::class, 'data'])->name('admin.prodi-unit.data');
+        Route::post('/store', [ProdiUnitController::class, 'store'])->name('admin.prodi-unit.store');
+        Route::put('/update', [ProdiUnitController::class, 'update'])->name('admin.prodi-unit.update');
+        Route::delete('/delete', [ProdiUnitController::class, 'delete'])->name('admin.prodi-unit.delete');
     });
 
     Route::prefix('ami-period')->middleware('role:admin')->group(function () {

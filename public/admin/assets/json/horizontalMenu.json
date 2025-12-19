@@ -71,6 +71,7 @@
       "name": "AMI",
       "icon": "menu-icon tf-icons ti ti-clipboard-data",
       "slug": [
+        "admin.prodi-unit.",
         "admin.ami-period.",
         "admin.ami-category.",
         "admin.ami-target.",
@@ -87,6 +88,11 @@
         "admin.ami-final-result."
       ],
       "submenu": [
+        {
+          "name": "Prodi Unit",
+          "url": "/admin/prodi-unit",
+          "slug": "admin.prodi-unit."
+        },
         {
           "name": "Periode",
           "url": "/admin/ami-period",

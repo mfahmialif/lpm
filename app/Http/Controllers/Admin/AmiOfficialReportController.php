@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiOfficialReport;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,10 +25,10 @@ class AmiOfficialReportController extends Controller
         $data = AmiOfficialReport::select(
             'ami_official_reports.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_official_reports.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_official_reports.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_official_reports.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
@@ -36,14 +36,14 @@ class AmiOfficialReportController extends Controller
                     $query->orWhere('ami_official_reports.effidence', 'LIKE', "%$search%");
                     $query->orWhere('ami_official_reports.note', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('document', function ($row) {
                 if ($row->document) {
@@ -77,8 +77,8 @@ class AmiOfficialReportController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-official-report.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-official-report.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -87,7 +87,7 @@ class AmiOfficialReportController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'effidence' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'note' => 'nullable',
@@ -95,7 +95,7 @@ class AmiOfficialReportController extends Controller
 
             $report = new AmiOfficialReport();
             $report->ami_period_id = $request->ami_period_id;
-            $report->prodi_id = $request->prodi_id;
+            $report->prodi_unit_id = $request->prodi_unit_id;
             $report->effidence = $request->effidence;
             $report->note = $request->note;
 
@@ -122,8 +122,8 @@ class AmiOfficialReportController extends Controller
     public function edit(AmiOfficialReport $amiOfficialReport)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-official-report.edit.index', compact('periods', 'prodis', 'amiOfficialReport'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-official-report.edit.index', compact('periods', 'prodiUnits', 'amiOfficialReport'));
     }
 
     public function update(AmiOfficialReport $amiOfficialReport, Request $request)
@@ -132,14 +132,14 @@ class AmiOfficialReportController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'effidence' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'note' => 'nullable',
             ]);
 
             $amiOfficialReport->ami_period_id = $request->ami_period_id;
-            $amiOfficialReport->prodi_id = $request->prodi_id;
+            $amiOfficialReport->prodi_unit_id = $request->prodi_unit_id;
             $amiOfficialReport->effidence = $request->effidence;
             $amiOfficialReport->note = $request->note;
 

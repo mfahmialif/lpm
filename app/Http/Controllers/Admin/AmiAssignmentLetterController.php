@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiAssignmentLetter;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,24 +25,24 @@ class AmiAssignmentLetterController extends Controller
         $data = AmiAssignmentLetter::select(
             'ami_assignment_letters.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_assignment_letters.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_assignment_letters.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_assignment_letters.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->orWhere('ami_assignment_letters.number', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -85,8 +85,8 @@ class AmiAssignmentLetterController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-assignment-letter.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-assignment-letter.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -95,7 +95,7 @@ class AmiAssignmentLetterController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'number' => 'nullable',
                 'assignment_date' => 'nullable|date',
                 'start_date' => 'nullable|date',
@@ -106,7 +106,7 @@ class AmiAssignmentLetterController extends Controller
 
             $letter = new AmiAssignmentLetter();
             $letter->ami_period_id = $request->ami_period_id;
-            $letter->prodi_id = $request->prodi_id;
+            $letter->prodi_unit_id = $request->prodi_unit_id;
             $letter->number = $request->number;
             $letter->assignment_date = $request->assignment_date;
             $letter->start_date = $request->start_date;
@@ -140,8 +140,8 @@ class AmiAssignmentLetterController extends Controller
     public function edit(AmiAssignmentLetter $amiAssignmentLetter)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-assignment-letter.edit.index', compact('periods', 'prodis', 'amiAssignmentLetter'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-assignment-letter.edit.index', compact('periods', 'prodiUnits', 'amiAssignmentLetter'));
     }
 
     public function update(AmiAssignmentLetter $amiAssignmentLetter, Request $request)
@@ -150,7 +150,7 @@ class AmiAssignmentLetterController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'number' => 'nullable',
                 'assignment_date' => 'nullable|date',
                 'start_date' => 'nullable|date',
@@ -160,7 +160,7 @@ class AmiAssignmentLetterController extends Controller
             ]);
 
             $amiAssignmentLetter->ami_period_id = $request->ami_period_id;
-            $amiAssignmentLetter->prodi_id = $request->prodi_id;
+            $amiAssignmentLetter->prodi_unit_id = $request->prodi_unit_id;
             $amiAssignmentLetter->number = $request->number;
             $amiAssignmentLetter->assignment_date = $request->assignment_date;
             $amiAssignmentLetter->start_date = $request->start_date;

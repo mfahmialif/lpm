@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\AmiAuditFinding;
 use App\Models\AmiPeriod;
-use App\Models\Prodi;
+use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -25,10 +25,10 @@ class AmiAuditFindingController extends Controller
         $data = AmiAuditFinding::select(
             'ami_audit_findings.*',
             'ami_periods.year as ami_period',
-            'prodis.nama as prodi_name'
+            'prodi_units.nama as prodi_unit_name'
         )
             ->leftJoin('ami_periods', 'ami_audit_findings.ami_period_id', '=', 'ami_periods.id')
-            ->leftJoin('prodis', 'ami_audit_findings.prodi_id', '=', 'prodis.id');
+            ->leftJoin('prodi_units', 'ami_audit_findings.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
@@ -36,14 +36,14 @@ class AmiAuditFindingController extends Controller
                     $query->orWhere('ami_audit_findings.lead_auditor', 'LIKE', "%$search%");
                     $query->orWhere('ami_audit_findings.note', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
-                    $query->orWhere('prodis.nama', 'LIKE', "%$search%");
+                    $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
                 });
             })
             ->editColumn('ami_period', function ($row) {
                 return $row->ami_period ?: '-';
             })
-            ->editColumn('prodi_name', function ($row) {
-                return $row->prodi_name ?: '-';
+            ->editColumn('prodi_unit_name', function ($row) {
+                return $row->prodi_unit_name ?: '-';
             })
             ->editColumn('status', function ($row) {
                 return '<span class="badge bg-' . ($row->status == 'y' ? 'success' : 'secondary') . '">' . ($row->status == 'y' ? 'Active' : 'Inactive') . '</span>';
@@ -80,8 +80,8 @@ class AmiAuditFindingController extends Controller
     public function add()
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-audit-finding.add.index', compact('periods', 'prodis'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-audit-finding.add.index', compact('periods', 'prodiUnits'));
     }
 
     public function store(Request $request)
@@ -90,7 +90,7 @@ class AmiAuditFindingController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'lead_auditor' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'note' => 'nullable',
@@ -99,7 +99,7 @@ class AmiAuditFindingController extends Controller
 
             $finding = new AmiAuditFinding();
             $finding->ami_period_id = $request->ami_period_id;
-            $finding->prodi_id = $request->prodi_id;
+            $finding->prodi_unit_id = $request->prodi_unit_id;
             $finding->lead_auditor = $request->lead_auditor;
             $finding->note = $request->note;
             $finding->status = $request->status ?? 'n';
@@ -127,8 +127,8 @@ class AmiAuditFindingController extends Controller
     public function edit(AmiAuditFinding $amiAuditFinding)
     {
         $periods = AmiPeriod::all();
-        $prodis = Prodi::all();
-        return view('admin.ami-audit-finding.edit.index', compact('periods', 'prodis', 'amiAuditFinding'));
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-audit-finding.edit.index', compact('periods', 'prodiUnits', 'amiAuditFinding'));
     }
 
     public function update(AmiAuditFinding $amiAuditFinding, Request $request)
@@ -137,7 +137,7 @@ class AmiAuditFindingController extends Controller
             \DB::beginTransaction();
             $request->validate([
                 'ami_period_id' => 'required',
-                'prodi_id' => 'required',
+                'prodi_unit_id' => 'required',
                 'lead_auditor' => 'nullable',
                 'document' => 'nullable|mimes:pdf,doc,docx,xls,xlsx',
                 'note' => 'nullable',
@@ -145,7 +145,7 @@ class AmiAuditFindingController extends Controller
             ]);
 
             $amiAuditFinding->ami_period_id = $request->ami_period_id;
-            $amiAuditFinding->prodi_id = $request->prodi_id;
+            $amiAuditFinding->prodi_unit_id = $request->prodi_unit_id;
             $amiAuditFinding->lead_auditor = $request->lead_auditor;
             $amiAuditFinding->note = $request->note;
             $amiAuditFinding->status = $request->status ?? 'n';
