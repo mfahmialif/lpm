@@ -14,10 +14,20 @@
                             <div class="form-group">
                                 <label for="prodi_unit_id">Prodi Unit</label>
                                 <select name="prodi_unit_id" id="prodi_unit_id" class="form-select select2 filter">
+                                    @if (\Auth::user()->role === 'unit')
+                                    @foreach (Auth::user()->prodiUnits as $prodiUnit)
+                                    <option value="{{ $prodiUnit->id }}">
+                                        {{ $prodiUnit->nama }}
+                                    </option>
+                                    @endforeach
+                                    @else
                                     <option value="*">Semua</option>
                                     @foreach ($prodiUnits as $prodiUnit)
-                                    <option value="{{ $prodiUnit->id }}">{{ $prodiUnit->nama }}</option>
+                                    <option value="{{ $prodiUnit->id }}">
+                                        {{ $prodiUnit->nama }}
+                                    </option>
                                     @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
