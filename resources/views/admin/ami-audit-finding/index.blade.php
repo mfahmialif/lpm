@@ -64,8 +64,8 @@
                 , className: "align-middle"
             }
             , {
-                data: "prodi_name"
-                , name: "prodi_name"
+                data: "prodi_unit_name"
+                , name: "prodi_unit_name"
                 , className: "align-middle"
             }
             , {
