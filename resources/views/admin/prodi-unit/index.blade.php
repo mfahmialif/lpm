@@ -9,6 +9,8 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Keterangan</th>
+                    <th>Jml Editor</th>
+                    <th>Jml Audity</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -136,6 +138,16 @@
                 data: "keterangan"
                 , name: "keterangan"
                 , className: "align-middle"
+            , }
+            , {
+                data: "jumlah_editor"
+                , name: "jumlah_editor"
+                , className: "align-middle text-center"
+            , }
+            , {
+                data: "jumlah_audity"
+                , name: "jumlah_audity"
+                , className: "align-middle text-center"
             , }
             , {
                 data: "action"

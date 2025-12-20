@@ -124,4 +124,13 @@ class ProdiUnit extends Model
     {
         return $this->hasMany(AmiFinalResult::class);
     }
+
+    /**
+     * Get the users associated with this prodi unit.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_prodi_unit')
+            ->withTimestamps();
+    }
 }

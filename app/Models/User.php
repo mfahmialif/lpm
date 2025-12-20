@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,5 +60,14 @@ class User extends Authenticatable
     public function player()
     {
         return $this->hasOne(Player::class);
+    }
+
+    /**
+     * Get the prodi units associated with this user.
+     */
+    public function prodiUnits()
+    {
+        return $this->belongsToMany(ProdiUnit::class, 'user_prodi_unit')
+            ->withTimestamps();
     }
 }

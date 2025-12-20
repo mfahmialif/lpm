@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="{{ asset('admin/assets/css/demo.css') }}" />
 
 <!-- Vendors CSS -->
+<link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/jquery-ui/jquery-ui.css') }}" />
 <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/node-waves/node-waves.css') }}" />
 
 <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />

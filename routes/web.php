@@ -175,6 +175,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [ProdiUnitController::class, 'store'])->name('admin.prodi-unit.store');
         Route::put('/update', [ProdiUnitController::class, 'update'])->name('admin.prodi-unit.update');
         Route::delete('/delete', [ProdiUnitController::class, 'delete'])->name('admin.prodi-unit.delete');
+
+        // User management routes
+        Route::get('/search-users', [ProdiUnitController::class, 'searchUsers'])->name('admin.prodi-unit.search-users');
+        Route::post('/add-user', [ProdiUnitController::class, 'addUser'])->name('admin.prodi-unit.add-user');
+        Route::delete('/remove-user', [ProdiUnitController::class, 'removeUser'])->name('admin.prodi-unit.remove-user');
+        Route::get('/{prodiUnit}/users', [ProdiUnitController::class, 'users'])->name('admin.prodi-unit.users');
+        Route::get('/{prodiUnit}/users/data', [ProdiUnitController::class, 'usersData'])->name('admin.prodi-unit.users.data');
     });
 
     Route::prefix('ami-period')->middleware('role:admin')->group(function () {
