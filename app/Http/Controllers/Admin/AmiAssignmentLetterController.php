@@ -16,7 +16,8 @@ class AmiAssignmentLetterController extends Controller
 
     public function index()
     {
-        return view('admin.ami-assignment-letter.index');
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-assignment-letter.index', compact('prodiUnits'));
     }
 
     public function data(Request $request)
@@ -36,6 +37,9 @@ class AmiAssignmentLetterController extends Controller
                     $query->orWhere('ami_assignment_letters.number', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
                     $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
+                });
+                $query->when(request('prodi_unit_id') != '*', function ($query) {
+                    $query->where('ami_assignment_letters.prodi_unit_id', request('prodi_unit_id'));
                 });
             })
             ->editColumn('ami_period', function ($row) {

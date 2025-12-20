@@ -16,7 +16,8 @@ class AmiAuditFindingController extends Controller
 
     public function index()
     {
-        return view('admin.ami-audit-finding.index');
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-audit-finding.index', compact('prodiUnits'));
     }
 
     public function data(Request $request)
@@ -37,6 +38,9 @@ class AmiAuditFindingController extends Controller
                     $query->orWhere('ami_audit_findings.note', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
                     $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
+                });
+                $query->when(request('prodi_unit_id') != '*', function ($query) {
+                    $query->where('ami_audit_findings.prodi_unit_id', request('prodi_unit_id'));
                 });
             })
             ->editColumn('ami_period', function ($row) {

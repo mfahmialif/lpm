@@ -16,7 +16,8 @@ class AmiFinalResultController extends Controller
 
     public function index()
     {
-        return view('admin.ami-final-result.index');
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-final-result.index', compact('prodiUnits'));
     }
 
     public function data(Request $request)
@@ -40,6 +41,9 @@ class AmiFinalResultController extends Controller
                     $query->orWhere('ami_final_results.note', 'LIKE', "%$search%");
                     $query->orWhere('ami_periods.year', 'LIKE', "%$search%");
                     $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
+                });
+                $query->when(request('prodi_unit_id') != '*', function ($query) {
+                    $query->where('ami_final_results.prodi_unit_id', request('prodi_unit_id'));
                 });
             })
             ->editColumn('ami_period', function ($row) {

@@ -1,6 +1,42 @@
 @extends('layouts.admin.template')
 @section('title', 'Hasil Akhir AMI')
 @section('content')
+<div class="row">
+    <div class="col-12 mb-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Filter</h5>
+            </div>
+            <div class="card-body">
+                <form id="filter-form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="prodi_unit_id">Prodi Unit</label>
+                                <select name="prodi_unit_id" id="prodi_unit_id" class="form-select select2 filter">
+                                    @if (\Auth::user()->role === 'unit')
+                                    @foreach (Auth::user()->prodiUnits as $prodiUnit)
+                                    <option value="{{ $prodiUnit->id }}">
+                                        {{ $prodiUnit->nama }}
+                                    </option>
+                                    @endforeach
+                                    @else
+                                    <option value="*">Semua</option>
+                                    @foreach ($prodiUnits as $prodiUnit)
+                                    <option value="{{ $prodiUnit->id }}">
+                                        {{ $prodiUnit->nama }}
+                                    </option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="card" id="card-ami-final-result">
     <div class="card-datatable table-responsive pt-0">
         <table class="datatables-basic table table-hover" id="table-1">
@@ -56,6 +92,11 @@
             }
         });
     });
+
+    $(document).on('change', '.filter', function() {
+        dataTable.ajax.reload(null, false);
+    });
+
     var dataTable = initDataTables('table-1', 'loader-ami-final-result', 'card-ami-final-result', 'new-record-button', false
         , 'Hasil Akhir AMI', "{{ route('admin.ami-final-result.data') }}"
         , [{
@@ -106,6 +147,7 @@
                 , orderable: false
             }
         , ]
+        , ["prodi_unit_id"]
     );
 
 </script>

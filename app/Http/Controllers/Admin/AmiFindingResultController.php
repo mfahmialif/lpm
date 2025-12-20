@@ -16,7 +16,8 @@ class AmiFindingResultController extends Controller
 
     public function index()
     {
-        return view('admin.ami-finding-result.index');
+        $prodiUnits = ProdiUnit::all();
+        return view('admin.ami-finding-result.index', compact('prodiUnits'));
     }
 
     public function data(Request $request)
@@ -27,7 +28,7 @@ class AmiFindingResultController extends Controller
             'ami_categories.name as category_name',
             'prodi_units.nama as prodi_unit_name'
         )
-            ->leftJoin('ami_categories', 'ami_finding_results.ami_category_id', '=', 'ami_categories.id')
+            ->leftJoin('ami_categories', 'ami_finding_results.category_id', '=', 'ami_categories.id')
             ->leftJoin('prodi_units', 'ami_finding_results.prodi_unit_id', '=', 'prodi_units.id');
 
         return DataTables::of($data)
@@ -36,6 +37,9 @@ class AmiFindingResultController extends Controller
                     $query->orWhere('ami_finding_results.assessment_question', 'LIKE', "%$search%");
                     $query->orWhere('ami_categories.name', 'LIKE', "%$search%");
                     $query->orWhere('prodi_units.nama', 'LIKE', "%$search%");
+                });
+                $query->when(request('prodi_unit_id') != '*', function ($query) {
+                    $query->where('ami_finding_results.prodi_unit_id', request('prodi_unit_id'));
                 });
             })
             ->editColumn('category_name', function ($row) {
