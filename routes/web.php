@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\PlayController;
 use App\Http\Controllers\RootController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
@@ -41,6 +40,7 @@ use App\Http\Controllers\Admin\AmiRtmController;
 use App\Http\Controllers\Admin\AmiOfficialReportController;
 use App\Http\Controllers\Admin\AmiFinalResultController;
 use App\Http\Controllers\Admin\SertifikatController;
+use App\Http\Controllers\TestingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,13 +87,6 @@ Route::prefix('addactivity/{code}')->group(function () {
     Route::post('/storeDokumen', [AddActivityController::class, 'storeDokumen'])->name('addactivity.storeDokumen');
     Route::post('/destroyDokumen', [AddActivityController::class, 'destroyDokumen'])->name('addactivity.destroyDokumen');
     Route::get('/getDataDokumen', [AddActivityController::class, 'getDataDokumen'])->name('addactivity.getDataDokumen');
-});
-
-Route::prefix('play')->group(function () {
-    Route::get('/', [PlayController::class, 'index'])->name('play.index');
-    Route::get('/getLevel', [PlayController::class, 'getLevel'])->name('play.getLevel');
-    Route::post('/saveScore', [PlayController::class, 'saveScore'])->name('play.saveScore');
-    Route::post('/saveScoreFreestyle', [PlayController::class, 'saveScoreFreestyle'])->name('play.saveScoreFreestyle');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -354,3 +347,6 @@ Route::prefix('operasi')->group(function () {
         Route::delete('/{id}/hapus', [KalenderController::class, 'hapus'])->name('operasi.kalender.hapus');
     });
 });
+
+// Testing routes
+Route::get('/testing/create-unit-accounts', [TestingController::class, 'createUnitAccounts'])->name('testing.create-unit-accounts');
