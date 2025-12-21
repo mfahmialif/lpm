@@ -37,8 +37,7 @@
             "role": "admin"
         },
         {
-            "name": "Unit",
-            "url": "/admin/unit",
+            "ur": "/admin/unit",
             "icon": "menu-icon tf-icons ti ti-building",
             "slug": "admin.unit.",
             "role": "admin"
@@ -77,7 +76,8 @@
         },
         {
             "menuHeader": "AMI",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "*"
         },
         {
             "name": "Prodi Unit",
@@ -105,88 +105,100 @@
             "url": "/admin/ami-target",
             "icon": "menu-icon tf-icons ti ti-target",
             "slug": "admin.ami-target.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "*"
         },
         {
             "name": "SK Auditor",
             "url": "/admin/ami-auditor-decree",
             "icon": "menu-icon tf-icons ti ti-file-certificate",
             "slug": "admin.ami-auditor-decree.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "audity"
         },
         {
             "name": "Surat Tugas",
             "url": "/admin/ami-assignment-letter",
             "icon": "menu-icon tf-icons ti ti-mail",
             "slug": "admin.ami-assignment-letter.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "audity"
         },
         {
             "name": "Laporan Kinerja",
             "url": "/admin/ami-performance-report",
             "icon": "menu-icon tf-icons ti ti-file-report",
             "slug": "admin.ami-performance-report.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "editor"
         },
         {
             "name": "Evaluasi Diri",
             "url": "/admin/ami-self-evaluation",
             "icon": "menu-icon tf-icons ti ti-clipboard-check",
             "slug": "admin.ami-self-evaluation.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "editor"
         },
         {
             "name": "Asesmen Diri",
             "url": "/admin/ami-self-assessment",
             "icon": "menu-icon tf-icons ti ti-file-check",
             "slug": "admin.ami-self-assessment.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "editor"
         },
         {
             "name": "Asesmen Auditor",
             "url": "/admin/ami-auditor-assessment",
             "icon": "menu-icon tf-icons ti ti-file-search",
             "slug": "admin.ami-auditor-assessment.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "audity"
         },
         {
             "name": "Temuan Audit",
             "url": "/admin/ami-audit-finding",
             "icon": "menu-icon tf-icons ti ti-alert-circle",
             "slug": "admin.ami-audit-finding.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "audity"
         },
         {
             "name": "Hasil Temuan",
             "url": "/admin/ami-finding-result",
             "icon": "menu-icon tf-icons ti ti-list-check",
             "slug": "admin.ami-finding-result.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "*"
         },
         {
             "name": "RTM",
             "url": "/admin/ami-rtm",
             "icon": "menu-icon tf-icons ti ti-clipboard-list",
             "slug": "admin.ami-rtm.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "*"
         },
         {
             "name": "Laporan Resmi",
             "url": "/admin/ami-official-report",
             "icon": "menu-icon tf-icons ti ti-file-text",
             "slug": "admin.ami-official-report.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "audity"
         },
         {
             "name": "Hasil Akhir",
             "url": "/admin/ami-final-result",
             "icon": "menu-icon tf-icons ti ti-trophy",
             "slug": "admin.ami-final-result.",
-            "role": "admin"
+            "role": "admin,unit",
+            "unit": "*"
         },
         {
             "menuHeader": "Administrator",
-            "role": "admin,player"
+            "role": "admin,unit"
         },
         {
             "name": "User",
@@ -200,7 +212,7 @@
             "url": "/admin/profile",
             "icon": "menu-icon tf-icons ti ti-id-badge",
             "slug": "admin.profile.",
-            "role": "admin,player"
+            "role": "admin,unit,staff"
         }
     ]
 }

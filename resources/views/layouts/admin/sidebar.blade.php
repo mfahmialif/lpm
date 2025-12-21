@@ -18,61 +18,66 @@
 
     <ul class="menu-inner py-1">
         @foreach ($menuData[0]->menu as $menu)
-            {{-- adding active and open class if child is active --}}
-            @if (strpos(@$menu->role, \Auth::user()->role) === false)
-                @continue;
-            @endif
-            {{-- menu headers --}}
-            @if (isset($menu->menuHeader))
-                <li class="menu-header small">
-                    <span class="menu-header-text">{{ __($menu->menuHeader) }}</span>
-                </li>
-            @else
-                {{-- active menu method --}}
-                @php
-                    $activeClass = null;
-                    $currentRouteName = Route::currentRouteName();
+        {{-- adding active and open class if child is active --}}
+        @if (strpos(@$menu->role, \Auth::user()->role) === false)
+        @continue;
+        @endif
 
-                    if (isset($menu->submenu)) {
-                        if (gettype($menu->slug) === 'array') {
-                            foreach ($menu->slug as $slug) {
-                                if (str_contains($currentRouteName, $slug) and strpos($currentRouteName, $slug) === 0) {
-                                    $activeClass = 'active open';
-                                }
-                            }
-                        } else {
-                            if (
-                                str_contains($currentRouteName, $menu->slug) and
-                                strpos($currentRouteName, $menu->slug) === 0
-                            ) {
-                                $activeClass = 'active open';
-                            }
-                        }
-                    } elseif (strpos($currentRouteName, $menu->slug) === 0) {
-                        $activeClass = 'active';
-                    }
-                @endphp
+        @if(Auth::user()->role == 'unit')
+        @if (isset($menu->unit) and $menu->unit != "*" and strtolower($menu->unit) != strtolower(Helper::getAmiMode()))
+        @continue;
+        @endif
+        @endif
 
-                {{-- main menu --}}
-                <li class="menu-item {{ $activeClass }}">
-                    <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}"
-                        class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}"
-                        @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
-                        @isset($menu->icon)
-                            <i class="{{ $menu->icon }}"></i>
-                        @endisset
-                        <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
-                        @isset($menu->badge)
-                            <div class="badge bg-{{ $menu->badge[0] }} rounded-pill ms-auto">{{ $menu->badge[1] }}</div>
-                        @endisset
-                    </a>
+        {{-- menu headers --}}
+        @if (isset($menu->menuHeader))
+        <li class="menu-header small">
+            <span class="menu-header-text">{{ __($menu->menuHeader) }}</span>
+        </li>
+        @else
+        {{-- active menu method --}}
+        @php
+        $activeClass = null;
+        $currentRouteName = Route::currentRouteName();
 
-                    {{-- submenu --}}
-                    @isset($menu->submenu)
-                        @include('layouts.admin.sidebarsub', ['menu' => $menu->submenu])
-                    @endisset
-                </li>
-            @endif
+        if (isset($menu->submenu)) {
+        if (gettype($menu->slug) === 'array') {
+        foreach ($menu->slug as $slug) {
+        if (str_contains($currentRouteName, $slug) and strpos($currentRouteName, $slug) === 0) {
+        $activeClass = 'active open';
+        }
+        }
+        } else {
+        if (
+        str_contains($currentRouteName, $menu->slug) and
+        strpos($currentRouteName, $menu->slug) === 0
+        ) {
+        $activeClass = 'active open';
+        }
+        }
+        } elseif (strpos($currentRouteName, $menu->slug) === 0) {
+        $activeClass = 'active';
+        }
+        @endphp
+
+        {{-- main menu --}}
+        <li class="menu-item {{ $activeClass }}">
+            <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
+                @isset($menu->icon)
+                <i class="{{ $menu->icon }}"></i>
+                @endisset
+                <div>{{ isset($menu->name) ? __($menu->name) : '' }}</div>
+                @isset($menu->badge)
+                <div class="badge bg-{{ $menu->badge[0] }} rounded-pill ms-auto">{{ $menu->badge[1] }}</div>
+                @endisset
+            </a>
+
+            {{-- submenu --}}
+            @isset($menu->submenu)
+            @include('layouts.admin.sidebarsub', ['menu' => $menu->submenu])
+            @endisset
+        </li>
+        @endif
         @endforeach
     </ul>
 

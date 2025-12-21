@@ -1,5 +1,14 @@
 <ul class="menu-sub">
     @foreach ($menu as $submenu)
+    @if (strpos(@$submenu->role, \Auth::user()->role) === false)
+    @continue;
+    @endif
+
+    @if(Auth::user()->role == 'unit')
+    @if (isset($submenu->unit) and $submenu->unit != "*" and strtolower($submenu->unit) != strtolower(Helper::getAmiMode()))
+    @continue;
+    @endif
+    @endif
     @php
     $activeClass = null;
     $currentRouteName = Route::currentRouteName();

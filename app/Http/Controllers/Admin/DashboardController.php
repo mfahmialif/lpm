@@ -1,18 +1,21 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Models\News;
 use App\Models\User;
 use App\Models\Activity;
 use App\Models\Category;
+use App\Http\Services\Helper;
 use App\Models\Accreditation;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $user          = \Auth::user();
+        $user          = Auth::user();
         $totalCategory = Category::count();
         $totalNews     = News::count();
         $totalUser     = User::count();

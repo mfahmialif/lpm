@@ -58,17 +58,13 @@ class User extends Authenticatable
         return asset('home/assets/img/favicon.png');
     }
 
-    public function player()
-    {
-        return $this->hasOne(Player::class);
-    }
-
     /**
      * Get the prodi units associated with this user.
      */
     public function prodiUnits()
     {
         return $this->belongsToMany(ProdiUnit::class, 'user_prodi_unit')
+            ->withPivot('jenis')
             ->withTimestamps();
     }
 }

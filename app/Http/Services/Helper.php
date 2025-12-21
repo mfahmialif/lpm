@@ -2,9 +2,10 @@
 
 namespace App\Http\Services;
 
-use App\Models\Setting;
-use App\Models\Tahun;
-use App\Models\Jadwal;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class Helper
 {
@@ -13,13 +14,12 @@ class Helper
         $idrString = preg_replace("/[^0-9]/", "", $idrString);
 
         // Convert the string to a double
-        $idrDecimal = (double) $idrString;
+        $idrDecimal = (float) $idrString;
         return $idrDecimal;
     }
     public static function doubleToIdr($idrString)
     {
-        return 'Rp ' . number_format($idrString, 0, ',', '.');
-        ;
+        return 'Rp ' . number_format($idrString, 0, ',', '.');;
     }
 
     public static function terbilang($nilai)
@@ -85,7 +85,7 @@ class Helper
         $charactersToReplace = ['\\', '/', ':', '*', '?', '<', '>', '|'];
         $replacement = '-';
 
-        $newString = \Str::replace($charactersToReplace, $replacement, $string);
+        $newString = Str::replace($charactersToReplace, $replacement, $string);
         return $newString;
     }
 
@@ -103,7 +103,7 @@ class Helper
      */
     public static function getEnumValues($table, $column, $deleteColumn = false)
     {
-        $type = \DB::select(\DB::raw("SHOW COLUMNS FROM $table WHERE Field = '$column'"))[0]->Type;
+        $type = DB::select(DB::raw("SHOW COLUMNS FROM $table WHERE Field = '$column'"))[0]->Type;
         preg_match('/^enum\((.*)\)$/', $type, $matches);
         $enum = array();
 
@@ -118,7 +118,6 @@ class Helper
                 if ($key !== false) {
                     unset($enum[$key]);
                 }
-
             }
             $enum = array_values($enum);
         }
@@ -157,8 +156,8 @@ class Helper
         $charactersToReplace = ['\\', '/', ':', '*', '?', '<', '>', '|', '-', '_'];
         $replacement = ' ';
 
-        $newString = \Str::replace($charactersToReplace, $replacement, $string);
-        return \Str::upper($newString);
+        $newString = Str::replace($charactersToReplace, $replacement, $string);
+        return Str::upper($newString);
     }
 
     public static function removeSpecialCharacters($string)
@@ -183,14 +182,14 @@ class Helper
 
     public static function getTheme()
     {
-        $theme = \Cookie::get('theme');
+        $theme = Cookie::get('theme');
         $theme = $theme ? $theme : 'light';
         return $theme;
     }
 
     public static function setTheme($theme)
     {
-        \Cookie::queue(\Cookie::forever('theme', $theme));
+        Cookie::queue(Cookie::forever('theme', $theme));
         return 'success';
     }
 
@@ -415,6 +414,48 @@ class Helper
         return $result;
     }
 
+    public static function setAmiModeUser()
+    {
+        $user = Auth::user();
+        if ($user->role != 'unit') {
+            return false;
+        }
+
+        if (!$user->prodiUnits) {
+            return false;
+        }
+
+        $mode = $user->prodiUnits->first()->pivot->jenis;
+        $set = self::setAmiMode($mode);
+        return $set;
+    }
+
+    public static function getAllJenisAmiUser()
+    {
+        $user = Auth::user();
+        if ($user->role != 'unit') {
+            return false;
+        }
+
+        if (!$user->prodiUnits) {
+            return false;
+        }
+
+        return $user->prodiUnits->pluck('pivot.jenis')->unique()->toArray();
+    }
+
+    public static function setAmiMode($mode)
+    {
+        $allMode = self::getAllJenisAmiUser();
+        if (!in_array($mode, $allMode)) {
+            return false;
+        }
+        session()->put('ami_mode', strtolower($mode));
+        return true;
+    }
+
+    public static function getAmiMode()
+    {
+        return ucfirst(session()->get('ami_mode', 'Belum Set'));
+    }
 }
-
-

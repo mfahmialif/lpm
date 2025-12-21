@@ -15,9 +15,9 @@
                                 <label for="prodi_unit_id">Prodi Unit</label>
                                 <select name="prodi_unit_id" id="prodi_unit_id" class="form-select select2 filter">
                                     @if (\Auth::user()->role === 'unit')
-                                    @foreach (Auth::user()->prodiUnits as $prodiUnit)
+                                    @foreach (Auth::user()->prodiUnits->where('pivot.jenis', strtolower(Helper::getAmiMode())) as $prodiUnit)
                                     <option value="{{ $prodiUnit->id }}">
-                                        {{ $prodiUnit->nama }}
+                                        {{ $prodiUnit->nama }} [{{ Helper::getAmiMode() }}]
                                     </option>
                                     @endforeach
                                     @else

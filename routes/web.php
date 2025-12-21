@@ -57,6 +57,7 @@ Auth::routes();
 Route::get('/beranda', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [RootController::class, 'index'])->name('root.index');
+Route::post('/set-mode', [RootController::class, 'setAmiModeUser'])->name('root.set-mode');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -193,7 +194,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiCategoryController::class, 'delete'])->name('admin.ami-category.delete');
     });
 
-    Route::prefix('ami-target')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-target')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiTargetController::class, 'index'])->name('admin.ami-target.index');
         Route::get('/data', [AmiTargetController::class, 'data'])->name('admin.ami-target.data');
         Route::get('/add', [AmiTargetController::class, 'add'])->name('admin.ami-target.add');
@@ -203,7 +204,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiTargetController::class, 'delete'])->name('admin.ami-target.delete');
     });
 
-    Route::prefix('ami-auditor-decree')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-auditor-decree')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiAuditorDecreeController::class, 'index'])->name('admin.ami-auditor-decree.index');
         Route::get('/data', [AmiAuditorDecreeController::class, 'data'])->name('admin.ami-auditor-decree.data');
         Route::get('/add', [AmiAuditorDecreeController::class, 'add'])->name('admin.ami-auditor-decree.add');
@@ -213,7 +214,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiAuditorDecreeController::class, 'delete'])->name('admin.ami-auditor-decree.delete');
     });
 
-    Route::prefix('ami-assignment-letter')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-assignment-letter')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiAssignmentLetterController::class, 'index'])->name('admin.ami-assignment-letter.index');
         Route::get('/data', [AmiAssignmentLetterController::class, 'data'])->name('admin.ami-assignment-letter.data');
         Route::get('/add', [AmiAssignmentLetterController::class, 'add'])->name('admin.ami-assignment-letter.add');
@@ -223,7 +224,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiAssignmentLetterController::class, 'delete'])->name('admin.ami-assignment-letter.delete');
     });
 
-    Route::prefix('ami-performance-report')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-performance-report')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiPerformanceReportController::class, 'index'])->name('admin.ami-performance-report.index');
         Route::get('/data', [AmiPerformanceReportController::class, 'data'])->name('admin.ami-performance-report.data');
         Route::get('/add', [AmiPerformanceReportController::class, 'add'])->name('admin.ami-performance-report.add');
@@ -233,7 +234,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiPerformanceReportController::class, 'delete'])->name('admin.ami-performance-report.delete');
     });
 
-    Route::prefix('ami-self-evaluation')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-self-evaluation')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiSelfEvaluationController::class, 'index'])->name('admin.ami-self-evaluation.index');
         Route::get('/data', [AmiSelfEvaluationController::class, 'data'])->name('admin.ami-self-evaluation.data');
         Route::get('/add', [AmiSelfEvaluationController::class, 'add'])->name('admin.ami-self-evaluation.add');
@@ -243,7 +244,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiSelfEvaluationController::class, 'delete'])->name('admin.ami-self-evaluation.delete');
     });
 
-    Route::prefix('ami-self-assessment')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-self-assessment')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiSelfAssessmentController::class, 'index'])->name('admin.ami-self-assessment.index');
         Route::get('/data', [AmiSelfAssessmentController::class, 'data'])->name('admin.ami-self-assessment.data');
         Route::get('/add', [AmiSelfAssessmentController::class, 'add'])->name('admin.ami-self-assessment.add');
@@ -253,7 +254,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiSelfAssessmentController::class, 'delete'])->name('admin.ami-self-assessment.delete');
     });
 
-    Route::prefix('ami-auditor-assessment')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-auditor-assessment')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiAuditorAssessmentController::class, 'index'])->name('admin.ami-auditor-assessment.index');
         Route::get('/data', [AmiAuditorAssessmentController::class, 'data'])->name('admin.ami-auditor-assessment.data');
         Route::get('/add', [AmiAuditorAssessmentController::class, 'add'])->name('admin.ami-auditor-assessment.add');
@@ -263,7 +264,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiAuditorAssessmentController::class, 'delete'])->name('admin.ami-auditor-assessment.delete');
     });
 
-    Route::prefix('ami-audit-finding')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-audit-finding')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiAuditFindingController::class, 'index'])->name('admin.ami-audit-finding.index');
         Route::get('/data', [AmiAuditFindingController::class, 'data'])->name('admin.ami-audit-finding.data');
         Route::get('/add', [AmiAuditFindingController::class, 'add'])->name('admin.ami-audit-finding.add');
@@ -273,7 +274,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiAuditFindingController::class, 'delete'])->name('admin.ami-audit-finding.delete');
     });
 
-    Route::prefix('ami-finding-result')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-finding-result')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiFindingResultController::class, 'index'])->name('admin.ami-finding-result.index');
         Route::get('/data', [AmiFindingResultController::class, 'data'])->name('admin.ami-finding-result.data');
         Route::get('/add', [AmiFindingResultController::class, 'add'])->name('admin.ami-finding-result.add');
@@ -283,7 +284,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiFindingResultController::class, 'delete'])->name('admin.ami-finding-result.delete');
     });
 
-    Route::prefix('ami-rtm')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-rtm')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiRtmController::class, 'index'])->name('admin.ami-rtm.index');
         Route::get('/data', [AmiRtmController::class, 'data'])->name('admin.ami-rtm.data');
         Route::get('/add', [AmiRtmController::class, 'add'])->name('admin.ami-rtm.add');
@@ -293,7 +294,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiRtmController::class, 'delete'])->name('admin.ami-rtm.delete');
     });
 
-    Route::prefix('ami-official-report')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-official-report')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiOfficialReportController::class, 'index'])->name('admin.ami-official-report.index');
         Route::get('/data', [AmiOfficialReportController::class, 'data'])->name('admin.ami-official-report.data');
         Route::get('/add', [AmiOfficialReportController::class, 'add'])->name('admin.ami-official-report.add');
@@ -303,7 +304,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/delete', [AmiOfficialReportController::class, 'delete'])->name('admin.ami-official-report.delete');
     });
 
-    Route::prefix('ami-final-result')->middleware('role:admin')->group(function () {
+    Route::prefix('ami-final-result')->middleware('role:admin,unit')->group(function () {
         Route::get('/', [AmiFinalResultController::class, 'index'])->name('admin.ami-final-result.index');
         Route::get('/data', [AmiFinalResultController::class, 'data'])->name('admin.ami-final-result.data');
         Route::get('/add', [AmiFinalResultController::class, 'add'])->name('admin.ami-final-result.add');
@@ -349,4 +350,4 @@ Route::prefix('operasi')->group(function () {
 });
 
 // Testing routes
-Route::get('/testing/create-unit-accounts', [TestingController::class, 'createUnitAccounts'])->name('testing.create-unit-accounts');
+// Route::get('/testing/create-unit-accounts', [TestingController::class, 'createUnitAccounts'])->name('testing.create-unit-accounts');

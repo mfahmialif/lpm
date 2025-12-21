@@ -4,6 +4,17 @@
          <ul class="menu-inner pb-2 pb-xl-0">
              @foreach ($menuData[1]->menu as $menu)
              {{-- adding active and open class if child is active --}}
+             @if (strpos(@$menu->role, \Auth::user()->role) === false)
+             @continue;
+             @endif
+
+             @if(Auth::user()->role == 'unit')
+             @if (isset($menu->unit) and $menu->unit != "*" and strtolower($menu->unit) != strtolower(Helper::getAmiMode()))
+             @continue;
+             @endif
+             @endif
+
+             {{-- adding active and open class if child is active --}}
              {{-- menu headers --}}
              @if (isset($menu->menuHeader))
              <li class="menu-header small">
