@@ -9,7 +9,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Keterangan</th>
-                    <th>Jml Editor</th>
+                    <th>Jml Auditor</th>
                     <th>Jml Audity</th>
                     <th>Action</th>
                 </tr>
@@ -140,8 +140,8 @@
                 , className: "align-middle"
             , }
             , {
-                data: "jumlah_editor"
-                , name: "jumlah_editor"
+                data: "jumlah_auditor"
+                , name: "jumlah_auditor"
                 , className: "align-middle text-center"
             , }
             , {

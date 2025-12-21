@@ -149,21 +149,21 @@
                     "url": "/admin/ami-performance-report",
                     "slug": "admin.ami-performance-report.",
                     "role": "admin,unit",
-                    "unit": "unit"
+                    "unit": "auditor"
                 },
                 {
                     "name": "Evaluasi Diri",
                     "url": "/admin/ami-self-evaluation",
                     "slug": "admin.ami-self-evaluation.",
                     "role": "admin,unit",
-                    "unit": "unit"
+                    "unit": "auditor"
                 },
                 {
                     "name": "Asesmen Diri",
                     "url": "/admin/ami-self-assessment",
                     "slug": "admin.ami-self-assessment.",
                     "role": "admin,unit",
-                    "unit": "unit"
+                    "unit": "auditor"
                 },
                 {
                     "name": "Asesmen Auditor",

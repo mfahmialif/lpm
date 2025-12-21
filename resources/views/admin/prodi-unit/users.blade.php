@@ -168,7 +168,7 @@
                 <input type="hidden" id="selected-user-id">
             </div>
             <select class="form-select select2" id="select-jenis" style="width: 150px; flex-shrink: 0;">
-                <option value="editor">Editor</option>
+                <option value="auditor">Auditor</option>
                 <option value="audity">Audity</option>
             </select>
             <button type="button" class="btn btn-primary btn-add-user" id="btn-add-user" disabled>
