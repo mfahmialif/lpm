@@ -10,7 +10,7 @@
                     <th>Nama</th>
                     <th>Keterangan</th>
                     <th>Jml Auditor</th>
-                    <th>Jml Audity</th>
+                    <th>Jml Auditee</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -145,8 +145,8 @@
                 , className: "align-middle text-center"
             , }
             , {
-                data: "jumlah_audity"
-                , name: "jumlah_audity"
+                data: "jumlah_auditee"
+                , name: "jumlah_auditee"
                 , className: "align-middle text-center"
             , }
             , {

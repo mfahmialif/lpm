@@ -49,6 +49,8 @@
                     <th>Nama Auditee</th>
                     <th>Dokumen</th>
                     <th>Status</th>
+                    <th>Status Indikator</th>
+                    <th>Respon</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -133,6 +135,16 @@
                 data: "status"
                 , name: "status"
                 , className: "align-middle"
+            , }
+            , {
+                data: "status_indikator"
+                , name: "status_indikator"
+                , className: "align-middle"
+            , }
+            , {
+                data: "respon"
+                , name: "respon"
+                , className: "align-middle text-center"
             , }
             , {
                 data: "action"

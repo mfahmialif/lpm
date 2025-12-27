@@ -14,7 +14,7 @@ class AddJenisToUserProdiUnitTable extends Migration
     public function up()
     {
         Schema::table('user_prodi_unit', function (Blueprint $table) {
-            $table->enum('jenis', ['auditor', 'audity'])->default('auditor')->after('prodi_unit_id');
+            $table->enum('jenis', ['auditor', 'auditee'])->default('auditor')->after('prodi_unit_id');
         });
     }
 

@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\AmiOfficialReportController;
 use App\Http\Controllers\Admin\AmiFinalResultController;
 use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\TestingController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -252,6 +253,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/edit/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'edit'])->name('admin.ami-self-assessment.edit');
         Route::put('/update/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'update'])->name('admin.ami-self-assessment.update');
         Route::delete('/delete', [AmiSelfAssessmentController::class, 'delete'])->name('admin.ami-self-assessment.delete');
+        Route::get('/response/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'response'])->name('admin.ami-self-assessment.response');
+        Route::post('/response/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'storeResponse'])->name('admin.ami-self-assessment.storeResponse');
+        Route::get('/response/{amiSelfAssessment}/data', [AmiSelfAssessmentController::class, 'getResponses'])->name('admin.ami-self-assessment.getResponses');
+        Route::put('/response/message/{responseId}', [AmiSelfAssessmentController::class, 'updateResponse'])->name('admin.ami-self-assessment.updateResponse');
+        Route::delete('/response/message/{responseId}', [AmiSelfAssessmentController::class, 'deleteResponse'])->name('admin.ami-self-assessment.deleteResponse');
+        Route::get('/indikator/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'indikator'])->name('admin.ami-self-assessment.indikator');
+        Route::post('/indikator/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'storeIndicator'])->name('admin.ami-self-assessment.storeIndicator');
+        Route::post('/indikator/score/{indicatorId}', [AmiSelfAssessmentController::class, 'storeScore'])->name('admin.ami-self-assessment.storeScore');
+        Route::delete('/indikator/score/{scoreId}', [AmiSelfAssessmentController::class, 'deleteScore'])->name('admin.ami-self-assessment.deleteScore');
+        Route::put('/indikator/score/{scoreId}', [AmiSelfAssessmentController::class, 'updateScore'])->name('admin.ami-self-assessment.updateScore');
+        Route::get('/isi-indikator/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'isiIndikator'])->name('admin.ami-self-assessment.isiIndikator');
+        Route::post('/isi-indikator/{amiSelfAssessment}', [AmiSelfAssessmentController::class, 'storeIsiIndikator'])->name('admin.ami-self-assessment.storeIsiIndikator');
     });
 
     Route::prefix('ami-auditor-assessment')->middleware('role:admin,unit')->group(function () {
@@ -262,6 +275,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/edit/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'edit'])->name('admin.ami-auditor-assessment.edit');
         Route::put('/update/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'update'])->name('admin.ami-auditor-assessment.update');
         Route::delete('/delete', [AmiAuditorAssessmentController::class, 'delete'])->name('admin.ami-auditor-assessment.delete');
+        Route::get('/response/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'response'])->name('admin.ami-auditor-assessment.response');
+        Route::post('/response/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'storeResponse'])->name('admin.ami-auditor-assessment.storeResponse');
+        Route::get('/response/{amiAuditorAssessment}/data', [AmiAuditorAssessmentController::class, 'getResponses'])->name('admin.ami-auditor-assessment.getResponses');
+        Route::put('/response/message/{responseId}', [AmiAuditorAssessmentController::class, 'updateResponse'])->name('admin.ami-auditor-assessment.updateResponse');
+        Route::delete('/response/message/{responseId}', [AmiAuditorAssessmentController::class, 'deleteResponse'])->name('admin.ami-auditor-assessment.deleteResponse');
+        Route::get('/indikator/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'indikator'])->name('admin.ami-auditor-assessment.indikator');
+        Route::post('/indikator/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'storeIndicator'])->name('admin.ami-auditor-assessment.storeIndicator');
+        Route::post('/indikator/score/{indicatorId}', [AmiAuditorAssessmentController::class, 'storeScore'])->name('admin.ami-auditor-assessment.storeScore');
+        Route::delete('/indikator/score/{scoreId}', [AmiAuditorAssessmentController::class, 'deleteScore'])->name('admin.ami-auditor-assessment.deleteScore');
+        Route::put('/indikator/score/{scoreId}', [AmiAuditorAssessmentController::class, 'updateScore'])->name('admin.ami-auditor-assessment.updateScore');
+        Route::get('/isi-indikator/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'isiIndikator'])->name('admin.ami-auditor-assessment.isiIndikator');
+        Route::post('/isi-indikator/{amiAuditorAssessment}', [AmiAuditorAssessmentController::class, 'storeIsiIndikator'])->name('admin.ami-auditor-assessment.storeIsiIndikator');
     });
 
     Route::prefix('ami-audit-finding')->middleware('role:admin,unit')->group(function () {

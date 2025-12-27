@@ -14,6 +14,7 @@ $templatePath = $sidebarLayout === 'horizontal' ? 'layouts.admin.horizontal.temp
     @include('layouts.admin.header')
     @endif
     @stack('css')
+    @stack('styles')
 </head>
 
 <body>

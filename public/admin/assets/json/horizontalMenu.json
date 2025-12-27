@@ -135,49 +135,49 @@
                     "url": "/admin/ami-auditor-decree",
                     "slug": "admin.ami-auditor-decree.",
                     "role": "admin,unit",
-                    "unit": "audity"
+                    "unit": "*"
                 },
                 {
                     "name": "Surat Tugas",
                     "url": "/admin/ami-assignment-letter",
                     "slug": "admin.ami-assignment-letter.",
                     "role": "admin,unit",
-                    "unit": "audity"
+                    "unit": "*"
                 },
                 {
                     "name": "Laporan Kinerja",
                     "url": "/admin/ami-performance-report",
                     "slug": "admin.ami-performance-report.",
                     "role": "admin,unit",
-                    "unit": "auditor"
+                    "unit": "*"
                 },
                 {
                     "name": "Evaluasi Diri",
                     "url": "/admin/ami-self-evaluation",
                     "slug": "admin.ami-self-evaluation.",
                     "role": "admin,unit",
-                    "unit": "auditor"
+                    "unit": "*"
                 },
                 {
                     "name": "Asesmen Diri",
                     "url": "/admin/ami-self-assessment",
                     "slug": "admin.ami-self-assessment.",
                     "role": "admin,unit",
-                    "unit": "auditor"
+                    "unit": "*"
                 },
                 {
                     "name": "Asesmen Auditor",
                     "url": "/admin/ami-auditor-assessment",
                     "slug": "admin.ami-auditor-assessment.",
                     "role": "admin,unit",
-                    "unit": "audity"
+                    "unit": "*"
                 },
                 {
                     "name": "Temuan Audit",
                     "url": "/admin/ami-audit-finding",
                     "slug": "admin.ami-audit-finding.",
                     "role": "admin,unit",
-                    "unit": "audity"
+                    "unit": "*"
                 },
                 {
                     "name": "Hasil Temuan",
@@ -198,7 +198,7 @@
                     "url": "/admin/ami-official-report",
                     "slug": "admin.ami-official-report.",
                     "role": "admin,unit",
-                    "unit": "audity"
+                    "unit": "*"
                 },
                 {
                     "name": "Hasil Akhir",

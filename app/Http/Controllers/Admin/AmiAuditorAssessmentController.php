@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\AmiAuditorAssessment;
 use App\Models\AmiPeriod;
 use App\Models\ProdiUnit;
 use Illuminate\Http\Request;
+use App\Http\Services\Helper;
 use Yajra\DataTables\DataTables;
+use App\Models\AmiAssessmentScore;
 use App\Http\Controllers\Controller;
+use App\Models\AmiAuditorAssessment;
 use Illuminate\Support\Facades\File;
+use App\Models\AmiAssessmentResponse;
+use App\Models\AmiAssessmentIndicator;
 
 class AmiAuditorAssessmentController extends Controller
 {
@@ -28,6 +32,7 @@ class AmiAuditorAssessmentController extends Controller
             'ami_periods.year as ami_period',
             'prodi_units.nama as prodi_unit_name'
         )
+            ->withCount(['responses', 'selectedScores'])
             ->leftJoin('ami_periods', 'ami_auditor_assessments.ami_period_id', '=', 'ami_periods.id')
             ->leftJoin('prodi_units', 'ami_auditor_assessments.prodi_unit_id', '=', 'prodi_units.id');
 
@@ -59,7 +64,23 @@ class AmiAuditorAssessmentController extends Controller
                 }
                 return '-';
             })
+            ->addColumn('respon', function ($row) {
+                $count = $row->responses_count;
+                if ($count > 0) {
+                    return '<span class="badge bg-primary rounded-pill"><i class="ti ti-message-circle me-1"></i>' . $count . '</span>';
+                }
+                return '<span class="badge bg-light text-muted">0</span>';
+            })
+            ->addColumn('status_indikator', function ($row) {
+                if ($row->selected_scores_count > 0) {
+                    return '<span class="badge bg-success"><i class="ti ti-check me-1"></i>Sudah Diisi</span>';
+                }
+                return '<span class="badge bg-danger"><i class="ti ti-x me-1"></i>Belum Diisi</span>';
+            })
             ->addColumn('action', function ($row) {
+                $user = auth()->user();
+                $isAdmin = $user->role === 'admin';
+
                 $actionButtons = '
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -67,6 +88,21 @@ class AmiAuditorAssessmentController extends Controller
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end m-0">
                             <li>
+                                <a class="dropdown-item" href="' . route('admin.ami-auditor-assessment.response', ['amiAuditorAssessment' => $row->id]) . '"><i class="ti ti-message-circle me-1"></i>Respon</a>
+                            </li>';
+
+                if ($isAdmin) {
+                    $actionButtons .= '<li>
+                                <a class="dropdown-item" href="' . route('admin.ami-auditor-assessment.indikator', ['amiAuditorAssessment' => $row->id]) . '"><i class="ti ti-chart-bar me-1"></i>Indikator</a>
+                            </li>';
+                }
+
+                $actionButtons .= '<li>
+                                <a class="dropdown-item" href="' . route('admin.ami-auditor-assessment.isiIndikator', ['amiAuditorAssessment' => $row->id]) . '"><i class="ti ti-checkbox me-1"></i>Isi Skor Indikator</a>
+                            </li>';
+
+                if ($isAdmin) {
+                    $actionButtons .= '<li>
                                 <a class="dropdown-item" href="' . route('admin.ami-auditor-assessment.edit', ['amiAuditorAssessment' => $row->id]) . '">Edit</a>
                             </li>
                             <div class="dropdown-divider"></div>
@@ -77,12 +113,14 @@ class AmiAuditorAssessmentController extends Controller
                                     <input type="hidden" name="nama" value="Asesmen Auditor ' . ($row->prodi_name ?: '') . '">
                                     <button type="submit" class="dropdown-item text-danger">Delete</button>
                                 </form>
-                            </li>
-                        </ul>
+                            </li>';
+                }
+
+                $actionButtons .= '</ul>
                     </div>';
                 return $actionButtons;
             })
-            ->rawColumns(['action', 'status', 'document'])
+            ->rawColumns(['action', 'status', 'document', 'respon', 'status_indikator'])
             ->toJson();
     }
 
@@ -232,4 +270,389 @@ class AmiAuditorAssessmentController extends Controller
             ];
         }
     }
+
+    private $responseUploadDir = 'storage/documents/ami-assessment-responses/';
+
+    /**
+     * Display the response/chat page for an assessment.
+     */
+    public function response(AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        $user = auth()->user();
+        $isAdmin = $user->role === 'admin';
+        $isUnit = $user->role === 'unit';
+        $amiMode = strtolower(Helper::getAmiMode());
+        $canInputResponse = $isAdmin || ($isUnit && $amiMode === 'auditee');
+
+        $amiAuditorAssessment->load(['amiPeriod', 'prodiUnit']);
+        return view('admin.ami-auditor-assessment.response.index', compact('amiAuditorAssessment', 'canInputResponse'));
+    }
+
+    /**
+     * Store a new response message.
+     */
+    public function storeResponse(Request $request, AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        try {
+            \DB::beginTransaction();
+
+            $request->validate([
+                'message' => 'required_without:attachment|nullable|string',
+                'attachment' => 'nullable|file|max:10240', // 10MB max
+            ]);
+
+            $response = new AmiAssessmentResponse();
+            $response->ami_auditor_assessment_id = $amiAuditorAssessment->id;
+            $response->user_id = auth()->id();
+            $response->message = $request->message;
+
+            if ($request->hasFile('attachment')) {
+                $file = $request->file('attachment');
+                $fileName = time() . '-' . $file->getClientOriginalName();
+                $destinationPath = public_path($this->responseUploadDir);
+                if (!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0755, true);
+                }
+                $file->move($destinationPath, $fileName);
+                $response->attachment = $fileName;
+                $response->attachment_name = $file->getClientOriginalName();
+            }
+
+            $response->save();
+
+            \DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pesan berhasil dikirim',
+                'data' => [
+                    'id' => $response->id,
+                    'message' => $response->message,
+                    'attachment' => $response->attachment ? asset($this->responseUploadDir . $response->attachment) : null,
+                    'attachment_name' => $response->attachment_name,
+                    'user' => [
+                        'id' => auth()->id(),
+                        'name' => auth()->user()->name,
+                        'role' => auth()->user()->role,
+                    ],
+                    'created_at' => $response->created_at->format('d M Y H:i'),
+                    'is_own' => true,
+                ],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => implode('<br>', array_map('implode', $e->errors())),
+            ], 422);
+        } catch (\Throwable $th) {
+            \DB::rollback();
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Get all responses for an assessment.
+     */
+    public function getResponses(AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        $responses = $amiAuditorAssessment->responses()
+            ->with('user')
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(function ($response) {
+                return [
+                    'id' => $response->id,
+                    'message' => $response->message,
+                    'attachment' => $response->attachment ? asset($this->responseUploadDir . $response->attachment) : null,
+                    'attachment_name' => $response->attachment_name,
+                    'user' => [
+                        'id' => $response->user_id,
+                        'name' => $response->user->name ?? 'Unknown',
+                        'role' => $response->user->role ?? 'user',
+                    ],
+                    'created_at' => $response->created_at->format('d M Y H:i'),
+                    'is_own' => $response->user_id === auth()->id(),
+                ];
+            });
+
+        return response()->json([
+            'status' => true,
+            'data' => $responses,
+        ]);
+    }
+
+    /**
+     * Update a response message.
+     */
+    public function updateResponse(Request $request, $responseId)
+    {
+        try {
+            \DB::beginTransaction();
+
+            $response = AmiAssessmentResponse::findOrFail($responseId);
+
+            // Check permission: admin can edit all, others only their own
+            if (auth()->user()->role !== 'admin' && $response->user_id !== auth()->id()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Anda tidak memiliki izin untuk mengedit pesan ini',
+                ], 403);
+            }
+
+            $request->validate([
+                'message' => 'required|string',
+            ]);
+
+            $response->message = $request->message;
+            $response->save();
+
+            \DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pesan berhasil diperbarui',
+                'data' => [
+                    'id' => $response->id,
+                    'message' => $response->message,
+                ],
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => implode('<br>', array_map('implode', $e->errors())),
+            ], 422);
+        } catch (\Throwable $th) {
+            \DB::rollback();
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Delete a response message.
+     */
+    public function deleteResponse($responseId)
+    {
+        try {
+            \DB::beginTransaction();
+
+            $response = AmiAssessmentResponse::findOrFail($responseId);
+
+            // Check permission: admin can delete all, others only their own
+            if (auth()->user()->role !== 'admin' && $response->user_id !== auth()->id()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Anda tidak memiliki izin untuk menghapus pesan ini',
+                ], 403);
+            }
+
+            // Delete attachment file if exists
+            if ($response->attachment) {
+                $filePath = public_path($this->responseUploadDir . $response->attachment);
+                if (File::exists($filePath)) {
+                    File::delete($filePath);
+                }
+            }
+
+            $response->delete();
+
+            \DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Pesan berhasil dihapus',
+            ]);
+        } catch (\Throwable $th) {
+            \DB::rollback();
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Show the indicator page for an assessment.
+     */
+    public function indikator(AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        $indicator = $amiAuditorAssessment->indicator;
+        $scores = $indicator ? $indicator->scores : collect([]);
+        return view('admin.ami-auditor-assessment.indikator.index', compact('amiAuditorAssessment', 'indicator', 'scores'));
+    }
+
+    /**
+     * Store or update the indicator.
+     */
+    public function storeIndicator(Request $request, AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        try {
+            $request->validate([
+                'indicator' => 'required|string',
+            ]);
+
+            $indicator = AmiAssessmentIndicator::updateOrCreate(
+                ['ami_auditor_assessment_id' => $amiAuditorAssessment->id],
+                ['indicator' => $request->indicator]
+            );
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Indikator berhasil disimpan',
+                'data' => [
+                    'id' => $indicator->id,
+                    'indicator' => $indicator->indicator,
+                ],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Store a new score.
+     */
+    public function storeScore(Request $request, $indicatorId)
+    {
+        try {
+            $request->validate([
+                'score' => 'required|integer',
+                'description' => 'required|string',
+            ]);
+
+            $indicator = AmiAssessmentIndicator::findOrFail($indicatorId);
+
+            $score = AmiAssessmentScore::create([
+                'ami_assessment_indicator_id' => $indicator->id,
+                'score' => $request->score,
+                'description' => $request->description,
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Penskoran berhasil ditambahkan',
+                'data' => [
+                    'id' => $score->id,
+                    'score' => $score->score,
+                    'description' => $score->description,
+                ],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Delete a score.
+     */
+    public function deleteScore($scoreId)
+    {
+        try {
+            $score = AmiAssessmentScore::findOrFail($scoreId);
+            $score->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Penskoran berhasil dihapus',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Update a score.
+     */
+    public function updateScore(Request $request, $scoreId)
+    {
+        try {
+            $request->validate([
+                'score' => 'required|integer',
+                'description' => 'required|string',
+            ]);
+
+            $score = AmiAssessmentScore::findOrFail($scoreId);
+            $score->score = $request->score;
+            $score->description = $request->description;
+            $score->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Penskoran berhasil diperbarui',
+                'data' => [
+                    'id' => $score->id,
+                    'score' => $score->score,
+                    'description' => $score->description,
+                ],
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Show the isi indikator page.
+     */
+    public function isiIndikator(AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        $user = auth()->user();
+        $isAdmin = $user->role === 'admin';
+        $isUnit = $user->role === 'unit';
+        $amiMode = strtolower(Helper::getAmiMode());
+        $canInputScore = $isAdmin || ($isUnit && $amiMode === 'auditor');
+
+        $indicator = $amiAuditorAssessment->indicator;
+        $scores = $indicator ? $indicator->scores : collect([]);
+        $selectedScoreIds = $amiAuditorAssessment->selectedScores->pluck('id')->toArray();
+        
+        return view('admin.ami-auditor-assessment.isi-indikator.index', compact('amiAuditorAssessment', 'indicator', 'scores', 'selectedScoreIds', 'canInputScore'));
+    }
+
+    /**
+     * Store selected scores for indicator.
+     */
+    public function storeIsiIndikator(Request $request, AmiAuditorAssessment $amiAuditorAssessment)
+    {
+        try {
+            $request->validate([
+                'score_ids' => 'present|array',
+                'score_ids.*' => 'exists:ami_assessment_scores,id',
+            ]);
+
+            $amiAuditorAssessment->selectedScores()->sync($request->score_ids);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Isian indikator berhasil disimpan',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
 }
+
+
+
+

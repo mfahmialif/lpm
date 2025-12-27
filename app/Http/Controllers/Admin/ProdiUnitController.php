@@ -20,7 +20,7 @@ class ProdiUnitController extends Controller
         $search = request('search.value');
         $data = ProdiUnit::select('prodi_units.*')
             ->selectRaw('(SELECT COUNT(*) FROM user_prodi_unit WHERE user_prodi_unit.prodi_unit_id = prodi_units.id AND user_prodi_unit.jenis = "auditor") as jumlah_auditor')
-            ->selectRaw('(SELECT COUNT(*) FROM user_prodi_unit WHERE user_prodi_unit.prodi_unit_id = prodi_units.id AND user_prodi_unit.jenis = "audity") as jumlah_audity');
+            ->selectRaw('(SELECT COUNT(*) FROM user_prodi_unit WHERE user_prodi_unit.prodi_unit_id = prodi_units.id AND user_prodi_unit.jenis = "auditee") as jumlah_auditee');
         return DataTables::of($data)
             ->filter(function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
@@ -176,7 +176,7 @@ class ProdiUnitController extends Controller
             ->addColumn('jenis_badge', function ($row) {
                 $badge = $row->jenis == 'auditor'
                     ? '<span class="badge bg-label-primary">Auditor</span>'
-                    : '<span class="badge bg-label-warning">Audity</span>';
+                    : '<span class="badge bg-label-warning">Auditee</span>';
                 return $badge;
             })
             ->addColumn('action', function ($row) use ($prodiUnit) {
@@ -228,7 +228,7 @@ class ProdiUnitController extends Controller
             $request->validate([
                 'user_id' => 'required|exists:users,id',
                 'prodi_unit_id' => 'required|exists:prodi_units,id',
-                'jenis' => 'required|in:auditor,audity',
+                'jenis' => 'required|in:auditor,auditee',
             ]);
 
             $prodiUnit = ProdiUnit::findOrFail($request->prodi_unit_id);

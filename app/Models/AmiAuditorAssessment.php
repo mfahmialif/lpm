@@ -25,4 +25,28 @@ class AmiAuditorAssessment extends Model
     {
         return $this->belongsTo(ProdiUnit::class);
     }
+
+    /**
+     * Get the responses for this auditor assessment.
+     */
+    public function responses()
+    {
+        return $this->hasMany(AmiAssessmentResponse::class);
+    }
+
+    /**
+     * Get the indicator for this auditor assessment.
+     */
+    public function indicator()
+    {
+        return $this->hasOne(AmiAssessmentIndicator::class);
+    }
+
+    /**
+     * Get the selected scores for this auditor assessment.
+     */
+    public function selectedScores()
+    {
+        return $this->belongsToMany(AmiAssessmentScore::class, 'ami_assessment_selections');
+    }
 }
