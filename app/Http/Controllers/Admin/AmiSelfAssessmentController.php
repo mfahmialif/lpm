@@ -128,7 +128,10 @@ class AmiSelfAssessmentController extends Controller
     {
         $periods = AmiPeriod::all();
         $prodiUnits = ProdiUnit::all();
-        return view('admin.ami-self-assessment.add.index', compact('periods', 'prodiUnits'));
+        $auditees = \App\Models\User::whereHas('prodiUnits', function ($query) {
+            $query->where('user_prodi_unit.jenis', 'auditee');
+        })->get();
+        return view('admin.ami-self-assessment.add.index', compact('periods', 'prodiUnits', 'auditees'));
     }
 
     public function store(Request $request)
@@ -179,7 +182,10 @@ class AmiSelfAssessmentController extends Controller
     {
         $periods = AmiPeriod::all();
         $prodiUnits = ProdiUnit::all();
-        return view('admin.ami-self-assessment.edit.index', compact('periods', 'prodiUnits', 'amiSelfAssessment'));
+        $auditees = \App\Models\User::whereHas('prodiUnits', function ($query) {
+            $query->where('user_prodi_unit.jenis', 'auditee');
+        })->get();
+        return view('admin.ami-self-assessment.edit.index', compact('periods', 'prodiUnits', 'amiSelfAssessment', 'auditees'));
     }
 
     public function update(AmiSelfAssessment $amiSelfAssessment, Request $request)

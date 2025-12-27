@@ -26,7 +26,14 @@
 </div>
 <div class="mb-6">
     <label class="form-label">Nama Auditee</label>
-    <input type="text" class="form-control" name="auditee_name" placeholder="Type here..." value="{{ old('auditee_name') }}" />
+    <select class="select2 form-select" name="auditee_name" required>
+        <option value="">-- Pilih Auditee --</option>
+        @foreach ($auditees as $auditee)
+        <option value="{{ $auditee->name }}" {{ (old('auditee_name') ?? @$amiAuditorAssessment->auditee_name) == $auditee->name ? 'selected' : '' }}>
+            {{ $auditee->name }}
+        </option>
+        @endforeach
+    </select>
 </div>
 <div class="mb-6">
     <label class="form-label">Catatan</label>
