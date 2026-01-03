@@ -11,6 +11,12 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AddActivityController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProdiController;
+use App\Http\Controllers\Admin\DosenController;
+use App\Http\Controllers\Admin\CompetencyController;
+use App\Http\Controllers\Admin\PeriodeAkademikController;
+use App\Http\Controllers\Admin\SkKompetensiController;
+use App\Http\Controllers\Admin\ProdiCompetencyController;
+use App\Http\Controllers\Admin\DosenCompetencyController;
 use App\Http\Controllers\Admin\ProdiUnitController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\PrivacyPolicyController;
@@ -42,6 +48,8 @@ use App\Http\Controllers\Admin\AmiFinalResultController;
 use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DosenCompetencyController as HomeDosenCompetencyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +97,13 @@ Route::prefix('addactivity/{code}')->group(function () {
     Route::post('/storeDokumen', [AddActivityController::class, 'storeDokumen'])->name('addactivity.storeDokumen');
     Route::post('/destroyDokumen', [AddActivityController::class, 'destroyDokumen'])->name('addactivity.destroyDokumen');
     Route::get('/getDataDokumen', [AddActivityController::class, 'getDataDokumen'])->name('addactivity.getDataDokumen');
+});
+
+Route::prefix('dosen-competency')->group(function () {
+    Route::get('/', [HomeDosenCompetencyController::class, 'index'])->name('dosen-competency.index');
+    Route::get('/search-dosen/{search}', [HomeDosenCompetencyController::class, 'searchDosen'])->name('dosen-competency.search-dosen');
+    Route::get('/get-competencies', [HomeDosenCompetencyController::class, 'getCompetencies'])->name('dosen-competency.get-competencies');
+    Route::post('/store', [HomeDosenCompetencyController::class, 'store'])->name('dosen-competency.store');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -140,6 +155,60 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [ProdiController::class, 'store'])->name('admin.prodi.store');
         Route::put('/update', [ProdiController::class, 'update'])->name('admin.prodi.update');
         Route::delete('/delete', [ProdiController::class, 'delete'])->name('admin.prodi.delete');
+    });
+
+    Route::prefix('dosen')->middleware('role:admin')->group(function () {
+        Route::get('/', [DosenController::class, 'index'])->name('admin.dosen.index');
+        Route::get('/search/{search}', [DosenController::class, 'search'])->name('admin.dosen.search');
+        Route::get('/data', [DosenController::class, 'data'])->name('admin.dosen.data');
+        Route::post('/store', [DosenController::class, 'store'])->name('admin.dosen.store');
+        Route::put('/update', [DosenController::class, 'update'])->name('admin.dosen.update');
+        Route::delete('/delete', [DosenController::class, 'delete'])->name('admin.dosen.delete');
+    });
+
+    Route::prefix('competency')->middleware('role:admin')->group(function () {
+        Route::get('/', [CompetencyController::class, 'index'])->name('admin.competency.index');
+        Route::get('/data', [CompetencyController::class, 'data'])->name('admin.competency.data');
+        Route::post('/store', [CompetencyController::class, 'store'])->name('admin.competency.store');
+        Route::put('/update', [CompetencyController::class, 'update'])->name('admin.competency.update');
+        Route::delete('/delete', [CompetencyController::class, 'delete'])->name('admin.competency.delete');
+    });
+
+    Route::prefix('periode-akademik')->middleware('role:admin')->group(function () {
+        Route::get('/', [PeriodeAkademikController::class, 'index'])->name('admin.periode-akademik.index');
+        Route::get('/data', [PeriodeAkademikController::class, 'data'])->name('admin.periode-akademik.data');
+        Route::post('/store', [PeriodeAkademikController::class, 'store'])->name('admin.periode-akademik.store');
+        Route::put('/update', [PeriodeAkademikController::class, 'update'])->name('admin.periode-akademik.update');
+        Route::delete('/delete', [PeriodeAkademikController::class, 'delete'])->name('admin.periode-akademik.delete');
+    });
+
+    Route::prefix('sk-kompetensi')->middleware('role:admin')->group(function () {
+        Route::get('/', [SkKompetensiController::class, 'index'])->name('admin.sk-kompetensi.index');
+        Route::get('/data', [SkKompetensiController::class, 'data'])->name('admin.sk-kompetensi.data');
+        Route::post('/store', [SkKompetensiController::class, 'store'])->name('admin.sk-kompetensi.store');
+        Route::put('/update', [SkKompetensiController::class, 'update'])->name('admin.sk-kompetensi.update');
+        Route::delete('/delete', [SkKompetensiController::class, 'delete'])->name('admin.sk-kompetensi.delete');
+    });
+
+    Route::prefix('prodi-competency')->middleware('role:admin')->group(function () {
+        Route::get('/', [ProdiCompetencyController::class, 'index'])->name('admin.prodi-competency.index');
+        Route::get('/data', [ProdiCompetencyController::class, 'data'])->name('admin.prodi-competency.data');
+        Route::get('/get-competencies/{id}', [ProdiCompetencyController::class, 'getProdiCompetencies'])->name('admin.prodi-competency.get-competencies');
+        Route::get('/edit/{id}', [ProdiCompetencyController::class, 'edit'])->name('admin.prodi-competency.edit');
+        Route::put('/update/{id}', [ProdiCompetencyController::class, 'update'])->name('admin.prodi-competency.update');
+    });
+
+    Route::prefix('dosen-competency')->middleware('role:admin')->group(function () {
+        Route::get('/', [DosenCompetencyController::class, 'index'])->name('admin.dosen-competency.index');
+        Route::get('/data', [DosenCompetencyController::class, 'data'])->name('admin.dosen-competency.data');
+        Route::get('/get-competencies-by-prodi/{id}', [DosenCompetencyController::class, 'getCompetenciesByProdi'])->name('admin.dosen-competency.get-competencies-by-prodi');
+        Route::get('/add', [DosenCompetencyController::class, 'add'])->name('admin.dosen-competency.add');
+        Route::post('/store', [DosenCompetencyController::class, 'store'])->name('admin.dosen-competency.store');
+        Route::post('/import', [DosenCompetencyController::class, 'import'])->name('admin.dosen-competency.import');
+        Route::get('/export-template', [DosenCompetencyController::class, 'exportTemplate'])->name('admin.dosen-competency.export-template');
+        Route::get('/edit/{id}', [DosenCompetencyController::class, 'edit'])->name('admin.dosen-competency.edit');
+        Route::put('/update/{id}', [DosenCompetencyController::class, 'update'])->name('admin.dosen-competency.update');
+        Route::delete('/delete', [DosenCompetencyController::class, 'delete'])->name('admin.dosen-competency.delete');
     });
     Route::prefix('accreditation')->middleware('role:admin')->group(function () {
         Route::get('/', [AccreditationController::class, 'index'])->name('admin.accreditation.index');

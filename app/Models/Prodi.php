@@ -20,4 +20,10 @@ class Prodi extends Model
     {
         return $this->hasMany(Accreditation::class);
     }
+
+    public function competencies()
+    {
+        return $this->belongsToMany(Competency::class, 'prodi_competencies', 'prodi_id', 'competency_id')
+            ->withTimestamps();
+    }
 }

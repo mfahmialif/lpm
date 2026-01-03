@@ -1,0 +1,22 @@
+﻿Migrating: 2026_01_01_200156_create_dosen_competencies_table
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'dosen_competencies' already exists (SQL: create table `dosen_competencies` (`id` bigint unsigned not null auto_increment primary key, `dosen_id` bigint unsigned not null, `prodi_competency_id` bigint unsigned not null, `sk_kompetensi_id` bigint unsigned not null, `periode_akademik_id` bigint unsigned not null, `status` enum('MENUNGGU', 'AKTIF', 'DITOLAK', 'KADALUARSA') null, `tanggal_mulai` date null, `tanggal_selesai` date null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci')
+
+  at C:\laragon\www\lpm\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+    708Γûò         // If an exception occurs when attempting to run a query, we'll format the error
+    709Γûò         // message to include the bindings with SQL, which will make this exception a
+    710Γûò         // lot more helpful to the developer instead of just the database's errors.
+    711Γûò         catch (Exception $e) {
+  Γ₧£ 712Γûò             throw new QueryException(
+    713Γûò                 $query, $this->prepareBindings($bindings), $e
+    714Γûò             );
+    715Γûò         }
+    716Γûò     }
+
+  1   C:\laragon\www\lpm\vendor\laravel\framework\src\Illuminate\Database\Connection.php:501
+      PDOException::("SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'dosen_competencies' already exists")
+
+  2   C:\laragon\www\lpm\vendor\laravel\framework\src\Illuminate\Database\Connection.php:501
+      PDOStatement::execute()

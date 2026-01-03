@@ -1,3 +1,14 @@
+<style>
+    /* Custom override to fit all menu items */
+    @media (min-width: 992px) {
+        .header-menu .menu-link-main {
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+            font-size: 15px;
+            /* Adjust font size if necessary */
+        }
+    }
+</style>
 <!-- Header 2 -->
 <sticky-header data-sticky-type="always">
     <header class="header-2 header-floating">
@@ -78,6 +89,12 @@
                                     Accreditation Certificate
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="menu-link menu-link-main {{ request()->routeIs('dosen-competency.*') ? 'active' : '' }}"
+                                    href="{{ route('dosen-competency.index') }}">
+                                    Kompetensi Dosen
+                                </a>
+                            </li>
                         </ul>
 
                         <div class="drawer-content d-lg-none">
@@ -88,18 +105,18 @@
                                         <a class="menu-link" href="{{ route('news.index') }}">News</a>
                                     </li>
                                     @if(\Auth::check())
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="javascript:void(0);"
-                                                onclick="document.getElementById('logout-1').submit();">Logout</a>
-                                            <form action="{{ route('logout') }}" method="POST" id="logout-1"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        </li>
+                                    <li class="nav-item">
+                                        <a class="menu-link" href="javascript:void(0);"
+                                            onclick="document.getElementById('logout-1').submit();">Logout</a>
+                                        <form action="{{ route('logout') }}" method="POST" id="logout-1"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
                                     @else
-                                        <li class="nav-item">
-                                            <a class="menu-link" href="{{ route('login') }}">Login</a>
-                                        </li>
+                                    <li class="nav-item">
+                                        <a class="menu-link" href="{{ route('login') }}">Login</a>
+                                    </li>
                                     @endif
                                 </ul>
                             </div>
@@ -146,31 +163,31 @@
                 </drawer-menu>
                 <div class="header-actions d-flex align-items-center">
                     @if (\Auth::check())
-                        <a href="{{ route('home') }}" aria-label="contact us"
-                            class="button button--primary button--slim">
-                            Dashboard
-                            <span class="svg-wrapper">
-                                <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </span>
-                        </a>
+                    <a href="{{ route('home') }}" aria-label="contact us"
+                        class="button button--primary button--slim">
+                        Dashboard
+                        <span class="svg-wrapper">
+                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </a>
                     @else
-                        <a href="{{ route('login') }}" aria-label="contact us"
-                            class="button button--primary button--slim">
-                            Login
-                            <span class="svg-wrapper">
-                                <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                        fill="currentColor"></path>
-                                </svg>
-                            </span>
-                        </a>
+                    <a href="{{ route('login') }}" aria-label="contact us"
+                        class="button button--primary button--slim">
+                        Login
+                        <span class="svg-wrapper">
+                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </span>
+                    </a>
                     @endif
                     <drawer-opener class="svg-wrapper menu-open d-lg-none" data-drawer=".drawer-menu">
                         <svg width="52" height="52" viewBox="0 0 52 52" fill="none"

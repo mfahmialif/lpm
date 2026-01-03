@@ -55,8 +55,9 @@
             select2.each(function() {
                 var $this = $(this);
                 $this.wrap('<div class="position-relative"></div>').select2({
-                    placeholder: 'Select value'
-                    , dropdownParent: $this.parent()
+                    placeholder: 'Select value',
+                    dropdownParent: $this.parent(),
+                    width: '100%'
                 });
             });
         }
@@ -73,30 +74,27 @@
             window.location.reload();
         });
     });
-
 </script>
 
 @if (session('success'))
 <script script>
     Swal.fire({
-        icon: 'success'
-        , title: 'Success!'
-        , text: "{{ session('success') }}"
-        , timer: 3000
-        , showConfirmButton: false
+        icon: 'success',
+        title: 'Success!',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false
     });
-
 </script>
 @endif
 @if (session('error'))
 <script>
     Swal.fire({
-        icon: 'error'
-        , title: 'Error!'
-        , text: "{{ session('error') }}"
-        , timer: 3000
-        , showConfirmButton: false
+        icon: 'error',
+        title: 'Error!',
+        text: "{{ session('error') }}",
+        timer: 3000,
+        showConfirmButton: false
     });
-
 </script>
 @endif
