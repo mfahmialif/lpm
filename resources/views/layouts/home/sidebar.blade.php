@@ -31,6 +31,12 @@
                 <li class="nav-item">
                     <a class="menu-link" href="{{ route('accreditation-certificate.index') }}">Accreditation Certificate</a>
                 </li>
+                <li class="nav-item">
+                    <a class="menu-link" href="{{ route('dosen-competency.index') }}">Lecturer Competency</a>
+                </li>
+                <li class="nav-item">
+                    <a class="menu-link" href="{{ route('admin.ami-target.index') }}">AMI</a>
+                </li>
                 @if(\Auth::check())
                 <li class="nav-item">
                     <a class="menu-link" href="javascript:void(0);"
