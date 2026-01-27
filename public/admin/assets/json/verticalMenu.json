@@ -75,6 +75,52 @@
             "role": "admin"
         },
         {
+            "menuHeader": "Kompetensi Dosen",
+            "role": "admin"
+        },
+        {
+            "name": "Data Dosen",
+            "url": "/admin/dosen",
+            "icon": "menu-icon tf-icons ti ti-users",
+            "slug": "admin.dosen.",
+            "role": "admin"
+        },
+        {
+            "name": "Master Kompetensi",
+            "url": "/admin/competency",
+            "icon": "menu-icon tf-icons ti ti-certificate",
+            "slug": "admin.competency.",
+            "role": "admin"
+        },
+        {
+            "name": "Periode Akademik",
+            "url": "/admin/periode-akademik",
+            "icon": "menu-icon tf-icons ti ti-calendar",
+            "slug": "admin.periode-akademik.",
+            "role": "admin"
+        },
+        {
+            "name": "SK Kompetensi",
+            "url": "/admin/sk-kompetensi",
+            "icon": "menu-icon tf-icons ti ti-file-text",
+            "slug": "admin.sk-kompetensi.",
+            "role": "admin"
+        },
+        {
+            "name": "Kompetensi Prodi",
+            "url": "/admin/prodi-competency",
+            "icon": "menu-icon tf-icons ti ti-building",
+            "slug": "admin.prodi-competency.",
+            "role": "admin"
+        },
+        {
+            "name": "Status Kompetensi",
+            "url": "/admin/dosen-competency",
+            "icon": "menu-icon tf-icons ti ti-checkbox",
+            "slug": "admin.dosen-competency.",
+            "role": "admin"
+        },
+        {
             "menuHeader": "AMI",
             "role": "admin,unit",
             "unit": "*"
