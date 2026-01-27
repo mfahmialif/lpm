@@ -21,7 +21,16 @@ class ActivityController extends Controller
         }
 
         if ($request->search) {
-            $activity->where('title', 'like', '%' . $request->search . '%');
+            $activity->where(function ($q) use ($request){
+                $q->where('title', 'like', '%' . $request->search . '%');
+                $q->orWhere('body', 'like', '%' . $request->search . '%');
+                // $q->orWhereHas('tag', function ($query) use ($request) {
+                //     $query->where('name', 'like', '%' . $request->search . '%');
+                // });
+                // $q->orWhereHas('unit', function ($query) use ($request) {
+                //     $query->where('name', 'like', '%' . $request->search . '%');
+                // });
+            });
         }
         
         $activity->orderBy('id', 'desc');
