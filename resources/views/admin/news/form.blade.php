@@ -1,17 +1,14 @@
 <div class="mb-6">
     <label for="categories" class="form-label">Category</label>
-    <input id="categories" name="categories" class="form-control" placeholder="select Units..." tabindex="-1"
-        value="{{ old('categories') }}">
+    <input id="categories" name="categories" class="form-control" placeholder="select Units..." tabindex="-1" value="{{ old('categories') }}">
 </div>
 <div class="mb-6">
     <label class="form-label">Title</label>
-    <input type="text" class="form-control" name="title" placeholder="Type here..." value="{{ old('title') }}"
-        required />
+    <input type="text" class="form-control" name="title" placeholder="Type here..." value="{{ old('title') }}" required />
 </div>
 <div class="mb-6">
     <label class="form-label">Date</label>
-    <input type="datetime-local" class="form-control" name="published_at" placeholder="Choose date..."
-        value="{{ old('published_at') }}" required />
+    <input type="datetime-local" class="form-control" name="published_at" placeholder="Choose date..." value="{{ old('published_at') }}" required />
 </div>
 <div class="mb-6">
     <label class="form-label">Status</label>
@@ -30,8 +27,7 @@
     <label class="form-label">Image Banner</label>
     <div class="d-flex align-items-end mb-3">
         <div class="preview d-flex align-items-center position-relative w-auto">
-            <img class="cropped-image" alt="Cropped Preview"
-                src="{{ old('image_name') ?: asset('admin/assets/img/avatars/profile.png') }}" />
+            <img class="cropped-image" alt="Cropped Preview" src="{{ old('image_name') ?: asset('admin/assets/img/avatars/profile.png') }}" />
         </div>
         <button type="button" class="btn btn-danger ms-2 remove-image {{ old('image_name') ? '' : 'd-none' }}">
             Remove
@@ -50,22 +46,22 @@
 <script>
     $(document).ready(function() {
         $('.summernote').summernote({
-            placeholder: 'Type here...',
-            tabsize: 2,
-            height: 300,
-            codeviewFilter: false,
-            codeviewIframeFilter: true,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+            placeholder: 'Type here...'
+            , tabsize: 2
+            , height: 300
+            , codeviewFilter: false
+            , codeviewIframeFilter: true
+            , toolbar: [
+                ['style', ['style']]
+                , ['font', ['bold', 'italic', 'underline', 'clear']]
+                , ['fontname', ['fontname']]
+                , ['fontsize', ['fontsize']]
+                , ['color', ['color']]
+                , ['para', ['ul', 'ol', 'paragraph']]
+                , ['height', ['height']]
+                , ['table', ['table']]
+                , ['insert', ['link', 'picture', 'video']]
+                , ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
 
@@ -99,18 +95,19 @@
             }
         });
     });
+
 </script>
 <script>
     const categories = document.querySelector('#categories');
-    const dataCategories = @json($categories - > pluck('name'));
+    const dataCategories = @json($categories->pluck('name'));
     let tagifyCategories = new Tagify(categories, {
-        whitelist: dataCategories,
-        maxTags: 10,
-        dropdown: {
-            maxItems: 20,
-            classname: 'tags-inline',
-            enabled: 0,
-            closeOnSelect: false
+        whitelist: dataCategories
+        , maxTags: 10
+        , dropdown: {
+            maxItems: 20
+            , classname: 'tags-inline'
+            , enabled: 0
+            , closeOnSelect: false
         }
     });
 
@@ -137,5 +134,6 @@
             tagifyCategories.addTags(oldTags);
         }
     })();
+
 </script>
 @endpush

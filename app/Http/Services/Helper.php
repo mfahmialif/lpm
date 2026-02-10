@@ -414,48 +414,5 @@ class Helper
         return $result;
     }
 
-    public static function setAmiModeUser()
-    {
-        $user = Auth::user();
-        if ($user->role != 'unit') {
-            return false;
-        }
-
-        if (!$user->prodiUnits) {
-            return false;
-        }
-
-        $mode = $user->prodiUnits->first()->pivot->jenis;
-        $set = self::setAmiMode($mode);
-        return $set;
-    }
-
-    public static function getAllJenisAmiUser()
-    {
-        $user = Auth::user();
-        if ($user->role != 'unit') {
-            return false;
-        }
-
-        if (!$user->prodiUnits) {
-            return false;
-        }
-
-        return $user->prodiUnits->pluck('pivot.jenis')->unique()->toArray();
-    }
-
-    public static function setAmiMode($mode)
-    {
-        $allMode = self::getAllJenisAmiUser();
-        if (!in_array($mode, $allMode)) {
-            return false;
-        }
-        session()->put('ami_mode', strtolower($mode));
-        return true;
-    }
-
-    public static function getAmiMode()
-    {
-        return ucfirst(session()->get('ami_mode', 'Belum Set'));
-    }
 }
+

@@ -23,11 +23,8 @@
         @continue;
         @endif
 
-        @if(Auth::user()->role == 'unit')
-        @if (isset($menu->unit) and $menu->unit != "*" and strtolower($menu->unit) != strtolower(Helper::getAmiMode()))
-        @continue;
-        @endif
-        @endif
+
+
 
         {{-- menu headers --}}
         @if (isset($menu->menuHeader))

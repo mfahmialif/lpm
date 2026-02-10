@@ -80,11 +80,6 @@ class LoginController extends Controller
                 $request->session()->put('auth.password_confirmed_at', time());
             }
 
-            $user = Auth::user();
-            if ($user->role == 'unit') {
-                Helper::setAmiModeUser();
-            }
-
             return $this->sendLoginResponse($request);
         }
 

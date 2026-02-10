@@ -18,27 +18,6 @@
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            @if(\Auth::user()->role === 'unit')
-            <!-- Mode AMI -->
-            <li class="nav-item dropdown">
-                <a class="nav-link btn btn-outline-primary active dropdown-toggle" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    {{ Helper::getAmiMode() }}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    @foreach (Helper::getAllJenisAmiUser() as $mode)
-                    <li>
-                        <form action="{{ route('root.set-mode') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="mode" value="{{ $mode }}">
-                            <button type="submit" class="dropdown-item {{ strtolower(Helper::getAmiMode()) == strtolower($mode) ? 'active' : '' }}">
-                                <span class="align-middle"><i class="ti ti-menu ti-md me-3"></i> {{ ucfirst($mode) }}</span>
-                            </button>
-                        </form>
-                    </li>
-                    @endforeach
-                </ul>
-            </li>
-            @endif
             <!-- Style Switcher -->
             <li class="nav-item dropdown-style-switcher dropdown">
                 <a class="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

@@ -27,21 +27,21 @@ class UnitController extends Controller
                 });
             })
             ->addColumn('jenis_badge', function ($row) {
-                $badgeClass = match ($row->jenis) {
+                $badges = [
                     'Prodi' => 'bg-primary',
                     'Fakultas' => 'bg-success',
                     'Institusi' => 'bg-info',
-                    default => 'bg-secondary',
-                };
+                ];
+                $badgeClass = isset($badges[$row->jenis]) ? $badges[$row->jenis] : 'bg-secondary';
                 return '<span class="badge ' . $badgeClass . '">' . $row->jenis . '</span>';
             })
             ->addColumn('jenjang_badge', function ($row) {
-                $badgeClass = match ($row->jenjang) {
+                $badges = [
                     'S1' => 'bg-primary',
                     'S2' => 'bg-warning',
                     'S3' => 'bg-danger',
-                    default => 'bg-secondary',
-                };
+                ];
+                $badgeClass = isset($badges[$row->jenjang]) ? $badges[$row->jenjang] : 'bg-secondary';
                 return '<span class="badge ' . $badgeClass . '">' . $row->jenjang . '</span>';
             })
             ->addColumn('action', function ($row) {

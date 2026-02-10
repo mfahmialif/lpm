@@ -85,127 +85,45 @@
         },
         {
             "name": "AMI",
-            "icon": "menu-icon tf-icons ti ti-clipboard-data",
-            "role": "admin,unit",
-            "slug": [
-                "admin.prodi-unit.",
-                "admin.ami-period.",
-                "admin.ami-category.",
-                "admin.ami-target.",
-                "admin.ami-auditor-decree.",
-                "admin.ami-assignment-letter.",
-                "admin.ami-performance-report.",
-                "admin.ami-self-evaluation.",
-                "admin.ami-self-assessment.",
-                "admin.ami-auditor-assessment.",
-                "admin.ami-audit-finding.",
-                "admin.ami-finding-result.",
-                "admin.ami-rtm.",
-                "admin.ami-official-report.",
-                "admin.ami-final-result."
-            ],
+            "icon": "menu-icon tf-icons ti ti-clipboard-check",
+            "slug": ["admin.ami."],
+            "role": "admin,lpm,unit",
             "submenu": [
                 {
-                    "name": "Prodi Unit",
-                    "url": "/admin/prodi-unit",
-                    "slug": "admin.prodi-unit.",
-                    "role": "admin"
+                    "name": "Dashboard",
+                    "url": "/admin/ami",
+                    "slug": "admin.ami.dashboard",
+                    "role": "admin,lpm,unit"
+                },
+                {
+                    "name": "Unit Audit",
+                    "url": "/admin/ami/unit-audit",
+                    "slug": "admin.ami.unit-audit.",
+                    "role": "admin,lpm"
                 },
                 {
                     "name": "Periode",
-                    "url": "/admin/ami-period",
-                    "slug": "admin.ami-period.",
-                    "role": "admin"
-                },
-                {
-                    "name": "Kategori",
-                    "url": "/admin/ami-category",
-                    "slug": "admin.ami-category.",
-                    "role": "admin"
-                },
-                {
-                    "name": "Target",
-                    "url": "/admin/ami-target",
-                    "slug": "admin.ami-target.",
-                    "role": "admin,unit",
-                    "unit": "*"
+                    "url": "/admin/ami/periode",
+                    "slug": "admin.ami.periode.",
+                    "role": "admin,lpm"
                 },
                 {
                     "name": "SK Auditor",
-                    "url": "/admin/ami-auditor-decree",
-                    "slug": "admin.ami-auditor-decree.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Surat Tugas",
-                    "url": "/admin/ami-assignment-letter",
-                    "slug": "admin.ami-assignment-letter.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Laporan Kinerja",
-                    "url": "/admin/ami-performance-report",
-                    "slug": "admin.ami-performance-report.",
-                    "role": "admin,unit",
-                    "unit": "*"
+                    "url": "/admin/ami/sk-auditor",
+                    "slug": "admin.ami.sk-auditor.",
+                    "role": "admin,lpm,unit"
                 },
                 {
                     "name": "Evaluasi Diri",
-                    "url": "/admin/ami-self-evaluation",
-                    "slug": "admin.ami-self-evaluation.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Asesmen Diri",
-                    "url": "/admin/ami-self-assessment",
-                    "slug": "admin.ami-self-assessment.",
-                    "role": "admin,unit",
-                    "unit": "*"
+                    "url": "/admin/ami/evaluasi-diri",
+                    "slug": "admin.ami.evaluasi-diri.",
+                    "role": "admin,lpm,unit"
                 },
                 {
                     "name": "Asesmen Auditor",
-                    "url": "/admin/ami-auditor-assessment",
-                    "slug": "admin.ami-auditor-assessment.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Temuan Audit",
-                    "url": "/admin/ami-audit-finding",
-                    "slug": "admin.ami-audit-finding.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Hasil Temuan",
-                    "url": "/admin/ami-finding-result",
-                    "slug": "admin.ami-finding-result.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "RTM",
-                    "url": "/admin/ami-rtm",
-                    "slug": "admin.ami-rtm.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Laporan Resmi",
-                    "url": "/admin/ami-official-report",
-                    "slug": "admin.ami-official-report.",
-                    "role": "admin,unit",
-                    "unit": "*"
-                },
-                {
-                    "name": "Hasil Akhir",
-                    "url": "/admin/ami-final-result",
-                    "slug": "admin.ami-final-result.",
-                    "role": "admin,unit",
-                    "unit": "*"
+                    "url": "/admin/ami/asesmen-auditor",
+                    "slug": "admin.ami.asesmen.",
+                    "role": "admin,lpm,unit"
                 }
             ]
         },

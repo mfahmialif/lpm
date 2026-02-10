@@ -27,12 +27,12 @@ class UnitDokumentController extends Controller
                 });
             })
             ->addColumn('jenis_badge', function ($row) {
-                $badgeClass = match ($row->jenis) {
+                $badges = [
                     'Prodi' => 'bg-primary',
                     'Fakultas' => 'bg-success',
                     'Institusi' => 'bg-info',
-                    default => 'bg-secondary',
-                };
+                ];
+                $badgeClass = isset($badges[$row->jenis]) ? $badges[$row->jenis] : 'bg-secondary';
                 return '<span class="badge ' . $badgeClass . '">' . $row->jenis . '</span>';
             })
 

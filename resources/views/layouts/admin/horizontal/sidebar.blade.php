@@ -8,11 +8,8 @@
              @continue;
              @endif
 
-             @if(Auth::user()->role == 'unit')
-             @if (isset($menu->unit) and $menu->unit != "*" and strtolower($menu->unit) != strtolower(Helper::getAmiMode()))
-             @continue;
-             @endif
-             @endif
+
+
 
              {{-- adding active and open class if child is active --}}
              {{-- menu headers --}}

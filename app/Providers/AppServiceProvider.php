@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom([
             database_path('migrations'),
-            database_path('migrations/update-2-ami'),
+            database_path('migrations/ami'),
         ]);
     }
 }
