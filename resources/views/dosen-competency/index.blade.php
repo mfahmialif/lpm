@@ -259,13 +259,19 @@
                                 </label>
                             </div>
 
+                            <!-- Alert Info -->
+                            <div class="alert alert-info d-flex align-items-center mb-3 fade-in-up" role="alert" style="animation-delay: 0.25s;">
+                                <i class="ti ti-info-circle fs-5 me-2"></i>
+                                <div>
+                                    <strong>Perhatian:</strong> Dosen hanya diperbolehkan memilih <strong>1 (satu) kompetensi</strong> saja.
+                                </div>
+                            </div>
+
                             <div class="table-responsive mb-4" id="competency_container" style="max-height: 400px; overflow-y: auto;">
                                 <table class="table table-hover table-bordered table-striped" id="competency_table" style="overflow-y: scroll">
                                     <thead class="table-light box-shadow-sticky" style="position: sticky; top: 0; z-index: 1;">
                                         <tr>
-                                            <th class="text-center">
-                                                <input type="checkbox" class="form-check-input" id="check_all_table">
-                                            </th>
+                                            <th class="text-center" width="50">Pilih</th>
                                             <th>Nama Kompetensi</th>
                                         </tr>
                                     </thead>
@@ -301,6 +307,52 @@
                 </div>
             </div>
         </div>
+
+        <!-- Data Table Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-12">
+                <div class="competency-card p-4 p-md-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h4 class="fw-bold mb-0">
+                            <i class="ti ti-table me-2 text-primary"></i>Data Kompetensi Dosen
+                        </h4>
+                    </div>
+
+                    <!-- Filter Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label for="filter_prodi" class="form-label">Filter Program Studi</label>
+                            <select class="form-select" id="filter_prodi">
+                                <option value="">Semua Program Studi</option>
+                                @foreach($prodis as $prodi)
+                                <option value="{{ $prodi->id }}">{{ $prodi->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- DataTable -->
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped" id="dosenCompetencyTable" style="width: 100%">
+                            <thead class="table-light">
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th>Nama Dosen</th>
+                                    <th>NIDN</th>
+                                    <th>Program Studi</th>
+                                    <th>Kompetensi</th>
+                                    <th>Periode</th>
+                                    <th>Tanggal</th>
+                                    <th width="8%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -321,12 +373,21 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 
+<!-- DataTables CSS -->
+<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
     $(document).ready(function() {
+        // Declare DataTable variable at the top for global scope access
+        var dosenCompetencyTable;
+
         // Initialize Select2 on Prodi Select
         $('#prodi_select').select2({
             theme: 'bootstrap-5',
@@ -418,6 +479,9 @@
             $('#dosen_id').val(id);
             $('#dosen_input').val(nama);
             $('#dosen_list').slideUp(200);
+
+            // Reload competencies when dosen is selected
+            loadCompetencies();
         });
 
         // Toggle Lists Check
@@ -437,12 +501,16 @@
             }
         });
 
-        // Load Competencies
-        $('#prodi_select').on('change', function() {
-            let prodiId = $(this).val();
-            let dosenId = $('#dosen_id').val(); // Pass dosen ID if needed for filtering logic on server side
+        // Function to load competencies
+        function loadCompetencies() {
+            let prodiId = $('#prodi_select').val();
+            let dosenId = $('#dosen_id').val();
 
-            if (!prodiId) return;
+            // Need both prodi and dosen to load competencies
+            if (!prodiId || !dosenId) {
+                $('#competency_section').fadeOut();
+                return;
+            }
 
             // Show loading
             $('#competency_table tbody').html('<tr><td colspan="2" class="text-center py-4"><div class="spinner-border text-primary spinner-border-sm"></div> Memuat kompetensi...</td></tr>');
@@ -462,11 +530,21 @@
                     $('#competency_container').show();
 
                     let html = '';
-                    if (Array.isArray(response) && response.length > 0) {
+                    let competencies = response.data || [];
+
+                    // Check if dosen already has competency
+                    if (response.dosen_has_competency) {
+                        $('#competency_table').addClass('d-none').hide();
+                        $('#empty_state').removeClass('d-none').show();
+                        $('#empty_state p').text(response.message || 'Dosen ini sudah memiliki kompetensi pada periode ini.');
+                        return;
+                    }
+
+                    if (Array.isArray(competencies) && competencies.length > 0) {
                         $('#competency_table').removeClass('d-none').show();
                         $('#empty_state').addClass('d-none').hide();
 
-                        response.forEach((item, index) => {
+                        competencies.forEach((item, index) => {
                             html += `
                                 <tr>
                                     <td class="text-center">
@@ -480,21 +558,22 @@
                     } else {
                         $('#competency_table').addClass('d-none').hide();
                         $('#empty_state').removeClass('d-none').show();
+                        $('#empty_state p').text(response.message || 'Tidak ada kompetensi tersedia untuk program studi ini.');
                     }
                 }
             });
+        }
+
+        // Load Competencies when prodi changes
+        $('#prodi_select').on('change', function() {
+            loadCompetencies();
         });
 
-        // Check All Table
-        $('#check_all_table').on('click', function() {
-            const isChecked = $(this).is(':checked');
-            $('.competency-check').prop('checked', isChecked);
-        });
-
-        // Uncheck "check all" if one is unchecked
+        // Only allow one checkbox to be selected at a time
         $(document).on('change', '.competency-check', function() {
-            if (!$(this).is(':checked')) {
-                $('#check_all_table').prop('checked', false);
+            if ($(this).is(':checked')) {
+                // Uncheck all other checkboxes
+                $('.competency-check').not(this).prop('checked', false);
             }
         });
 
@@ -539,6 +618,11 @@
 
                         $('#competency_section').fadeOut();
 
+                        // Reload DataTable
+                        if (typeof dosenCompetencyTable !== 'undefined') {
+                            dosenCompetencyTable.ajax.reload();
+                        }
+
                         $('html, body').animate({
                             scrollTop: 0
                         }, 'slow');
@@ -559,6 +643,107 @@
         $(document).on('click', function(e) {
             if (!$(e.target).closest('#dosen_input, #dosen_list').length) {
                 $('#dosen_list').slideUp(200);
+            }
+        });
+
+        // Initialize DataTable
+        dosenCompetencyTable = $('#dosenCompetencyTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('dosen-competency.data') }}",
+                data: function(d) {
+                    d.prodi_id = $('#filter_prodi').val();
+                }
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                },
+
+                {
+                    data: 'nama_dosen',
+                    name: 'mst_dosen.nama'
+                },
+                {
+                    data: 'nidn_dosen',
+                    name: 'mst_dosen.nidn'
+                },
+                {
+                    data: 'nama_prodi',
+                    name: 'prodis.nama'
+                },
+                {
+                    data: 'nama_kompetensi',
+                    name: 'competencies.nama'
+                },
+                {
+                    data: 'nama_periode',
+                    name: 'periode_akademik.nama_periode'
+                },
+                {
+                    data: 'tanggal',
+                    orderable: false,
+                    searchable: false
+                }
+            ],
+            language: {
+                processing: '<div class="spinner-border text-primary spinner-border-sm"></div> Memuat...',
+                search: 'Cari:',
+                lengthMenu: 'Tampilkan _MENU_ data',
+                info: 'Menampilkan _START_ - _END_ dari _TOTAL_ data',
+                infoEmpty: 'Tidak ada data',
+                infoFiltered: '(difilter dari _MAX_ total data)',
+                zeroRecords: 'Tidak ada data yang cocok',
+                paginate: {
+                    first: 'Pertama',
+                    last: 'Terakhir',
+                    next: 'Selanjutnya',
+                    previous: 'Sebelumnya'
+                }
+            },
+            order: [
+                [1, 'asc']
+            ]
+        });
+
+        // Initialize Select2 on filter prodi
+        $('#filter_prodi').select2({
+            theme: 'bootstrap-5',
+            width: '100%',
+            placeholder: 'Semua Program Studi',
+            allowClear: true
+        });
+
+        // Filter prodi change handler
+        $('#filter_prodi').on('change', function() {
+            dosenCompetencyTable.ajax.reload();
+        });
+
+        // Delete handler
+        $(document).on('click', '.btn-delete', function() {
+            let id = $(this).data('id');
+
+            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                $.ajax({
+                    url: "{{ url('dosen-competency/destroy') }}/" + id,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            showToast(response.message, 'success');
+                            dosenCompetencyTable.ajax.reload();
+                        } else {
+                            showToast(response.message, 'danger');
+                        }
+                    },
+                    error: function(xhr) {
+                        showToast('Terjadi kesalahan: ' + (xhr.responseJSON?.message || 'Server error'), 'danger');
+                    }
+                });
             }
         });
     });

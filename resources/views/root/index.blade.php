@@ -1,4 +1,4 @@
-@extends('layouts.home.template')
+﻿@extends('layouts.home.template')
 @section('title', 'LPM UII Dalwa - Lembaga Penjaminan Mutu')
 @section('content')
     <!-- Hero Banner -->
@@ -100,7 +100,7 @@
                                     <!-- Atas -->
                                     <text>
                                         <textPath href="#badgeCircleTop" startOffset="50%" text-anchor="middle">
-                                            • UII DALWA LPM • UII DALWA LPM • UII DALWA LPM
+                                            â€¢ UII DALWA LPM â€¢ UII DALWA LPM â€¢ UII DALWA LPM
                                         </textPath>
                                     </text>
                                     <!-- Bawah -->
@@ -191,682 +191,265 @@
         </div>
     </div>
 
-    <!-- Image Text -->
-    <div class="image-text mt-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-12">
-                    <div class="media-wrap">
-                        <img src="{{ asset('home') }}/assets/img/image-text/img2.png" width="992" height="863"
-                            loading="lazy" alt="Image" data-aos="zoom-in-up" />
+
+    <!-- Visi Misi Section - Premium Design -->
+    <div style="background: linear-gradient(180deg, #0f1419 0%, #1a2332 50%, #0f1419 100%); padding: 100px 0; position: relative; overflow: hidden;">
+        <!-- Decorative Elements -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+            <div style="position: absolute; top: 10%; left: 5%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);"></div>
+            <div style="position: absolute; bottom: 10%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212, 175, 55, 0.02) 0%, transparent 70%);"></div>
+        </div>
+        
+        <div class="container" style="position: relative; z-index: 1;">
+            <!-- Section Header -->
+            <div class="text-center" style="margin-bottom: 60px;" data-aos="fade-up">
+                <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37);"></span>
+                    <span style="color: #d4af37; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Lembaga Penjaminan Mutu</span>
+                    <span style="width: 40px; height: 2px; background: linear-gradient(90deg, #d4af37, transparent);"></span>
+                </div>
+                <h2 style="color: #fff; font-size: 42px; font-weight: 700; margin: 0;">
+                    Visi <span style="color: #d4af37;">&</span> Misi LPM
+                </h2>
+            </div>
+            
+            <div class="row" style="gap: 30px 0;">
+                <!-- Visi Card -->
+                <div class="col-lg-5 col-12" data-aos="fade-right" data-aos-delay="100">
+                    <div style="background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 40px; height: 100%; position: relative; overflow: hidden; transition: all 0.4s ease;">
+                        <!-- Gold accent line -->
+                        <div style="position: absolute; top: 0; left: 30px; right: 30px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
+                        
+                        <!-- Icon -->
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f1419" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </div>
+                        
+                        <!-- Title -->
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <h3 style="color: #fff; font-size: 32px; font-weight: 700; margin: 0;">Visi</h3>
+                            <span style="width: 30px; height: 2px; background: #d4af37;"></span>
+                        </div>
+                        
+                        <!-- Content -->
+                        <p style="color: rgba(255,255,255,0.85); font-size: 17px; line-height: 1.8; margin: 0;">
+                            Menjadi lembaga penjaminan mutu yang <span style="color: #d4af37; font-weight: 600;">profesional</span> dan <span style="color: #d4af37; font-weight: 600;">kredibel</span> dalam mengawal tata kelola institusi yang 
+                            <span style="color: #d4af37; font-weight: 600;">excellent</span> di tingkat ASEAN.
+                        </p>
+                        
+                        <!-- Corner decoration -->
+                        <div style="position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px; border-right: 2px solid rgba(212, 175, 55, 0.3); border-bottom: 2px solid rgba(212, 175, 55, 0.3);"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-12">
-                    <div class="content section-headings">
-                        <div class="subheading text-20 subheading-bg" data-aos="fade-up">
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path
-                                        d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                        fill="CurrentColor" />
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <span>Our LPM</span>
-                            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                viewBox="0 0 14 14" fill="none">
-                                <g clip-path="url(#clip0_9088_4143)">
-                                    <path
-                                        d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                        fill="CurrentColor" />
-                                </g>
-                                <defs>
-                                    <clipPath>
-                                        <rect width="14" height="14" fill="CurrentColor" />
-                                    </clipPath>
-                                </defs>
+                
+                <!-- Misi Card -->
+                <div class="col-lg-7 col-12" data-aos="fade-left" data-aos-delay="200">
+                    <div style="background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 40px; height: 100%; position: relative; overflow: hidden; transition: all 0.4s ease;">
+                        <!-- Gold accent line -->
+                        <div style="position: absolute; top: 0; left: 30px; right: 30px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent);"></div>
+                        
+                        <!-- Icon -->
+                        <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f1419" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                         </div>
-                        <h2 class="heading text-50" data-aos="fade-up" data-aos-delay="50">
-                            Quality Assurance with Barakah
-                        </h2>
-                        <div class="text text-18" data-aos="fade-up" data-aos-delay="80">
-                            Our mission is to uphold academic quality with sincerity and devotion, ensuring
-                            continuous improvement and fostering blessings in every aspect of education.
+                        
+                        <!-- Title -->
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 25px;">
+                            <h3 style="color: #fff; font-size: 32px; font-weight: 700; margin: 0;">Misi</h3>
+                            <span style="width: 30px; height: 2px; background: #d4af37;"></span>
                         </div>
-                        <ul class="list-block list-unstyled">
-                            <li class="text-item text text-18" data-aos="fade-up" data-aos-delay="100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
-                                    viewBox="0 0 60 60" fill="none">
-                                    <circle cx="30" cy="30" r="29.5" stroke="#1C2539" />
-                                    <g clip-path="url(#clip0_9088_7871)">
-                                        <path
-                                            d="M17.6645 23.0585C17.9536 23.0713 18.1997 22.8406 18.2097 22.5496L18.2916 20.171H19.8332L19.8752 23.414C19.8776 23.6041 19.9822 23.7782 20.149 23.8696C20.2281 23.913 20.3153 23.9345 20.4025 23.9345C20.499 23.9345 20.5954 23.908 20.6804 23.8554L23.0793 22.3682C23.4423 22.1432 23.8385 21.9858 24.257 21.9001L26.0346 21.5365C26.2934 22.4812 26.9984 23.2578 27.9438 23.5951C28.4258 23.7671 28.9633 23.6936 29.3816 23.3988C29.7998 23.104 30.0495 22.6224 30.0495 22.1107V21.4152C31.3436 21.3001 32.5622 20.7633 33.5262 19.8745L35.1291 18.3968C35.3432 18.1994 35.3568 17.8657 35.1594 17.6515C34.9619 17.4374 34.6283 17.4239 34.4141 17.6212L32.8112 19.0989C32.0429 19.8073 31.0773 20.2424 30.0495 20.3541V19.4985C30.3096 19.3462 30.5363 19.1366 30.7068 18.8822C31.3934 17.857 31.5003 16.5734 30.9927 15.4487C30.8117 15.0655 30.7404 14.8867 30.5598 14.5411C30.6899 14.4487 30.7951 14.321 30.8593 14.1678C30.9929 13.8489 30.9252 13.4808 30.6867 13.2299C30.3259 12.8504 29.6593 12.3448 28.533 12.0921C27.3385 11.8242 26.3261 12.15 25.7719 12.9473C25.182 12.9439 24.3397 13.2015 23.9312 14.2172C23.3791 15.5897 23.8024 16.9465 25.0634 17.8468C25.223 17.958 25.5552 18.1053 25.8893 18.0809C26.0727 18.3439 26.2575 18.5924 26.5698 18.8814L26.0545 20.4559L24.0457 20.8668C23.5049 20.9774 22.9928 21.181 22.5236 21.4718L20.9177 22.4673L20.853 17.4732C20.8406 16.5142 20.0503 15.734 19.0912 15.734C18.1366 15.734 17.3631 16.4814 17.3303 17.4354C17.2871 18.691 17.1986 21.2624 17.1556 22.5134C17.1456 22.8044 17.3734 23.0485 17.6645 23.0585ZM29.8306 18.2952C29.6657 18.5413 29.3909 18.6999 29.0955 18.7196C28.2307 18.7771 27.4117 18.3914 26.9055 17.6873L26.8234 17.5731C26.9393 17.4164 27.0189 17.2324 27.0519 17.0322C27.1102 16.6636 27.2776 16.1451 27.4864 15.7812C27.872 15.1088 28.6831 14.8455 29.3986 14.7512C29.6197 14.9309 29.9074 15.5952 30.0315 15.8825C30.3881 16.6729 30.313 17.5749 29.8306 18.2952ZM26.5029 13.802C26.7417 13.2068 27.2556 13.0528 27.7233 13.0528C28.2626 13.0354 29.2258 13.3744 29.5923 13.6708C28.7134 13.7436 27.5391 14.0128 26.8322 14.8713C26.6729 14.7728 26.5603 14.6535 26.4959 14.5147C26.357 14.2157 26.4662 13.8936 26.5029 13.802ZM24.9098 14.6107C25.0278 14.3171 25.2032 14.1617 25.3753 14.0814C25.3597 14.3876 25.4141 14.6894 25.5392 14.9589C25.6568 15.2122 25.8825 15.531 26.3114 15.7873C26.1751 16.1203 26.0742 16.4791 26.0113 16.8603C25.9955 16.9552 25.928 16.9964 25.8892 17.0126C25.8552 17.0267 25.7663 17.0524 25.6763 16.9882C24.8007 16.3631 24.5356 15.541 24.9098 14.6107ZM28.9241 19.7801C28.9477 19.7801 28.9713 19.7794 28.9949 19.7789V22.1106C28.9949 22.2824 28.9143 22.4376 28.7739 22.5367C28.6336 22.6358 28.4602 22.6594 28.2984 22.6017C27.587 22.3478 27.0852 21.7127 26.9966 20.9681L27.4851 19.4755C27.9316 19.6741 28.42 19.7801 28.9241 19.7801ZM19.0913 16.7887C19.4763 16.7887 19.7934 17.1018 19.7984 17.4867L19.8195 19.1163H18.3278L18.3844 17.4716C18.3977 17.0886 18.7081 16.7887 19.0913 16.7887Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M40.5805 44.8109H39.7454L39.8653 37.543C39.8785 36.7532 39.5412 36.0061 38.9402 35.4933L36.6506 33.5403C36.4289 33.3511 36.0961 33.3777 35.9071 33.5993C35.7181 33.8208 35.7446 34.1537 35.9661 34.3427L38.2557 36.2958C38.6163 36.6034 38.8186 37.0516 38.8108 37.5255L38.6906 44.8109H37.3269L36.5306 42.2281C36.213 41.1978 36.2378 40.0714 36.6004 39.0562L36.823 38.4328C36.8725 38.294 36.8618 38.1409 36.7933 38.0104C36.7248 37.8799 36.605 37.784 36.4627 37.7459L30.6868 36.1996L30.5948 34.3953C30.5801 34.1044 30.3345 33.8792 30.0413 33.8955C29.7504 33.9103 29.5266 34.1581 29.5415 34.449L29.8263 40.0356C29.8571 40.6418 29.547 41.2022 29.0167 41.4979L28.294 41.901C28.0396 42.0429 27.9484 42.364 28.0903 42.6184C28.1868 42.7915 28.3664 42.889 28.5514 42.889C28.6383 42.889 28.7265 42.8675 28.8078 42.8222L29.5305 42.4191C30.4142 41.9262 30.9312 40.9924 30.8797 39.9819L30.7433 37.3067L35.6373 38.6169C35.1928 39.7857 35.1262 41.2859 35.5228 42.5389L36.4015 45.3893V46.7853C36.4015 47.456 36.9472 48.0017 37.6179 48.0017H42.0965C42.5012 48.0017 42.8305 47.6723 42.8305 47.2677V47.061C42.8305 45.8202 41.8212 44.8109 40.5805 44.8109ZM37.6179 46.9468C37.5287 46.9468 37.4562 46.8743 37.4562 46.7851V45.8656H40.5806C41.2011 45.8656 41.7128 46.3411 41.7704 46.9468H37.6179Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M26.1036 36.7365C25.4655 35.2029 25.2087 33.5316 25.3546 31.8796L31.6141 30.6277L34.0866 32.7368C34.3082 32.9259 34.6411 32.8994 34.83 32.6778C35.019 32.4562 34.9926 32.1233 34.771 31.9343L32.3587 29.8764L33.6032 25.3202C33.6523 25.1402 33.7435 24.9712 33.8668 24.8312C35.039 23.5 41.5132 16.151 42.5131 15.0151C43.1031 14.3454 43.1149 13.363 42.5411 12.6792C42.2232 12.3004 41.7765 12.0744 41.2831 12.0429C40.789 12.0112 40.3177 12.1785 39.9543 12.5135C39.0336 13.3623 37.1142 15.1317 36.1987 15.9758C35.9846 16.1732 35.971 16.5069 36.1684 16.7211C36.366 16.9351 36.6994 16.9486 36.9137 16.7514L38.6546 15.1464L39.8769 16.4122L33.0753 24.1339C32.8462 24.3939 32.6769 24.708 32.5856 25.0423L31.3388 29.607C30.2809 29.8186 26.1948 30.6358 25.2521 30.8244L24.141 26.7059C24.0544 26.3846 23.8469 26.1177 23.557 25.9544C23.267 25.7909 22.9313 25.7519 22.6115 25.8442L19.1776 26.836C18.9126 26.9123 18.6362 26.8591 18.4186 26.6897C18.2012 26.5202 18.0819 26.265 18.0914 25.9895L18.1253 25.0028C18.1354 24.7117 17.9075 24.4677 17.6164 24.4576C17.3274 24.4452 17.0813 24.6754 17.0713 24.9665L17.0373 25.9532C17.016 26.5703 17.2832 27.142 17.7704 27.5216C18.2575 27.9012 18.877 28.0206 19.4703 27.8493L22.9042 26.8575C22.9658 26.8397 23.0154 26.8597 23.0393 26.8733C23.0633 26.8868 23.106 26.9187 23.1228 26.9806L24.3366 31.4801C24.1139 33.4007 24.3868 35.3559 25.1298 37.1416L26.0376 39.3235L25.6865 39.4013C24.366 39.6944 23.2072 40.4631 22.4239 41.566L20.2228 44.665C19.9891 44.994 19.8656 45.3812 19.8656 45.7847V46.783C19.8656 47.4538 20.4113 47.9994 21.082 47.9994H25.5606C25.9653 47.9994 26.2946 47.67 26.2946 47.2654V47.0587C26.2946 46.1293 25.7281 45.3297 24.9222 44.987L26.7053 43.9926C26.9597 43.8508 27.0509 43.5296 26.909 43.2752C26.7671 43.0208 26.4458 42.9295 26.1915 43.0715L23.0763 44.8088H21.4143L23.2837 42.1768C23.9154 41.2874 24.8499 40.6674 25.9149 40.4311L26.8804 40.2169C27.0327 40.1832 27.1623 40.0836 27.2342 39.9452C27.3061 39.8067 27.3131 39.6436 27.2532 39.4995L26.1036 36.7365ZM39.4303 14.4313L40.6693 13.2891C40.8188 13.1513 41.0126 13.0826 41.2157 13.0955C41.4186 13.1085 41.6024 13.2014 41.733 13.3572C41.969 13.6384 41.9642 14.0425 41.7216 14.318L40.5763 15.6181L39.4303 14.4313ZM24.0447 45.8635C24.6652 45.8635 25.1768 46.339 25.2344 46.9447H21.0819C20.9927 46.9447 20.9202 46.8722 20.9202 46.7831V45.8635H24.0447Z"
-                                            fill="CurrentColor" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_9088_7871">
-                                            <rect width="36" height="36" fill="white"
-                                                transform="translate(12 12)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <h3 class="title text text-22 fw-600">Our ambition</h3>
-                                <div class="text text-16">
-                                    Nurture academic excellence with sincerity and devotion, so every institution
-                                    may thrive with blessings.
-                                </div>
+                        
+                        <!-- Mission Items -->
+                        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 15px;">
+                            <li style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 3px solid #d4af37; transition: all 0.3s ease;">
+                                <span style="min-width: 32px; height: 32px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 700; font-size: 14px;">1</span>
+                                <span style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Membangun budaya mutu pada setiap unit kerja berdasarkan nilai-nilai Iman, Ilmu, dan Amal.</span>
                             </li>
-                            <li class="text-item text text-18" data-aos="fade-up" data-aos-delay="200">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"
-                                    viewBox="0 0 60 60" fill="none">
-                                    <circle cx="30" cy="30" r="29.5" stroke="#1C2539" />
-                                    <g clip-path="url(#clip0_9088_7881)">
-                                        <path
-                                            d="M30.2367 26.3969C29.9451 26.3727 29.6871 26.591 29.6632 26.8839L29.5444 28.3407C29.3383 28.2575 29.1135 28.2112 28.878 28.2112H28.6278V26.8196C28.6278 26.1923 28.1175 25.6819 27.4902 25.6819H25.3008C23.6635 25.6819 22.0433 25.137 20.7387 24.1476L20.488 23.9575C20.2973 23.8129 20.062 23.7528 19.8255 23.7878C19.5889 23.823 19.3813 23.949 19.241 24.1428C18.5807 25.0547 18.2317 26.1318 18.2317 27.2577V28.2112H17.9815C17.7556 28.2112 17.5394 28.2539 17.3403 28.3307L16.8959 25.1623C16.8345 24.7242 16.852 24.2829 16.948 23.8506C17.0117 23.5639 16.831 23.2797 16.5442 23.216C16.2574 23.1521 15.9732 23.3331 15.9095 23.6198C15.7857 24.1768 15.7632 24.7454 15.8422 25.3101L16.387 29.1942C16.2649 29.4358 16.1956 29.7085 16.1956 29.9972C16.1956 30.9821 16.9968 31.7833 17.9817 31.7833H18.2478C18.3716 33.4531 19.2868 34.9052 20.6197 35.7654V37.1111L16.9487 38.8461C14.3185 40.089 12.6191 42.7718 12.6191 45.6807V47.4674C12.6191 47.7612 12.8573 47.9993 13.1511 47.9993C13.445 47.9993 13.6831 47.7612 13.6831 47.4674V45.6807C13.6831 43.1812 15.1433 40.8761 17.4031 39.808L20.7367 38.2325C21.073 39.3302 22.0957 40.1307 23.3021 40.1307C24.5084 40.1307 25.5312 39.3301 25.8674 38.2325L29.2013 39.8081L29.2547 39.8346C29.3297 39.871 29.4089 39.8882 29.4868 39.8882C29.6842 39.8882 29.8737 39.778 29.9657 39.5886C30.0941 39.3243 29.984 39.0061 29.7198 38.8777L29.7013 38.8686C29.6861 38.8609 29.6709 38.8533 29.6556 38.8461L25.9846 37.1111V35.9201C27.4549 35.0865 28.4803 33.5578 28.6118 31.7834H28.8779C29.8628 31.7834 30.664 30.9821 30.664 29.9973C30.664 29.759 30.6167 29.5318 30.5317 29.3237L30.7236 26.9704C30.7475 26.6775 30.5295 26.4208 30.2367 26.3969ZM17.2593 29.9972C17.2593 29.599 17.5833 29.2751 17.9815 29.2751H18.2316V30.7194H17.9815C17.5833 30.7194 17.2593 30.3954 17.2593 29.9972ZM24.9208 37.4481C24.9208 38.3406 24.1947 39.0668 23.3021 39.0668C22.4095 39.0668 21.6834 38.3406 21.6834 37.4481V36.2914C22.2296 36.4868 22.8173 36.5941 23.4298 36.5941C23.9479 36.5941 24.4482 36.5168 24.9208 36.375V37.4481ZM27.5639 31.3959C27.5639 33.6755 25.7093 35.5301 23.4298 35.5301C21.1502 35.5301 19.2956 33.6755 19.2956 31.3959V27.2577C19.2956 26.4198 19.5373 25.6156 19.9966 24.9201L20.0958 24.9954C21.5842 26.1242 23.4327 26.7458 25.3008 26.7458H27.4902C27.5308 26.7458 27.5639 26.7789 27.5639 26.8196V31.3959ZM28.878 30.7194H28.6278V29.2751H28.878C29.2761 29.2751 29.6001 29.599 29.6001 29.9972C29.6001 30.3954 29.2762 30.7194 28.878 30.7194Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M17.4977 22.2682C17.638 22.2682 17.7781 22.213 17.8826 22.1035C18.4046 21.5567 19.0725 21.188 19.8141 21.0374C19.8484 21.0304 19.882 21.02 19.9144 21.0064L21.643 20.2796C24.0632 19.262 26.8038 19.9557 28.462 22.0064C28.6468 22.2348 28.9819 22.2702 29.2102 22.0854C29.4387 21.9007 29.4741 21.5657 29.2894 21.3373C28.3772 20.2094 27.1072 19.3774 25.7135 18.9944C24.2261 18.5858 22.6761 18.691 21.2307 19.2988L19.5492 20.0058C18.6147 20.2065 17.7734 20.6771 17.113 21.3689C16.9101 21.5814 16.9179 21.9182 17.1304 22.121C17.2336 22.2194 17.3657 22.2682 17.4977 22.2682Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M30.9625 40.2847C30.757 40.4945 30.7603 40.8313 30.9702 41.0369C32.21 42.2518 32.9211 43.9429 32.9211 45.6767V47.4634C32.9211 47.7572 33.1592 47.9954 33.4531 47.9954C33.7469 47.9954 33.985 47.7572 33.985 47.4634V45.6767C33.985 43.6588 33.1576 41.6906 31.7148 40.277C31.5049 40.0715 31.1682 40.0747 30.9625 40.2847Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M17.1511 44.6719C16.8573 44.6719 16.6191 44.9101 16.6191 45.2038V47.4677C16.6191 47.7615 16.8573 47.9997 17.1511 47.9997C17.445 47.9997 17.6831 47.7615 17.6831 47.4677V45.2038C17.6831 44.9101 17.445 44.6719 17.1511 44.6719Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M29.4529 44.6719C29.159 44.6719 28.9209 44.9101 28.9209 45.2038V47.4677C28.9209 47.7615 29.159 47.9997 29.4529 47.9997C29.7467 47.9997 29.9848 47.7615 29.9848 47.4677V45.2038C29.9848 44.9101 29.7467 44.6719 29.4529 44.6719Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M39.8362 23.1695C39.5837 23.3197 39.5008 23.6462 39.6511 23.8987C39.7506 24.0659 39.9275 24.1586 40.1088 24.1586C40.2013 24.1586 40.2951 24.1345 40.3803 24.0837C41.976 23.1341 42.9672 21.3925 42.9672 19.5386C42.9672 19.3859 42.9598 19.2301 42.9449 19.0625C42.9187 18.7699 42.6601 18.5545 42.3675 18.5802C42.0748 18.6065 41.8589 18.865 41.8852 19.1576C41.8974 19.2933 41.9033 19.4179 41.9033 19.5387C41.9033 21.0194 41.1112 22.4106 39.8362 23.1695Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M37.6812 15.314C38.3764 15.314 39.0658 15.4869 39.6749 15.8138C39.9337 15.9527 40.2561 15.8556 40.3951 15.5967C40.5341 15.3378 40.4369 15.0153 40.178 14.8764C39.4147 14.4666 38.5513 14.25 37.6812 14.25C34.7661 14.25 32.3945 16.6216 32.3945 19.5366C32.3945 22.4517 34.7661 24.8233 37.6812 24.8233C37.7694 24.8233 37.8598 24.821 37.9499 24.8165C38.2434 24.8018 38.4693 24.552 38.4546 24.2585C38.4399 23.9651 38.1918 23.7386 37.8967 23.7538C37.8243 23.7574 37.7517 23.7593 37.6812 23.7593C35.3528 23.7593 33.4585 21.865 33.4585 19.5366C33.4585 17.2082 35.3528 15.314 37.6812 15.314Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M46.9867 15.1394L45.5427 14.3323L45.3644 12.6877C45.3352 12.4185 45.1714 12.189 44.9264 12.0738C44.6811 11.9587 44.4001 11.9792 44.1742 12.1286L41.7744 13.7166C41.5333 13.8762 41.4028 14.1539 41.4339 14.4415L41.6333 16.2811L39.7795 17.5078C39.2483 16.9579 38.5042 16.6149 37.6811 16.6149C36.0714 16.6149 34.7617 17.9246 34.7617 19.5343C34.7617 21.144 36.0714 22.4536 37.6811 22.4536C39.2908 22.4536 40.6004 21.144 40.6004 19.5343C40.6004 19.1299 40.5176 18.7445 40.3683 18.394L42.2204 17.1684L43.8357 18.0713C43.9532 18.137 44.0825 18.1696 44.2114 18.1696C44.3594 18.1696 44.5071 18.1266 44.6361 18.0413L47.0358 16.4533C47.2617 16.304 47.3905 16.0532 47.3803 15.7826C47.3703 15.512 47.2231 15.2716 46.9867 15.1394ZM39.5365 19.5344C39.5365 20.5574 38.7043 21.3897 37.6812 21.3897C36.6581 21.3897 35.8257 20.5574 35.8257 19.5344C35.8257 18.5113 36.6581 17.6789 37.6812 17.6789C38.1327 17.6789 38.547 17.8413 38.8691 18.1104L37.3877 19.0907C37.1427 19.2528 37.0755 19.5829 37.2376 19.8279C37.3399 19.9826 37.5092 20.0664 37.6817 20.0664C37.7825 20.0664 37.8845 20.0378 37.9748 19.978L39.457 18.9972C39.5085 19.1674 39.5365 19.3476 39.5365 19.5344ZM42.511 14.5051L44.3587 13.2824L44.4797 14.3979L42.632 15.6205L42.511 14.5051ZM44.1985 17.0552L43.219 16.5078L43.9407 16.0303L45.0668 15.2851L46.0462 15.8326L44.1985 17.0552Z"
-                                            fill="CurrentColor" />
-                                        <path
-                                            d="M44.6027 19.2041C44.307 19.1948 44.0641 19.427 44.0558 19.7207C44.009 21.3665 43.3296 22.9146 42.1428 24.0802C40.9554 25.2464 39.3937 25.8976 37.7454 25.914C36.1035 25.9302 34.5416 25.325 33.3412 24.21C33.2333 24.1097 33.0883 24.0588 32.9417 24.0691L30.3382 24.2528L31.6639 22.3008C31.7617 22.157 31.7829 21.9744 31.7208 21.812C31.4215 21.0291 31.2816 20.203 31.3048 19.3568C31.399 15.9267 34.2539 13.1578 37.6819 13.1578C37.7007 13.1578 37.72 13.1578 37.7387 13.158C38.5193 13.165 39.281 13.3117 40.0031 13.5941C40.2767 13.7011 40.5854 13.5662 40.6923 13.2925C40.7993 13.019 40.6643 12.7103 40.3907 12.6033C39.5477 12.2735 38.6586 12.1022 37.7483 12.094C37.7261 12.0938 37.7041 12.0938 37.6819 12.0938C33.6826 12.0938 30.3512 15.3251 30.2413 19.3275C30.2168 20.2193 30.3481 21.0925 30.6316 21.9272L29.2334 23.9857C29.0447 24.2636 29.0315 24.6172 29.1992 24.9084C29.3667 25.1996 29.6794 25.3658 30.0142 25.3421L32.7912 25.1461C34.1487 26.3307 35.8733 26.9781 37.6809 26.9781C37.7058 26.9781 37.7309 26.978 37.756 26.9778C39.6809 26.9587 41.5036 26.1992 42.8884 24.8392C44.2723 23.48 45.0646 21.6729 45.1193 19.7509C45.1277 19.4572 44.8963 19.2124 44.6027 19.2041Z"
-                                            fill="CurrentColor" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_9088_7881">
-                                            <rect width="36" height="36" fill="white"
-                                                transform="translate(12 12)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                                <h3 class="title text text-22 fw-600">Our purpose</h3>
-                                <div class="text text-16">
-                                    Ensure academic quality through sincere service and devotion, bringing
-                                    continuous improvement and blessings to the institution.
-                                </div>
+                            <li style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 3px solid #d4af37; transition: all 0.3s ease;">
+                                <span style="min-width: 32px; height: 32px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 700; font-size: 14px;">2</span>
+                                <span style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Melaksanakan tata kelola dan tata pamong yang baik dan profesional berbasis integritas dan nilai-nilai Islam.</span>
                             </li>
-                        </ul>
+                            <li style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 3px solid #d4af37; transition: all 0.3s ease;">
+                                <span style="min-width: 32px; height: 32px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 700; font-size: 14px;">3</span>
+                                <span style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Menyusun panduan standar dan manual prosedur penjaminan mutu internal secara sistematis dan berkelanjutan.</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 3px solid #d4af37; transition: all 0.3s ease;">
+                                <span style="min-width: 32px; height: 32px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 700; font-size: 14px;">4</span>
+                                <span style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Melakukan pendampingan akreditasi program studi dan lembaga secara intensif.</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border-left: 3px solid #d4af37; transition: all 0.3s ease;">
+                                <span style="min-width: 32px; height: 32px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 700; font-size: 14px;">5</span>
+                                <span style="color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6;">Melaksanakan evaluasi internal dan eksternal secara berkala untuk memastikan peningkatan mutu yang berkesinambungan.</span>
+                            </li>
+                        </ol>
+                        
+                        <!-- Corner decoration -->
+                        <div style="position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px; border-right: 2px solid rgba(212, 175, 55, 0.3); border-bottom: 2px solid rgba(212, 175, 55, 0.3);"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Our Services -->
-    <div class="our-services mt-100 section-padding">
+    <!-- Strategi Pencapaian Section -->
+    <div style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%); padding: 100px 0; position: relative;">
         <div class="container">
-            <div class="section-headings section-headings-horizontal">
-                <div class="section-headings-left">
-                    <div class="subheading text-20 subheading-bg" data-aos="fade-right" data-aos-delay="10">
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                            viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path
-                                    d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                    fill="CurrentColor" />
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span>Our Services</span>
-                        <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                            viewBox="0 0 14 14" fill="none">
-                            <g clip-path="url(#clip0_9088_4143)">
-                                <path
-                                    d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                                    fill="CurrentColor" />
-                            </g>
-                            <defs>
-                                <clipPath>
-                                    <rect width="14" height="14" fill="CurrentColor" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <h2 class="heading text-50" data-aos="fade-right" data-aos-delay="20">
-                        Improving the quality of education through our services
-                    </h2>
+            <!-- Section Header -->
+            <div class="text-center" style="margin-bottom: 60px;" data-aos="fade-up">
+                <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37);"></span>
+                    <span style="color: #d4af37; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Rencana Strategis</span>
+                    <span style="width: 40px; height: 2px; background: linear-gradient(90deg, #d4af37, transparent);"></span>
                 </div>
-
-                <div class="section-headings-right buttons" data-aos="fade-left" data-aos-delay="20">
-                    <a href="services.html" class="button button--secondary" aria-label="hero button">
-                        More Services
-                        <span class="svg-wrapper">
-                            <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                                    fill="currentColor" />
-                            </svg>
-                        </span>
-                    </a>
-                </div>
+                <h2 style="color: #1a2332; font-size: 42px; font-weight: 700; margin: 0;">
+                    Strategi <span style="color: #d4af37;">Pencapaian</span> LPM
+                </h2>
             </div>
-
-            <div class="section-content" data-aos="fade-up">
-                <accordion-horizontal class="accordion-horizontal">
-                    <ul class="service-list list-unstyled radius18">
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_7908)">
-                                            <path
-                                                d="M49.1323 31.6016H39.0586C38.735 31.6016 38.4727 31.8639 38.4727 32.1875C38.4727 32.5111 38.735 32.7734 39.0586 32.7734H49.1323C49.4559 32.7734 49.7183 32.5111 49.7183 32.1875C49.7183 31.8639 49.4559 31.6016 49.1323 31.6016Z"
-                                                fill="white" />
-                                            <path
-                                                d="M49.1323 34.0469H39.0586C38.735 34.0469 38.4727 34.3092 38.4727 34.6328C38.4727 34.9564 38.735 35.2188 39.0586 35.2188H49.1323C49.4559 35.2188 49.7183 34.9564 49.7183 34.6328C49.7183 34.3092 49.4559 34.0469 49.1323 34.0469Z"
-                                                fill="white" />
-                                            <path
-                                                d="M49.1323 36.5H39.0586C38.735 36.5 38.4727 36.7623 38.4727 37.0859C38.4727 37.4095 38.735 37.6719 39.0586 37.6719H49.1323C49.4559 37.6719 49.7183 37.4095 49.7183 37.0859C49.7183 36.7623 49.4559 36.5 49.1323 36.5Z"
-                                                fill="white" />
-                                            <path
-                                                d="M46.0934 38.9453H39.0586C38.735 38.9453 38.4727 39.2077 38.4727 39.5312C38.4727 39.8548 38.735 40.1172 39.0586 40.1172H46.0934C46.417 40.1172 46.6794 39.8548 46.6794 39.5312C46.6794 39.2077 46.417 38.9453 46.0934 38.9453Z"
-                                                fill="white" />
-                                            <path
-                                                d="M26.7012 29.4923V28.3672C26.7012 28.0436 26.4388 27.7812 26.1152 27.7812C25.7916 27.7812 25.5293 28.0436 25.5293 28.3672V29.4923C25.5293 29.8159 25.7916 30.0783 26.1152 30.0783C26.4388 30.0783 26.7012 29.8159 26.7012 29.4923Z"
-                                                fill="white" />
-                                            <path
-                                                d="M31.0059 30.0783C31.3295 30.0783 31.5918 29.8159 31.5918 29.4923V28.3672C31.5918 28.0436 31.3295 27.7812 31.0059 27.7812C30.6823 27.7812 30.4199 28.0436 30.4199 28.3672V29.4923C30.4199 29.8159 30.6822 30.0783 31.0059 30.0783Z"
-                                                fill="white" />
-                                            <path
-                                                d="M28.5607 32.2873C28.8843 32.2873 29.1466 32.025 29.1466 31.7014C29.1466 31.3778 28.8843 31.1155 28.5607 31.1155C28.4793 31.1155 28.4131 31.0492 28.4131 30.9679C28.4131 30.8866 28.4793 30.8203 28.5607 30.8203C28.8843 30.8203 29.1466 30.558 29.1466 30.2344C29.1466 29.9108 28.8843 29.6484 28.5607 29.6484C27.8332 29.6484 27.2412 30.2404 27.2412 30.9679C27.2412 31.6954 27.8332 32.2873 28.5607 32.2873Z"
-                                                fill="white" />
-                                            <path
-                                                d="M28.5607 35.4749C29.1772 35.4898 29.8222 35.2316 30.2868 34.7812C30.6858 34.3946 30.9049 33.9168 30.9036 33.4359C30.9027 33.1128 30.6405 32.8516 30.3176 32.8516C30.3171 32.8516 30.3165 32.8516 30.316 32.8516C29.9924 32.8524 29.7307 33.1155 29.7316 33.4391C29.732 33.5965 29.6372 33.7789 29.4712 33.9398C29.2291 34.1744 28.8884 34.3137 28.5805 34.3032C28.5673 34.3027 28.554 34.3027 28.5407 34.3032C28.2334 34.3148 27.8921 34.1744 27.65 33.9398C27.4841 33.779 27.3893 33.5965 27.3897 33.4391C27.3905 33.1155 27.129 32.8525 26.8054 32.8516C26.8048 32.8516 26.8043 32.8516 26.8037 32.8516C26.4809 32.8516 26.2187 33.1128 26.2178 33.4359C26.2165 33.9167 26.4354 34.3945 26.8344 34.7812C27.2862 35.2191 27.9074 35.4756 28.5093 35.4756C28.5264 35.4755 28.5436 35.4753 28.5607 35.4749Z"
-                                                fill="white" />
-                                            <path
-                                                d="M39.9282 25.9297C39.8399 25.6184 39.5159 25.4375 39.2047 25.5256C38.8934 25.6138 38.7124 25.9377 38.8007 26.2491C39.4682 28.6055 41.6457 30.2513 44.096 30.2513C47.1313 30.2513 49.6006 27.782 49.6006 24.7467C49.6006 21.7115 47.1313 19.2422 44.096 19.2422C41.6721 19.2422 39.501 20.8654 38.8163 23.1895C38.7249 23.4999 38.9024 23.8257 39.2128 23.9171C39.5231 24.0085 39.849 23.8311 39.9403 23.5206C40.4791 21.6915 42.188 20.4141 44.096 20.4141C46.485 20.4141 48.4286 22.3577 48.4286 24.7467C48.4286 27.1358 46.485 29.0794 44.096 29.0794C42.1673 29.0794 40.4534 27.7841 39.9282 25.9297Z"
-                                                fill="white" />
-                                            <path
-                                                d="M43.6863 26.7562C43.8362 26.7562 43.9862 26.699 44.1006 26.5845L46.6146 24.0705C46.8434 23.8417 46.8434 23.4707 46.6146 23.2419C46.3858 23.0131 46.0147 23.0131 45.786 23.2419L43.6864 25.3415L42.4065 24.0617C42.1776 23.8329 41.8066 23.8329 41.5779 24.0617C41.349 24.2905 41.349 24.6615 41.5779 24.8903L43.2721 26.5845C43.3864 26.699 43.5364 26.7562 43.6863 26.7562Z"
-                                                fill="white" />
-                                            <path
-                                                d="M53.6328 15.5859H34.5588C33.8049 15.5859 33.1916 16.1993 33.1916 16.9531V19.5721C32.748 19.4357 32.2773 19.362 31.7897 19.362H31.4382C30.6986 18.6406 29.689 18.195 28.5768 18.195H24.6545C22.3929 18.195 20.553 20.0349 20.553 22.2966V23.046C20.553 23.3696 20.8153 23.632 21.1389 23.632C21.4625 23.632 21.7248 23.3696 21.7248 23.046V22.2966C21.7248 20.6811 23.0391 19.3669 24.6545 19.3669H28.5768C30.1923 19.3669 31.5065 20.6811 31.5065 22.2966V25.2726H24.5677C23.452 25.2726 22.5324 26.1277 22.4292 27.2169H21.7248V25.7804C21.7248 25.4568 21.4625 25.1945 21.1389 25.1945C20.8153 25.1945 20.553 25.4568 20.553 25.7804V27.4932C19.7491 27.9077 19.1977 28.7459 19.1977 29.7109V30.4813C19.1977 31.8566 20.3166 32.9753 21.6917 32.9753H22.4192V33.5184C22.4192 35.2408 23.4072 36.7358 24.8455 37.4695L24.355 37.7527C23.9702 37.9748 23.7191 38.3723 23.6781 38.81L18.1158 40.6005C16.2521 41.2004 15 42.9189 15 44.8766V53.0452C15 53.799 15.6134 54.4123 16.3672 54.4123H18.3323C18.6559 54.4123 18.9183 54.15 18.9183 53.8264C18.9183 53.5028 18.6559 53.2405 18.3323 53.2405H16.3672C16.2595 53.2405 16.1719 53.1528 16.1719 53.0452V44.8766C16.1719 43.4296 17.0973 42.1595 18.4748 41.716L22.6079 40.3856L20.5327 43.183C20.2301 43.5911 20.294 44.171 20.6783 44.5034L22.4017 45.9939L20.6277 47.5283C20.2987 47.8129 20.1977 48.2867 20.382 48.6806L22.5149 53.2404H21.0667C20.7431 53.2404 20.4808 53.5027 20.4808 53.8263C20.4808 54.1499 20.7431 54.4123 21.0667 54.4123H43.559C44.3128 54.4123 44.9262 53.7989 44.9262 53.0451V48.2008L46.2456 46.8813H53.6328C54.3866 46.8813 55 46.268 55 45.5141V16.9531C55 16.1993 54.3866 15.5859 53.6328 15.5859ZM22.4191 31.8035H21.6916C20.9626 31.8035 20.3695 31.2104 20.3695 30.4814V29.7109C20.3695 28.9819 20.9627 28.3888 21.6916 28.3888H22.4191V31.8035ZM23.6714 52.9473L21.5059 48.318L23.6714 46.4451V52.9473ZM23.6714 44.8958L23.2973 45.2193L21.5819 43.7356L23.6714 40.9189V44.8958ZM35.3966 24.1409V27.217H34.6923C34.593 26.1685 33.7373 25.3373 32.6783 25.2765V22.2966C32.6783 21.68 32.5407 21.0952 32.2959 20.5701C34.0459 20.817 35.3966 22.3238 35.3966 24.1409ZM35.4297 28.3887C36.1588 28.3887 36.7518 28.9818 36.7518 29.7109V30.4813C36.7518 31.2104 36.1587 31.8034 35.4297 31.8034H34.7022V28.3887H35.4297ZM23.591 33.5184V27.421C23.591 26.8825 24.0291 26.4445 24.5676 26.4445H32.5538C33.0923 26.4445 33.5303 26.8825 33.5303 27.421V33.5184C33.5303 35.3169 32.0672 36.7799 30.2688 36.7799H26.8525C25.0541 36.7799 23.591 35.3168 23.591 33.5184ZM35.543 43.7327L33.8241 45.2193L33.45 44.8958V40.8616L35.543 43.7327ZM30.5138 37.9447V38.4638L28.5607 40.0295L26.6076 38.4639V37.9448C26.6887 37.9492 26.7703 37.9519 26.8525 37.9519H30.2688C30.3511 37.9518 30.4327 37.9491 30.5138 37.9447ZM24.8433 38.9367C24.8433 38.8672 24.8807 38.8023 24.9409 38.7676L25.4357 38.482V38.5577C25.4357 38.8555 25.5691 39.1334 25.8015 39.3196L27.9499 41.0417C27.9729 41.0602 27.9966 41.0773 28.0206 41.0934L24.8433 43.1104V38.9367ZM25.8807 53.2405H24.8433V44.4984L26.0093 43.7582L26.8824 44.7222L25.8807 53.2405ZM27.0606 53.2405L27.9282 45.8632C28.1038 46.0125 28.3279 46.097 28.5607 46.097C28.7935 46.097 29.0177 46.0124 29.1931 45.8631L30.0607 53.2405H27.0606ZM28.5607 44.8295L27.0133 43.1209L28.5608 42.1386L30.1083 43.1209L28.5607 44.8295ZM32.2781 53.2405H31.2407L30.239 44.7222L31.112 43.7583L32.2781 44.4985V53.2405ZM32.2781 43.1104L29.1008 41.0934C29.1248 41.0773 29.1485 41.0602 29.1715 41.0417L31.3198 39.3197C31.5524 39.1334 31.6858 38.8556 31.6858 38.5577V38.482L32.1805 38.7676C32.2408 38.8023 32.2782 38.8672 32.2782 38.9367L32.2781 43.1104ZM33.1916 38.1387C33.0804 37.9836 32.9366 37.8509 32.7665 37.7527L32.2759 37.4695C32.6074 37.3005 32.9145 37.0905 33.1916 36.8472V38.1387ZM33.45 46.4452L35.6116 48.3147L33.45 52.8092V46.4452ZM37.5927 47.9168V53.2405H34.543L36.7325 48.688C36.9231 48.2917 36.824 47.8139 36.4913 47.5261L34.7198 45.994L36.4454 44.5015C36.8266 44.1719 36.8926 43.5947 36.5957 43.1875L34.5652 40.4023L38.6465 41.716C39.8542 42.1048 40.7143 43.1291 40.908 44.3509C39.0576 44.4852 37.5927 46.0327 37.5927 47.9168ZM43.7543 53.0452C43.7543 53.1528 43.6666 53.2405 43.559 53.2405H38.7645V48.5441H43.7543V53.0452ZM46.3955 45.0743L44.0975 47.3723H38.8267C39.0741 46.3078 40.0305 45.5122 41.1691 45.5122H43.5578C43.7132 45.5122 43.8623 45.4505 43.9721 45.3405L45.3169 43.9958C45.6143 43.6985 46.098 43.6984 46.3954 43.9958C46.5395 44.1398 46.6187 44.3313 46.6187 44.535C46.6187 44.7388 46.5395 44.9302 46.3955 45.0743ZM53.8281 45.5142C53.8281 45.6219 53.7405 45.7095 53.6328 45.7095H47.3931C47.6508 45.3738 47.7908 44.9652 47.7908 44.535C47.7908 44.0183 47.5895 43.5324 47.2241 43.1671C46.4699 42.4128 45.2426 42.4129 44.4884 43.1671L43.3152 44.3403H42.0897C41.8845 42.6106 40.697 41.1449 39.0057 40.6005L34.3634 39.1063V35.2166C34.5815 34.6934 34.7023 34.1198 34.7023 33.5184V32.9754H35.4298C36.805 32.9754 37.9238 31.8566 37.9238 30.4814V29.7109C37.9238 28.7459 37.3724 27.9078 36.5686 27.4933V24.1409C36.5686 22.453 35.6883 20.9679 34.3634 20.1174V16.9531C34.3634 16.8455 34.4511 16.7578 34.5588 16.7578H53.6328C53.7405 16.7578 53.8281 16.8455 53.8281 16.9531V45.5142Z"
-                                                fill="white" />
-                                            <path
-                                                d="M49.1327 38.9453H47.9688C47.6452 38.9453 47.3828 39.2077 47.3828 39.5312C47.3828 39.8548 47.6452 40.1172 47.9688 40.1172H49.1327C49.4563 40.1172 49.7186 39.8548 49.7186 39.5312C49.7186 39.2077 49.4563 38.9453 49.1327 38.9453Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_7908">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <h2 class="heading text-24 text-rotate">
-                                        Strategic planning & execution
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
+            
+            <div class="row" style="gap: 25px 0;">
+                <!-- Strategy 1 -->
+                <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="strategi-card" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 30px; height: 100%; border-left: 4px solid #d4af37; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="min-width: 50px; height: 50px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 800; font-size: 20px;">01</div>
+                            <h4 style="color: #1a2332; font-size: 18px; font-weight: 700; margin: 0;">Peningkatan Standar Mutu Internal</h4>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Menyusun dan merevisi standar mutu sesuai perkembangan regulasi.</span>
                             </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_790888)">
-                                                <path
-                                                    d="M49.1323 31.6016H39.0586C38.735 31.6016 38.4727 31.8639 38.4727 32.1875C38.4727 32.5111 38.735 32.7734 39.0586 32.7734H49.1323C49.4559 32.7734 49.7183 32.5111 49.7183 32.1875C49.7183 31.8639 49.4559 31.6016 49.1323 31.6016Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M49.1323 34.0469H39.0586C38.735 34.0469 38.4727 34.3092 38.4727 34.6328C38.4727 34.9564 38.735 35.2188 39.0586 35.2188H49.1323C49.4559 35.2188 49.7183 34.9564 49.7183 34.6328C49.7183 34.3092 49.4559 34.0469 49.1323 34.0469Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M49.1323 36.5H39.0586C38.735 36.5 38.4727 36.7623 38.4727 37.0859C38.4727 37.4095 38.735 37.6719 39.0586 37.6719H49.1323C49.4559 37.6719 49.7183 37.4095 49.7183 37.0859C49.7183 36.7623 49.4559 36.5 49.1323 36.5Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M46.0934 38.9453H39.0586C38.735 38.9453 38.4727 39.2077 38.4727 39.5312C38.4727 39.8548 38.735 40.1172 39.0586 40.1172H46.0934C46.417 40.1172 46.6794 39.8548 46.6794 39.5312C46.6794 39.2077 46.417 38.9453 46.0934 38.9453Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M26.7012 29.4923V28.3672C26.7012 28.0436 26.4388 27.7812 26.1152 27.7812C25.7916 27.7812 25.5293 28.0436 25.5293 28.3672V29.4923C25.5293 29.8159 25.7916 30.0783 26.1152 30.0783C26.4388 30.0783 26.7012 29.8159 26.7012 29.4923Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M31.0059 30.0783C31.3295 30.0783 31.5918 29.8159 31.5918 29.4923V28.3672C31.5918 28.0436 31.3295 27.7812 31.0059 27.7812C30.6823 27.7812 30.4199 28.0436 30.4199 28.3672V29.4923C30.4199 29.8159 30.6822 30.0783 31.0059 30.0783Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M28.5607 32.2873C28.8843 32.2873 29.1466 32.025 29.1466 31.7014C29.1466 31.3778 28.8843 31.1155 28.5607 31.1155C28.4793 31.1155 28.4131 31.0492 28.4131 30.9679C28.4131 30.8866 28.4793 30.8203 28.5607 30.8203C28.8843 30.8203 29.1466 30.558 29.1466 30.2344C29.1466 29.9108 28.8843 29.6484 28.5607 29.6484C27.8332 29.6484 27.2412 30.2404 27.2412 30.9679C27.2412 31.6954 27.8332 32.2873 28.5607 32.2873Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M28.5607 35.4749C29.1772 35.4898 29.8222 35.2316 30.2868 34.7812C30.6858 34.3946 30.9049 33.9168 30.9036 33.4359C30.9027 33.1128 30.6405 32.8516 30.3176 32.8516C30.3171 32.8516 30.3165 32.8516 30.316 32.8516C29.9924 32.8524 29.7307 33.1155 29.7316 33.4391C29.732 33.5965 29.6372 33.7789 29.4712 33.9398C29.2291 34.1744 28.8884 34.3137 28.5805 34.3032C28.5673 34.3027 28.554 34.3027 28.5407 34.3032C28.2334 34.3148 27.8921 34.1744 27.65 33.9398C27.4841 33.779 27.3893 33.5965 27.3897 33.4391C27.3905 33.1155 27.129 32.8525 26.8054 32.8516C26.8048 32.8516 26.8043 32.8516 26.8037 32.8516C26.4809 32.8516 26.2187 33.1128 26.2178 33.4359C26.2165 33.9167 26.4354 34.3945 26.8344 34.7812C27.2862 35.2191 27.9074 35.4756 28.5093 35.4756C28.5264 35.4755 28.5436 35.4753 28.5607 35.4749Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M39.9282 25.9297C39.8399 25.6184 39.5159 25.4375 39.2047 25.5256C38.8934 25.6138 38.7124 25.9377 38.8007 26.2491C39.4682 28.6055 41.6457 30.2513 44.096 30.2513C47.1313 30.2513 49.6006 27.782 49.6006 24.7467C49.6006 21.7115 47.1313 19.2422 44.096 19.2422C41.6721 19.2422 39.501 20.8654 38.8163 23.1895C38.7249 23.4999 38.9024 23.8257 39.2128 23.9171C39.5231 24.0085 39.849 23.8311 39.9403 23.5206C40.4791 21.6915 42.188 20.4141 44.096 20.4141C46.485 20.4141 48.4286 22.3577 48.4286 24.7467C48.4286 27.1358 46.485 29.0794 44.096 29.0794C42.1673 29.0794 40.4534 27.7841 39.9282 25.9297Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M43.6863 26.7562C43.8362 26.7562 43.9862 26.699 44.1006 26.5845L46.6146 24.0705C46.8434 23.8417 46.8434 23.4707 46.6146 23.2419C46.3858 23.0131 46.0147 23.0131 45.786 23.2419L43.6864 25.3415L42.4065 24.0617C42.1776 23.8329 41.8066 23.8329 41.5779 24.0617C41.349 24.2905 41.349 24.6615 41.5779 24.8903L43.2721 26.5845C43.3864 26.699 43.5364 26.7562 43.6863 26.7562Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M53.6328 15.5859H34.5588C33.8049 15.5859 33.1916 16.1993 33.1916 16.9531V19.5721C32.748 19.4357 32.2773 19.362 31.7897 19.362H31.4382C30.6986 18.6406 29.689 18.195 28.5768 18.195H24.6545C22.3929 18.195 20.553 20.0349 20.553 22.2966V23.046C20.553 23.3696 20.8153 23.632 21.1389 23.632C21.4625 23.632 21.7248 23.3696 21.7248 23.046V22.2966C21.7248 20.6811 23.0391 19.3669 24.6545 19.3669H28.5768C30.1923 19.3669 31.5065 20.6811 31.5065 22.2966V25.2726H24.5677C23.452 25.2726 22.5324 26.1277 22.4292 27.2169H21.7248V25.7804C21.7248 25.4568 21.4625 25.1945 21.1389 25.1945C20.8153 25.1945 20.553 25.4568 20.553 25.7804V27.4932C19.7491 27.9077 19.1977 28.7459 19.1977 29.7109V30.4813C19.1977 31.8566 20.3166 32.9753 21.6917 32.9753H22.4192V33.5184C22.4192 35.2408 23.4072 36.7358 24.8455 37.4695L24.355 37.7527C23.9702 37.9748 23.7191 38.3723 23.6781 38.81L18.1158 40.6005C16.2521 41.2004 15 42.9189 15 44.8766V53.0452C15 53.799 15.6134 54.4123 16.3672 54.4123H18.3323C18.6559 54.4123 18.9183 54.15 18.9183 53.8264C18.9183 53.5028 18.6559 53.2405 18.3323 53.2405H16.3672C16.2595 53.2405 16.1719 53.1528 16.1719 53.0452V44.8766C16.1719 43.4296 17.0973 42.1595 18.4748 41.716L22.6079 40.3856L20.5327 43.183C20.2301 43.5911 20.294 44.171 20.6783 44.5034L22.4017 45.9939L20.6277 47.5283C20.2987 47.8129 20.1977 48.2867 20.382 48.6806L22.5149 53.2404H21.0667C20.7431 53.2404 20.4808 53.5027 20.4808 53.8263C20.4808 54.1499 20.7431 54.4123 21.0667 54.4123H43.559C44.3128 54.4123 44.9262 53.7989 44.9262 53.0451V48.2008L46.2456 46.8813H53.6328C54.3866 46.8813 55 46.268 55 45.5141V16.9531C55 16.1993 54.3866 15.5859 53.6328 15.5859ZM22.4191 31.8035H21.6916C20.9626 31.8035 20.3695 31.2104 20.3695 30.4814V29.7109C20.3695 28.9819 20.9627 28.3888 21.6916 28.3888H22.4191V31.8035ZM23.6714 52.9473L21.5059 48.318L23.6714 46.4451V52.9473ZM23.6714 44.8958L23.2973 45.2193L21.5819 43.7356L23.6714 40.9189V44.8958ZM35.3966 24.1409V27.217H34.6923C34.593 26.1685 33.7373 25.3373 32.6783 25.2765V22.2966C32.6783 21.68 32.5407 21.0952 32.2959 20.5701C34.0459 20.817 35.3966 22.3238 35.3966 24.1409ZM35.4297 28.3887C36.1588 28.3887 36.7518 28.9818 36.7518 29.7109V30.4813C36.7518 31.2104 36.1587 31.8034 35.4297 31.8034H34.7022V28.3887H35.4297ZM23.591 33.5184V27.421C23.591 26.8825 24.0291 26.4445 24.5676 26.4445H32.5538C33.0923 26.4445 33.5303 26.8825 33.5303 27.421V33.5184C33.5303 35.3169 32.0672 36.7799 30.2688 36.7799H26.8525C25.0541 36.7799 23.591 35.3168 23.591 33.5184ZM35.543 43.7327L33.8241 45.2193L33.45 44.8958V40.8616L35.543 43.7327ZM30.5138 37.9447V38.4638L28.5607 40.0295L26.6076 38.4639V37.9448C26.6887 37.9492 26.7703 37.9519 26.8525 37.9519H30.2688C30.3511 37.9518 30.4327 37.9491 30.5138 37.9447ZM24.8433 38.9367C24.8433 38.8672 24.8807 38.8023 24.9409 38.7676L25.4357 38.482V38.5577C25.4357 38.8555 25.5691 39.1334 25.8015 39.3196L27.9499 41.0417C27.9729 41.0602 27.9966 41.0773 28.0206 41.0934L24.8433 43.1104V38.9367ZM25.8807 53.2405H24.8433V44.4984L26.0093 43.7582L26.8824 44.7222L25.8807 53.2405ZM27.0606 53.2405L27.9282 45.8632C28.1038 46.0125 28.3279 46.097 28.5607 46.097C28.7935 46.097 29.0177 46.0124 29.1931 45.8631L30.0607 53.2405H27.0606ZM28.5607 44.8295L27.0133 43.1209L28.5608 42.1386L30.1083 43.1209L28.5607 44.8295ZM32.2781 53.2405H31.2407L30.239 44.7222L31.112 43.7583L32.2781 44.4985V53.2405ZM32.2781 43.1104L29.1008 41.0934C29.1248 41.0773 29.1485 41.0602 29.1715 41.0417L31.3198 39.3197C31.5524 39.1334 31.6858 38.8556 31.6858 38.5577V38.482L32.1805 38.7676C32.2408 38.8023 32.2782 38.8672 32.2782 38.9367L32.2781 43.1104ZM33.1916 38.1387C33.0804 37.9836 32.9366 37.8509 32.7665 37.7527L32.2759 37.4695C32.6074 37.3005 32.9145 37.0905 33.1916 36.8472V38.1387ZM33.45 46.4452L35.6116 48.3147L33.45 52.8092V46.4452ZM37.5927 47.9168V53.2405H34.543L36.7325 48.688C36.9231 48.2917 36.824 47.8139 36.4913 47.5261L34.7198 45.994L36.4454 44.5015C36.8266 44.1719 36.8926 43.5947 36.5957 43.1875L34.5652 40.4023L38.6465 41.716C39.8542 42.1048 40.7143 43.1291 40.908 44.3509C39.0576 44.4852 37.5927 46.0327 37.5927 47.9168ZM43.7543 53.0452C43.7543 53.1528 43.6666 53.2405 43.559 53.2405H38.7645V48.5441H43.7543V53.0452ZM46.3955 45.0743L44.0975 47.3723H38.8267C39.0741 46.3078 40.0305 45.5122 41.1691 45.5122H43.5578C43.7132 45.5122 43.8623 45.4505 43.9721 45.3405L45.3169 43.9958C45.6143 43.6985 46.098 43.6984 46.3954 43.9958C46.5395 44.1398 46.6187 44.3313 46.6187 44.535C46.6187 44.7388 46.5395 44.9302 46.3955 45.0743ZM53.8281 45.5142C53.8281 45.6219 53.7405 45.7095 53.6328 45.7095H47.3931C47.6508 45.3738 47.7908 44.9652 47.7908 44.535C47.7908 44.0183 47.5895 43.5324 47.2241 43.1671C46.4699 42.4128 45.2426 42.4129 44.4884 43.1671L43.3152 44.3403H42.0897C41.8845 42.6106 40.697 41.1449 39.0057 40.6005L34.3634 39.1063V35.2166C34.5815 34.6934 34.7023 34.1198 34.7023 33.5184V32.9754H35.4298C36.805 32.9754 37.9238 31.8566 37.9238 30.4814V29.7109C37.9238 28.7459 37.3724 27.9078 36.5686 27.4933V24.1409C36.5686 22.453 35.6883 20.9679 34.3634 20.1174V16.9531C34.3634 16.8455 34.4511 16.7578 34.5588 16.7578H53.6328C53.7405 16.7578 53.8281 16.8455 53.8281 16.9531V45.5142Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M49.1327 38.9453H47.9688C47.6452 38.9453 47.3828 39.2077 47.3828 39.5312C47.3828 39.8548 47.6452 40.1172 47.9688 40.1172H49.1327C49.4563 40.1172 49.7186 39.8548 49.7186 39.5312C49.7186 39.2077 49.4563 38.9453 49.1327 38.9453Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_790888">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <h2 class="heading text-24">
-                                            Strategic planning & execution
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our quality assurance strengthens academic development.
-                                            From planning to evaluation, we serve with sincerity and devotion to
-                                            bring lasting blessings.
-                                        </p>
-                                    </div>
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Melakukan benchmarking dengan institusi bereputasi.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Mengintegrasikan nilai-nilai keislaman dalam setiap standar.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategy 2 -->
+                <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="150">
+                    <div class="strategi-card" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 30px; height: 100%; border-left: 4px solid #d4af37; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="min-width: 50px; height: 50px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 800; font-size: 20px;">02</div>
+                            <h4 style="color: #1a2332; font-size: 18px; font-weight: 700; margin: 0;">Pengembangan Kapasitas SDM</h4>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Pelatihan auditor mutu internal secara berkala.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Workshop penyusunan dokumen akreditasi.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Studi banding ke lembaga penjaminan mutu lain.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategy 3 -->
+                <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="strategi-card" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 30px; height: 100%; border-left: 4px solid #d4af37; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="min-width: 50px; height: 50px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 800; font-size: 20px;">03</div>
+                            <h4 style="color: #1a2332; font-size: 18px; font-weight: 700; margin: 0;">Penguatan Sistem Monitoring & Evaluasi</h4>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Audit mutu internal (AMI) setiap semester.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Survei kepuasan stakeholder secara periodik.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Rapat tinjauan manajemen (RTM) tahunan.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategy 4 -->
+                <div class="col-lg-6 col-12" data-aos="fade-up" data-aos-delay="250">
+                    <div class="strategi-card" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; padding: 30px; height: 100%; border-left: 4px solid #d4af37; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="min-width: 50px; height: 50px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 800; font-size: 20px;">04</div>
+                            <h4 style="color: #1a2332; font-size: 18px; font-weight: 700; margin: 0;">Digitalisasi Sistem Penjaminan Mutu</h4>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Pengembangan sistem informasi penjaminan mutu.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Dashboard monitoring capaian mutu real-time.</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: rgba(0,0,0,0.02); border-radius: 8px;">
+                                <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span style="color: #555; font-size: 14px; line-height: 1.6;">Integrasi data dengan sistem akademik pusat.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategy 5 - Full Width with Dark Theme -->
+                <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="strategi-card" style="background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 16px; padding: 40px; border-left: 4px solid #d4af37; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                            <div style="min-width: 60px; height: 60px; background: linear-gradient(135deg, #d4af37 0%, #aa8a2e 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #0f1419; font-weight: 800; font-size: 22px;">05</div>
+                            <h4 style="color: #fff; font-size: 22px; font-weight: 700; margin: 0;">Pendampingan Akreditasi Berkelanjutan</h4>
+                        </div>
+                        <div class="row" style="gap: 15px 0;">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div style="display: flex; align-items: flex-start; gap: 14px; padding: 20px; background: rgba(212, 175, 55, 0.08); border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.15); height: 100%;">
+                                    <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span style="color: rgba(255,255,255,0.9); font-size: 15px; line-height: 1.7;">Mendampingi proses reakreditasi program studi secara intensif.</span>
                                 </div>
                             </div>
-                        </li>
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_7937)">
-                                            <path
-                                                d="M27.5 41.875V41.8156C27.5 41.1587 26.9662 40.625 26.3094 40.625H26.1912C25.5338 40.625 25 41.1587 25 41.8156C25 42.3287 25.3269 42.7831 25.815 42.9463L27.0806 43.3687C28.0794 43.7013 28.75 44.6319 28.75 45.6844C28.75 46.8344 27.9475 47.7956 26.875 48.0525V49.375H25.625V48.0519C24.5525 47.795 23.75 46.8344 23.75 45.6838V45H25V45.6844C25 46.3413 25.5338 46.875 26.1906 46.875H26.3088C26.9662 46.875 27.5 46.3413 27.5 45.6844C27.5 45.1713 27.1731 44.7169 26.685 44.5537L25.4194 44.1313C24.4206 43.7987 23.75 42.8681 23.75 41.8156C23.75 40.6656 24.5525 39.7044 25.625 39.4475V38.125H26.875V39.4481C27.9475 39.705 28.75 40.6656 28.75 41.8162L27.5 41.875ZM34.375 43.75C34.375 48.23 30.73 51.875 26.25 51.875C21.77 51.875 18.125 48.23 18.125 43.75C18.125 39.27 21.77 35.625 26.25 35.625C30.73 35.625 34.375 39.27 34.375 43.75ZM33.125 43.75C33.125 39.9594 30.0406 36.875 26.25 36.875C22.4594 36.875 19.375 39.9594 19.375 43.75C19.375 47.5406 22.4594 50.625 26.25 50.625C30.0406 50.625 33.125 47.5406 33.125 43.75ZM42.0631 42.9469L40.1831 41.0669L41.0669 40.1831L42.9469 42.0631C43.1912 41.9456 43.4613 41.875 43.75 41.875C44.7838 41.875 45.625 42.7162 45.625 43.75C45.625 44.5637 45.1006 45.2513 44.375 45.51V46.875H43.125V45.51C42.3994 45.2513 41.875 44.5637 41.875 43.75C41.875 43.4613 41.9456 43.1912 42.0631 42.9469ZM43.125 43.75C43.125 44.095 43.405 44.375 43.75 44.375C44.095 44.375 44.375 44.095 44.375 43.75C44.375 43.405 44.095 43.125 43.75 43.125C43.405 43.125 43.125 43.405 43.125 43.75ZM54.375 43.75C54.375 49.6087 49.6087 54.375 43.75 54.375C40.2356 54.375 36.9725 52.6287 35.0006 49.7631C33.0825 52.5456 29.8775 54.375 26.25 54.375C20.3913 54.375 15.625 49.6087 15.625 43.75C15.625 39.5081 18.13 35.8494 21.7325 34.1475C21.6725 33.9225 21.6044 33.6956 21.5575 33.4744L20 32.9487V28.3006L21.5569 27.7756C21.9069 26.1094 22.5512 24.5494 23.4775 23.1287L22.75 21.6619L26.0363 18.375L27.5044 19.1025C28.9237 18.1769 30.4838 17.5319 32.1519 17.1812L32.6763 15.625H37.3237L37.8487 17.1819C39.5169 17.5325 41.0763 18.1775 42.4963 19.1031L43.9637 18.375L47.25 21.6613L46.5225 23.1294C47.4488 24.5494 48.0938 26.11 48.4431 27.7762L50 28.3012V32.9494L48.4425 33.4744C48.3956 33.6956 48.3275 33.9225 48.2675 34.1475C51.87 35.8494 54.375 39.5081 54.375 43.75ZM22.8906 33.6781C23.2819 33.5475 23.68 33.4319 24.0894 33.3469C23.8669 32.4562 23.75 31.5444 23.75 30.625C23.75 24.4219 28.7969 19.375 35 19.375C40.2956 19.375 44.825 23.0431 45.9675 28.1594C46.8381 28.3212 47.5 29.0831 47.5 30C47.5 30.8138 46.9756 31.5013 46.25 31.76V33.4344C46.5413 33.505 46.8281 33.5837 47.1094 33.6781C47.1775 33.4106 47.2375 33.145 47.285 32.885L47.3506 32.5225L48.75 32.0513V29.1994L47.3512 28.7275L47.2856 28.365C46.9656 26.6144 46.2937 24.9888 45.2875 23.5325L45.0788 23.23L45.7319 21.9112L43.7144 19.8938L42.3956 20.5469L42.0931 20.3375C40.6381 19.3325 39.0119 18.66 37.2606 18.3394L36.8981 18.2731L36.4263 16.875H33.5737L33.1025 18.2731L32.74 18.3394C30.9881 18.66 29.3625 19.3319 27.9075 20.3375L27.605 20.5469L26.2863 19.8938L24.2694 21.9106L24.9225 23.2294L24.7137 23.5319C23.7075 24.9881 23.035 26.6144 22.7156 28.3644L22.65 28.7269L21.25 29.1988V32.0506L22.6487 32.5225L22.7144 32.885C22.7625 33.145 22.8231 33.4106 22.8906 33.6781ZM35.0006 37.7369C36.4937 35.5675 38.7269 34.0431 41.25 33.43V31.76C40.5244 31.5013 40 30.8138 40 30C40 28.9663 40.8412 28.125 41.875 28.125H42.0694C41.0244 25.1462 38.2244 23.125 35 23.125C30.8644 23.125 27.5 26.4894 27.5 30.625C27.5 31.5431 27.6719 32.4338 27.9938 33.2806C30.8913 33.7625 33.3975 35.4113 35.0006 37.7369ZM26.25 33.125C26.3756 33.125 26.4981 33.1394 26.6225 33.1438C26.3781 32.3313 26.25 31.4881 26.25 30.625C26.25 25.8 30.175 21.875 35 21.875C38.9094 21.875 42.2831 24.4225 43.3806 28.125H44.68C43.5556 23.7381 39.6012 20.625 35 20.625C29.4862 20.625 25 25.1112 25 30.625C25 31.4862 25.1175 32.3394 25.3369 33.1712C25.6388 33.1456 25.9419 33.125 26.25 33.125ZM46.25 30C46.25 29.6556 45.97 29.375 45.625 29.375H41.875C41.53 29.375 41.25 29.6556 41.25 30C41.25 30.3444 41.53 30.625 41.875 30.625H45.625C45.97 30.625 46.25 30.3444 46.25 30ZM42.5 33.2038C42.9125 33.1544 43.3288 33.125 43.75 33.125C44.1737 33.125 44.5894 33.1569 45 33.205V31.875H42.5V33.2038ZM35.625 43.75C35.625 38.5806 31.4194 34.375 26.25 34.375C21.0806 34.375 16.875 38.5806 16.875 43.75C16.875 48.9194 21.0806 53.125 26.25 53.125C31.4194 53.125 35.625 48.9194 35.625 43.75ZM36.9069 43.125H38.125V44.375H36.9069C37.0362 45.8019 37.6012 47.1038 38.47 48.1463L39.3306 47.2856L40.2144 48.1694L39.3538 49.03C40.3956 49.8994 41.6981 50.4637 43.125 50.5931V49.375H44.375V50.5931C45.8019 50.4637 47.1038 49.8988 48.1463 49.03L47.2856 48.1694L48.1694 47.2856L49.03 48.1463C49.8994 47.1044 50.4637 45.8019 50.5931 44.375H49.375V43.125H50.5931C50.4637 41.6981 49.8988 40.3962 49.03 39.3538L48.1694 40.2144L47.2856 39.3306L48.1463 38.47C47.1044 37.6006 45.8019 37.0362 44.375 36.9069V38.125H43.125V36.9069C41.6981 37.0362 40.3962 37.6012 39.3538 38.47L40.2144 39.3306L39.3306 40.2144L38.47 39.3538C37.6006 40.3962 37.0362 41.6981 36.9069 43.125ZM53.125 43.75C53.125 38.5806 48.9194 34.375 43.75 34.375C40.4513 34.375 37.4031 36.1181 35.7119 38.94C35.9569 39.42 36.1688 39.9181 36.3394 40.4363C37.61 37.605 40.4506 35.625 43.75 35.625C48.23 35.625 51.875 39.27 51.875 43.75C51.875 48.23 48.23 51.875 43.75 51.875C40.4506 51.875 37.61 49.895 36.3387 47.0637C36.1681 47.5819 35.9563 48.0806 35.7113 48.56C37.4031 51.3819 40.4513 53.125 43.75 53.125C48.9194 53.125 53.125 48.9194 53.125 43.75ZM28.75 30.625H30C30 28.7125 31.0644 26.9956 32.7781 26.1444L32.2213 25.025C30.0806 26.0894 28.75 28.235 28.75 30.625ZM33.8888 25.7487C34.2512 25.6669 34.625 25.625 35 25.625V24.375C34.5319 24.375 34.065 24.4269 33.6112 24.53L33.8888 25.7487Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_7937">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
-                                    <h2 class="heading text-24 text-rotate">
-                                        Quality Assurance Enhancement
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_793777)">
-                                                <path
-                                                    d="M27.5 41.875V41.8156C27.5 41.1587 26.9662 40.625 26.3094 40.625H26.1912C25.5338 40.625 25 41.1587 25 41.8156C25 42.3287 25.3269 42.7831 25.815 42.9463L27.0806 43.3687C28.0794 43.7013 28.75 44.6319 28.75 45.6844C28.75 46.8344 27.9475 47.7956 26.875 48.0525V49.375H25.625V48.0519C24.5525 47.795 23.75 46.8344 23.75 45.6838V45H25V45.6844C25 46.3413 25.5338 46.875 26.1906 46.875H26.3088C26.9662 46.875 27.5 46.3413 27.5 45.6844C27.5 45.1713 27.1731 44.7169 26.685 44.5537L25.4194 44.1313C24.4206 43.7987 23.75 42.8681 23.75 41.8156C23.75 40.6656 24.5525 39.7044 25.625 39.4475V38.125H26.875V39.4481C27.9475 39.705 28.75 40.6656 28.75 41.8162L27.5 41.875ZM34.375 43.75C34.375 48.23 30.73 51.875 26.25 51.875C21.77 51.875 18.125 48.23 18.125 43.75C18.125 39.27 21.77 35.625 26.25 35.625C30.73 35.625 34.375 39.27 34.375 43.75ZM33.125 43.75C33.125 39.9594 30.0406 36.875 26.25 36.875C22.4594 36.875 19.375 39.9594 19.375 43.75C19.375 47.5406 22.4594 50.625 26.25 50.625C30.0406 50.625 33.125 47.5406 33.125 43.75ZM42.0631 42.9469L40.1831 41.0669L41.0669 40.1831L42.9469 42.0631C43.1912 41.9456 43.4613 41.875 43.75 41.875C44.7838 41.875 45.625 42.7162 45.625 43.75C45.625 44.5637 45.1006 45.2513 44.375 45.51V46.875H43.125V45.51C42.3994 45.2513 41.875 44.5637 41.875 43.75C41.875 43.4613 41.9456 43.1912 42.0631 42.9469ZM43.125 43.75C43.125 44.095 43.405 44.375 43.75 44.375C44.095 44.375 44.375 44.095 44.375 43.75C44.375 43.405 44.095 43.125 43.75 43.125C43.405 43.125 43.125 43.405 43.125 43.75ZM54.375 43.75C54.375 49.6087 49.6087 54.375 43.75 54.375C40.2356 54.375 36.9725 52.6287 35.0006 49.7631C33.0825 52.5456 29.8775 54.375 26.25 54.375C20.3913 54.375 15.625 49.6087 15.625 43.75C15.625 39.5081 18.13 35.8494 21.7325 34.1475C21.6725 33.9225 21.6044 33.6956 21.5575 33.4744L20 32.9487V28.3006L21.5569 27.7756C21.9069 26.1094 22.5512 24.5494 23.4775 23.1287L22.75 21.6619L26.0363 18.375L27.5044 19.1025C28.9237 18.1769 30.4838 17.5319 32.1519 17.1812L32.6763 15.625H37.3237L37.8487 17.1819C39.5169 17.5325 41.0763 18.1775 42.4963 19.1031L43.9637 18.375L47.25 21.6613L46.5225 23.1294C47.4488 24.5494 48.0938 26.11 48.4431 27.7762L50 28.3012V32.9494L48.4425 33.4744C48.3956 33.6956 48.3275 33.9225 48.2675 34.1475C51.87 35.8494 54.375 39.5081 54.375 43.75ZM22.8906 33.6781C23.2819 33.5475 23.68 33.4319 24.0894 33.3469C23.8669 32.4562 23.75 31.5444 23.75 30.625C23.75 24.4219 28.7969 19.375 35 19.375C40.2956 19.375 44.825 23.0431 45.9675 28.1594C46.8381 28.3212 47.5 29.0831 47.5 30C47.5 30.8138 46.9756 31.5013 46.25 31.76V33.4344C46.5413 33.505 46.8281 33.5837 47.1094 33.6781C47.1775 33.4106 47.2375 33.145 47.285 32.885L47.3506 32.5225L48.75 32.0513V29.1994L47.3512 28.7275L47.2856 28.365C46.9656 26.6144 46.2937 24.9888 45.2875 23.5325L45.0788 23.23L45.7319 21.9112L43.7144 19.8938L42.3956 20.5469L42.0931 20.3375C40.6381 19.3325 39.0119 18.66 37.2606 18.3394L36.8981 18.2731L36.4263 16.875H33.5737L33.1025 18.2731L32.74 18.3394C30.9881 18.66 29.3625 19.3319 27.9075 20.3375L27.605 20.5469L26.2863 19.8938L24.2694 21.9106L24.9225 23.2294L24.7137 23.5319C23.7075 24.9881 23.035 26.6144 22.7156 28.3644L22.65 28.7269L21.25 29.1988V32.0506L22.6487 32.5225L22.7144 32.885C22.7625 33.145 22.8231 33.4106 22.8906 33.6781ZM35.0006 37.7369C36.4937 35.5675 38.7269 34.0431 41.25 33.43V31.76C40.5244 31.5013 40 30.8138 40 30C40 28.9663 40.8412 28.125 41.875 28.125H42.0694C41.0244 25.1462 38.2244 23.125 35 23.125C30.8644 23.125 27.5 26.4894 27.5 30.625C27.5 31.5431 27.6719 32.4338 27.9938 33.2806C30.8913 33.7625 33.3975 35.4113 35.0006 37.7369ZM26.25 33.125C26.3756 33.125 26.4981 33.1394 26.6225 33.1438C26.3781 32.3313 26.25 31.4881 26.25 30.625C26.25 25.8 30.175 21.875 35 21.875C38.9094 21.875 42.2831 24.4225 43.3806 28.125H44.68C43.5556 23.7381 39.6012 20.625 35 20.625C29.4862 20.625 25 25.1112 25 30.625C25 31.4862 25.1175 32.3394 25.3369 33.1712C25.6388 33.1456 25.9419 33.125 26.25 33.125ZM46.25 30C46.25 29.6556 45.97 29.375 45.625 29.375H41.875C41.53 29.375 41.25 29.6556 41.25 30C41.25 30.3444 41.53 30.625 41.875 30.625H45.625C45.97 30.625 46.25 30.3444 46.25 30ZM42.5 33.2038C42.9125 33.1544 43.3288 33.125 43.75 33.125C44.1737 33.125 44.5894 33.1569 45 33.205V31.875H42.5V33.2038ZM35.625 43.75C35.625 38.5806 31.4194 34.375 26.25 34.375C21.0806 34.375 16.875 38.5806 16.875 43.75C16.875 48.9194 21.0806 53.125 26.25 53.125C31.4194 53.125 35.625 48.9194 35.625 43.75ZM36.9069 43.125H38.125V44.375H36.9069C37.0362 45.8019 37.6012 47.1038 38.47 48.1463L39.3306 47.2856L40.2144 48.1694L39.3538 49.03C40.3956 49.8994 41.6981 50.4637 43.125 50.5931V49.375H44.375V50.5931C45.8019 50.4637 47.1038 49.8988 48.1463 49.03L47.2856 48.1694L48.1694 47.2856L49.03 48.1463C49.8994 47.1044 50.4637 45.8019 50.5931 44.375H49.375V43.125H50.5931C50.4637 41.6981 49.8988 40.3962 49.03 39.3538L48.1694 40.2144L47.2856 39.3306L48.1463 38.47C47.1044 37.6006 45.8019 37.0362 44.375 36.9069V38.125H43.125V36.9069C41.6981 37.0362 40.3962 37.6012 39.3538 38.47L40.2144 39.3306L39.3306 40.2144L38.47 39.3538C37.6006 40.3962 37.0362 41.6981 36.9069 43.125ZM53.125 43.75C53.125 38.5806 48.9194 34.375 43.75 34.375C40.4513 34.375 37.4031 36.1181 35.7119 38.94C35.9569 39.42 36.1688 39.9181 36.3394 40.4363C37.61 37.605 40.4506 35.625 43.75 35.625C48.23 35.625 51.875 39.27 51.875 43.75C51.875 48.23 48.23 51.875 43.75 51.875C40.4506 51.875 37.61 49.895 36.3387 47.0637C36.1681 47.5819 35.9563 48.0806 35.7113 48.56C37.4031 51.3819 40.4513 53.125 43.75 53.125C48.9194 53.125 53.125 48.9194 53.125 43.75ZM28.75 30.625H30C30 28.7125 31.0644 26.9956 32.7781 26.1444L32.2213 25.025C30.0806 26.0894 28.75 28.235 28.75 30.625ZM33.8888 25.7487C34.2512 25.6669 34.625 25.625 35 25.625V24.375C34.5319 24.375 34.065 24.4269 33.6112 24.53L33.8888 25.7487Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_793777">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <h2 class="heading text-24">
-                                            Quality Assurance Enhancement
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our quality assurance enhances academic excellence.
-
-                                            From planning to evaluation, see how our sincere service brings
-                                            continuous improvement.
-                                        </p>
-                                    </div>
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div style="display: flex; align-items: flex-start; gap: 14px; padding: 20px; background: rgba(212, 175, 55, 0.08); border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.15); height: 100%;">
+                                    <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span style="color: rgba(255,255,255,0.9); font-size: 15px; line-height: 1.7;">Memastikan seluruh data dan dokumen akreditasi valid, mutakhir, dan sahih.</span>
                                 </div>
                             </div>
-                        </li>
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_7947)">
-                                            <path
-                                                d="M39.4969 44.0801L39.891 43.2916L38.3206 41.7213L37.5328 42.1154C37.1711 41.9109 36.7884 41.7521 36.3889 41.6413L36.1104 40.8065H33.8896L33.6117 41.6419C33.2123 41.7528 32.8298 41.9115 32.4679 42.116L31.68 41.7219L30.1096 43.2923L30.5037 44.0808C30.2993 44.4427 30.1405 44.8252 30.029 45.2246L29.1935 45.5025V47.7227L30.0284 48.0012C30.1392 48.4006 30.298 48.7831 30.5031 49.145L30.109 49.9329L31.6794 51.5039L32.4672 51.1098C32.8289 51.3143 33.2116 51.473 33.6111 51.5839L33.8896 52.4194H36.1104L36.3883 51.5839C36.7877 51.473 37.1702 51.3143 37.5321 51.1098L38.32 51.5039L39.8904 49.9329L39.4963 49.145C39.7007 48.7824 39.8595 48.4006 39.971 48.0012L40.8065 47.7234V45.5031L39.9716 45.2246C39.8601 44.8252 39.7014 44.4418 39.4969 44.0801ZM39.5161 46.7928L38.8684 47.0083L38.7947 47.3756C38.6961 47.8698 38.5033 48.3335 38.2227 48.7554L38.0147 49.0666L38.3206 49.6781L38.0658 49.9335L37.455 49.627L37.1431 49.8349C36.7219 50.1162 36.2576 50.3078 35.7633 50.407L35.396 50.4801L35.1799 51.129H34.8201L34.604 50.4807L34.2367 50.4076C33.7424 50.309 33.2787 50.1169 32.8569 49.8356L32.545 49.6276L31.9342 49.9342L31.6794 49.6787L31.9853 49.0672L31.7773 48.756C31.496 48.3348 31.3039 47.8705 31.2053 47.3762L31.1316 47.0089L30.4839 46.7928V46.4324L31.1316 46.2169L31.2053 45.8496C31.3039 45.3547 31.4967 44.891 31.7773 44.4698L31.9853 44.1586L31.6794 43.5465L31.9342 43.2916L32.545 43.5982L32.8569 43.3902C33.2781 43.1089 33.7424 42.9174 34.2367 42.8182L34.604 42.7451L34.8201 42.0968H35.1799L35.396 42.7451L35.7633 42.8182C36.2576 42.9168 36.7213 43.1089 37.1431 43.3902L37.455 43.5982L38.0658 43.2916L38.3206 43.5465L38.0147 44.1586L38.2227 44.4698C38.504 44.8904 38.6961 45.3547 38.7947 45.8496L38.8684 46.2169L39.5161 46.433V46.7928ZM35 44.0323C33.5767 44.0323 32.4194 45.1896 32.4194 46.6129C32.4194 48.0362 33.5767 49.1936 35 49.1936C36.4233 49.1936 37.5806 48.0362 37.5806 46.6129C37.5806 45.1896 36.4233 44.0323 35 44.0323ZM35 47.9032C34.2884 47.9032 33.7097 47.3245 33.7097 46.6129C33.7097 45.9013 34.2884 45.3226 35 45.3226C35.7116 45.3226 36.2903 45.9013 36.2903 46.6129C36.2903 47.3245 35.7116 47.9032 35 47.9032ZM50.0819 28.9762C50.7214 28.3865 51.129 27.5491 51.129 26.6129V25.3226C51.129 23.544 49.6818 22.0968 47.9032 22.0968C46.1246 22.0968 44.6774 23.544 44.6774 25.3226V26.6129C44.6774 27.5491 45.0851 28.3865 45.7245 28.9762C43.791 29.7625 42.3737 31.5594 42.1349 33.7097H42.0968V26.6129H40.7683C40.5296 24.4626 39.1123 22.6657 37.1787 21.8794C37.8182 21.2897 38.2258 20.4524 38.2258 19.5161V18.2258C38.2258 16.4472 36.7786 15 35 15C33.2214 15 31.7742 16.4472 31.7742 18.2258V19.5161C31.7742 20.4524 32.1818 21.2897 32.8213 21.8794C30.8877 22.6657 29.4705 24.4626 29.2317 26.6129H27.9032V33.7097H27.8651C27.6263 31.5594 26.209 29.7625 24.2755 28.9762C24.9149 28.3865 25.3226 27.5491 25.3226 26.6129V25.3226C25.3226 23.544 23.8754 22.0968 22.0968 22.0968C20.3182 22.0968 18.871 23.544 18.871 25.3226V26.6129C18.871 27.5491 19.2786 28.3865 19.9181 28.9762C17.9845 29.7625 16.5672 31.5594 16.3284 33.7097H15V46.6129H26.6129C26.6129 51.2374 30.3755 55 35 55C39.6245 55 43.3871 51.2374 43.3871 46.6129H55V33.7097H53.6716C53.4328 31.5594 52.0155 29.7625 50.0819 28.9762ZM45.9677 26.6129V25.3226C45.9677 24.2556 46.8363 23.3871 47.9032 23.3871C48.9702 23.3871 49.8387 24.2556 49.8387 25.3226V26.6129C49.8387 27.6799 48.9702 28.5484 47.9032 28.5484C46.8363 28.5484 45.9677 27.6799 45.9677 26.6129ZM47.9032 29.8387C50.1736 29.8387 52.053 31.525 52.3677 33.7097H43.4388C43.7535 31.525 45.6329 29.8387 47.9032 29.8387ZM33.0645 19.5161V18.2258C33.0645 17.1588 33.933 16.2903 35 16.2903C36.067 16.2903 36.9355 17.1588 36.9355 18.2258V19.5161C36.9355 20.5831 36.067 21.4516 35 21.4516C33.933 21.4516 33.0645 20.5831 33.0645 19.5161ZM35 22.7419C37.2704 22.7419 39.1498 24.4282 39.4645 26.6129H30.5355C30.8502 24.4282 32.7297 22.7419 35 22.7419ZM20.1613 26.6129V25.3226C20.1613 24.2556 21.0298 23.3871 22.0968 23.3871C23.1637 23.3871 24.0323 24.2556 24.0323 25.3226V26.6129C24.0323 27.6799 23.1637 28.5484 22.0968 28.5484C21.0298 28.5484 20.1613 27.6799 20.1613 26.6129ZM22.0968 29.8387C24.3671 29.8387 26.2465 31.525 26.5612 33.7097H17.6323C17.947 31.525 19.8264 29.8387 22.0968 29.8387ZM35 53.7097C31.0871 53.7097 27.9032 50.5258 27.9032 46.6129C27.9032 42.7 31.0871 39.5161 35 39.5161C38.9129 39.5161 42.0968 42.7 42.0968 46.6129C42.0968 50.5258 38.9129 53.7097 35 53.7097ZM53.7097 45.3226H43.2775C42.6534 41.3102 39.185 38.2258 35 38.2258C30.815 38.2258 27.3466 41.3102 26.7225 45.3226H16.2903V35H27.9032V38.871H29.1935V27.9032H40.8065V38.871H42.0968V35H53.7097V45.3226ZM33.0645 29.1935H36.9355V30.4839H35.6452V35.6452H36.9355V36.9355H33.0645V35.6452H34.3548V30.4839H33.0645V29.1935ZM18.871 37.5806H20.1613V42.7419H18.871V44.0323H25.3226V42.7419H24.0323V37.5806H25.3226V36.2903H18.871V37.5806ZM22.7419 42.7419H21.4516V37.5806H22.7419V42.7419ZM43.3871 42.7419V44.0323H52.4194V42.7419H51.129V37.5806H52.4194V36.2903H43.3871V37.5806H44.6774V42.7419H43.3871ZM49.8387 42.7419H48.5484V37.5806H49.8387V42.7419ZM45.9677 37.5806H47.2581V42.7419H45.9677V37.5806Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_7947">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
-                                    <h2 class="heading text-24 text-rotate">
-                                        Islamic Quality Leadership
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_7947567)">
-                                                <path
-                                                    d="M39.4969 44.0801L39.891 43.2916L38.3206 41.7213L37.5328 42.1154C37.1711 41.9109 36.7884 41.7521 36.3889 41.6413L36.1104 40.8065H33.8896L33.6117 41.6419C33.2123 41.7528 32.8298 41.9115 32.4679 42.116L31.68 41.7219L30.1096 43.2923L30.5037 44.0808C30.2993 44.4427 30.1405 44.8252 30.029 45.2246L29.1935 45.5025V47.7227L30.0284 48.0012C30.1392 48.4006 30.298 48.7831 30.5031 49.145L30.109 49.9329L31.6794 51.5039L32.4672 51.1098C32.8289 51.3143 33.2116 51.473 33.6111 51.5839L33.8896 52.4194H36.1104L36.3883 51.5839C36.7877 51.473 37.1702 51.3143 37.5321 51.1098L38.32 51.5039L39.8904 49.9329L39.4963 49.145C39.7007 48.7824 39.8595 48.4006 39.971 48.0012L40.8065 47.7234V45.5031L39.9716 45.2246C39.8601 44.8252 39.7014 44.4418 39.4969 44.0801ZM39.5161 46.7928L38.8684 47.0083L38.7947 47.3756C38.6961 47.8698 38.5033 48.3335 38.2227 48.7554L38.0147 49.0666L38.3206 49.6781L38.0658 49.9335L37.455 49.627L37.1431 49.8349C36.7219 50.1162 36.2576 50.3078 35.7633 50.407L35.396 50.4801L35.1799 51.129H34.8201L34.604 50.4807L34.2367 50.4076C33.7424 50.309 33.2787 50.1169 32.8569 49.8356L32.545 49.6276L31.9342 49.9342L31.6794 49.6787L31.9853 49.0672L31.7773 48.756C31.496 48.3348 31.3039 47.8705 31.2053 47.3762L31.1316 47.0089L30.4839 46.7928V46.4324L31.1316 46.2169L31.2053 45.8496C31.3039 45.3547 31.4967 44.891 31.7773 44.4698L31.9853 44.1586L31.6794 43.5465L31.9342 43.2916L32.545 43.5982L32.8569 43.3902C33.2781 43.1089 33.7424 42.9174 34.2367 42.8182L34.604 42.7451L34.8201 42.0968H35.1799L35.396 42.7451L35.7633 42.8182C36.2576 42.9168 36.7213 43.1089 37.1431 43.3902L37.455 43.5982L38.0658 43.2916L38.3206 43.5465L38.0147 44.1586L38.2227 44.4698C38.504 44.8904 38.6961 45.3547 38.7947 45.8496L38.8684 46.2169L39.5161 46.433V46.7928ZM35 44.0323C33.5767 44.0323 32.4194 45.1896 32.4194 46.6129C32.4194 48.0362 33.5767 49.1936 35 49.1936C36.4233 49.1936 37.5806 48.0362 37.5806 46.6129C37.5806 45.1896 36.4233 44.0323 35 44.0323ZM35 47.9032C34.2884 47.9032 33.7097 47.3245 33.7097 46.6129C33.7097 45.9013 34.2884 45.3226 35 45.3226C35.7116 45.3226 36.2903 45.9013 36.2903 46.6129C36.2903 47.3245 35.7116 47.9032 35 47.9032ZM50.0819 28.9762C50.7214 28.3865 51.129 27.5491 51.129 26.6129V25.3226C51.129 23.544 49.6818 22.0968 47.9032 22.0968C46.1246 22.0968 44.6774 23.544 44.6774 25.3226V26.6129C44.6774 27.5491 45.0851 28.3865 45.7245 28.9762C43.791 29.7625 42.3737 31.5594 42.1349 33.7097H42.0968V26.6129H40.7683C40.5296 24.4626 39.1123 22.6657 37.1787 21.8794C37.8182 21.2897 38.2258 20.4524 38.2258 19.5161V18.2258C38.2258 16.4472 36.7786 15 35 15C33.2214 15 31.7742 16.4472 31.7742 18.2258V19.5161C31.7742 20.4524 32.1818 21.2897 32.8213 21.8794C30.8877 22.6657 29.4705 24.4626 29.2317 26.6129H27.9032V33.7097H27.8651C27.6263 31.5594 26.209 29.7625 24.2755 28.9762C24.9149 28.3865 25.3226 27.5491 25.3226 26.6129V25.3226C25.3226 23.544 23.8754 22.0968 22.0968 22.0968C20.3182 22.0968 18.871 23.544 18.871 25.3226V26.6129C18.871 27.5491 19.2786 28.3865 19.9181 28.9762C17.9845 29.7625 16.5672 31.5594 16.3284 33.7097H15V46.6129H26.6129C26.6129 51.2374 30.3755 55 35 55C39.6245 55 43.3871 51.2374 43.3871 46.6129H55V33.7097H53.6716C53.4328 31.5594 52.0155 29.7625 50.0819 28.9762ZM45.9677 26.6129V25.3226C45.9677 24.2556 46.8363 23.3871 47.9032 23.3871C48.9702 23.3871 49.8387 24.2556 49.8387 25.3226V26.6129C49.8387 27.6799 48.9702 28.5484 47.9032 28.5484C46.8363 28.5484 45.9677 27.6799 45.9677 26.6129ZM47.9032 29.8387C50.1736 29.8387 52.053 31.525 52.3677 33.7097H43.4388C43.7535 31.525 45.6329 29.8387 47.9032 29.8387ZM33.0645 19.5161V18.2258C33.0645 17.1588 33.933 16.2903 35 16.2903C36.067 16.2903 36.9355 17.1588 36.9355 18.2258V19.5161C36.9355 20.5831 36.067 21.4516 35 21.4516C33.933 21.4516 33.0645 20.5831 33.0645 19.5161ZM35 22.7419C37.2704 22.7419 39.1498 24.4282 39.4645 26.6129H30.5355C30.8502 24.4282 32.7297 22.7419 35 22.7419ZM20.1613 26.6129V25.3226C20.1613 24.2556 21.0298 23.3871 22.0968 23.3871C23.1637 23.3871 24.0323 24.2556 24.0323 25.3226V26.6129C24.0323 27.6799 23.1637 28.5484 22.0968 28.5484C21.0298 28.5484 20.1613 27.6799 20.1613 26.6129ZM22.0968 29.8387C24.3671 29.8387 26.2465 31.525 26.5612 33.7097H17.6323C17.947 31.525 19.8264 29.8387 22.0968 29.8387ZM35 53.7097C31.0871 53.7097 27.9032 50.5258 27.9032 46.6129C27.9032 42.7 31.0871 39.5161 35 39.5161C38.9129 39.5161 42.0968 42.7 42.0968 46.6129C42.0968 50.5258 38.9129 53.7097 35 53.7097ZM53.7097 45.3226H43.2775C42.6534 41.3102 39.185 38.2258 35 38.2258C30.815 38.2258 27.3466 41.3102 26.7225 45.3226H16.2903V35H27.9032V38.871H29.1935V27.9032H40.8065V38.871H42.0968V35H53.7097V45.3226ZM33.0645 29.1935H36.9355V30.4839H35.6452V35.6452H36.9355V36.9355H33.0645V35.6452H34.3548V30.4839H33.0645V29.1935ZM18.871 37.5806H20.1613V42.7419H18.871V44.0323H25.3226V42.7419H24.0323V37.5806H25.3226V36.2903H18.871V37.5806ZM22.7419 42.7419H21.4516V37.5806H22.7419V42.7419ZM43.3871 42.7419V44.0323H52.4194V42.7419H51.129V37.5806H52.4194V36.2903H43.3871V37.5806H44.6774V42.7419H43.3871ZM49.8387 42.7419H48.5484V37.5806H49.8387V42.7419ZM45.9677 37.5806H47.2581V42.7419H45.9677V37.5806Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_7947567">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <h2 class="heading text-24">
-                                            Islamic Quality Leadership
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our quality assurance strengthens academic excellence.
-                                            From planning to evaluation, see how our sincere service brings
-                                            continuous improvement.
-                                        </p>
-                                    </div>
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div style="display: flex; align-items: flex-start; gap: 14px; padding: 20px; background: rgba(212, 175, 55, 0.08); border-radius: 14px; border: 1px solid rgba(212, 175, 55, 0.15); height: 100%;">
+                                    <svg style="flex-shrink: 0; margin-top: 2px;" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span style="color: rgba(255,255,255,0.9); font-size: 15px; line-height: 1.7;">Mengintegrasikan hasil akreditasi sebagai dasar peningkatan mutu berkelanjutan.</span>
                                 </div>
                             </div>
-                        </li>
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_7957)">
-                                            <path
-                                                d="M41.7088 20.625H40.7125L36.8694 19.5269C36.5675 19.4406 36.255 19.4056 35.9412 19.3938L33.1138 18.4894C31.825 18.0769 30.4306 18.0137 29.1087 18.3075L24.9688 19.2281L19.5644 15.625H15.625V24.8125L22.855 27.4419L25.0063 28.7325C25.0369 29.7575 25.8587 30.5819 26.8825 30.6181C26.9187 31.6381 27.7375 32.4569 28.7575 32.4931C28.7881 33.3506 29.3725 34.0625 30.1656 34.2906C26.6194 36.0963 24.375 39.7075 24.375 43.75C24.375 49.6087 29.1413 54.375 35 54.375C40.8587 54.375 45.625 49.6087 45.625 43.75C45.625 39.4175 43.0644 35.6219 39.1519 33.9725C39.2863 33.7163 39.3687 33.43 39.3725 33.1225C40.4019 33.1094 41.2356 32.275 41.2475 31.2456C42.2862 31.2206 43.125 30.3719 43.125 29.3275C43.125 29.2562 43.1106 29.1875 43.1025 29.1169L45.8819 27.4494L54.375 24.8369V15.625H50.4588L41.7088 20.625ZM16.875 23.9375V16.875H19.1856L24.2781 20.27L22.7 26.0556L16.875 23.9375ZM26.25 28.6744C26.25 28.4869 26.3231 28.3113 26.455 28.1788L28.1788 26.455C28.3113 26.3231 28.4869 26.25 28.6744 26.25C29.0606 26.25 29.375 26.5644 29.375 26.9506C29.375 27.1381 29.3019 27.3137 29.17 27.4462L27.4462 29.17C27.3137 29.3019 27.1381 29.375 26.9506 29.375C26.5644 29.375 26.25 29.0606 26.25 28.6744ZM28.125 30.5494C28.125 30.3619 28.1981 30.1863 28.33 30.0538L30.0538 28.33C30.1863 28.1981 30.3619 28.125 30.5494 28.125C30.9356 28.125 31.25 28.4394 31.25 28.8256C31.25 29.0131 31.1769 29.1887 31.045 29.3212L29.3212 31.045C29.1887 31.1769 29.0131 31.25 28.8256 31.25C28.4394 31.25 28.125 30.9356 28.125 30.5494ZM30.205 31.9288L31.9288 30.205C32.0613 30.0731 32.2369 30 32.4244 30C32.8106 30 33.125 30.3144 33.125 30.7006C33.125 30.8881 33.0519 31.0637 32.92 31.1962L31.1962 32.92C31.0637 33.0519 30.8881 33.125 30.7006 33.125C30.3144 33.125 30 32.8106 30 32.4244C30 32.2369 30.0731 32.0613 30.205 31.9288ZM34.2994 31.875C34.6856 31.875 35 32.1894 35 32.5756C35 32.7631 34.9269 32.9387 34.795 33.0712L33.0712 34.795C32.9387 34.9269 32.7631 35 32.5756 35C32.1894 35 31.875 34.6856 31.875 34.2994C31.875 34.1119 31.9481 33.9363 32.08 33.8038L33.8038 32.08C33.9363 31.9481 34.1119 31.875 34.2994 31.875ZM35.55 34.0844L36.0156 34.4725C36.1644 34.5963 36.25 34.7788 36.25 34.9731C36.25 35.3325 35.9575 35.625 35.5981 35.625H35.4825C35.3237 35.625 35.1706 35.5669 35.0513 35.4619L34.5837 35.0494L35.55 34.0844ZM35 36.875C38.7906 36.875 41.875 39.9594 41.875 43.75C41.875 47.5406 38.7906 50.625 35 50.625C31.2094 50.625 28.125 47.5406 28.125 43.75C28.125 39.9594 31.2094 36.875 35 36.875ZM44.375 43.75C44.375 48.9194 40.1694 53.125 35 53.125C29.8306 53.125 25.625 48.9194 25.625 43.75C25.625 40.1138 27.6812 36.8706 30.9156 35.31C31.1744 35.7331 31.5869 36.0469 32.0775 36.1775C29.0387 37.3544 26.875 40.3006 26.875 43.75C26.875 48.23 30.52 51.875 35 51.875C39.48 51.875 43.125 48.23 43.125 43.75C43.125 40.0419 40.6256 36.9131 37.2256 35.9425C37.3919 35.6644 37.4931 35.3438 37.4975 34.9975C37.6969 34.995 37.8863 34.9556 38.0669 34.8956C41.8525 36.2013 44.375 39.7106 44.375 43.75ZM41.2025 30H41.0944C40.9375 30 40.7844 29.945 40.6644 29.8444L40.5656 29.7619L37.275 27.02L36.475 27.98L39.7656 30.7219C39.9144 30.8469 40 31.0294 40 31.2231C40 31.5825 39.7075 31.875 39.3481 31.875H39.2125C39.06 31.875 38.9119 31.8212 38.795 31.7237L38.6906 31.6369L35.4 28.895L34.6 29.855L37.8906 32.5969C38.0394 32.7213 38.125 32.9038 38.125 33.0981C38.125 33.4575 37.8325 33.75 37.4731 33.75C37.2331 33.75 37 33.6656 36.8156 33.5119L36.2006 32.9994C36.2306 32.8612 36.25 32.7206 36.25 32.5756C36.25 31.5231 35.4113 30.6687 34.3681 30.6319C34.3319 29.6119 33.5131 28.7931 32.4931 28.7569C32.4569 27.7369 31.6381 26.9181 30.6181 26.8819C30.5813 25.8387 29.7262 25 28.6744 25C28.1531 25 27.6631 25.2031 27.295 25.5712L25.5712 27.295C25.505 27.3613 25.4506 27.435 25.3956 27.5087L23.8525 26.5831L25.5438 20.3806L29.3794 19.5281C30.4869 19.2825 31.6537 19.3356 32.7325 19.6806L33.6525 19.975L30.5319 21.535C29.8181 21.8919 29.375 22.6094 29.375 23.4075V23.5319C29.375 24.6862 30.3138 25.625 31.4681 25.625C31.8475 25.625 32.22 25.5219 32.5456 25.3263L34.8725 23.93C35.3369 23.6506 35.9681 23.7113 36.3713 24.0744L41.6525 28.8275C41.7938 28.9556 41.875 29.1375 41.875 29.3275C41.875 29.6987 41.5737 30 41.2025 30ZM42.4887 27.8994L37.2075 23.1463C36.4056 22.4244 35.1538 22.3038 34.2288 22.8588L31.9019 24.255C31.7712 24.3337 31.6213 24.375 31.4681 24.375C31.0031 24.375 30.625 23.9969 30.625 23.5319V23.4075C30.625 23.0856 30.8038 22.7969 31.0913 22.6531L34.5781 20.91C35.1763 20.6113 35.885 20.5456 36.5263 20.7288L40.4538 21.8506L41.5375 21.8687L44.7419 26.6756L42.5644 27.9819C42.5375 27.9563 42.5169 27.9244 42.4887 27.8994ZM53.125 16.875V23.9131L45.8862 26.1406L42.7662 21.4606L50.7912 16.875H53.125ZM31.875 45.625V45H33.125V45.625C33.125 46.3144 33.6856 46.875 34.375 46.875H35.625C36.3144 46.875 36.875 46.3144 36.875 45.625C36.875 44.9356 36.3144 44.375 35.625 44.375H34.375C32.9963 44.375 31.875 43.2537 31.875 41.875C31.875 40.4963 32.9963 39.375 34.375 39.375V38.125H35.625V39.375C37.0037 39.375 38.125 40.4963 38.125 41.875H36.875C36.875 41.1856 36.3144 40.625 35.625 40.625H34.375C33.6856 40.625 33.125 41.1856 33.125 41.875C33.125 42.5644 33.6856 43.125 34.375 43.125H35.625C37.0037 43.125 38.125 44.2463 38.125 45.625C38.125 47.0037 37.0037 48.125 35.625 48.125V49.375H34.375V48.125C32.9963 48.125 31.875 47.0031 31.875 45.625ZM50 48.75H48.75V35.625L46.125 39.125L45.125 38.375L49.375 32.7087L53.625 38.375L52.625 39.125L50 35.625V48.75ZM48.75 50H50V51.25H48.75V50ZM21.25 48.75H20V35.625L17.375 39.125L16.375 38.375L20.625 32.7081L24.875 38.3744L23.875 39.1244L21.25 35.625V48.75ZM20 50H21.25V51.25H20V50Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_7957">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
-                                    <h2 class="heading text-24 text-rotate">
-                                        Standards & Evaluation
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_79573453)">
-                                                <path
-                                                    d="M41.7088 20.625H40.7125L36.8694 19.5269C36.5675 19.4406 36.255 19.4056 35.9412 19.3938L33.1138 18.4894C31.825 18.0769 30.4306 18.0137 29.1087 18.3075L24.9688 19.2281L19.5644 15.625H15.625V24.8125L22.855 27.4419L25.0063 28.7325C25.0369 29.7575 25.8587 30.5819 26.8825 30.6181C26.9187 31.6381 27.7375 32.4569 28.7575 32.4931C28.7881 33.3506 29.3725 34.0625 30.1656 34.2906C26.6194 36.0963 24.375 39.7075 24.375 43.75C24.375 49.6087 29.1413 54.375 35 54.375C40.8587 54.375 45.625 49.6087 45.625 43.75C45.625 39.4175 43.0644 35.6219 39.1519 33.9725C39.2863 33.7163 39.3687 33.43 39.3725 33.1225C40.4019 33.1094 41.2356 32.275 41.2475 31.2456C42.2862 31.2206 43.125 30.3719 43.125 29.3275C43.125 29.2562 43.1106 29.1875 43.1025 29.1169L45.8819 27.4494L54.375 24.8369V15.625H50.4588L41.7088 20.625ZM16.875 23.9375V16.875H19.1856L24.2781 20.27L22.7 26.0556L16.875 23.9375ZM26.25 28.6744C26.25 28.4869 26.3231 28.3113 26.455 28.1788L28.1788 26.455C28.3113 26.3231 28.4869 26.25 28.6744 26.25C29.0606 26.25 29.375 26.5644 29.375 26.9506C29.375 27.1381 29.3019 27.3137 29.17 27.4462L27.4462 29.17C27.3137 29.3019 27.1381 29.375 26.9506 29.375C26.5644 29.375 26.25 29.0606 26.25 28.6744ZM28.125 30.5494C28.125 30.3619 28.1981 30.1863 28.33 30.0538L30.0538 28.33C30.1863 28.1981 30.3619 28.125 30.5494 28.125C30.9356 28.125 31.25 28.4394 31.25 28.8256C31.25 29.0131 31.1769 29.1887 31.045 29.3212L29.3212 31.045C29.1887 31.1769 29.0131 31.25 28.8256 31.25C28.4394 31.25 28.125 30.9356 28.125 30.5494ZM30.205 31.9288L31.9288 30.205C32.0613 30.0731 32.2369 30 32.4244 30C32.8106 30 33.125 30.3144 33.125 30.7006C33.125 30.8881 33.0519 31.0637 32.92 31.1962L31.1962 32.92C31.0637 33.0519 30.8881 33.125 30.7006 33.125C30.3144 33.125 30 32.8106 30 32.4244C30 32.2369 30.0731 32.0613 30.205 31.9288ZM34.2994 31.875C34.6856 31.875 35 32.1894 35 32.5756C35 32.7631 34.9269 32.9387 34.795 33.0712L33.0712 34.795C32.9387 34.9269 32.7631 35 32.5756 35C32.1894 35 31.875 34.6856 31.875 34.2994C31.875 34.1119 31.9481 33.9363 32.08 33.8038L33.8038 32.08C33.9363 31.9481 34.1119 31.875 34.2994 31.875ZM35.55 34.0844L36.0156 34.4725C36.1644 34.5963 36.25 34.7788 36.25 34.9731C36.25 35.3325 35.9575 35.625 35.5981 35.625H35.4825C35.3237 35.625 35.1706 35.5669 35.0513 35.4619L34.5837 35.0494L35.55 34.0844ZM35 36.875C38.7906 36.875 41.875 39.9594 41.875 43.75C41.875 47.5406 38.7906 50.625 35 50.625C31.2094 50.625 28.125 47.5406 28.125 43.75C28.125 39.9594 31.2094 36.875 35 36.875ZM44.375 43.75C44.375 48.9194 40.1694 53.125 35 53.125C29.8306 53.125 25.625 48.9194 25.625 43.75C25.625 40.1138 27.6812 36.8706 30.9156 35.31C31.1744 35.7331 31.5869 36.0469 32.0775 36.1775C29.0387 37.3544 26.875 40.3006 26.875 43.75C26.875 48.23 30.52 51.875 35 51.875C39.48 51.875 43.125 48.23 43.125 43.75C43.125 40.0419 40.6256 36.9131 37.2256 35.9425C37.3919 35.6644 37.4931 35.3438 37.4975 34.9975C37.6969 34.995 37.8863 34.9556 38.0669 34.8956C41.8525 36.2013 44.375 39.7106 44.375 43.75ZM41.2025 30H41.0944C40.9375 30 40.7844 29.945 40.6644 29.8444L40.5656 29.7619L37.275 27.02L36.475 27.98L39.7656 30.7219C39.9144 30.8469 40 31.0294 40 31.2231C40 31.5825 39.7075 31.875 39.3481 31.875H39.2125C39.06 31.875 38.9119 31.8212 38.795 31.7237L38.6906 31.6369L35.4 28.895L34.6 29.855L37.8906 32.5969C38.0394 32.7213 38.125 32.9038 38.125 33.0981C38.125 33.4575 37.8325 33.75 37.4731 33.75C37.2331 33.75 37 33.6656 36.8156 33.5119L36.2006 32.9994C36.2306 32.8612 36.25 32.7206 36.25 32.5756C36.25 31.5231 35.4113 30.6687 34.3681 30.6319C34.3319 29.6119 33.5131 28.7931 32.4931 28.7569C32.4569 27.7369 31.6381 26.9181 30.6181 26.8819C30.5813 25.8387 29.7262 25 28.6744 25C28.1531 25 27.6631 25.2031 27.295 25.5712L25.5712 27.295C25.505 27.3613 25.4506 27.435 25.3956 27.5087L23.8525 26.5831L25.5438 20.3806L29.3794 19.5281C30.4869 19.2825 31.6537 19.3356 32.7325 19.6806L33.6525 19.975L30.5319 21.535C29.8181 21.8919 29.375 22.6094 29.375 23.4075V23.5319C29.375 24.6862 30.3138 25.625 31.4681 25.625C31.8475 25.625 32.22 25.5219 32.5456 25.3263L34.8725 23.93C35.3369 23.6506 35.9681 23.7113 36.3713 24.0744L41.6525 28.8275C41.7938 28.9556 41.875 29.1375 41.875 29.3275C41.875 29.6987 41.5737 30 41.2025 30ZM42.4887 27.8994L37.2075 23.1463C36.4056 22.4244 35.1538 22.3038 34.2288 22.8588L31.9019 24.255C31.7712 24.3337 31.6213 24.375 31.4681 24.375C31.0031 24.375 30.625 23.9969 30.625 23.5319V23.4075C30.625 23.0856 30.8038 22.7969 31.0913 22.6531L34.5781 20.91C35.1763 20.6113 35.885 20.5456 36.5263 20.7288L40.4538 21.8506L41.5375 21.8687L44.7419 26.6756L42.5644 27.9819C42.5375 27.9563 42.5169 27.9244 42.4887 27.8994ZM53.125 16.875V23.9131L45.8862 26.1406L42.7662 21.4606L50.7912 16.875H53.125ZM31.875 45.625V45H33.125V45.625C33.125 46.3144 33.6856 46.875 34.375 46.875H35.625C36.3144 46.875 36.875 46.3144 36.875 45.625C36.875 44.9356 36.3144 44.375 35.625 44.375H34.375C32.9963 44.375 31.875 43.2537 31.875 41.875C31.875 40.4963 32.9963 39.375 34.375 39.375V38.125H35.625V39.375C37.0037 39.375 38.125 40.4963 38.125 41.875H36.875C36.875 41.1856 36.3144 40.625 35.625 40.625H34.375C33.6856 40.625 33.125 41.1856 33.125 41.875C33.125 42.5644 33.6856 43.125 34.375 43.125H35.625C37.0037 43.125 38.125 44.2463 38.125 45.625C38.125 47.0037 37.0037 48.125 35.625 48.125V49.375H34.375V48.125C32.9963 48.125 31.875 47.0031 31.875 45.625ZM50 48.75H48.75V35.625L46.125 39.125L45.125 38.375L49.375 32.7087L53.625 38.375L52.625 39.125L50 35.625V48.75ZM48.75 50H50V51.25H48.75V50ZM21.25 48.75H20V35.625L17.375 39.125L16.375 38.375L20.625 32.7081L24.875 38.3744L23.875 39.1244L21.25 35.625V48.75ZM20 50H21.25V51.25H20V50Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_79573453">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <h2 class="heading text-24">
-                                            Standards & Evaluation
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our standards and evaluations strengthen academic excellence.
-                                            From planning to assessment, we ensure continuous quality improvement.
-                                        </p>
-                                    </div>
-
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_7967)">
-                                            <path
-                                                d="M34.375 33.7497C34.375 33.4047 34.655 33.1247 35 33.1247C35.345 33.1247 35.625 33.4047 35.625 33.7497C35.625 34.0947 35.345 34.3747 35 34.3747C34.655 34.3747 34.375 34.0947 34.375 33.7497ZM31.9381 34.3747H30.51C30.2513 35.1003 29.5638 35.6247 28.75 35.6247C27.7163 35.6247 26.875 34.7834 26.875 33.7497C26.875 32.7159 27.7163 31.8747 28.75 31.8747C29.5638 31.8747 30.2513 32.3991 30.51 33.1247H31.9381C32.2288 31.7003 33.4906 30.6247 35 30.6247C35.6356 30.6247 36.2262 30.8178 36.7206 31.1453L38.6456 29.2203C38.3181 28.7259 38.125 28.1353 38.125 27.4997C38.125 25.7766 39.5269 24.3747 41.25 24.3747C42.9731 24.3747 44.375 25.7766 44.375 27.4997C44.375 29.2228 42.9731 30.6247 41.25 30.6247C40.6144 30.6247 40.0238 30.4316 39.5294 30.1041L37.6044 32.0291C37.9319 32.5228 38.125 33.1141 38.125 33.7497C38.125 35.4728 36.7231 36.8747 35 36.8747C33.4912 36.8747 32.2288 35.7991 31.9381 34.3747ZM39.375 27.4997C39.375 28.5334 40.2162 29.3747 41.25 29.3747C42.2838 29.3747 43.125 28.5334 43.125 27.4997C43.125 26.4659 42.2838 25.6247 41.25 25.6247C40.2162 25.6247 39.375 26.4659 39.375 27.4997ZM33.125 33.7497C33.125 34.7834 33.9662 35.6247 35 35.6247C36.0338 35.6247 36.875 34.7834 36.875 33.7497C36.875 32.7159 36.0338 31.8747 35 31.8747C33.9662 31.8747 33.125 32.7159 33.125 33.7497ZM29.375 33.7497C29.375 33.4053 29.095 33.1247 28.75 33.1247C28.405 33.1247 28.125 33.4053 28.125 33.7497C28.125 34.0941 28.405 34.3747 28.75 34.3747C29.095 34.3747 29.375 34.0941 29.375 33.7497ZM41.25 28.1247C41.595 28.1247 41.875 27.8447 41.875 27.4997C41.875 27.1547 41.595 26.8747 41.25 26.8747C40.905 26.8747 40.625 27.1547 40.625 27.4997C40.625 27.8447 40.905 28.1247 41.25 28.1247ZM21.875 54.3747H23.125V44.3747H24.8781L20.625 37.5703L16.3719 44.3747H18.125V49.3747H19.375V43.1247H18.6281L20.625 39.9291L22.6219 43.1247H21.875V54.3747ZM18.125 54.3747H19.375V50.6247H18.125V54.3747ZM50.625 31.8747H51.875V21.8747H53.6281L49.375 15.0703L45.1219 21.8747H46.875V23.1247H48.125V20.6247H47.3781L49.375 17.4291L51.3719 20.6247H50.625V31.8747ZM53.7594 41.2428L54.375 41.3453V46.1547L53.7562 46.2572C53.1469 46.3591 52.6419 46.7609 52.405 47.3322C52.1675 47.9066 52.2406 48.5509 52.6019 49.0566L52.9637 49.5628L49.5631 52.9634L49.055 52.6009C48.55 52.2397 47.9062 52.1672 47.335 52.4041C46.7612 52.6416 46.3581 53.1478 46.2562 53.7597L46.1562 54.3747H41.3469L41.2425 53.7559C41.1412 53.1453 40.74 52.6409 40.1694 52.4047C39.9181 52.3009 39.6481 52.2572 39.3775 52.2741C38.3456 53.5534 36.7675 54.3747 35 54.3747C31.8981 54.3747 29.375 51.8509 29.375 48.7497V48.1247C29.375 47.4353 29.9356 46.8747 30.625 46.8747H34.8088C34.5406 46.5534 34.1706 46.3284 33.7431 46.2572L33.125 46.1547V45.6247H30.625C29.9356 45.6247 29.375 45.0641 29.375 44.3747V42.8859L28.6263 42.5116C24.5363 40.4666 21.9744 36.3909 21.8837 31.8353H21.875C21.875 31.6016 21.7331 31.3928 21.5144 31.3028C21.2788 31.2059 21.0325 31.2534 20.8675 31.4178L19.9556 32.3291L16.4206 28.7941L17.3312 27.8822C17.4969 27.7172 17.5444 27.4697 17.4538 27.2516C17.3569 27.0166 17.1481 26.8747 16.9144 26.8747H15.625V21.8747H16.9144C17.1475 21.8747 17.3562 21.7328 17.4469 21.5141C17.5437 21.2791 17.4963 21.0316 17.3312 20.8672L16.42 19.9547L19.955 16.4197L20.8675 17.3309C21.0319 17.4953 21.2787 17.5428 21.4987 17.4528C21.7331 17.3566 21.875 17.1478 21.875 16.9141V15.6247H26.875V16.9141C26.875 17.1478 27.0169 17.3566 27.2356 17.4466C27.4712 17.5428 27.7175 17.4966 27.8825 17.3316L28.7944 16.4203L31.9487 19.5747C32.645 19.4509 33.3575 19.3747 34.0881 19.3747H35.9119C40.7269 19.3747 44.8875 22.1822 46.875 26.2397V24.3747H48.125V31.8747H48.115C48.0887 33.0103 47.9106 34.1147 47.5912 35.1659C48.0931 35.2916 48.6237 35.2066 49.055 34.8997L49.5631 34.5366L52.9631 37.9372L52.6006 38.4447C52.2406 38.9497 52.1669 39.5922 52.4038 40.1647C52.6413 40.7378 53.1481 41.1409 53.7594 41.2428ZM40.625 48.1247V48.4228C41.5506 49.0441 42.6231 49.3747 43.75 49.3747C46.8519 49.3747 49.375 46.8509 49.375 43.7497C49.375 41.4672 48.0137 39.4416 45.9425 38.5678C45.6938 38.9253 45.4237 39.2678 45.1362 39.5972C46.8831 40.1747 48.125 41.8109 48.125 43.7497C48.125 46.1622 46.1619 48.1247 43.75 48.1247C41.9819 48.1247 40.4587 47.0678 39.7694 45.5547C39.645 45.5966 39.5138 45.6247 39.375 45.6247H38.4513C38.6069 46.0653 38.8187 46.4822 39.0819 46.8747H39.375C40.0644 46.8747 40.625 47.4353 40.625 48.1247ZM41.875 33.1247H40.625V41.4884L40.815 41.3934C41.1838 41.2091 41.535 41.0009 41.875 40.7816V33.1247ZM40.625 43.7497C40.625 45.4728 42.0269 46.8747 43.75 46.8747C45.4731 46.8747 46.875 45.4728 46.875 43.7497C46.875 42.1378 45.67 40.8309 44.0956 40.6578C43.2888 41.3822 42.3788 42.0091 41.3738 42.5116L40.625 42.8859V43.7497ZM21.9694 30.1391C22.0213 29.7047 22.0975 29.2791 22.1931 28.8597C20.4906 28.0303 19.375 26.2984 19.375 24.3747C19.375 21.6178 21.6181 19.3747 24.375 19.3747C25.7712 19.3747 27.1069 19.9697 28.0475 20.9872C28.8231 20.5434 29.6475 20.1766 30.5169 19.9103L28.7944 18.1878L28.7662 18.2159C28.2437 18.7384 27.4619 18.8928 26.7737 18.6084C26.0706 18.3197 25.625 17.6566 25.625 16.9141V16.8747H23.125V16.9141C23.125 17.6566 22.6794 18.3197 21.9894 18.6028C21.2881 18.8916 20.5069 18.7384 19.9837 18.2153L19.9556 18.1878L18.1881 19.9553L18.2162 19.9834C18.7394 20.5066 18.8938 21.2884 18.6088 21.9759C18.32 22.6791 17.6569 23.1247 16.9144 23.1247H16.875V25.6247H16.9144C17.6569 25.6247 18.3194 26.0703 18.6025 26.7603C18.8931 27.4603 18.7387 28.2428 18.215 28.7659L18.1875 28.7934L19.955 30.5616L19.9831 30.5334C20.505 30.0128 21.2831 29.8584 21.9694 30.1391ZM25.0887 23.3603C24.8813 23.2141 24.6369 23.1247 24.375 23.1247C23.6856 23.1247 23.125 23.6853 23.125 24.3747C23.125 24.7628 23.3144 25.1159 23.6081 25.3491C24.0344 24.6353 24.5306 23.9703 25.0887 23.3603ZM26.9725 21.6816C26.2788 21.0147 25.3481 20.6247 24.375 20.6247C22.3069 20.6247 20.625 22.3066 20.625 24.3747C20.625 25.7428 21.3756 26.9853 22.5419 27.6416C22.68 27.2391 22.8387 26.8472 23.0169 26.4647C22.3231 26.0103 21.875 25.2291 21.875 24.3747C21.875 22.9959 22.9963 21.8747 24.375 21.8747C24.9762 21.8747 25.5437 22.0922 25.9894 22.4709C26.3038 22.1916 26.6306 21.9278 26.9725 21.6816ZM29.375 41.4884V38.1247H28.125V40.7816C28.4656 41.0016 28.8162 41.2091 29.185 41.3934L29.375 41.4884ZM30.625 36.8747V44.3747H33.125V38.1247H36.875V44.3747H39.375V31.8747H43.125V39.8428C45.4825 37.7941 46.875 34.8191 46.875 31.5878C46.875 25.5428 41.9569 20.6247 35.9119 20.6247H34.0881C28.0431 20.6247 23.125 25.5428 23.125 31.5878C23.125 34.8191 24.5175 37.7941 26.875 39.8428V36.8747H30.625ZM35.625 39.3747H34.375V44.3747H35.625V39.3747ZM36.2562 46.8747H37.6375C37.4325 46.4741 37.2663 46.0559 37.1437 45.6247H35.2919C35.7037 45.9422 36.0425 46.3534 36.25 46.8541C36.2525 46.8609 36.2537 46.8678 36.2562 46.8747ZM39.375 48.7497V48.1247H30.625V48.7497C30.625 51.1622 32.5881 53.1247 35 53.1247C37.4119 53.1247 39.375 51.1622 39.375 48.7497ZM53.125 42.3722C52.28 42.1034 51.5956 41.4797 51.2487 40.6428C50.9025 39.8066 50.9463 38.8822 51.3531 38.0941L49.405 36.1459C48.7119 36.5041 47.9125 36.5797 47.1606 36.3566C46.9956 36.7472 46.81 37.1278 46.6056 37.4984C49.0369 38.6059 50.625 41.0266 50.625 43.7497C50.625 47.5403 47.5406 50.6247 43.75 50.6247C42.6069 50.6247 41.5081 50.3472 40.52 49.8191C40.4338 50.2641 40.2931 50.6891 40.1081 51.0903C40.2913 51.1291 40.4719 51.1778 40.6469 51.2503C41.4831 51.5966 42.105 52.2803 42.3731 53.1253H45.1275C45.3969 52.2797 46.0206 51.5953 46.8569 51.2497C47.6931 50.9028 48.6175 50.9466 49.405 51.3541L51.3538 49.4059C50.9469 48.6172 50.9031 47.6922 51.25 46.8553C51.5962 46.0191 52.28 45.3966 53.125 45.1278V42.3722Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_7967">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
-                                    <h2 class="heading text-24 text-rotate">
-                                        Sustainability Strategy
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_7967234214)">
-                                                <path
-                                                    d="M34.375 33.7497C34.375 33.4047 34.655 33.1247 35 33.1247C35.345 33.1247 35.625 33.4047 35.625 33.7497C35.625 34.0947 35.345 34.3747 35 34.3747C34.655 34.3747 34.375 34.0947 34.375 33.7497ZM31.9381 34.3747H30.51C30.2513 35.1003 29.5638 35.6247 28.75 35.6247C27.7163 35.6247 26.875 34.7834 26.875 33.7497C26.875 32.7159 27.7163 31.8747 28.75 31.8747C29.5638 31.8747 30.2513 32.3991 30.51 33.1247H31.9381C32.2288 31.7003 33.4906 30.6247 35 30.6247C35.6356 30.6247 36.2262 30.8178 36.7206 31.1453L38.6456 29.2203C38.3181 28.7259 38.125 28.1353 38.125 27.4997C38.125 25.7766 39.5269 24.3747 41.25 24.3747C42.9731 24.3747 44.375 25.7766 44.375 27.4997C44.375 29.2228 42.9731 30.6247 41.25 30.6247C40.6144 30.6247 40.0238 30.4316 39.5294 30.1041L37.6044 32.0291C37.9319 32.5228 38.125 33.1141 38.125 33.7497C38.125 35.4728 36.7231 36.8747 35 36.8747C33.4912 36.8747 32.2288 35.7991 31.9381 34.3747ZM39.375 27.4997C39.375 28.5334 40.2162 29.3747 41.25 29.3747C42.2838 29.3747 43.125 28.5334 43.125 27.4997C43.125 26.4659 42.2838 25.6247 41.25 25.6247C40.2162 25.6247 39.375 26.4659 39.375 27.4997ZM33.125 33.7497C33.125 34.7834 33.9662 35.6247 35 35.6247C36.0338 35.6247 36.875 34.7834 36.875 33.7497C36.875 32.7159 36.0338 31.8747 35 31.8747C33.9662 31.8747 33.125 32.7159 33.125 33.7497ZM29.375 33.7497C29.375 33.4053 29.095 33.1247 28.75 33.1247C28.405 33.1247 28.125 33.4053 28.125 33.7497C28.125 34.0941 28.405 34.3747 28.75 34.3747C29.095 34.3747 29.375 34.0941 29.375 33.7497ZM41.25 28.1247C41.595 28.1247 41.875 27.8447 41.875 27.4997C41.875 27.1547 41.595 26.8747 41.25 26.8747C40.905 26.8747 40.625 27.1547 40.625 27.4997C40.625 27.8447 40.905 28.1247 41.25 28.1247ZM21.875 54.3747H23.125V44.3747H24.8781L20.625 37.5703L16.3719 44.3747H18.125V49.3747H19.375V43.1247H18.6281L20.625 39.9291L22.6219 43.1247H21.875V54.3747ZM18.125 54.3747H19.375V50.6247H18.125V54.3747ZM50.625 31.8747H51.875V21.8747H53.6281L49.375 15.0703L45.1219 21.8747H46.875V23.1247H48.125V20.6247H47.3781L49.375 17.4291L51.3719 20.6247H50.625V31.8747ZM53.7594 41.2428L54.375 41.3453V46.1547L53.7562 46.2572C53.1469 46.3591 52.6419 46.7609 52.405 47.3322C52.1675 47.9066 52.2406 48.5509 52.6019 49.0566L52.9637 49.5628L49.5631 52.9634L49.055 52.6009C48.55 52.2397 47.9062 52.1672 47.335 52.4041C46.7612 52.6416 46.3581 53.1478 46.2562 53.7597L46.1562 54.3747H41.3469L41.2425 53.7559C41.1412 53.1453 40.74 52.6409 40.1694 52.4047C39.9181 52.3009 39.6481 52.2572 39.3775 52.2741C38.3456 53.5534 36.7675 54.3747 35 54.3747C31.8981 54.3747 29.375 51.8509 29.375 48.7497V48.1247C29.375 47.4353 29.9356 46.8747 30.625 46.8747H34.8088C34.5406 46.5534 34.1706 46.3284 33.7431 46.2572L33.125 46.1547V45.6247H30.625C29.9356 45.6247 29.375 45.0641 29.375 44.3747V42.8859L28.6263 42.5116C24.5363 40.4666 21.9744 36.3909 21.8837 31.8353H21.875C21.875 31.6016 21.7331 31.3928 21.5144 31.3028C21.2788 31.2059 21.0325 31.2534 20.8675 31.4178L19.9556 32.3291L16.4206 28.7941L17.3312 27.8822C17.4969 27.7172 17.5444 27.4697 17.4538 27.2516C17.3569 27.0166 17.1481 26.8747 16.9144 26.8747H15.625V21.8747H16.9144C17.1475 21.8747 17.3562 21.7328 17.4469 21.5141C17.5437 21.2791 17.4963 21.0316 17.3312 20.8672L16.42 19.9547L19.955 16.4197L20.8675 17.3309C21.0319 17.4953 21.2787 17.5428 21.4987 17.4528C21.7331 17.3566 21.875 17.1478 21.875 16.9141V15.6247H26.875V16.9141C26.875 17.1478 27.0169 17.3566 27.2356 17.4466C27.4712 17.5428 27.7175 17.4966 27.8825 17.3316L28.7944 16.4203L31.9487 19.5747C32.645 19.4509 33.3575 19.3747 34.0881 19.3747H35.9119C40.7269 19.3747 44.8875 22.1822 46.875 26.2397V24.3747H48.125V31.8747H48.115C48.0887 33.0103 47.9106 34.1147 47.5912 35.1659C48.0931 35.2916 48.6237 35.2066 49.055 34.8997L49.5631 34.5366L52.9631 37.9372L52.6006 38.4447C52.2406 38.9497 52.1669 39.5922 52.4038 40.1647C52.6413 40.7378 53.1481 41.1409 53.7594 41.2428ZM40.625 48.1247V48.4228C41.5506 49.0441 42.6231 49.3747 43.75 49.3747C46.8519 49.3747 49.375 46.8509 49.375 43.7497C49.375 41.4672 48.0137 39.4416 45.9425 38.5678C45.6938 38.9253 45.4237 39.2678 45.1362 39.5972C46.8831 40.1747 48.125 41.8109 48.125 43.7497C48.125 46.1622 46.1619 48.1247 43.75 48.1247C41.9819 48.1247 40.4587 47.0678 39.7694 45.5547C39.645 45.5966 39.5138 45.6247 39.375 45.6247H38.4513C38.6069 46.0653 38.8187 46.4822 39.0819 46.8747H39.375C40.0644 46.8747 40.625 47.4353 40.625 48.1247ZM41.875 33.1247H40.625V41.4884L40.815 41.3934C41.1838 41.2091 41.535 41.0009 41.875 40.7816V33.1247ZM40.625 43.7497C40.625 45.4728 42.0269 46.8747 43.75 46.8747C45.4731 46.8747 46.875 45.4728 46.875 43.7497C46.875 42.1378 45.67 40.8309 44.0956 40.6578C43.2888 41.3822 42.3788 42.0091 41.3738 42.5116L40.625 42.8859V43.7497ZM21.9694 30.1391C22.0213 29.7047 22.0975 29.2791 22.1931 28.8597C20.4906 28.0303 19.375 26.2984 19.375 24.3747C19.375 21.6178 21.6181 19.3747 24.375 19.3747C25.7712 19.3747 27.1069 19.9697 28.0475 20.9872C28.8231 20.5434 29.6475 20.1766 30.5169 19.9103L28.7944 18.1878L28.7662 18.2159C28.2437 18.7384 27.4619 18.8928 26.7737 18.6084C26.0706 18.3197 25.625 17.6566 25.625 16.9141V16.8747H23.125V16.9141C23.125 17.6566 22.6794 18.3197 21.9894 18.6028C21.2881 18.8916 20.5069 18.7384 19.9837 18.2153L19.9556 18.1878L18.1881 19.9553L18.2162 19.9834C18.7394 20.5066 18.8938 21.2884 18.6088 21.9759C18.32 22.6791 17.6569 23.1247 16.9144 23.1247H16.875V25.6247H16.9144C17.6569 25.6247 18.3194 26.0703 18.6025 26.7603C18.8931 27.4603 18.7387 28.2428 18.215 28.7659L18.1875 28.7934L19.955 30.5616L19.9831 30.5334C20.505 30.0128 21.2831 29.8584 21.9694 30.1391ZM25.0887 23.3603C24.8813 23.2141 24.6369 23.1247 24.375 23.1247C23.6856 23.1247 23.125 23.6853 23.125 24.3747C23.125 24.7628 23.3144 25.1159 23.6081 25.3491C24.0344 24.6353 24.5306 23.9703 25.0887 23.3603ZM26.9725 21.6816C26.2788 21.0147 25.3481 20.6247 24.375 20.6247C22.3069 20.6247 20.625 22.3066 20.625 24.3747C20.625 25.7428 21.3756 26.9853 22.5419 27.6416C22.68 27.2391 22.8387 26.8472 23.0169 26.4647C22.3231 26.0103 21.875 25.2291 21.875 24.3747C21.875 22.9959 22.9963 21.8747 24.375 21.8747C24.9762 21.8747 25.5437 22.0922 25.9894 22.4709C26.3038 22.1916 26.6306 21.9278 26.9725 21.6816ZM29.375 41.4884V38.1247H28.125V40.7816C28.4656 41.0016 28.8162 41.2091 29.185 41.3934L29.375 41.4884ZM30.625 36.8747V44.3747H33.125V38.1247H36.875V44.3747H39.375V31.8747H43.125V39.8428C45.4825 37.7941 46.875 34.8191 46.875 31.5878C46.875 25.5428 41.9569 20.6247 35.9119 20.6247H34.0881C28.0431 20.6247 23.125 25.5428 23.125 31.5878C23.125 34.8191 24.5175 37.7941 26.875 39.8428V36.8747H30.625ZM35.625 39.3747H34.375V44.3747H35.625V39.3747ZM36.2562 46.8747H37.6375C37.4325 46.4741 37.2663 46.0559 37.1437 45.6247H35.2919C35.7037 45.9422 36.0425 46.3534 36.25 46.8541C36.2525 46.8609 36.2537 46.8678 36.2562 46.8747ZM39.375 48.7497V48.1247H30.625V48.7497C30.625 51.1622 32.5881 53.1247 35 53.1247C37.4119 53.1247 39.375 51.1622 39.375 48.7497ZM53.125 42.3722C52.28 42.1034 51.5956 41.4797 51.2487 40.6428C50.9025 39.8066 50.9463 38.8822 51.3531 38.0941L49.405 36.1459C48.7119 36.5041 47.9125 36.5797 47.1606 36.3566C46.9956 36.7472 46.81 37.1278 46.6056 37.4984C49.0369 38.6059 50.625 41.0266 50.625 43.7497C50.625 47.5403 47.5406 50.6247 43.75 50.6247C42.6069 50.6247 41.5081 50.3472 40.52 49.8191C40.4338 50.2641 40.2931 50.6891 40.1081 51.0903C40.2913 51.1291 40.4719 51.1778 40.6469 51.2503C41.4831 51.5966 42.105 52.2803 42.3731 53.1253H45.1275C45.3969 52.2797 46.0206 51.5953 46.8569 51.2497C47.6931 50.9028 48.6175 50.9466 49.405 51.3541L51.3538 49.4059C50.9469 48.6172 50.9031 47.6922 51.25 46.8553C51.5962 46.0191 52.28 45.3966 53.125 45.1278V42.3722Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_7967234214">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <h2 class="heading text-24">
-                                            Sustainability Strategy
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our sustainability strategy nurtures academic quality.
-                                            From planning to evaluation, we ensure continuous improvement with
-                                            sincerity.
-                                        </p>
-                                    </div>
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="accordion-li">
-                            <div class="accordion-title">
-                                <div class="accordion-title-icon">
-                                    <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="70" height="70" rx="10" fill="#20282D" />
-                                        <g clip-path="url(#clip0_9088_797679654)">
-                                            <path
-                                                d="M27.5 41.875V41.8156C27.5 41.1587 26.9662 40.625 26.3094 40.625H26.1912C25.5338 40.625 25 41.1587 25 41.8156C25 42.3287 25.3269 42.7831 25.815 42.9463L27.0806 43.3687C28.0794 43.7013 28.75 44.6319 28.75 45.6844C28.75 46.8344 27.9475 47.7956 26.875 48.0525V49.375H25.625V48.0519C24.5525 47.795 23.75 46.8344 23.75 45.6838V45H25V45.6844C25 46.3413 25.5338 46.875 26.1906 46.875H26.3088C26.9662 46.875 27.5 46.3413 27.5 45.6844C27.5 45.1713 27.1731 44.7169 26.685 44.5537L25.4194 44.1313C24.4206 43.7987 23.75 42.8681 23.75 41.8156C23.75 40.6656 24.5525 39.7044 25.625 39.4475V38.125H26.875V39.4481C27.9475 39.705 28.75 40.6656 28.75 41.8162L27.5 41.875ZM34.375 43.75C34.375 48.23 30.73 51.875 26.25 51.875C21.77 51.875 18.125 48.23 18.125 43.75C18.125 39.27 21.77 35.625 26.25 35.625C30.73 35.625 34.375 39.27 34.375 43.75ZM33.125 43.75C33.125 39.9594 30.0406 36.875 26.25 36.875C22.4594 36.875 19.375 39.9594 19.375 43.75C19.375 47.5406 22.4594 50.625 26.25 50.625C30.0406 50.625 33.125 47.5406 33.125 43.75ZM42.0631 42.9469L40.1831 41.0669L41.0669 40.1831L42.9469 42.0631C43.1912 41.9456 43.4613 41.875 43.75 41.875C44.7838 41.875 45.625 42.7162 45.625 43.75C45.625 44.5637 45.1006 45.2513 44.375 45.51V46.875H43.125V45.51C42.3994 45.2513 41.875 44.5637 41.875 43.75C41.875 43.4613 41.9456 43.1912 42.0631 42.9469ZM43.125 43.75C43.125 44.095 43.405 44.375 43.75 44.375C44.095 44.375 44.375 44.095 44.375 43.75C44.375 43.405 44.095 43.125 43.75 43.125C43.405 43.125 43.125 43.405 43.125 43.75ZM54.375 43.75C54.375 49.6087 49.6087 54.375 43.75 54.375C40.2356 54.375 36.9725 52.6287 35.0006 49.7631C33.0825 52.5456 29.8775 54.375 26.25 54.375C20.3913 54.375 15.625 49.6087 15.625 43.75C15.625 39.5081 18.13 35.8494 21.7325 34.1475C21.6725 33.9225 21.6044 33.6956 21.5575 33.4744L20 32.9487V28.3006L21.5569 27.7756C21.9069 26.1094 22.5512 24.5494 23.4775 23.1287L22.75 21.6619L26.0363 18.375L27.5044 19.1025C28.9237 18.1769 30.4838 17.5319 32.1519 17.1812L32.6763 15.625H37.3237L37.8487 17.1819C39.5169 17.5325 41.0763 18.1775 42.4963 19.1031L43.9637 18.375L47.25 21.6613L46.5225 23.1294C47.4488 24.5494 48.0938 26.11 48.4431 27.7762L50 28.3012V32.9494L48.4425 33.4744C48.3956 33.6956 48.3275 33.9225 48.2675 34.1475C51.87 35.8494 54.375 39.5081 54.375 43.75ZM22.8906 33.6781C23.2819 33.5475 23.68 33.4319 24.0894 33.3469C23.8669 32.4562 23.75 31.5444 23.75 30.625C23.75 24.4219 28.7969 19.375 35 19.375C40.2956 19.375 44.825 23.0431 45.9675 28.1594C46.8381 28.3212 47.5 29.0831 47.5 30C47.5 30.8138 46.9756 31.5013 46.25 31.76V33.4344C46.5413 33.505 46.8281 33.5837 47.1094 33.6781C47.1775 33.4106 47.2375 33.145 47.285 32.885L47.3506 32.5225L48.75 32.0513V29.1994L47.3512 28.7275L47.2856 28.365C46.9656 26.6144 46.2937 24.9888 45.2875 23.5325L45.0788 23.23L45.7319 21.9112L43.7144 19.8938L42.3956 20.5469L42.0931 20.3375C40.6381 19.3325 39.0119 18.66 37.2606 18.3394L36.8981 18.2731L36.4263 16.875H33.5737L33.1025 18.2731L32.74 18.3394C30.9881 18.66 29.3625 19.3319 27.9075 20.3375L27.605 20.5469L26.2863 19.8938L24.2694 21.9106L24.9225 23.2294L24.7137 23.5319C23.7075 24.9881 23.035 26.6144 22.7156 28.3644L22.65 28.7269L21.25 29.1988V32.0506L22.6487 32.5225L22.7144 32.885C22.7625 33.145 22.8231 33.4106 22.8906 33.6781ZM35.0006 37.7369C36.4937 35.5675 38.7269 34.0431 41.25 33.43V31.76C40.5244 31.5013 40 30.8138 40 30C40 28.9663 40.8412 28.125 41.875 28.125H42.0694C41.0244 25.1462 38.2244 23.125 35 23.125C30.8644 23.125 27.5 26.4894 27.5 30.625C27.5 31.5431 27.6719 32.4338 27.9938 33.2806C30.8913 33.7625 33.3975 35.4113 35.0006 37.7369ZM26.25 33.125C26.3756 33.125 26.4981 33.1394 26.6225 33.1438C26.3781 32.3313 26.25 31.4881 26.25 30.625C26.25 25.8 30.175 21.875 35 21.875C38.9094 21.875 42.2831 24.4225 43.3806 28.125H44.68C43.5556 23.7381 39.6012 20.625 35 20.625C29.4862 20.625 25 25.1112 25 30.625C25 31.4862 25.1175 32.3394 25.3369 33.1712C25.6388 33.1456 25.9419 33.125 26.25 33.125ZM46.25 30C46.25 29.6556 45.97 29.375 45.625 29.375H41.875C41.53 29.375 41.25 29.6556 41.25 30C41.25 30.3444 41.53 30.625 41.875 30.625H45.625C45.97 30.625 46.25 30.3444 46.25 30ZM42.5 33.2038C42.9125 33.1544 43.3288 33.125 43.75 33.125C44.1737 33.125 44.5894 33.1569 45 33.205V31.875H42.5V33.2038ZM35.625 43.75C35.625 38.5806 31.4194 34.375 26.25 34.375C21.0806 34.375 16.875 38.5806 16.875 43.75C16.875 48.9194 21.0806 53.125 26.25 53.125C31.4194 53.125 35.625 48.9194 35.625 43.75ZM36.9069 43.125H38.125V44.375H36.9069C37.0362 45.8019 37.6012 47.1038 38.47 48.1463L39.3306 47.2856L40.2144 48.1694L39.3538 49.03C40.3956 49.8994 41.6981 50.4637 43.125 50.5931V49.375H44.375V50.5931C45.8019 50.4637 47.1038 49.8988 48.1463 49.03L47.2856 48.1694L48.1694 47.2856L49.03 48.1463C49.8994 47.1044 50.4637 45.8019 50.5931 44.375H49.375V43.125H50.5931C50.4637 41.6981 49.8988 40.3962 49.03 39.3538L48.1694 40.2144L47.2856 39.3306L48.1463 38.47C47.1044 37.6006 45.8019 37.0362 44.375 36.9069V38.125H43.125V36.9069C41.6981 37.0362 40.3962 37.6012 39.3538 38.47L40.2144 39.3306L39.3306 40.2144L38.47 39.3538C37.6006 40.3962 37.0362 41.6981 36.9069 43.125ZM53.125 43.75C53.125 38.5806 48.9194 34.375 43.75 34.375C40.4513 34.375 37.4031 36.1181 35.7119 38.94C35.9569 39.42 36.1688 39.9181 36.3394 40.4363C37.61 37.605 40.4506 35.625 43.75 35.625C48.23 35.625 51.875 39.27 51.875 43.75C51.875 48.23 48.23 51.875 43.75 51.875C40.4506 51.875 37.61 49.895 36.3387 47.0637C36.1681 47.5819 35.9563 48.0806 35.7113 48.56C37.4031 51.3819 40.4513 53.125 43.75 53.125C48.9194 53.125 53.125 48.9194 53.125 43.75ZM28.75 30.625H30C30 28.7125 31.0644 26.9956 32.7781 26.1444L32.2213 25.025C30.0806 26.0894 28.75 28.235 28.75 30.625ZM33.8888 25.7487C34.2512 25.6669 34.625 25.625 35 25.625V24.375C34.5319 24.375 34.065 24.4269 33.6112 24.53L33.8888 25.7487Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_9088_797679654">
-                                                <rect width="40" height="40" fill="white"
-                                                    transform="translate(15 15)" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-
-                                    <h2 class="heading text-24 text-rotate">
-                                        Academic Quality Optimization
-                                    </h2>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-plus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1" stroke="currentColor" class="icon icon-minus-circle">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                            </div>
-                            <div class="accordion-content">
-                                <div class="service-content-inner">
-                                    <div>
-                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="70" height="70" rx="10" fill="#1C2539" />
-                                            <g clip-path="url(#clip0_9088_7976)">
-                                                <path
-                                                    d="M27.5 41.875V41.8156C27.5 41.1587 26.9662 40.625 26.3094 40.625H26.1912C25.5338 40.625 25 41.1587 25 41.8156C25 42.3287 25.3269 42.7831 25.815 42.9463L27.0806 43.3687C28.0794 43.7013 28.75 44.6319 28.75 45.6844C28.75 46.8344 27.9475 47.7956 26.875 48.0525V49.375H25.625V48.0519C24.5525 47.795 23.75 46.8344 23.75 45.6838V45H25V45.6844C25 46.3413 25.5338 46.875 26.1906 46.875H26.3088C26.9662 46.875 27.5 46.3413 27.5 45.6844C27.5 45.1713 27.1731 44.7169 26.685 44.5537L25.4194 44.1313C24.4206 43.7987 23.75 42.8681 23.75 41.8156C23.75 40.6656 24.5525 39.7044 25.625 39.4475V38.125H26.875V39.4481C27.9475 39.705 28.75 40.6656 28.75 41.8162L27.5 41.875ZM34.375 43.75C34.375 48.23 30.73 51.875 26.25 51.875C21.77 51.875 18.125 48.23 18.125 43.75C18.125 39.27 21.77 35.625 26.25 35.625C30.73 35.625 34.375 39.27 34.375 43.75ZM33.125 43.75C33.125 39.9594 30.0406 36.875 26.25 36.875C22.4594 36.875 19.375 39.9594 19.375 43.75C19.375 47.5406 22.4594 50.625 26.25 50.625C30.0406 50.625 33.125 47.5406 33.125 43.75ZM42.0631 42.9469L40.1831 41.0669L41.0669 40.1831L42.9469 42.0631C43.1912 41.9456 43.4613 41.875 43.75 41.875C44.7838 41.875 45.625 42.7162 45.625 43.75C45.625 44.5637 45.1006 45.2513 44.375 45.51V46.875H43.125V45.51C42.3994 45.2513 41.875 44.5637 41.875 43.75C41.875 43.4613 41.9456 43.1912 42.0631 42.9469ZM43.125 43.75C43.125 44.095 43.405 44.375 43.75 44.375C44.095 44.375 44.375 44.095 44.375 43.75C44.375 43.405 44.095 43.125 43.75 43.125C43.405 43.125 43.125 43.405 43.125 43.75ZM54.375 43.75C54.375 49.6087 49.6087 54.375 43.75 54.375C40.2356 54.375 36.9725 52.6287 35.0006 49.7631C33.0825 52.5456 29.8775 54.375 26.25 54.375C20.3913 54.375 15.625 49.6087 15.625 43.75C15.625 39.5081 18.13 35.8494 21.7325 34.1475C21.6725 33.9225 21.6044 33.6956 21.5575 33.4744L20 32.9487V28.3006L21.5569 27.7756C21.9069 26.1094 22.5512 24.5494 23.4775 23.1287L22.75 21.6619L26.0363 18.375L27.5044 19.1025C28.9237 18.1769 30.4838 17.5319 32.1519 17.1812L32.6763 15.625H37.3237L37.8487 17.1819C39.5169 17.5325 41.0763 18.1775 42.4963 19.1031L43.9637 18.375L47.25 21.6613L46.5225 23.1294C47.4488 24.5494 48.0938 26.11 48.4431 27.7762L50 28.3012V32.9494L48.4425 33.4744C48.3956 33.6956 48.3275 33.9225 48.2675 34.1475C51.87 35.8494 54.375 39.5081 54.375 43.75ZM22.8906 33.6781C23.2819 33.5475 23.68 33.4319 24.0894 33.3469C23.8669 32.4562 23.75 31.5444 23.75 30.625C23.75 24.4219 28.7969 19.375 35 19.375C40.2956 19.375 44.825 23.0431 45.9675 28.1594C46.8381 28.3212 47.5 29.0831 47.5 30C47.5 30.8138 46.9756 31.5013 46.25 31.76V33.4344C46.5413 33.505 46.8281 33.5837 47.1094 33.6781C47.1775 33.4106 47.2375 33.145 47.285 32.885L47.3506 32.5225L48.75 32.0513V29.1994L47.3512 28.7275L47.2856 28.365C46.9656 26.6144 46.2937 24.9888 45.2875 23.5325L45.0788 23.23L45.7319 21.9112L43.7144 19.8938L42.3956 20.5469L42.0931 20.3375C40.6381 19.3325 39.0119 18.66 37.2606 18.3394L36.8981 18.2731L36.4263 16.875H33.5737L33.1025 18.2731L32.74 18.3394C30.9881 18.66 29.3625 19.3319 27.9075 20.3375L27.605 20.5469L26.2863 19.8938L24.2694 21.9106L24.9225 23.2294L24.7137 23.5319C23.7075 24.9881 23.035 26.6144 22.7156 28.3644L22.65 28.7269L21.25 29.1988V32.0506L22.6487 32.5225L22.7144 32.885C22.7625 33.145 22.8231 33.4106 22.8906 33.6781ZM35.0006 37.7369C36.4937 35.5675 38.7269 34.0431 41.25 33.43V31.76C40.5244 31.5013 40 30.8138 40 30C40 28.9663 40.8412 28.125 41.875 28.125H42.0694C41.0244 25.1462 38.2244 23.125 35 23.125C30.8644 23.125 27.5 26.4894 27.5 30.625C27.5 31.5431 27.6719 32.4338 27.9938 33.2806C30.8913 33.7625 33.3975 35.4113 35.0006 37.7369ZM26.25 33.125C26.3756 33.125 26.4981 33.1394 26.6225 33.1438C26.3781 32.3313 26.25 31.4881 26.25 30.625C26.25 25.8 30.175 21.875 35 21.875C38.9094 21.875 42.2831 24.4225 43.3806 28.125H44.68C43.5556 23.7381 39.6012 20.625 35 20.625C29.4862 20.625 25 25.1112 25 30.625C25 31.4862 25.1175 32.3394 25.3369 33.1712C25.6388 33.1456 25.9419 33.125 26.25 33.125ZM46.25 30C46.25 29.6556 45.97 29.375 45.625 29.375H41.875C41.53 29.375 41.25 29.6556 41.25 30C41.25 30.3444 41.53 30.625 41.875 30.625H45.625C45.97 30.625 46.25 30.3444 46.25 30ZM42.5 33.2038C42.9125 33.1544 43.3288 33.125 43.75 33.125C44.1737 33.125 44.5894 33.1569 45 33.205V31.875H42.5V33.2038ZM35.625 43.75C35.625 38.5806 31.4194 34.375 26.25 34.375C21.0806 34.375 16.875 38.5806 16.875 43.75C16.875 48.9194 21.0806 53.125 26.25 53.125C31.4194 53.125 35.625 48.9194 35.625 43.75ZM36.9069 43.125H38.125V44.375H36.9069C37.0362 45.8019 37.6012 47.1038 38.47 48.1463L39.3306 47.2856L40.2144 48.1694L39.3538 49.03C40.3956 49.8994 41.6981 50.4637 43.125 50.5931V49.375H44.375V50.5931C45.8019 50.4637 47.1038 49.8988 48.1463 49.03L47.2856 48.1694L48.1694 47.2856L49.03 48.1463C49.8994 47.1044 50.4637 45.8019 50.5931 44.375H49.375V43.125H50.5931C50.4637 41.6981 49.8988 40.3962 49.03 39.3538L48.1694 40.2144L47.2856 39.3306L48.1463 38.47C47.1044 37.6006 45.8019 37.0362 44.375 36.9069V38.125H43.125V36.9069C41.6981 37.0362 40.3962 37.6012 39.3538 38.47L40.2144 39.3306L39.3306 40.2144L38.47 39.3538C37.6006 40.3962 37.0362 41.6981 36.9069 43.125ZM53.125 43.75C53.125 38.5806 48.9194 34.375 43.75 34.375C40.4513 34.375 37.4031 36.1181 35.7119 38.94C35.9569 39.42 36.1688 39.9181 36.3394 40.4363C37.61 37.605 40.4506 35.625 43.75 35.625C48.23 35.625 51.875 39.27 51.875 43.75C51.875 48.23 48.23 51.875 43.75 51.875C40.4506 51.875 37.61 49.895 36.3387 47.0637C36.1681 47.5819 35.9563 48.0806 35.7113 48.56C37.4031 51.3819 40.4513 53.125 43.75 53.125C48.9194 53.125 53.125 48.9194 53.125 43.75ZM28.75 30.625H30C30 28.7125 31.0644 26.9956 32.7781 26.1444L32.2213 25.025C30.0806 26.0894 28.75 28.235 28.75 30.625ZM33.8888 25.7487C34.2512 25.6669 34.625 25.625 35 25.625V24.375C34.5319 24.375 34.065 24.4269 33.6112 24.53L33.8888 25.7487Z"
-                                                    fill="white" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_9088_7976">
-                                                    <rect width="40" height="40" fill="white"
-                                                        transform="translate(15 15)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-
-                                        <h2 class="heading text-24">
-                                            Academic Quality Optimization
-                                        </h2>
-                                        <p class="text text-16">
-                                            See how our quality assurance enhances academic excellence.
-                                            From planning to evaluation, our sincere service ensures continuous
-                                            improvement.
-                                        </p>
-                                    </div>
-
-                                    <div class="service-button">
-                                        <a href="service-details.html" class="button button--primary">
-                                            + View Details
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </accordion-horizontal>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <style>
+        .strategi-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+    </style>
 
     <!-- Recent Projects -->
     <project-slider class="project-slider mt-100">

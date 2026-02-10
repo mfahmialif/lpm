@@ -8,6 +8,52 @@
             "role": "admin,player"
         },
         {
+            "menuHeader": "My LPM",
+            "role": "admin"
+        },
+        {
+            "name": "Akreditasi Kampus",
+            "url": "/admin/akreditasi-kampus",
+            "icon": "menu-icon tf-icons ti ti-building-arch",
+            "slug": "admin.akreditasi-kampus.",
+            "role": "admin"
+        },
+        {
+            "name": "Sambutan Ketua",
+            "url": "/admin/sambutan-ketua",
+            "icon": "menu-icon tf-icons ti ti-message-2",
+            "slug": "admin.sambutan-ketua.",
+            "role": "admin"
+        },
+        {
+            "name": "Struktur Organisasi",
+            "url": "/admin/struktur-organisasi",
+            "icon": "menu-icon tf-icons ti ti-sitemap",
+            "slug": "admin.struktur-organisasi.",
+            "role": "admin"
+        },
+        {
+            "name": "Anggota Struktur Org.",
+            "url": "/admin/anggota-struktur-organisasi",
+            "icon": "menu-icon tf-icons ti ti-users",
+            "slug": "admin.anggota-struktur-organisasi.",
+            "role": "admin"
+        },
+        {
+            "name": "Periode LPM",
+            "url": "/admin/periode-lpm",
+            "icon": "menu-icon tf-icons ti ti-calendar-time",
+            "slug": "admin.periode-lpm.",
+            "role": "admin"
+        },
+        {
+            "name": "Skor Akreditasi",
+            "url": "/admin/skor-akreditasi",
+            "icon": "menu-icon tf-icons ti ti-certificate",
+            "slug": "admin.skor-akreditasi.",
+            "role": "admin"
+        },
+        {
             "menuHeader": "News",
             "role": "admin"
         },
@@ -34,12 +80,6 @@
             "url": "/admin/tag",
             "icon": "menu-icon tf-icons ti ti-tag",
             "slug": "admin.tag.",
-            "role": "admin"
-        },
-        {
-            "ur": "/admin/unit",
-            "icon": "menu-icon tf-icons ti ti-building",
-            "slug": "admin.unit.",
             "role": "admin"
         },
         {
@@ -72,6 +112,108 @@
             "url": "/admin/sertifikat",
             "icon": "menu-icon tf-icons ti ti-certificate",
             "slug": "admin.sertifikat.",
+            "role": "admin"
+        },
+        {
+            "menuHeader": "Dokumen Institusi",
+            "role": "admin"
+        },
+        {
+            "name": "Unit Dokument",
+            "url": "/admin/unit-dokument",
+            "icon": "menu-icon tf-icons ti ti-building",
+            "slug": "admin.unit-dokument.",
+            "role": "admin"
+        },
+        {
+            "name": "Keputusan Rektor",
+            "url": "/admin/document-keputusan-rektor",
+            "icon": "menu-icon tf-icons ti ti-file-description",
+            "slug": "admin.document-keputusan-rektor.",
+            "role": "admin"
+        },
+        {
+            "name": "SK Pendirian Prodi",
+            "url": "/admin/sk-pendirian-prodi",
+            "icon": "menu-icon tf-icons ti ti-file-certificate",
+            "slug": "admin.sk-pendirian-prodi.",
+            "role": "admin"
+        },
+        {
+            "name": "SPMI",
+            "url": "/admin/document-spmi",
+            "icon": "menu-icon tf-icons ti ti-files",
+            "slug": "admin.document-spmi.",
+            "role": "admin"
+        },
+        {
+            "name": "Siklus PPEPP",
+            "url": "/admin/document-siklus-ppepp",
+            "icon": "menu-icon tf-icons ti ti-refresh",
+            "slug": "admin.document-siklus-ppepp.",
+            "role": "admin"
+        },
+        {
+            "name": "Laporan Benchmarking",
+            "url": "/admin/document-laporan-banchmarking",
+            "icon": "menu-icon tf-icons ti ti-report",
+            "slug": "admin.document-laporan-banchmarking.",
+            "role": "admin"
+        },
+        {
+            "name": "Laporan Evaluasi PPEPP",
+            "url": "/admin/document-laporan-evaluasi-ppepp",
+            "icon": "menu-icon tf-icons ti ti-clipboard-check",
+            "slug": "admin.document-laporan-evaluasi-ppepp.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen Statuta",
+            "url": "/admin/document-statuta-uii-dalwa",
+            "icon": "menu-icon tf-icons ti ti-building-bank",
+            "slug": "admin.document-statuta-uii-dalwa.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen Renstra",
+            "url": "/admin/document-renstra-uii-dalwa",
+            "icon": "menu-icon tf-icons ti ti-book",
+            "slug": "admin.document-renstra-uii-dalwa.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen Renop",
+            "url": "/admin/document-renop-uii-dalwa",
+            "icon": "menu-icon tf-icons ti ti-notes",
+            "slug": "admin.document-renop-uii-dalwa.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen SOTK",
+            "url": "/admin/document-sotk-uii-dalwa",
+            "icon": "menu-icon tf-icons ti ti-sitemap",
+            "slug": "admin.document-sotk-uii-dalwa.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen Kurikulum Prodi",
+            "url": "/admin/document-kurikulum-prodi",
+            "icon": "menu-icon tf-icons ti ti-school",
+            "slug": "admin.document-kurikulum-prodi.",
+            "role": "admin"
+        },
+        {
+            "name": "SPMI PDDIKTI",
+            "url": "/admin/dokument-implementasi-spmi-pddikti",
+            "icon": "menu-icon tf-icons ti ti-checklist",
+            "slug": "admin.dokument-implementasi-spmi-pddikti.",
+            "role": "admin"
+        },
+        {
+            "name": "Dokumen Pedoman",
+            "url": "/admin/document-pedoman",
+            "icon": "menu-icon tf-icons ti ti-book-2",
+            "slug": "admin.document-pedoman.",
             "role": "admin"
         },
         {

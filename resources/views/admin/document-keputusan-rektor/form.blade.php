@@ -1,0 +1,54 @@
+<div class="col-sm-12">
+    <label class="form-label" for="unit_dokument_id">Unit</label>
+    <select class="form-select unit-select" name="unit_dokument_id">
+        <option value="">-- Pilih Unit --</option>
+        @foreach ($units as $unit)
+        <option value="{{ $unit->id }}" data-jenis="{{ $unit->jenis }}">{{ $unit->nama }}</option>
+        @endforeach
+    </select>
+</div>
+<!-- <div class="col-sm-12 prodi-container" style="display: none;">
+    <label class="form-label" for="prodi_id">Program Studi</label>
+    <select class="form-select" name="prodi_id">
+        <option value="">-- Pilih Program Studi --</option>
+        @foreach ($prodis as $prodi)
+        <option value="{{ $prodi->id }}">{{ $prodi->nama }}</option>
+        @endforeach
+    </select>
+</div> -->
+<div class="col-sm-12">
+    <label class="form-label" for="nama">Nama Dokumen <span class="text-danger">*</span></label>
+    <div class="input-group input-group-merge">
+        <input type="text" class="form-control" name="nama" placeholder="Masukkan nama dokumen..."
+            aria-label="Nama Dokumen" aria-describedby="nama2" required />
+    </div>
+</div>
+<div class="col-sm-12">
+    <label class="form-label" for="no_surat">No Surat</label>
+    <div class="input-group input-group-merge">
+        <input type="text" class="form-control" name="no_surat" placeholder="Masukkan nomor surat..."
+            aria-label="No Surat" aria-describedby="no_surat2" />
+    </div>
+</div>
+<div class="col-sm-12">
+    <label class="form-label" for="perihal">Perihal</label>
+    <div class="input-group input-group-merge">
+        <input type="text" class="form-control" name="perihal" placeholder="Masukkan perihal..."
+            aria-label="Perihal" aria-describedby="perihal2" />
+    </div>
+</div>
+<div class="col-sm-12">
+    <label class="form-label" for="yang_mengeluarkan">Yang Mengeluarkan</label>
+    <div class="input-group input-group-merge">
+        <input type="text" class="form-control" name="yang_mengeluarkan" placeholder="Masukkan yang mengeluarkan..."
+            aria-label="Yang Mengeluarkan" aria-describedby="yang_mengeluarkan2" />
+    </div>
+</div>
+<div class="col-sm-12">
+    <label class="form-label" for="file">Upload File</label>
+    <div class="input-group input-group-merge">
+        <input type="file" class="form-control" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx"
+            aria-label="Upload File" aria-describedby="file2" />
+    </div>
+    <small class="text-muted">Format: PDF, DOC, DOCX, XLS, XLSX. Max: 10MB</small>
+</div>
