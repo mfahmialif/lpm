@@ -37,63 +37,120 @@
                             </drawer-opener>
                         </div>
                         <ul class="header-menu list-unstyled">
-                            {{-- <li class="nav-item">
-                                <a class="menu-link menu-link-main menu-accrodion" href="/">
-                                    Home
+                            {{-- My LPM Dropdown --}}
+                            <li class="nav-item">
+                                <a class="menu-link menu-link-main menu-accrodion {{ request()->routeIs('about.*') || request()->routeIs('activity.*') || request()->routeIs('visi-misi.*') || request()->routeIs('sambutan-ketua.*') || request()->routeIs('sejarah.*') || request()->routeIs('struktur-organisasi.*') ? 'active' : '' }}" href="javascript:void(0);">
+                                    My LPM
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                        xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
                                         <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
                                     </svg>
                                 </a>
                                 <div class="menu-absolute header-submenu submenu-color">
                                     <ul class="list-unstyled">
                                         <li class="nav-item">
-                                            <a class="menu-link" href="index.html">Home 1</a>
+                                            <a class="menu-link {{ request()->routeIs('sambutan-ketua.*') ? 'active' : '' }}" href="{{ route('sambutan-ketua.index') }}">Sambutan Ketua</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link" href="index-2.html">Home 2</a>
+                                            <a class="menu-link {{ request()->routeIs('sejarah.*') ? 'active' : '' }}" href="{{ route('sejarah.index') }}">Sejarah LPM</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="menu-link" href="index-3.html">Home 3</a>
+                                            <a class="menu-link {{ request()->routeIs('visi-misi.*') ? 'active' : '' }}" href="{{ route('visi-misi.index') }}">Visi dan Misi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('struktur-organisasi.*') ? 'active' : '' }}" href="{{ route('struktur-organisasi.index') }}">Struktur Organisasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('activity.*') ? 'active' : '' }}" href="{{ route('activity.index') }}">Berita Kampus</a>
                                         </li>
                                     </ul>
                                 </div>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="menu-link menu-link-main {{ request()->routeIs('root.index') ? 'active' : '' }}"
-                                    href="{{ route('root.index') }}">
-                                    Home
-                                </a>
                             </li>
+
+                            {{-- Accreditation Dropdown --}}
                             <li class="nav-item">
-                                <a class="menu-link menu-link-main {{ request()->routeIs('news.*') ? 'active' : '' }}"
-                                    href="{{ route('news.index') }}">
-                                    Accreditation Guide
+                                <a class="menu-link menu-link-main menu-accrodion {{ request()->routeIs('skor-akreditasi.*') || request()->routeIs('accreditation-certificate.*') || request()->routeIs('news.*') ? 'active' : '' }}" href="javascript:void(0);">
+                                    Akreditasi
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                    </svg>
                                 </a>
+                                <div class="menu-absolute header-submenu submenu-color">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('skor-akreditasi.*') ? 'active' : '' }}" href="{{ route('skor-akreditasi.index') }}">Skor Akreditasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('accreditation-certificate.*') ? 'active' : '' }}" href="{{ route('accreditation-certificate.index') }}">Sertifikat Akreditasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('news.*') ? 'active' : '' }}" href="{{ route('news.index') }}">Panduan Akreditasi</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
+
+                            {{-- Documents Dropdown --}}
                             <li class="nav-item">
-                                <a class="menu-link menu-link-main {{ request()->routeIs('activity.*') ? 'active' : '' }}"
-                                    href="{{ route('activity.index') }}">
-                                    Activity
+                                <a class="menu-link menu-link-main menu-accrodion {{ request()->routeIs('institution-document.*') ? 'active' : '' }}" href="javascript:void(0);">
+                                    Dokumen
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                    </svg>
                                 </a>
+                                <div class="menu-absolute header-submenu submenu-color">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('institution-document.*') ? 'active' : '' }}" href="{{ route('institution-document.index') }}">Dokumen Institusi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link {{ request()->routeIs('accreditation.*') ? 'active' : '' }}" href="{{ route('accreditation.index') }}">Dokumen Akreditasi</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="menu-link menu-link-main {{ request()->routeIs('accreditation.*') ? 'active' : '' }}"
-                                    href="{{ route('accreditation.index') }}">
-                                    Accreditation Documents
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="menu-link menu-link-main {{ request()->routeIs('accreditation-certificate.*') ? 'active' : '' }}"
-                                    href="{{ route('accreditation-certificate.index') }}">
-                                    Accreditation Certificate
-                                </a>
-                            </li>
+
+                            {{-- Kompetensi Dosen --}}
                             <li class="nav-item">
                                 <a class="menu-link menu-link-main {{ request()->routeIs('dosen-competency.*') ? 'active' : '' }}"
                                     href="{{ route('dosen-competency.index') }}">
                                     Kompetensi Dosen
                                 </a>
+                            </li>
+
+                            {{-- AMI Dropdown --}}
+                            <li class="nav-item">
+                                <a class="menu-link menu-link-main menu-accrodion" href="javascript:void(0);">
+                                    AMI
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
+                                        <path d="M5 5L0 0H10L5 5Z" fill="currentColor" />
+                                    </svg>
+                                </a>
+                                <div class="menu-absolute header-submenu submenu-color">
+                                    <ul class="list-unstyled">
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">Periode AMI</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">Kategori AMI</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">Target AMI</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">SK Auditor</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">Surat Tugas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="menu-link" href="javascript:void(0);">Laporan Kinerja</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
 

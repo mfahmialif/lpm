@@ -11,9 +11,21 @@ class Unit extends Model
 
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'jenis' => 'string',
+        'jenjang' => 'string',
+    ];
+
     public function activityUnit()
     {
-        return $this->hasMany(ActivityUnit::class, );
+        return $this->hasMany(ActivityUnit::class,);
     }
 
     public function activity()

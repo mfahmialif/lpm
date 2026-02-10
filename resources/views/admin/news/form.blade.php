@@ -21,10 +21,10 @@
     </select>
 </div>
 @if (@$mode == 'edit')
-    <div class="mb-6">
-        <label class="form-label">Slug</label>
-        <input type="text" class="form-control" name="slug" placeholder="Type here..." />
-    </div>
+<div class="mb-6">
+    <label class="form-label">Slug</label>
+    <input type="text" class="form-control" name="slug" placeholder="Type here..." />
+</div>
 @endif
 <div class="mb-6">
     <label class="form-label">Image Banner</label>
@@ -47,81 +47,95 @@
 <button type="submit" class="btn btn-primary">Submit</button>
 
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.summernote').summernote({
-                placeholder: 'Type here...',
-                tabsize: 2,
-                height: 300
-            });
-
-            $('.remove-image').on('click', function() {
-                $('input[name="image"]').val('');
-                $('input[name="image_name"]').val('');
-                $('button.remove-image').addClass('d-none');
-                $('img.cropped-image').attr('src', "{{ asset('admin/assets/img/avatars/profile.png') }}");
-            });
-
-            $('.cropped-image').on('click', function() {
-                $('input[name="image"]').click();
-            });
-
-            $('input[name="image"]').on('change', function(event) {
-                var input = $(this);
-                var file = event.target.files[0];
-
-                if (file) {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        var src = e.target.result;
-                        $('img.cropped-image').attr('src', src);
-                        $('button.remove-image').removeClass('d-none');
-
-                        $('input[name="image_name"]').val(src);
-                    };
-
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-    </script>
-    <script>
-        const categories = document.querySelector('#categories');
-        const dataCategories = @json($categories->pluck('name'));
-        let tagifyCategories = new Tagify(categories, {
-            whitelist: dataCategories,
-            maxTags: 10,
-            dropdown: {
-                maxItems: 20,
-                classname: 'tags-inline',
-                enabled: 0,
-                closeOnSelect: false
-            }
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            placeholder: 'Type here...',
+            tabsize: 2,
+            height: 300,
+            codeviewFilter: false,
+            codeviewIframeFilter: true,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
 
-        // restore old tags (dukung format string "a,b" maupun JSON [{"value":"a"}])
-        (function restoreCategories() {
-            let raw = categories.value || '';
+        $('.remove-image').on('click', function() {
+            $('input[name="image"]').val('');
+            $('input[name="image_name"]').val('');
+            $('button.remove-image').addClass('d-none');
+            $('img.cropped-image').attr('src', "{{ asset('admin/assets/img/avatars/profile.png') }}");
+        });
 
-            if (raw.trim().startsWith('[{')) {
-                try {
-                    const parsed = JSON.parse(raw);
-                    raw = Array.isArray(parsed) ? parsed.map(o => (o && o.value ? String(o.value) : ''))
-                        .join(',') : '';
-                } catch (e) {
-                    // biarkan raw apa adanya, fallback ke split koma
-                }
+        $('.cropped-image').on('click', function() {
+            $('input[name="image"]').click();
+        });
+
+        $('input[name="image"]').on('change', function(event) {
+            var input = $(this);
+            var file = event.target.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var src = e.target.result;
+                    $('img.cropped-image').attr('src', src);
+                    $('button.remove-image').removeClass('d-none');
+
+                    $('input[name="image_name"]').val(src);
+                };
+
+                reader.readAsDataURL(file);
             }
+        });
+    });
+</script>
+<script>
+    const categories = document.querySelector('#categories');
+    const dataCategories = @json($categories - > pluck('name'));
+    let tagifyCategories = new Tagify(categories, {
+        whitelist: dataCategories,
+        maxTags: 10,
+        dropdown: {
+            maxItems: 20,
+            classname: 'tags-inline',
+            enabled: 0,
+            closeOnSelect: false
+        }
+    });
 
-            const oldTags = raw.split(',')
-                .map(s => s.trim())
-                .filter(Boolean);
+    // restore old tags (dukung format string "a,b" maupun JSON [{"value":"a"}])
+    (function restoreCategories() {
+        let raw = categories.value || '';
 
-            if (oldTags.length) {
-                tagifyCategories.removeAllTags();
-                tagifyCategories.addTags(oldTags);
+        if (raw.trim().startsWith('[{')) {
+            try {
+                const parsed = JSON.parse(raw);
+                raw = Array.isArray(parsed) ? parsed.map(o => (o && o.value ? String(o.value) : ''))
+                    .join(',') : '';
+            } catch (e) {
+                // biarkan raw apa adanya, fallback ke split koma
             }
-        })();
-    </script>
+        }
+
+        const oldTags = raw.split(',')
+            .map(s => s.trim())
+            .filter(Boolean);
+
+        if (oldTags.length) {
+            tagifyCategories.removeAllTags();
+            tagifyCategories.addTags(oldTags);
+        }
+    })();
+</script>
 @endpush
