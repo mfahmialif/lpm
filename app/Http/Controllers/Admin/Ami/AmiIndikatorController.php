@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use App\Exports\IndikatorExport;
+use App\Imports\IndikatorImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AmiIndikatorController extends Controller
 {
@@ -233,6 +236,38 @@ class AmiIndikatorController extends Controller
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    public function exportExcel($skId)
+    {
+        $sk = AmiSkAuditor::findOrFail($skId);
+        $filename = 'indikator-' . str_replace(['/', '\\', ' '], '-', $sk->nomor_sk) . '.xlsx';
+        return Excel::download(new IndikatorExport($skId), $filename);
+    }
+
+    public function importExcel(Request $request, $skId)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $sk = AmiSkAuditor::findOrFail($skId);
+
+        $import = new IndikatorImport($skId);
+        Excel::import($import, $request->file('file'));
+
+        $message = 'Import selesai. ' . $import->getImportedCount() . ' data berhasil diimport.';
+        if ($import->getSkippedCount() > 0) {
+            $message .= ' ' . $import->getSkippedCount() . ' data dilewati.';
+        }
+        if (count($import->getErrors()) > 0) {
+            $message .= ' Detail: ' . implode(' | ', array_slice($import->getErrors(), 0, 5));
+        }
+
+        return redirect()->back()->with(
+            $import->getImportedCount() > 0 ? 'success' : 'error',
+            $message
+        );
     }
 
     public function getRubrik($skId, $id)

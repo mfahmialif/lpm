@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Admin\Ami\AmiModeSwitcherController;
+use App\Exports\SkAuditorExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AmiSkAuditorController extends Controller
 {
@@ -297,6 +299,59 @@ class AmiSkAuditorController extends Controller
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage())->withInput();
         }
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $query = AmiSkAuditor::with(['unit', 'ketuaAuditor', 'anggotas.user', 'periode'])
+            ->select('ami_sk_auditors.*');
+
+        if ($request->has('periode_id') && $request->periode_id && $request->periode_id != '*') {
+            $query->where('ami_periode_id', $request->periode_id);
+        }
+
+        if ($request->has('unit_id') && $request->unit_id && $request->unit_id != '*') {
+            $query->where('unit_id', $request->unit_id);
+        }
+
+        $skAuditors = $query->get();
+
+        $rows = [];
+        foreach ($skAuditors as $sk) {
+            $unitNama = $sk->unit ? $sk->unit->nama : '-';
+            $nomorSk = $sk->nomor_sk ?? '-';
+            $periodeNama = $sk->periode ? $sk->periode->nama . ' (' . $sk->periode->tahun_mulai . '/' . $sk->periode->tahun_selesai . ')' : '-';
+
+            // Auditor Ketua
+            if ($sk->ketuaAuditor) {
+                $rows[] = [
+                    'nomor_sk' => $nomorSk,
+                    'periode' => $periodeNama,
+                    'unit_audit' => $unitNama,
+                    'nama' => $sk->ketuaAuditor->name,
+                    'posisi' => 'Auditor Ketua',
+                    'username' => $sk->ketuaAuditor->username,
+                ];
+            }
+
+            // Anggota (auditor_anggota & auditee)
+            foreach ($sk->anggotas as $anggota) {
+                if (!$anggota->user) continue;
+
+                $posisi = $anggota->peran === 'auditee' ? 'Auditee' : 'Auditor';
+
+                $rows[] = [
+                    'nomor_sk' => $nomorSk,
+                    'periode' => $periodeNama,
+                    'unit_audit' => $unitNama,
+                    'nama' => $anggota->user->name,
+                    'posisi' => $posisi,
+                    'username' => $anggota->user->username,
+                ];
+            }
+        }
+
+        return Excel::download(new SkAuditorExport($rows), 'sk-auditor-export.xlsx');
     }
 
     public function delete(Request $request)

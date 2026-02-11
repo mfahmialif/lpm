@@ -563,6 +563,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             Route::get('/data', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'data'])->name('admin.ami.sk-auditor.data');
             Route::get('/create', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'create'])->name('admin.ami.sk-auditor.create');
             Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'store'])->name('admin.ami.sk-auditor.store');
+            Route::get('/export-excel', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'exportExcel'])->name('admin.ami.sk-auditor.export-excel');
             Route::get('/{id}', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'show'])->name('admin.ami.sk-auditor.show');
             Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'edit'])->name('admin.ami.sk-auditor.edit');
             Route::put('/{id}/update', [\App\Http\Controllers\Admin\Ami\AmiSkAuditorController::class, 'update'])->name('admin.ami.sk-auditor.update');
@@ -575,6 +576,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
                 Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'store'])->name('admin.ami.indikator.store');
                 Route::put('/update', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'update'])->name('admin.ami.indikator.update');
                 Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'delete'])->name('admin.ami.indikator.delete');
+                Route::get('/export-excel', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'exportExcel'])->name('admin.ami.indikator.export-excel');
+                Route::post('/import-excel', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'importExcel'])->name('admin.ami.indikator.import-excel');
                 Route::get('/rubrik/{id}', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'getRubrik'])->name('admin.ami.indikator.rubrik');
             });
         });

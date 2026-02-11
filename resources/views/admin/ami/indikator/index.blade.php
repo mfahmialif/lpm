@@ -57,10 +57,48 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-end gap-2 mb-3">
+    <a href="{{ route('admin.ami.indikator.export-excel', $sk->id) }}" class="btn btn-success">
+        <i class="ti ti-file-spreadsheet me-1"></i> Export Excel
+    </a>
+    <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#modal-import">
+        <i class="ti ti-upload me-1"></i> Import Excel
+    </button>
     <button class="btn btn-primary" type="button" id="new-record-button">
         <i class="ti ti-plus me-1"></i> Tambah Indikator
     </button>
+</div>
+
+<!-- Modal Import -->
+<div class="modal fade" id="modal-import" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('admin.ami.indikator.import-excel', $sk->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Indikator dari Excel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info mb-3">
+                        <i class="ti ti-info-circle me-1"></i>
+                        Download template terlebih dahulu dengan klik <strong>Export Excel</strong>, lalu isi data dan import kembali.
+                        Kode indikator yang sudah ada akan dilewati.
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">File Excel (.xlsx)</label>
+                        <input type="file" class="form-control" name="file" accept=".xlsx,.xls" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="ti ti-upload me-1"></i> Import
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <div class="row">

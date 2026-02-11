@@ -28,6 +28,11 @@
                 </select>
             </div>
         </div>
+        <div class="mt-3">
+            <button type="button" class="btn btn-success" id="btn-export-excel">
+                <i class="ti ti-file-spreadsheet me-1"></i> Export Excel
+            </button>
+        </div>
     </div>
 </div>
 <div class="card" id="card-ami-sk">
@@ -88,6 +93,14 @@
 
     $('#periode_id, #unit_id').on('change', function() {
         dataTable.ajax.reload();
+    });
+
+    $('#btn-export-excel').on('click', function() {
+        var periodeId = $('#periode_id').val();
+        var unitId = $('#unit_id').val();
+        var url = "{{ route('admin.ami.sk-auditor.export-excel') }}";
+        url += '?periode_id=' + periodeId + '&unit_id=' + unitId;
+        window.location.href = url;
     });
 
 </script>
