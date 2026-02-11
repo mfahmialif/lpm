@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Ami;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Ami\AmiModeSwitcherController;
 use App\Models\AmiPeriode;
 use App\Models\AmiSkAuditor;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,9 @@ class AmiDashboardController extends Controller
         $skSelesai = AmiSkAuditor::where('status', 'selesai')->count();
 
         $mySk = 0;
+        $currentMode = null;
         if (!$isAdmin) {
+            $currentMode = AmiModeSwitcherController::getCurrentMode();
             $mySk = AmiSkAuditor::where(function ($q) use ($user) {
                 $q->where('auditor_ketua_id', $user->id)
                   ->orWhereHas('anggotas', function ($q2) use ($user) {
@@ -30,7 +33,7 @@ class AmiDashboardController extends Controller
         }
 
         return view('admin.ami.dashboard.index', compact(
-            'periodeAktif', 'totalSk', 'skAktif', 'skSelesai', 'mySk', 'isAdmin'
+            'periodeAktif', 'totalSk', 'skAktif', 'skSelesai', 'mySk', 'isAdmin', 'currentMode'
         ));
     }
 }
