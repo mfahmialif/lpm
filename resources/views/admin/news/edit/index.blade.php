@@ -38,7 +38,7 @@
         $('.summernote').summernote('destroy');
 
         var news = @json($news);
-        var categoryNames = @json($news - > categories - > pluck('name'));
+        var categoryNames = @json($news->categories->pluck('name'));
         categoryNames = categoryNames.join(', ');
 
         let date = new Date(news.published_at);
