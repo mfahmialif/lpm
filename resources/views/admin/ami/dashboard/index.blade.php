@@ -89,4 +89,41 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header"><h5 class="card-title mb-0">Menu AMI</h5></div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap gap-2">
+                    @if($isAdmin)
+                    <a href="{{ route('admin.ami.unit-audit.index') }}" class="btn btn-outline-secondary">
+                        <i class="ti ti-building me-1"></i> Unit Audit
+                    </a>
+                    <a href="{{ route('admin.ami.periode.index') }}" class="btn btn-outline-secondary">
+                        <i class="ti ti-calendar me-1"></i> Periode
+                    </a>
+                    <a href="{{ route('admin.ami.target-ami.index') }}" class="btn btn-outline-dark">
+                        <i class="ti ti-target me-1"></i> Target AMI
+                    </a>
+                    @endif
+                    <a href="{{ route('admin.ami.sk-auditor.index') }}" class="btn btn-outline-primary">
+                        <i class="ti ti-file-certificate me-1"></i> SK Auditor
+                    </a>
+                    <a href="{{ route('admin.ami.evaluasi-diri.index') }}" class="btn btn-outline-info">
+                        <i class="ti ti-clipboard-text me-1"></i> Evaluasi Diri
+                    </a>
+                    <a href="{{ route('admin.ami.asesmen.index') }}" class="btn btn-outline-success">
+                        <i class="ti ti-checkbox me-1"></i> Asesmen Auditor
+                    </a>
+                    @if($isAdmin)
+                    <a href="{{ route('admin.ami.rtm.index') }}" class="btn btn-outline-warning">
+                        <i class="ti ti-gavel me-1"></i> RTM
+                    </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

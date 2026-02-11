@@ -299,14 +299,74 @@
             "url": "/admin/ami/evaluasi-diri",
             "icon": "menu-icon tf-icons ti ti-clipboard-text",
             "slug": "admin.ami.evaluasi-diri.",
-            "role": "admin,lpm,unit"
+            "role": "admin,lpm,unit",
+            "amiMode": "auditee"
         },
         {
             "name": "Asesmen Auditor",
             "url": "/admin/ami/asesmen-auditor",
             "icon": "menu-icon tf-icons ti ti-checkbox",
             "slug": "admin.ami.asesmen.",
+            "role": "admin,lpm,unit",
+            "amiMode": "auditor"
+        },
+        {
+            "name": "Evaluasi Diri",
+            "url": "/admin/ami/evaluasi-diri",
+            "icon": "menu-icon tf-icons ti ti-clipboard-text",
+            "slug": "admin.ami.evaluasi-diri.",
+            "role": "unit",
+            "amiMode": "auditor"
+        },
+        {
+            "name": "Asesmen Diri",
+            "url": "/admin/ami/asesmen-auditor",
+            "icon": "menu-icon tf-icons ti ti-eye",
+            "slug": "admin.ami.asesmen.",
+            "role": "unit",
+            "amiMode": "auditee"
+        },
+        {
+            "name": "Target AMI",
+            "url": "/admin/ami/target-ami",
+            "icon": "menu-icon tf-icons ti ti-target",
+            "slug": "admin.ami.target-ami.",
             "role": "admin,lpm,unit"
+        },
+        {
+            "name": "Indikator",
+            "url": "/admin/ami/indikator",
+            "icon": "menu-icon tf-icons ti ti-list-check",
+            "slug": "admin.ami.indikator.",
+            "role": "admin,lpm"
+        },
+        {
+            "name": "Temuan Audit",
+            "url": "/admin/ami/audit-proses",
+            "icon": "menu-icon tf-icons ti ti-search",
+            "slug": "admin.ami.audit-proses.",
+            "role": "admin,lpm,unit"
+        },
+        {
+            "name": "Hasil Temuan",
+            "url": "/admin/ami/hasil-temuan",
+            "icon": "menu-icon tf-icons ti ti-report-analytics",
+            "slug": "admin.ami.hasil-temuan.",
+            "role": "admin,lpm,unit"
+        },
+        {
+            "name": "Laporan Kinerja",
+            "url": "/admin/ami/laporan-kinerja",
+            "icon": "menu-icon tf-icons ti ti-report",
+            "slug": "admin.ami.laporan-kinerja.",
+            "role": "admin,lpm,unit"
+        },
+        {
+            "name": "RTM",
+            "url": "/admin/ami/rtm",
+            "icon": "menu-icon tf-icons ti ti-gavel",
+            "slug": "admin.ami.rtm.",
+            "role": "admin,lpm"
         },
         {
             "menuHeader": "Administrator",

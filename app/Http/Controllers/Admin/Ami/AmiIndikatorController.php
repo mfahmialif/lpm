@@ -7,6 +7,8 @@ use App\Models\AmiSkAuditor;
 use App\Models\AmiIndikator;
 use App\Models\AmiRubrikSkor;
 use App\Models\AmiAuditTrail;
+use App\Models\AmiPeriode;
+use App\Models\AmiUnitAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,66 +16,78 @@ use Yajra\DataTables\DataTables;
 
 class AmiIndikatorController extends Controller
 {
-    public function index($skId)
+    public function indexSk(Request $request)
     {
-        $sk = AmiSkAuditor::with(['periode', 'unit'])->findOrFail($skId);
-        return view('admin.ami.indikator.index', compact('sk'));
+        $query = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor'])
+            ->withCount('indikators');
+
+        if ($request->filled('periode_id')) {
+            $query->where('ami_periode_id', $request->periode_id);
+        }
+
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->unit_id);
+        }
+
+        $sort = $request->get('sort', 'terbaru');
+        switch ($sort) {
+            case 'terlama':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'nomor_asc':
+                $query->orderBy('nomor_sk', 'asc');
+                break;
+            case 'nomor_desc':
+                $query->orderBy('nomor_sk', 'desc');
+                break;
+            case 'terbaru':
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $skList = $query->paginate(9)->withQueryString();
+        $periodes = AmiPeriode::orderBy('created_at', 'desc')->get();
+        $units = AmiUnitAudit::orderBy('nama')->get();
+
+        return view('admin.ami.indikator.list_sk', compact('skList', 'periodes', 'units'));
     }
 
-    public function data(Request $request, $skId)
+    public function index(Request $request, $skId)
     {
-        $search = request('search.value');
-        $data = AmiIndikator::with('rubrikSkors')
-            ->where('ami_sk_auditor_id', $skId)
-            ->select('ami_indikators.*');
+        $sk = AmiSkAuditor::with(['periode', 'unit'])->findOrFail($skId);
+        
+        $query = AmiIndikator::where('ami_sk_auditor_id', $skId);
 
-        return DataTables::of($data)
-            ->filter(function ($query) use ($search) {
-                $query->where(function ($query) use ($search) {
-                    $query->orWhere('kode', 'LIKE', "%$search%");
-                    $query->orWhere('pertanyaan', 'LIKE', "%$search%");
-                });
-            })
-            ->addColumn('status_badge', function ($row) {
-                return $row->is_active
-                    ? '<span class="badge bg-success">Aktif</span>'
-                    : '<span class="badge bg-secondary">Nonaktif</span>';
-            })
-            ->addColumn('rubrik_count', function ($row) {
-                return $row->rubrikSkors->count() . '/4';
-            })
-            ->addColumn('action', function ($row) {
-                return '
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="ti ti-dots-vertical ti-md"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                            <li><button class="dropdown-item btn-detail" data-id="' . $row->id . '">Detail Rubrik</button></li>
-                            <li>
-                                <button class="dropdown-item edit-record-button"
-                                    data-id="' . $row->id . '"
-                                    data-kode="' . $row->kode . '"
-                                    data-pertanyaan="' . e($row->pertanyaan) . '"
-                                    data-narasi_evaluasi_diri="' . e($row->narasi_evaluasi_diri) . '"
-                                    data-urutan="' . $row->urutan . '"
-                                    data-is_active="' . ($row->is_active ? '1' : '0') . '"
-                                    data-rubrik=\'' . $row->rubrikSkors->toJson() . '\'
-                                    >Edit</button></li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <form class="form-delete-record">
-                                    ' . method_field('DELETE') . csrf_field() . '
-                                    <input type="hidden" name="id" value="' . $row->id . '">
-                                    <input type="hidden" name="nama" value="' . $row->kode . '">
-                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>';
-            })
-            ->rawColumns(['action', 'status_badge'])
-            ->toJson();
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('kode', 'LIKE', "%$search%")
+                  ->orWhere('pertanyaan', 'LIKE', "%$search%")
+                  ->orWhere('narasi_evaluasi_diri', 'LIKE', "%$search%");
+            });
+        }
+
+        $sort = $request->get('sort', 'urutan_asc');
+        switch ($sort) {
+            case 'urutan_desc':
+                $query->orderBy('urutan', 'desc');
+                break;
+            case 'kode_asc':
+                $query->orderBy('kode', 'asc');
+                break;
+            case 'kode_desc':
+                $query->orderBy('kode', 'desc');
+                break;
+            case 'urutan_asc':
+            default:
+                $query->orderBy('urutan', 'asc');
+                break;
+        }
+
+        $indikators = $query->paginate(10)->withQueryString();
+
+        return view('admin.ami.indikator.index', compact('sk', 'indikators'));
     }
 
     public function store(Request $request, $skId)
@@ -97,7 +111,7 @@ class AmiIndikatorController extends Controller
                 ->where('kode', $request->kode)
                 ->exists();
             if ($exists) {
-                return ['status' => false, 'type' => 'error', 'message' => 'Kode indikator sudah ada di SK ini'];
+                return redirect()->back()->with('error', 'Kode indikator sudah ada di SK ini')->withInput();
             }
 
             $indikator = AmiIndikator::create([
@@ -129,10 +143,10 @@ class AmiIndikatorController extends Controller
             ]);
 
             DB::commit();
-            return ['status' => true, 'type' => 'success', 'message' => 'Berhasil menambahkan Indikator'];
+            return redirect()->back()->with('success', 'Berhasil menambahkan Indikator');
         } catch (\Throwable $th) {
             DB::rollback();
-            return ['status' => false, 'type' => 'error', 'message' => $th->getMessage()];
+            return redirect()->back()->with('error', $th->getMessage())->withInput();
         }
     }
 
@@ -161,7 +175,7 @@ class AmiIndikatorController extends Controller
                 ->where('id', '!=', $request->id)
                 ->exists();
             if ($exists) {
-                return ['status' => false, 'type' => 'error', 'message' => 'Kode indikator sudah ada di SK ini'];
+                return redirect()->back()->with('error', 'Kode indikator sudah ada di SK ini')->withInput();
             }
 
             $before = $indikator->load('rubrikSkors')->toArray();
@@ -190,10 +204,10 @@ class AmiIndikatorController extends Controller
             ]);
 
             DB::commit();
-            return ['status' => true, 'type' => 'success', 'message' => 'Berhasil mengupdate Indikator'];
+            return redirect()->back()->with('success', 'Berhasil mengupdate Indikator');
         } catch (\Throwable $th) {
             DB::rollback();
-            return ['status' => false, 'type' => 'error', 'message' => $th->getMessage()];
+            return redirect()->back()->with('error', $th->getMessage())->withInput();
         }
     }
 
@@ -214,10 +228,10 @@ class AmiIndikatorController extends Controller
 
             $data->delete();
             DB::commit();
-            return ['status' => true, 'type' => 'success', 'message' => 'Berhasil menghapus Indikator'];
+            return redirect()->back()->with('success', 'Berhasil menghapus Indikator');
         } catch (\Throwable $th) {
             DB::rollback();
-            return ['status' => false, 'type' => 'error', 'message' => $th->getMessage()];
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 

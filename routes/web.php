@@ -511,6 +511,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         // Dashboard
         Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiDashboardController::class, 'index'])->name('admin.ami.dashboard');
 
+        // AMI Mode Switcher
+        Route::post('/switch-mode', [\App\Http\Controllers\Admin\Ami\AmiModeSwitcherController::class, 'switchMode'])->name('admin.ami.switch-mode');
+
         // Unit Audit (admin/lpm only)
         Route::prefix('unit-audit')->middleware('role:admin,lpm')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiUnitAuditController::class, 'index'])->name('admin.ami.unit-audit.index');
@@ -528,6 +531,31 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             Route::put('/update', [\App\Http\Controllers\Admin\Ami\AmiPeriodeController::class, 'update'])->name('admin.ami.periode.update');
             Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiPeriodeController::class, 'delete'])->name('admin.ami.periode.delete');
         });
+
+        // Target AMI
+        Route::prefix('target-ami')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'index'])->name('admin.ami.target-ami.index');
+            Route::get('/data', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'data'])->name('admin.ami.target-ami.data');
+            Route::get('/create', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'create'])->name('admin.ami.target-ami.create');
+            Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'store'])->name('admin.ami.target-ami.store');
+            Route::get('/{id}', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'show'])->name('admin.ami.target-ami.show');
+            Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'edit'])->name('admin.ami.target-ami.edit');
+            Route::put('/{id}/update', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'update'])->name('admin.ami.target-ami.update');
+            Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'delete'])->name('admin.ami.target-ami.delete');
+            Route::post('/{id}/change-status', [\App\Http\Controllers\Admin\Ami\AmiTargetAmiController::class, 'changeStatus'])->name('admin.ami.target-ami.change-status');
+        });
+
+        // Indikator (Global List)
+        Route::get('/indikator', [\App\Http\Controllers\Admin\Ami\AmiIndikatorController::class, 'indexSk'])->name('admin.ami.indikator.list');
+
+        // Temuan Audit (Global List - URL: audit-proses)
+        Route::get('/audit-proses', [\App\Http\Controllers\Admin\Ami\AmiTemuanAuditController::class, 'indexSk'])->name('admin.ami.temuan.list');
+
+        // Hasil Temuan (Global List)
+        Route::get('/hasil-temuan', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'indexSk'])->name('admin.ami.hasil-temuan.list');
+        
+        // Laporan Kinerja (Global List)
+        Route::get('/laporan-kinerja', [\App\Http\Controllers\Admin\Ami\AmiLaporanKinerjaController::class, 'indexSk'])->name('admin.ami.laporan-kinerja.list');
 
         // SK Auditor
         Route::prefix('sk-auditor')->group(function () {
@@ -579,10 +607,39 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiTemuanAuditController::class, 'delete'])->name('admin.ami.temuan.delete');
         });
 
+        // Hasil Temuan
+        Route::prefix('hasil-temuan/{skId}')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'index'])->name('admin.ami.hasil-temuan.index');
+            Route::get('/data', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'data'])->name('admin.ami.hasil-temuan.data');
+            Route::get('/create', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'create'])->name('admin.ami.hasil-temuan.create');
+            Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'store'])->name('admin.ami.hasil-temuan.store');
+            Route::get('/{id}', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'show'])->name('admin.ami.hasil-temuan.show');
+            Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'edit'])->name('admin.ami.hasil-temuan.edit');
+            Route::put('/{id}/update', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'update'])->name('admin.ami.hasil-temuan.update');
+            Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'delete'])->name('admin.ami.hasil-temuan.delete');
+        });
+
         // Laporan Kinerja
         Route::prefix('laporan-kinerja/{skId}')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiLaporanKinerjaController::class, 'index'])->name('admin.ami.laporan-kinerja.index');
             Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiLaporanKinerjaController::class, 'store'])->name('admin.ami.laporan-kinerja.store');
+        });
+
+        // RTM (Rapat Tinjauan Manajemen)
+        Route::prefix('rtm')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'index'])->name('admin.ami.rtm.index');
+            Route::get('/data', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'data'])->name('admin.ami.rtm.data');
+            Route::get('/create', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'create'])->name('admin.ami.rtm.create');
+            Route::post('/store', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'store'])->name('admin.ami.rtm.store');
+            Route::get('/{id}', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'show'])->name('admin.ami.rtm.show');
+            Route::get('/{id}/edit', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'edit'])->name('admin.ami.rtm.edit');
+            Route::put('/{id}/update', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'update'])->name('admin.ami.rtm.update');
+            Route::delete('/delete', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'delete'])->name('admin.ami.rtm.delete');
+            Route::post('/{id}/save-keputusan', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'saveKeputusan'])->name('admin.ami.rtm.save-keputusan');
+            Route::post('/{id}/update-status-tl', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'updateStatusTl'])->name('admin.ami.rtm.update-status-tl');
+            Route::post('/{id}/change-status', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'changeStatus'])->name('admin.ami.rtm.change-status');
+            Route::post('/{id}/sahkan', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'sahkan'])->name('admin.ami.rtm.sahkan');
+            Route::post('/{id}/tutup', [\App\Http\Controllers\Admin\Ami\AmiRtmController::class, 'tutup'])->name('admin.ami.rtm.tutup');
         });
     });
 });

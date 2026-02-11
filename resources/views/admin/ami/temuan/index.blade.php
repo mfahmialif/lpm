@@ -1,5 +1,18 @@
 @extends('layouts.admin.template')
 @section('title', 'Temuan Audit')
+@push('css')
+<style>
+    /* Desktop (>= md) */
+    @media (min-width: 768px) {
+        .text-wrap {
+            white-space: normal !important;
+            word-break: break-word;
+            vertical-align: top;
+        }
+    }
+
+</style>
+@endpush
 @section('content')
 <div class="row mb-4">
     <div class="col-12">
@@ -102,49 +115,79 @@
         e.preventDefault();
         var nama = $(e.target).find('input[name="nama"]').val();
         Swal.fire({
-            title: 'Hapus "' + nama + '"?',
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal',
-            customClass: {
-                confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
-                cancelButton: 'btn btn-label-secondary waves-effect waves-light'
-            },
-            buttonsStyling: false
+            title: 'Hapus "' + nama + '"?'
+            , text: "Data yang dihapus tidak dapat dikembalikan!"
+            , icon: 'warning'
+            , showCancelButton: true
+            , confirmButtonText: 'Ya, hapus!'
+            , cancelButtonText: 'Batal'
+            , customClass: {
+                confirmButton: 'btn btn-primary me-3 waves-effect waves-light'
+                , cancelButton: 'btn btn-label-secondary waves-effect waves-light'
+            }
+            , buttonsStyling: false
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.ami.temuan.delete', $sk->id) }}",
-                    data: new FormData($(e.target)[0]),
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
+                    type: "POST"
+                    , url: "{{ route('admin.ami.temuan.delete', $sk->id) }}"
+                    , data: new FormData($(e.target)[0])
+                    , contentType: false
+                    , processData: false
+                    , success: function(response) {
                         showToastr(response.type, response.type, response.message);
                         dataTable.ajax.reload(null, false);
-                    },
-                });
+                    }
+                , });
             }
         });
     });
     @endif
+
 </script>
 
 <script>
-    var columns = [
-        { data: "jenis_badge", name: "jenis_temuan", className: "align-middle" },
-        { data: "deskripsi", name: "deskripsi", className: "align-middle", render: function(d) { return d && d.length > 80 ? d.substring(0, 80) + '...' : d; } },
-        { data: "rekomendasi", name: "rekomendasi", className: "align-middle", render: function(d) { return d ? (d.length > 60 ? d.substring(0, 60) + '...' : d) : '-'; } },
-        { data: "created_by_name", name: "created_by_name", className: "align-middle", searchable: false },
-    ];
+    var columns = [{
+            data: "jenis_badge"
+            , name: "jenis_temuan"
+            , className: "align-middle"
+        }
+        , {
+            data: "deskripsi"
+            , name: "deskripsi"
+            , className: "align-middle text-wrap"
+            , render: function(d) {
+                return d && d.length > 80 ? d.substring(0, 80) + '...' : d;
+            }
+        }
+        , {
+            data: "rekomendasi"
+            , name: "rekomendasi"
+            , className: "align-middle text-wrap"
+            , render: function(d) {
+                return d ? (d.length > 60 ? d.substring(0, 60) + '...' : d) : '-';
+            }
+        }
+        , {
+            data: "created_by_name"
+            , name: "created_by_name"
+            , className: "align-middle"
+            , searchable: false
+        }
+    , ];
     @if($canEdit)
-    columns.push({ data: "action", name: "action", className: "align-middle", searchable: false, orderable: false });
+    columns.push({
+        data: "action"
+        , name: "action"
+        , className: "align-middle"
+        , searchable: false
+        , orderable: false
+    });
     @endif
 
-    var dataTable = initDataTables('table-1', 'loader-temuan', 'card-temuan', @json($canEdit ? 'new-record-button' : false), false,
-        'Temuan Audit', "{{ route('admin.ami.temuan.data', $sk->id) }}", columns
+    var dataTable = initDataTables('table-1', 'loader-temuan', 'card-temuan', @json($canEdit ? 'new-record-button' : false), false
+        , 'Temuan Audit', "{{ route('admin.ami.temuan.data', $sk->id) }}", columns
     );
+
 </script>
 @endpush

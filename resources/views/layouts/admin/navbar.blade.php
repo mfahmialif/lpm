@@ -63,6 +63,42 @@
             </li>
             <!-- / Layout Switcher-->
 
+            @if(Auth::user()->role === 'unit')
+            @php
+                $amiModes = \App\Http\Controllers\Admin\Ami\AmiModeSwitcherController::getAvailableModes();
+                $currentAmiMode = \App\Http\Controllers\Admin\Ami\AmiModeSwitcherController::getCurrentMode();
+            @endphp
+            @if(count($amiModes) > 1)
+            <li class="nav-item dropdown me-1">
+                <a class="nav-link btn btn-text-secondary btn-icon rounded-pill dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="ti ti-switch-horizontal ti-md"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><h6 class="dropdown-header">Mode AMI</h6></li>
+                    @foreach($amiModes as $mode)
+                    <li>
+                        <form action="{{ route('admin.ami.switch-mode') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="mode" value="{{ $mode }}">
+                            <button type="submit" class="dropdown-item {{ $currentAmiMode === $mode ? 'active' : '' }}">
+                                <i class="ti {{ $mode === 'auditee' ? 'ti-clipboard-text' : 'ti-shield-check' }} me-2"></i>
+                                {{ ucfirst($mode) }}
+                                @if($currentAmiMode === $mode)
+                                <i class="ti ti-check ms-2 text-success"></i>
+                                @endif
+                            </button>
+                        </form>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            @elseif(count($amiModes) === 1)
+            <span class="badge bg-label-primary me-2 d-none d-md-inline-block">
+                <i class="ti {{ $amiModes[0] === 'auditee' ? 'ti-clipboard-text' : 'ti-shield-check' }} me-1"></i>{{ ucfirst($amiModes[0]) }}
+            </span>
+            @endif
+            @endif
+
             <button class="btn btn-primary mx-3">{{ \Carbon::now()->format('d/m/Y') }}</button>
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">

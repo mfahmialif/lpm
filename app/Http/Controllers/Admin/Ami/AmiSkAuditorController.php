@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AmiSkAuditor;
 use App\Models\AmiSkAuditorAnggota;
 use App\Models\AmiPeriode;
+use App\Models\AmiTargetAmi;
 use App\Models\AmiAuditTrail;
 use App\Models\AmiUnitAudit;
 use App\Models\User;
@@ -13,23 +14,55 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use App\Http\Controllers\Admin\Ami\AmiModeSwitcherController;
 
 class AmiSkAuditorController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        $isAdmin = in_array($user->role, ['admin', 'lpm']);
         $periodes = AmiPeriode::orderBy('tahun_mulai', 'desc')->get();
-        return view('admin.ami.sk-auditor.index', compact('periodes'));
+        $units = AmiUnitAudit::orderBy('nama')->get();
+        return view('admin.ami.sk-auditor.index', compact('periodes', 'units', 'isAdmin'));
     }
 
     public function data(Request $request)
     {
         $search = request('search.value');
-        $data = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor'])
+        $data = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor', 'auditees.user'])
             ->select('ami_sk_auditors.*');
 
-        if ($request->has('periode_id') && $request->periode_id) {
+        if ($request->has('periode_id') && $request->periode_id && $request->periode_id != '*') {
             $data->where('ami_periode_id', $request->periode_id);
+        }
+
+        if ($request->has('unit_id') && $request->unit_id && $request->unit_id != '*') {
+            $data->where('unit_id', $request->unit_id);
+        }
+
+        // Scope for unit users
+        $user = Auth::user();
+        if ($user->role === 'unit') {
+            $currentMode = AmiModeSwitcherController::getCurrentMode();
+            $data->where(function ($q) use ($user, $currentMode) {
+                if ($currentMode === 'auditee') {
+                    $q->whereHas('anggotas', function ($q2) use ($user) {
+                        $q2->where('user_id', $user->id)->where('peran', 'auditee');
+                    });
+                } elseif ($currentMode === 'auditor') {
+                    $q->where('auditor_ketua_id', $user->id)
+                      ->orWhereHas('anggotas', function ($q2) use ($user) {
+                          $q2->where('user_id', $user->id)->where('peran', 'auditor_anggota');
+                      });
+                } else {
+                    // Fallback: show all SKs where user is assigned
+                    $q->where('auditor_ketua_id', $user->id)
+                      ->orWhereHas('anggotas', function ($q2) use ($user) {
+                          $q2->where('user_id', $user->id);
+                      });
+                }
+            });
         }
 
         return DataTables::of($data)
@@ -47,8 +80,17 @@ class AmiSkAuditorController extends Controller
             ->addColumn('periode_nama', function ($row) {
                 return $row->periode ? $row->periode->nama : '-';
             })
-            ->addColumn('ketua_nama', function ($row) {
-                return $row->ketuaAuditor ? $row->ketuaAuditor->name : '-';
+            ->addColumn('auditee_names', function ($row) {
+            $names = $row->auditees->map(function ($a) {
+                return $a->user ? $a->user->name : '-';
+            })->filter();
+            if ($names->isEmpty()) return '<span class="text-muted">-</span>';
+            return $names->map(function ($n) {
+                return '<span class="badge bg-label-info me-1 mb-1">' . e($n) . '</span>';
+            })->implode('');
+        })
+        ->addColumn('ketua_nama', function ($row) {
+            return $row->ketuaAuditor ? $row->ketuaAuditor->name : '-';
             })
             ->addColumn('status_badge', function ($row) {
                 $badges = [
@@ -61,6 +103,17 @@ class AmiSkAuditorController extends Controller
                 return '<span class="badge ' . $badgeClass . '">' . ucfirst($row->status) . '</span>';
             })
             ->addColumn('action', function ($row) {
+                $user = Auth::user();
+                $isAdmin = in_array($user->role, ['admin', 'lpm']);
+
+                if (!$isAdmin) {
+                    // Unit users: detail only
+                    return '
+                        <a href="' . route('admin.ami.sk-auditor.show', $row->id) . '" class="btn btn-sm btn-outline-primary">
+                            <i class="ti ti-eye me-1"></i>Detail
+                        </a>';
+                }
+
                 return '
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -81,7 +134,7 @@ class AmiSkAuditorController extends Controller
                         </ul>
                     </div>';
             })
-            ->rawColumns(['action', 'status_badge'])
+            ->rawColumns(['action', 'status_badge', 'auditee_names'])
             ->toJson();
     }
 
@@ -158,7 +211,7 @@ class AmiSkAuditorController extends Controller
     {
         $sk = AmiSkAuditor::with([
             'periode', 'unit', 'ketuaAuditor',
-            'anggotas.user', 'evaluasiDiris', 'asesmens', 'temuanAudits'
+            'anggotas.user', 'evaluasiDiris', 'asesmens', 'temuanAudits', 'targetAmis'
         ])->findOrFail($id);
 
         $user = Auth::user();

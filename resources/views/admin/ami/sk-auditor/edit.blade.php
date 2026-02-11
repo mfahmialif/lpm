@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Tanggal SK <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" name="tanggal_sk" value="{{ $sk->tanggal_sk }}" required>
+                            <input type="date" class="form-control" name="tanggal_sk" value="{{ optional($sk->tanggal_sk)->format('Y-m-d') }}" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Status <span class="text-danger">*</span></label>

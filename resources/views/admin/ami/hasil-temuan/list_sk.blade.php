@@ -1,5 +1,5 @@
 @extends('layouts.admin.template')
-@section('title', 'Evaluasi Diri')
+@section('title', 'Daftar SK Auditor - Hasil Temuan')
 @section('content')
 <style>
     .hover-card {
@@ -12,17 +12,22 @@
     }
 </style>
 <div class="row">
-    <h4 class="fw-bold py-3 mb-0">
-        <span class="text-muted fw-light">AMI /</span> Evaluasi Diri
-    </h4>
-    <p class="text-muted">Pilih SK Auditor untuk mengisi atau melihat evaluasi diri.</p>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold py-3 mb-0">
+                <span class="text-muted fw-light">AMI /</span> Hasil Temuan
+            </h4>
+            <p class="text-muted mb-0">Pilih SK Auditor untuk mengelola hasil temuan audit.</p>
+        </div>
+    </div>
 </div>
+
 <div class="card mb-4">
     <div class="card-header pb-0">
         <h5 class="card-title mb-0">Filter Data</h5>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.ami.evaluasi-diri.index') }}" method="GET">
+        <form action="{{ route('admin.ami.hasil-temuan.list') }}" method="GET">
             <div class="row align-items-end g-3">
                 <div class="col-md-3">
                     <label class="form-label">Periode</label>
@@ -57,7 +62,7 @@
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="ti ti-filter me-1"></i>Filter
                         </button>
-                        <a href="{{ route('admin.ami.evaluasi-diri.index') }}" class="btn btn-label-secondary w-100">
+                        <a href="{{ route('admin.ami.hasil-temuan.list') }}" class="btn btn-label-secondary w-100">
                             Reset
                         </a>
                     </div>
@@ -74,25 +79,30 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <div>
-                        <h6 class="mb-1">{{ $sk->unit ? $sk->unit->nama : '-' }}</h6>
-                        <small class="text-muted">{{ $sk->nomor_sk }}</small>
+                        <h5 class="card-title mb-1">{{ $sk->unit->nama ?? 'Unit tidak ditemukan' }}</h5>
+                        <small class="text-muted">SK: {{ $sk->nomor_sk }}</small>
                     </div>
-                    @php
-                    $badges = ['draft' => 'bg-secondary', 'aktif' => 'bg-success', 'terkunci' => 'bg-warning', 'selesai' => 'bg-primary'];
-                    $badgeClass = isset($badges[$sk->status]) ? $badges[$sk->status] : 'bg-secondary';
-                    @endphp
-                    <span class="badge {{ $badgeClass }}">{{ ucfirst($sk->status) }}</span>
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-label-primary">{{ $sk->periode->nama ?? '-' }}</span>
+                    </div>
                 </div>
+                
                 <p class="mb-2">
-                    <small class="text-muted">Periode:</small>
-                    {{ $sk->periode ? $sk->periode->nama : '-' }}
+                    <small class="text-muted">Periode:</small><br>
+                    @if($sk->tanggal_sk)
+                        {{ \Carbon\Carbon::parse($sk->tanggal_sk)->format('d M Y') }}
+                    @else
+                        -
+                    @endif
                 </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">
-                        {{ $sk->evaluasiDiris->count() }} indikator terjawab
-                    </small>
-                    <a href="{{ route('admin.ami.evaluasi-diri.show', $sk->id) }}" class="btn btn-sm btn-primary">
-                        <i class="ti ti-arrow-right me-1"></i>Buka
+
+                <div class="d-flex justify-content-between align-items-center mt-3 border-top pt-3">
+                    <div>
+                        <small class="text-muted d-block mb-1">Hasil Temuan</small>
+                        <h6 class="mb-0 text-primary">{{ $sk->hasil_temuans_count ?? 0 }} Data</h6>
+                    </div>
+                    <a href="{{ route('admin.ami.hasil-temuan.index', $sk->id) }}" class="btn btn-sm btn-primary">
+                        <i class="ti ti-list-check me-1"></i>Kelola
                     </a>
                 </div>
             </div>
@@ -102,9 +112,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body text-center py-5">
-                <i class="ti ti-clipboard-off ti-lg text-muted mb-3 d-block" style="font-size: 3rem;"></i>
-                <h6>Belum ada SK Auditor yang terkait dengan Anda</h6>
-                <p class="text-muted">Hubungi admin untuk menambahkan Anda ke dalam SK Auditor.</p>
+                <i class="ti ti-file-off ti-lg text-muted mb-3 d-block" style="font-size: 3rem;"></i>
+                <h6>Belum ada Data SK Auditor</h6>
+                <p class="mb-0">Silakan buat SK Auditor terlebih dahulu.</p>
             </div>
         </div>
     </div>

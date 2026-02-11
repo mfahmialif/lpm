@@ -10,13 +10,23 @@
 </div>
 <div class="card mb-5">
     <div class="card-body">
-        <div class="col-md-12">
-            <select class="select2 form-select" id="periode_id">
-                <option value="">Semua Periode</option>
-                @foreach($periodes as $p)
-                <option value="{{ $p->id }}">{{ $p->nama }} ({{ $p->tahun_mulai }}/{{ $p->tahun_selesai }})</option>
-                @endforeach
-            </select>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <select class="select2 form-select" id="periode_id">
+                    <option value="*">SEMUA PERIODE</option>
+                    @foreach($periodes as $p)
+                    <option value="{{ $p->id }}">{{ $p->nama }} ({{ $p->tahun_mulai }}/{{ $p->tahun_selesai }})</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="select2 form-select" id="unit_id">
+                    <option value="*">SEMUA UNIT AUDIT</option>
+                    @foreach($units as $u)
+                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 </div>
@@ -29,6 +39,7 @@
                     <th>Nomor SK</th>
                     <th>Periode</th>
                     <th>Unit</th>
+                    <th>Auditee</th>
                     <th>Ketua Auditor</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -75,14 +86,14 @@
         });
     });
 
-    $('#periode_id').on('change', function() {
+    $('#periode_id, #unit_id').on('change', function() {
         dataTable.ajax.reload();
     });
 
 </script>
 
 <script>
-    var dataTable = initDataTables('table-1', 'loader-ami-sk', 'card-ami-sk', 'new-record-button', false
+    var dataTable = initDataTables('table-1', 'loader-ami-sk', 'card-ami-sk', "{{ $isAdmin ? 'new-record-button' : false }}", false
         , 'SK Auditor', "{{ route('admin.ami.sk-auditor.data') }}"
         , [{
                 data: "nomor_sk"
@@ -98,6 +109,12 @@
                 data: "unit_nama"
                 , name: "unit_nama"
                 , className: "align-middle"
+            , }
+            , {
+                data: "auditee_names"
+                , name: "auditee_names"
+                , className: "align-middle"
+                , orderable: false
             , }
             , {
                 data: "ketua_nama"
@@ -117,7 +134,7 @@
                 , orderable: false
             , }
         , ]
-        , ['periode_id']
+        , ['periode_id', 'unit_id']
     );
 
 </script>

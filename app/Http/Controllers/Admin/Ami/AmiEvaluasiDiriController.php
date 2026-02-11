@@ -7,42 +7,84 @@ use App\Models\AmiSkAuditor;
 use App\Models\AmiIndikator;
 use App\Models\AmiEvaluasiDiri;
 use App\Models\AmiEvaluasiDiriFile;
+use App\Models\AmiPeriode;
+use App\Models\AmiUnitAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AmiEvaluasiDiriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $isAdmin = in_array($user->role, ['admin', 'lpm']);
 
+        $query = AmiSkAuditor::with(['periode', 'unit', 'evaluasiDiris']);
+
         if ($isAdmin) {
-            $skList = AmiSkAuditor::with(['periode', 'unit', 'evaluasiDiris'])
-                ->whereIn('status', ['aktif', 'terkunci', 'selesai'])
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query->whereIn('status', ['aktif', 'terkunci', 'selesai']);
         } else {
-            $skList = AmiSkAuditor::with(['periode', 'unit', 'evaluasiDiris'])
-                ->whereIn('status', ['aktif'])
-                ->whereHas('anggotas', function ($q2) use ($user) {
-                    $q2->where('user_id', $user->id)->where('peran', 'auditee');
-                })
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query->whereIn('status', ['aktif', 'terkunci', 'selesai'])
+                ->where(function ($q) use ($user) {
+                    $q->whereHas('anggotas', function ($q2) use ($user) {
+                        $q2->where('user_id', $user->id);
+                    })
+                    ->orWhere('auditor_ketua_id', $user->id);
+                });
         }
 
-        return view('admin.ami.evaluasi-diri.index', compact('skList', 'isAdmin'));
+        if ($request->filled('periode_id')) {
+            $query->where('ami_periode_id', $request->periode_id);
+        }
+
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->unit_id);
+        }
+
+        $sort = $request->get('sort', 'terbaru');
+        switch ($sort) {
+            case 'terlama':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'nomor_asc':
+                $query->orderBy('nomor_sk', 'asc');
+                break;
+            case 'nomor_desc':
+                $query->orderBy('nomor_sk', 'desc');
+                break;
+            case 'terbaru':
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $skList = $query->paginate(9)->withQueryString();
+        $periodes = AmiPeriode::orderBy('created_at', 'desc')->get();
+
+        // For unit users, only show units from their assigned SKs
+        if ($isAdmin) {
+            $units = AmiUnitAudit::orderBy('nama')->get();
+        } else {
+            $userSkUnitIds = AmiSkAuditor::where(function ($q) use ($user) {
+                $q->whereHas('anggotas', function ($q2) use ($user) {
+                    $q2->where('user_id', $user->id);
+                })
+                ->orWhere('auditor_ketua_id', $user->id);
+            })->pluck('unit_id')->unique();
+            $units = AmiUnitAudit::whereIn('id', $userSkUnitIds)->orderBy('nama')->get();
+        }
+
+        return view('admin.ami.evaluasi-diri.index', compact('skList', 'isAdmin', 'periodes', 'units'));
     }
 
-    public function show($skId)
+    public function show(Request $request, $skId)
     {
         $sk = AmiSkAuditor::with(['periode', 'unit'])->findOrFail($skId);
         $user = Auth::user();
         $isAdmin = in_array($user->role, ['admin', 'lpm']);
 
-        if (!$isAdmin && !$sk->isAuditee($user->id)) {
+        if (!$isAdmin && !$sk->isAuditee($user->id) && !$sk->isAuditor($user->id)) {
             abort(403, 'Anda tidak memiliki akses ke evaluasi diri ini');
         }
 
@@ -63,7 +105,7 @@ class AmiEvaluasiDiriController extends Controller
             $existingFiles[$indId] = $eval->files;
         }
 
-        $canEdit = $isAdmin || ($sk->status === 'aktif' && $sk->isAuditee($user->id));
+        $canEdit = ($isAdmin || ($sk->status === 'aktif' && $sk->isAuditee($user->id))) && !$request->has('readonly');
 
         return view('admin.ami.evaluasi-diri.show', compact(
             'sk', 'indikators', 'existingAnswers', 'existingFiles', 'canEdit', 'isAdmin'

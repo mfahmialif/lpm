@@ -10,6 +10,7 @@ class AmiSkAuditor extends Model
     use HasFactory;
 
     protected $fillable = [
+        'ami_target_ami_id',
         'ami_periode_id',
         'unit_id',
         'nomor_sk',
@@ -24,6 +25,11 @@ class AmiSkAuditor extends Model
     ];
 
     // === Relationships ===
+
+    public function targetAmis()
+    {
+        return $this->hasMany(AmiTargetAmi::class, 'ami_sk_auditor_id');
+    }
 
     public function periode()
     {
@@ -73,6 +79,11 @@ class AmiSkAuditor extends Model
     public function temuanAudits()
     {
         return $this->hasMany(AmiTemuanAudit::class);
+    }
+
+    public function hasilTemuans()
+    {
+        return $this->hasMany(AmiHasilTemuan::class);
     }
 
     public function laporanKinerjas()

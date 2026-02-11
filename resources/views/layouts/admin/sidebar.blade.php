@@ -23,6 +23,16 @@
         @continue;
         @endif
 
+        {{-- AMI mode filtering for unit users --}}
+        @if (isset($menu->amiMode) && \Auth::user()->role === 'unit')
+            @php
+                $currentAmiMode = \App\Http\Controllers\Admin\Ami\AmiModeSwitcherController::getCurrentMode();
+            @endphp
+            @if ($currentAmiMode && $currentAmiMode !== $menu->amiMode)
+                @continue
+            @endif
+        @endif
+
 
 
 

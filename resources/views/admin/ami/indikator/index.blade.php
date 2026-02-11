@@ -1,32 +1,145 @@
 @extends('layouts.admin.template')
 @section('title', 'Indikator - ' . $sk->nomor_sk)
 @section('content')
+<style>
+    .hover-card {
+        transition: all 0.3s ease-in-out;
+    }
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        border-color: #7367f0 !important;
+    }
+</style>
+
 <div class="row mb-4">
     <div class="col-12">
         <h4 class="fw-bold py-3 mb-0">
-            <span class="text-muted fw-light">AMI / <a href="{{ route('admin.ami.sk-auditor.index') }}">SK Auditor</a> / <a href="{{ route('admin.ami.sk-auditor.show', $sk->id) }}">{{ $sk->nomor_sk }}</a> /</span> Indikator
+            <span class="text-muted fw-light">AMI / <a href="{{ route('admin.ami.indikator.list') }}">Indikator</a> /</span> {{ $sk->nomor_sk }}
         </h4>
+        <p class="text-muted mb-0">Kelola indikator penilaian untuk SK Auditor ini.</p>
     </div>
 </div>
 
-<div class="card" id="card-ami-indikator">
-    <div class="card-datatable table-responsive pt-0">
-        <table class="datatables-basic table table-hover" id="table-1">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Kode</th>
-                    <th>Indikator</th>
-                    <th>Narasi Evaluasi Diri</th>
-                    <th>Status</th>
-                    <th>Rubrik</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-        </table>
+<div class="card mb-4">
+    <div class="card-header pb-0">
+        <h5 class="card-title mb-0">Filter Data</h5>
+    </div>
+    <div class="card-body">
+        <form action="{{ route('admin.ami.indikator.index', $sk->id) }}" method="GET">
+            <div class="row align-items-end g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Pencarian</label>
+                    <input type="text" class="form-control" name="search" value="{{ request('search') }}" placeholder="Cari Kode, Pertanyaan, atau Narasi...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Urutkan</label>
+                    <select class="form-select select2" name="sort">
+                        <option value="urutan_asc" {{ request('sort') == 'urutan_asc' ? 'selected' : '' }}>Urutan (0-9)</option>
+                        <option value="urutan_desc" {{ request('sort') == 'urutan_desc' ? 'selected' : '' }}>Urutan (9-0)</option>
+                        <option value="kode_asc" {{ request('sort') == 'kode_asc' ? 'selected' : '' }}>Kode (A-Z)</option>
+                        <option value="kode_desc" {{ request('sort') == 'kode_desc' ? 'selected' : '' }}>Kode (Z-A)</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label d-none d-md-block">&nbsp;</label>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="ti ti-search me-1"></i>Cari
+                        </button>
+                        <a href="{{ route('admin.ami.indikator.index', $sk->id) }}" class="btn btn-label-secondary w-100">
+                            Reset
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
+<div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" type="button" id="new-record-button">
+        <i class="ti ti-plus me-1"></i> Tambah Indikator
+    </button>
+</div>
+
+<div class="row">
+    @forelse($indikators as $indikator)
+    <div class="col-12 mb-3">
+        <div class="card hover-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="badge bg-label-primary me-2">{{ $indikator->kode }}</span>
+                        @if($indikator->is_active)
+                            <span class="badge bg-success">Aktif</span>
+                        @else
+                            <span class="badge bg-secondary">Tidak Aktif</span>
+                        @endif
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn p-0" type="button" id="cardOpt{{ $indikator->id }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ti ti-dots-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt{{ $indikator->id }}">
+                            <a class="dropdown-item edit-record-button" href="javascript:void(0);" 
+                                data-id="{{ $indikator->id }}"
+                                data-kode="{{ $indikator->kode }}"
+                                data-pertanyaan="{{ $indikator->pertanyaan }}"
+                                data-narasi_evaluasi_diri="{{ $indikator->narasi_evaluasi_diri }}"
+                                data-urutan="{{ $indikator->urutan }}"
+                                data-is_active="{{ $indikator->is_active }}"
+                                data-rubrik="{{ json_encode($indikator->rubrikSkors) }}"
+                            >Edit</a>
+                            <a class="dropdown-item btn-detail" href="javascript:void(0);" data-id="{{ $indikator->id }}">Lihat Rubrik</a>
+                            <div class="dropdown-divider"></div>
+                            <form class="form-delete-record" method="POST" action="{{ route('admin.ami.indikator.delete', $sk->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $indikator->id }}">
+                                <input type="hidden" name="nama" value="{{ $indikator->kode }}">
+                                <button type="submit" class="dropdown-item text-danger">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 class="card-title mt-2">{{ $indikator->pertanyaan }}</h5>
+                
+                @if($indikator->narasi_evaluasi_diri)
+                <div class="mb-3">
+                    <small class="text-muted fw-bold">Narasi Evaluasi Diri:</small>
+                    <p class="text-muted mb-0 small">{{ Str::limit($indikator->narasi_evaluasi_diri, 150) }}</p>
+                </div>
+                @endif
+                
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-2">
+                    <small class="text-muted">Urutan: {{ $indikator->urutan }}</small>
+                    <button class="btn btn-sm btn-outline-primary btn-detail" data-id="{{ $indikator->id }}">
+                        <i class="ti ti-list-details me-1"></i> {{ $indikator->rubrikSkors->count() }} Rubrik
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @empty
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="ti ti-list-check ti-lg text-muted mb-3 d-block" style="font-size: 3rem;"></i>
+                <h6>Belum ada Indikator</h6>
+                <p class="mb-0">Silakan tambahkan indikator baru.</p>
+            </div>
+        </div>
+    </div>
+    @endforelse
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    {{ $indikators->links() }}
+</div>
+
+<!-- All Modals and Scripts from original file -->
 <!-- Modal new record -->
 <div class="offcanvas offcanvas-end" id="new-record" style="width: 500px;">
     <div class="offcanvas-header border-bottom">
@@ -89,6 +202,7 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
 <script>
     var offCanvasNewRecord = new bootstrap.Offcanvas($('#new-record'));
@@ -170,93 +284,13 @@
         });
     });
 
-    $(document).on('submit', '#form-new-record', function(e) {
-        e.preventDefault();
-        ajaxRequestDt(e, offCanvasNewRecord, dataTable);
-    });
-
-    $(document).on('submit', '#form-edit-record', function(e) {
-        e.preventDefault();
-        ajaxRequestDt(e, offCanvasEditRecord, dataTable);
-    });
-
-    $(document).on('submit', '.form-delete-record', function(e) {
-        e.preventDefault();
-        var nama = $(e.target).find('input[name="nama"]').val();
-        Swal.fire({
-            title: 'Hapus "' + nama + '"?',
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal',
-            customClass: {
-                confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
-                cancelButton: 'btn btn-label-secondary waves-effect waves-light'
-            },
-            buttonsStyling: false
-        }).then(function(result) {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('admin.ami.indikator.delete', $sk->id) }}",
-                    data: new FormData($(e.target)[0]),
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        showToastr(response.type, response.type, response.message);
-                        dataTable.ajax.reload(null, false);
-                    },
-                });
-            }
-        });
-    });
-</script>
-
-<script>
-    var dataTable = initDataTables('table-1', 'loader-ami-indikator', 'card-ami-indikator', 'new-record-button', false,
-        'Indikator AMI', "{{ route('admin.ami.indikator.data', $sk->id) }}",
-        [{
-                data: "kode",
-                name: "kode",
-                className: "align-middle",
-            },
-            {
-                data: "pertanyaan",
-                name: "pertanyaan",
-                className: "align-middle",
-                render: function(data) {
-                    return data && data.length > 80 ? data.substring(0, 80) + '...' : data;
-                }
-            },
-            {
-                data: "narasi_evaluasi_diri",
-                name: "narasi_evaluasi_diri",
-                className: "align-middle",
-                render: function(data) {
-                    return data && data.length > 80 ? data.substring(0, 80) + '...' : data;
-                }
-            },
-            {
-                data: "status_badge",
-                name: "is_active",
-                className: "align-middle",
-            },
-            {
-                data: "rubrik_count",
-                name: "rubrik_count",
-                className: "align-middle text-center",
-                searchable: false,
-                orderable: false,
-            },
-            {
-                data: "action",
-                name: "action",
-                className: "align-middle",
-                searchable: false,
-                orderable: false,
-            },
-        ]
-    );
+    // Handle Form Submit (Standard Post, not AJAX DataTable)
+    /* 
+       Since we removed DataTables, we can just let standard form submission happen, OR use AJAX and reload page.
+       Original code used 'ajaxRequestDt' which reloaded DataTable. 
+       Here we can submit normally or use AJAX and reload page.
+       Let's stick to standard form submission for simplicity and reliability with file uploads/etc if changed later.
+       Actually, 'indikator/form' might be simple.
+    */
 </script>
 @endpush

@@ -8,6 +8,8 @@ use App\Models\AmiIndikator;
 use App\Models\AmiAsesmen;
 use App\Models\AmiEvaluasiDiri;
 use App\Models\AmiAuditTrail;
+use App\Models\AmiPeriode;
+use App\Models\AmiUnitAudit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,44 +19,85 @@ class AmiAsesmenController extends Controller
     /**
      * List SK yang bisa di-ases
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $isAdmin = in_array($user->role, ['admin', 'lpm']);
 
+        $query = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor', 'asesmens']);
+
         if ($isAdmin) {
-            $skList = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor'])
-                ->whereIn('status', ['aktif', 'terkunci', 'selesai'])
-                ->orderBy('created_at', 'desc')
-                ->get();
+            $query->whereIn('status', ['aktif', 'terkunci', 'selesai']);
         } else {
-            $skList = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor'])
-                ->whereIn('status', ['aktif', 'terkunci'])
+            $query->whereIn('status', ['aktif', 'terkunci'])
                 ->where(function ($q) use ($user) {
                     $q->where('auditor_ketua_id', $user->id)
                       ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
                           $q2->where('user_id', $user->id);
+                      })
+                      ->orWhereHas('anggotas', function ($q2) use ($user) {
+                          $q2->where('user_id', $user->id)->where('peran', 'auditee');
                       });
-                })
-                ->orderBy('created_at', 'desc')
-                ->get();
+                });
         }
 
-        return view('admin.ami.asesmen.index', compact('skList', 'isAdmin'));
+        if ($request->filled('periode_id')) {
+            $query->where('ami_periode_id', $request->periode_id);
+        }
+
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->unit_id);
+        }
+
+        $sort = $request->get('sort', 'terbaru');
+        switch ($sort) {
+            case 'terlama':
+                $query->orderBy('created_at', 'asc');
+                break;
+            case 'nomor_asc':
+                $query->orderBy('nomor_sk', 'asc');
+                break;
+            case 'nomor_desc':
+                $query->orderBy('nomor_sk', 'desc');
+                break;
+            case 'terbaru':
+            default:
+                $query->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $skList = $query->paginate(9)->withQueryString();
+        $periodes = AmiPeriode::orderBy('created_at', 'desc')->get();
+
+        // For unit users, only show units from their assigned SKs (as auditor)
+        if ($isAdmin) {
+            $units = AmiUnitAudit::orderBy('nama')->get();
+        } else {
+            $userSkUnitIds = AmiSkAuditor::where(function ($q) use ($user) {
+                $q->where('auditor_ketua_id', $user->id)
+                  ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
+                      $q2->where('user_id', $user->id);
+                  });
+            })->pluck('unit_id')->unique();
+            $units = AmiUnitAudit::whereIn('id', $userSkUnitIds)->orderBy('nama')->get();
+        }
+
+        return view('admin.ami.asesmen.index', compact('skList', 'isAdmin', 'periodes', 'units'));
     }
 
     /**
      * Interface asesmen per SK
      */
-    public function show($skId)
+    public function show(Request $request, $skId)
     {
         $sk = AmiSkAuditor::with(['periode', 'unit', 'ketuaAuditor'])->findOrFail($skId);
         $user = Auth::user();
         $isAdmin = in_array($user->role, ['admin', 'lpm']);
         $isKetua = $sk->isKetuaAuditor($user->id);
         $isAuditor = $sk->isAuditor($user->id);
+        $isAuditee = $sk->isAuditee($user->id);
 
-        if (!$isAdmin && !$isAuditor) {
+        if (!$isAdmin && !$isAuditor && !$isAuditee) {
             abort(403, 'Anda tidak memiliki akses ke asesmen ini');
         }
 
@@ -76,8 +119,9 @@ class AmiAsesmenController extends Controller
             ->get()
             ->keyBy('ami_indikator_id');
 
-        $canEdit = $isAdmin || ($isAuditor && in_array($sk->status, ['aktif']));
-        $canFinalize = $isAdmin || ($isKetua && $sk->status === 'aktif');
+        // Auditee can only view in read-only mode
+        $canEdit = ($isAdmin || ($isAuditor && in_array($sk->status, ['aktif']))) && !$request->has('readonly');
+        $canFinalize = ($isAdmin || ($isKetua && $sk->status === 'aktif')) && !$request->has('readonly');
 
         return view('admin.ami.asesmen.show', compact(
             'sk', 'indikators', 'evaluasiDiris', 'existingScores',
