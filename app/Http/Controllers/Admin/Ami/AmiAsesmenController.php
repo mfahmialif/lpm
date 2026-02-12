@@ -10,6 +10,7 @@ use App\Models\AmiEvaluasiDiri;
 use App\Models\AmiAuditTrail;
 use App\Models\AmiPeriode;
 use App\Models\AmiUnitAudit;
+use App\Models\AmiAsesmenFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,12 +33,12 @@ class AmiAsesmenController extends Controller
             $query->whereIn('status', ['aktif', 'terkunci'])
                 ->where(function ($q) use ($user) {
                     $q->where('auditor_ketua_id', $user->id)
-                      ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
-                          $q2->where('user_id', $user->id);
-                      })
-                      ->orWhereHas('anggotas', function ($q2) use ($user) {
-                          $q2->where('user_id', $user->id)->where('peran', 'auditee');
-                      });
+                        ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
+                            $q2->where('user_id', $user->id);
+                        })
+                        ->orWhereHas('anggotas', function ($q2) use ($user) {
+                            $q2->where('user_id', $user->id)->where('peran', 'auditee');
+                        });
                 });
         }
 
@@ -75,9 +76,9 @@ class AmiAsesmenController extends Controller
         } else {
             $userSkUnitIds = AmiSkAuditor::where(function ($q) use ($user) {
                 $q->where('auditor_ketua_id', $user->id)
-                  ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
-                      $q2->where('user_id', $user->id);
-                  });
+                    ->orWhereHas('auditorAnggotas', function ($q2) use ($user) {
+                        $q2->where('user_id', $user->id);
+                    });
             })->pluck('unit_id')->unique();
             $units = AmiUnitAudit::whereIn('id', $userSkUnitIds)->orderBy('nama')->get();
         }
@@ -115,7 +116,8 @@ class AmiAsesmenController extends Controller
             ->keyBy('ami_indikator_id');
 
         // Asesmen yang sudah ada
-        $existingScores = AmiAsesmen::where('ami_sk_auditor_id', $sk->id)
+        $existingScores = AmiAsesmen::with('files')
+            ->where('ami_sk_auditor_id', $sk->id)
             ->get()
             ->keyBy('ami_indikator_id');
 
@@ -124,8 +126,14 @@ class AmiAsesmenController extends Controller
         $canFinalize = ($isAdmin || ($isKetua && $sk->status === 'aktif')) && !$request->has('readonly');
 
         return view('admin.ami.asesmen.show', compact(
-            'sk', 'indikators', 'evaluasiDiris', 'existingScores',
-            'canEdit', 'canFinalize', 'isAdmin', 'isKetua'
+            'sk',
+            'indikators',
+            'evaluasiDiris',
+            'existingScores',
+            'canEdit',
+            'canFinalize',
+            'isAdmin',
+            'isKetua'
         ));
     }
 
@@ -160,7 +168,7 @@ class AmiAsesmenController extends Controller
                 return response()->json(['status' => false, 'message' => 'Asesmen sudah difinalisasi'], 403);
             }
 
-            $skorPilihan = implode(',', $request->skor_pilihan);
+            $skorPilihan = is_array($request->skor_pilihan) ? implode(',', $request->skor_pilihan) : null;
 
             $asesmen = AmiAsesmen::updateOrCreate(
                 [
@@ -246,7 +254,7 @@ class AmiAsesmenController extends Controller
         $indikators = AmiIndikator::where('ami_sk_auditor_id', $skId)
             ->where('is_active', true)
             ->get();
-            
+
         $asesmens = AmiAsesmen::where('ami_sk_auditor_id', $skId)
             ->get()
             ->keyBy('ami_indikator_id');
@@ -270,5 +278,88 @@ class AmiAsesmenController extends Controller
             'answered' => $answered,
             'statuses' => $statuses
         ]);
+    }
+
+    public function uploadFile(Request $request)
+    {
+        $request->validate([
+            'ami_sk_auditor_id' => 'required',
+            'ami_indikator_id' => 'required',
+            'files' => 'required',
+            'files.*' => 'file|mimes:pdf,doc,docx,jpg,jpeg,png|max:5120',
+        ]);
+
+        $user = Auth::user();
+
+        // Check permission
+        $sk = AmiSkAuditor::find($request->ami_sk_auditor_id);
+        if (!$sk) return response()->json(['status' => false, 'message' => 'SK not found'], 404);
+
+        $isAdmin = in_array($user->role, ['admin', 'lpm']);
+        if (!$isAdmin && (!$sk->isAuditor($user->id) || $sk->status !== 'aktif')) {
+            return response()->json(['status' => false, 'message' => 'Tidak memiliki akses'], 403);
+        }
+
+        // Find or create asesmen
+        $asesmen = AmiAsesmen::firstOrCreate(
+            [
+                'ami_sk_auditor_id' => $request->ami_sk_auditor_id,
+                'ami_indikator_id' => $request->ami_indikator_id,
+            ],
+            [
+                'assessed_by' => $user->id,
+                'skor_pilihan' => null,
+            ]
+        );
+
+        if ($asesmen->is_final) {
+            return response()->json(['status' => false, 'message' => 'Asesmen sudah final'], 403);
+        }
+
+        $relativePath = 'ami/asesmen-auditor/' . $sk->id;
+        $destinationPath = public_path($relativePath);
+
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
+        }
+
+        $uploadedFiles = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $originalName = preg_replace('/[^A-Za-z0-9\-\_\.]/', '', $file->getClientOriginalName());
+                $fileName = time() . '_' . $originalName;
+
+                $file->move($destinationPath, $fileName);
+
+                $newFile = $asesmen->files()->create([
+                    'file_path' => $relativePath . '/' . $fileName,
+                    'file_name' => $file->getClientOriginalName(),
+                ]);
+                $uploadedFiles[] = $newFile;
+            }
+        }
+
+        return response()->json(['status' => true, 'files' => $uploadedFiles]);
+    }
+
+    public function deleteFile(Request $request)
+    {
+        $file = AmiAsesmenFile::find($request->file_id);
+        if (!$file) return response()->json(['status' => false], 404);
+
+        $asesmen = $file->asesmen;
+
+        // Check permissions
+        if ($asesmen->is_final) {
+            return response()->json(['status' => false, 'message' => 'Asesmen sudah final'], 403);
+        }
+
+        $fullPath = public_path($file->file_path);
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
+        $file->delete();
+        
+        return response()->json(['status' => true]);
     }
 }

@@ -599,6 +599,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             Route::post('/save-skor', [\App\Http\Controllers\Admin\Ami\AmiAsesmenController::class, 'saveSkor'])->name('admin.ami.asesmen.save-skor');
             Route::get('/{skId}/progress', [\App\Http\Controllers\Admin\Ami\AmiAsesmenController::class, 'getProgress'])->name('admin.ami.asesmen.progress');
             Route::post('/{skId}/finalize', [\App\Http\Controllers\Admin\Ami\AmiAsesmenController::class, 'finalize'])->name('admin.ami.asesmen.finalize');
+            Route::post('/upload-file', [\App\Http\Controllers\Admin\Ami\AmiAsesmenController::class, 'uploadFile'])->name('admin.ami.asesmen.upload-file');
+            Route::delete('/delete-file', [\App\Http\Controllers\Admin\Ami\AmiAsesmenController::class, 'deleteFile'])->name('admin.ami.asesmen.delete-file');
         });
 
         // Temuan Audit

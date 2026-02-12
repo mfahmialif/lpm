@@ -44,4 +44,9 @@ class AmiAsesmen extends Model
     {
         return $this->belongsTo(User::class, 'finalized_by');
     }
+
+    public function files()
+    {
+        return $this->hasMany(AmiAsesmenFile::class, 'ami_asesmen_id');
+    }
 }

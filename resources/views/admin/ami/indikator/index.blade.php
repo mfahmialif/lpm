@@ -5,11 +5,13 @@
     .hover-card {
         transition: all 0.3s ease-in-out;
     }
+
     .hover-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
         border-color: #7367f0 !important;
     }
+
 </style>
 
 <div class="row mb-4">
@@ -110,9 +112,9 @@
                     <div class="d-flex align-items-center mb-2">
                         <span class="badge bg-label-primary me-2">{{ $indikator->kode }}</span>
                         @if($indikator->is_active)
-                            <span class="badge bg-success">Aktif</span>
+                        <span class="badge bg-success">Aktif</span>
                         @else
-                            <span class="badge bg-secondary">Tidak Aktif</span>
+                        <span class="badge bg-secondary">Tidak Aktif</span>
                         @endif
                     </div>
                     <div class="dropdown">
@@ -120,15 +122,7 @@
                             <i class="ti ti-dots-vertical"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt{{ $indikator->id }}">
-                            <a class="dropdown-item edit-record-button" href="javascript:void(0);" 
-                                data-id="{{ $indikator->id }}"
-                                data-kode="{{ $indikator->kode }}"
-                                data-pertanyaan="{{ $indikator->pertanyaan }}"
-                                data-narasi_evaluasi_diri="{{ $indikator->narasi_evaluasi_diri }}"
-                                data-urutan="{{ $indikator->urutan }}"
-                                data-is_active="{{ $indikator->is_active }}"
-                                data-rubrik="{{ json_encode($indikator->rubrikSkors) }}"
-                            >Edit</a>
+                            <a class="dropdown-item edit-record-button" href="javascript:void(0);" data-id="{{ $indikator->id }}" data-kode="{{ $indikator->kode }}" data-pertanyaan="{{ $indikator->pertanyaan }}" data-narasi_evaluasi_diri="{{ $indikator->narasi_evaluasi_diri }}" data-urutan="{{ $indikator->urutan }}" data-is_active="{{ $indikator->is_active }}" data-rubrik="{{ json_encode($indikator->rubrikSkors) }}">Edit</a>
                             <a class="dropdown-item btn-detail" href="javascript:void(0);" data-id="{{ $indikator->id }}">Lihat Rubrik</a>
                             <div class="dropdown-divider"></div>
                             <form class="form-delete-record" method="POST" action="{{ route('admin.ami.indikator.delete', $sk->id) }}">
@@ -141,20 +135,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <h5 class="card-title mt-2">{{ $indikator->pertanyaan }}</h5>
-                
+
                 @if($indikator->narasi_evaluasi_diri)
                 <div class="mb-3">
                     <small class="text-muted fw-bold">Narasi Evaluasi Diri:</small>
                     <p class="text-muted mb-0 small">{{ Str::limit($indikator->narasi_evaluasi_diri, 150) }}</p>
                 </div>
                 @endif
-                
+
                 <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-2">
                     <small class="text-muted">Urutan: {{ $indikator->urutan }}</small>
                     <button class="btn btn-sm btn-outline-primary btn-detail" data-id="{{ $indikator->id }}">
-                        <i class="ti ti-list-details me-1"></i> {{ $indikator->rubrikSkors->count() }} Rubrik
+                        <i class="ti ti-list-details me-1"></i> {{ $indikator->rubrikSkors->count() }} Rubrik, Klik untuk detail
                     </button>
                 </div>
             </div>
@@ -230,7 +224,10 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
-                            <tr><th width="80">Skor</th><th>Deskripsi</th></tr>
+                            <tr>
+                                <th width="80">Skor</th>
+                                <th>Deskripsi</th>
+                            </tr>
                         </thead>
                         <tbody id="rubrik-tbody"></tbody>
                     </table>
@@ -280,7 +277,7 @@
         $('#form-new-record')[0].reset();
         $('.rubrik-container').empty();
         // Add default 4 items for new record
-        for(let i=1; i<=4; i++) addRubrikItem(i, '');
+        for (let i = 1; i <= 4; i++) addRubrikItem(i, '');
         offCanvasNewRecord.show();
     });
 
@@ -292,7 +289,7 @@
         $('#form-edit-record [name="narasi_evaluasi_diri"]').val(btn.data('narasi_evaluasi_diri'));
         $('#form-edit-record [name="urutan"]').val(btn.data('urutan'));
         $('#form-edit-record [name="is_active"]').val(btn.data('is_active'));
-        
+
         $('.rubrik-container').empty();
         var rubrik = btn.data('rubrik');
         if (rubrik && rubrik.length > 0) {
@@ -300,8 +297,8 @@
                 addRubrikItem(item.skor, item.deskripsi);
             });
         } else {
-             // Fallback if no rubrik
-             addRubrikItem(1, '');
+            // Fallback if no rubrik
+            addRubrikItem(1, '');
         }
         offCanvasEditRecord.show();
     });
@@ -309,8 +306,24 @@
     $(document).on('click', '.btn-detail', function() {
         var id = $(this).data('id');
         $.get("{{ url('admin/ami/sk-auditor/' . $sk->id . '/indikator/rubrik') }}/" + id, function(data) {
-            $('#rubrik-kode').text('[' + data.kode + ']');
-            $('#rubrik-pertanyaan').text(data.pertanyaan);
+            console.log(data);
+            $('#rubrik-kode').text(`[${data.kode}]`);
+
+            let teks = `
+                <div class="rubrik-content">
+                    <div class="mb-2">
+                        <strong>Indikator:</strong><br>
+                        ${data.pertanyaan}
+                    </div>
+                    <div>
+                        <strong>Narasi Evaluasi Diri:</strong><br>
+                        ${data.narasi_evaluasi_diri}
+                    </div>
+                </div>
+            `;
+
+            $('#rubrik-pertanyaan').html(teks);
+
             var html = '';
             if (data.rubrik_skors) {
                 for (var i = 0; i < data.rubrik_skors.length; i++) {
@@ -330,5 +343,6 @@
        Let's stick to standard form submission for simplicity and reliability with file uploads/etc if changed later.
        Actually, 'indikator/form' might be simple.
     */
+
 </script>
 @endpush

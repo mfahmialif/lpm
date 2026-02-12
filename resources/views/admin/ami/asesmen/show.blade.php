@@ -161,6 +161,40 @@
                         </div>
                     </div>
 
+                    <!-- Dokumen Pendukung -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Dokumen Pendukung Asesmen</label>
+                        @php
+                            $asesmen = isset($existingScores[$indikator->id]) ? $existingScores[$indikator->id] : null;
+                            $files = $asesmen && $asesmen->files ? $asesmen->files : collect();
+                        @endphp
+                        
+                        <div id="file-list-{{ $indikator->id }}" class="mb-2">
+                            @if($files->count() > 0)
+                            <ul class="list-group">
+                                @foreach($files as $file)
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="file-item-{{ $file->id }}">
+                                    <a href="{{ asset($file->file_path) }}" target="_blank">
+                                        <i class="ti ti-file me-1"></i>{{ $file->file_name }}
+                                    </a>
+                                    @if($canEdit)
+                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger btn-delete-file" data-file-id="{{ $file->id }}">
+                                        <i class="ti ti-trash"></i>
+                                    </button>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </div>
+
+                        @if($canEdit)
+                        <input type="file" class="form-control file-upload-input"
+                            data-indikator-id="{{ $indikator->id }}" data-sk-id="{{ $sk->id }}" multiple>
+                        <small class="text-muted">Upload dokumen pendukung (PDF, DOC, JPG, PNG)</small>
+                        @endif
+                    </div>
+
                     <!-- Notes Section -->
                     <div class="mb-3">
                          <label class="form-label fw-bold">Catatan Asesor</label>
@@ -371,6 +405,94 @@
                         }
                     }
                 });
+            }
+        });
+    });
+</script>
+<script>
+    // File upload
+    $(document).on('change', '.file-upload-input', function() {
+        var el = $(this);
+        var formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}');
+        formData.append('ami_sk_auditor_id', {{ $sk->id }});
+        formData.append('ami_indikator_id', el.data('indikator-id'));
+        
+        var files = el[0].files;
+        for (var i = 0; i < files.length; i++) {
+            formData.append('files[]', files[i]);
+        }
+
+        $.ajax({
+            url: "{{ route('admin.ami.asesmen.upload-file') }}",
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                if (res.status) {
+                    showToastr('success', 'success', 'File berhasil diupload');
+                     
+                    // Clear input
+                    el.val('');
+
+                    // Construct new list items
+                    var listContainer = $('#file-list-' + el.data('indikator-id'));
+                    var ul = listContainer.find('ul');
+                     
+                    // If no ul exists yet, create one
+                    if(ul.length === 0) {
+                        listContainer.html('<ul class="list-group mb-2"></ul>');
+                        ul = listContainer.find('ul');
+                    }
+
+                    // Append files
+                    if (res.files && res.files.length > 0) {
+                        res.files.forEach(function(file) {
+                            // Use base asset url
+                            var assetUrl = "{{ asset('') }}" + file.file_path;
+                            
+                            var li = `
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="file-item-${file.id}">
+                                    <a href="${assetUrl}" target="_blank">
+                                        <i class="ti ti-file me-1"></i>${file.file_name}
+                                    </a>
+                                    @if($canEdit)
+                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger btn-delete-file" data-file-id="${file.id}">
+                                        <i class="ti ti-trash"></i>
+                                    </button>
+                                    @endif
+                                </li>
+                            `;
+                            ul.append(li);
+                        });
+                    } else {
+                        location.reload();
+                    }
+                } else {
+                    showToastr('error', 'error', res.message);
+                }
+            }
+        });
+    });
+
+    // Delete file
+    $(document).on('click', '.btn-delete-file', function() {
+        var fileId = $(this).data('file-id');
+        if(!confirm('Hapus file ini?')) return;
+        $.ajax({
+            url: "{{ route('admin.ami.asesmen.delete-file') }}",
+            type: 'DELETE',
+            data: { _token: '{{ csrf_token() }}', file_id: fileId },
+            success: function(res) {
+                if (res.status) {
+                    showToastr('success', 'success', 'File dihapus');
+                    $('#file-item-' + fileId).fadeOut(function() { 
+                        $(this).remove(); 
+                    });
+                } else {
+                    showToastr('error', 'error', res.message);
+                }
             }
         });
     });
