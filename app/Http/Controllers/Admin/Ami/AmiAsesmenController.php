@@ -121,9 +121,11 @@ class AmiAsesmenController extends Controller
             ->get()
             ->keyBy('ami_indikator_id');
 
-        // Auditee can only view in read-only mode
-        $canEdit = ($isAdmin || ($isAuditor && in_array($sk->status, ['aktif']))) && !$request->has('readonly');
-        $canFinalize = ($isAdmin || ($isKetua && $sk->status === 'aktif')) && !$request->has('readonly');
+        $currentMode = AmiModeSwitcherController::getCurrentMode();
+
+        // Auditee can only view in read-only mode; auditor must be in auditor mode
+        $canEdit = ($isAdmin || ($isAuditor && in_array($sk->status, ['aktif']) && $currentMode === 'auditor')) && !$request->has('readonly');
+        $canFinalize = ($isAdmin || ($isKetua && $sk->status === 'aktif' && $currentMode === 'auditor')) && !$request->has('readonly');
 
         return view('admin.ami.asesmen.show', compact(
             'sk',
@@ -133,7 +135,8 @@ class AmiAsesmenController extends Controller
             'canEdit',
             'canFinalize',
             'isAdmin',
-            'isKetua'
+            'isKetua',
+            'currentMode'
         ));
     }
 
@@ -155,7 +158,7 @@ class AmiAsesmenController extends Controller
             $user = Auth::user();
             $isAdmin = in_array($user->role, ['admin', 'lpm']);
 
-            if (!$isAdmin && (!$sk->isAuditor($user->id) || $sk->status !== 'aktif')) {
+            if (!$isAdmin && (!$sk->isAuditor($user->id) || $sk->status !== 'aktif' || AmiModeSwitcherController::getCurrentMode() !== 'auditor')) {
                 return response()->json(['status' => false, 'message' => 'Tidak memiliki akses'], 403);
             }
 
@@ -296,7 +299,7 @@ class AmiAsesmenController extends Controller
         if (!$sk) return response()->json(['status' => false, 'message' => 'SK not found'], 404);
 
         $isAdmin = in_array($user->role, ['admin', 'lpm']);
-        if (!$isAdmin && (!$sk->isAuditor($user->id) || $sk->status !== 'aktif')) {
+        if (!$isAdmin && (!$sk->isAuditor($user->id) || $sk->status !== 'aktif' || AmiModeSwitcherController::getCurrentMode() !== 'auditor')) {
             return response()->json(['status' => false, 'message' => 'Tidak memiliki akses'], 403);
         }
 

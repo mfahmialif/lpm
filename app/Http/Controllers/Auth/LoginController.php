@@ -90,4 +90,15 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
+    /**
+     * The user has been authenticated.
+     * Redirect lpm and unit roles to AMI dashboard.
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        if (in_array($user->role, ['lpm', 'unit'])) {
+            return redirect()->route('admin.ami.dashboard');
+        }
+    }
 }
