@@ -43,6 +43,268 @@
     .rubrik-item:hover {
         background-color: #f8f9fa;
     }
+    /* === Bundle Styles === */
+    .bundle {
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .bundle::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 4px;
+    }
+    .bundle-auditee {
+        background: linear-gradient(135deg, #f8f7ff 0%, #f0efff 100%);
+        border: 1px solid rgba(115, 103, 240, 0.15);
+        box-shadow: 0 2px 10px rgba(115, 103, 240, 0.06);
+    }
+    .bundle-auditee::before {
+        background: linear-gradient(180deg, #7367f0, #9e95f5);
+    }
+    .bundle-auditor {
+        background: linear-gradient(135deg, #f4fdf7 0%, #edfbf1 100%);
+        border: 1px solid rgba(40, 199, 111, 0.15);
+        box-shadow: 0 2px 10px rgba(40, 199, 111, 0.06);
+    }
+    .bundle-auditor::before {
+        background: linear-gradient(180deg, #28c76f, #48da89);
+    }
+    .bundle-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .bundle-header .bundle-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    .bundle-auditee .bundle-icon {
+        background: linear-gradient(135deg, #7367f0, #9e95f5);
+    }
+    .bundle-auditor .bundle-icon {
+        background: linear-gradient(135deg, #28c76f, #48da89);
+    }
+    .bundle-header .bundle-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+    }
+    .bundle-auditee .bundle-title { color: #5e50ee; }
+    .bundle-auditor .bundle-title { color: #1e9c50; }
+    .bundle-sub {
+        background: #fff;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .bundle-sub:last-child { margin-bottom: 0; }
+    .bundle-sub-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .bundle-auditee .bundle-sub-label { color: #7367f0; }
+    .bundle-auditor .bundle-sub-label { color: #28c76f; }
+    .bundle-sub-content {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        color: #4a4a4a;
+    }
+    .bundle-file-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        background: #f8f7ff;
+        border-radius: 6px;
+        border: 1px solid rgba(115, 103, 240, 0.1);
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: #5e50ee;
+        overflow: hidden;
+        min-width: 0;
+    }
+    .bundle-file-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 0;
+    }
+    .bundle-file-item:hover {
+        background: #ece9fe;
+        border-color: #7367f0;
+        color: #7367f0;
+        transform: translateX(3px);
+    }
+    .bundle-file-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #e8e6fd, #d4d0fb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7367f0;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+    .bundle-empty {
+        text-align: center;
+        padding: 14px;
+        color: #aaa;
+        font-style: italic;
+        font-size: 0.88rem;
+    }
+    /* Scoring Items (inside bundle-auditor) */
+    .skor-rubrik-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 16px;
+        background: #fff;
+        border-radius: 8px;
+        border: 2px solid #e8e8e8;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        margin-bottom: 8px;
+    }
+    .skor-rubrik-item:last-child {
+        margin-bottom: 0;
+    }
+    .skor-rubrik-item:hover {
+        border-color: #28c76f;
+        background: #f9fefb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(40, 199, 111, 0.1);
+    }
+    .skor-rubrik-item.selected {
+        border-color: #28c76f;
+        background: linear-gradient(135deg, #f0fbf4, #e6f9ed);
+        box-shadow: 0 2px 10px rgba(40, 199, 111, 0.12);
+    }
+    .skor-rubrik-item input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        accent-color: #28c76f;
+        flex-shrink: 0;
+    }
+    .skor-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.78rem;
+        background: linear-gradient(135deg, #28c76f, #48da89);
+        color: #fff;
+    }
+    .skor-rubrik-item .skor-desc {
+        color: #666;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        margin-top: 4px;
+    }
+    .btn-clear-skor {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 14px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        background: #fff;
+        color: #999;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 10px;
+    }
+    .btn-clear-skor:hover {
+        border-color: #ea5455;
+        color: #ea5455;
+        background: #fff5f5;
+    }
+    /* Navigation Buttons */
+    .nav-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+    .btn-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+    .btn-nav-prev {
+        background: #f0f0f5;
+        color: #555;
+    }
+    .btn-nav-prev:hover:not(:disabled) {
+        background: #e2e2ea;
+        color: #333;
+        transform: translateX(-2px);
+    }
+    .btn-nav-next {
+        background: linear-gradient(135deg, #7367f0, #9e95f5);
+        color: #fff;
+    }
+    .btn-nav-next:hover:not(:disabled) {
+        box-shadow: 0 4px 14px rgba(115, 103, 240, 0.35);
+        transform: translateX(2px);
+    }
+    .btn-nav-finish {
+        background: linear-gradient(135deg, #28c76f, #48da89);
+        color: #fff;
+    }
+    .btn-nav-finish:hover {
+        box-shadow: 0 4px 14px rgba(40, 199, 111, 0.35);
+    }
+    .btn-nav:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+    @media (max-width: 576px) {
+        .nav-footer {
+            flex-direction: row;
+        }
+        .btn-nav {
+            flex: 1;
+            justify-content: center;
+            padding: 12px 10px;
+            font-size: 0.84rem;
+        }
+        .btn-nav .btn-nav-text {
+            display: none;
+        }
+    }
 </style>
 
 <div class="row mb-4">
@@ -126,101 +388,136 @@
                     </div>
                 </div>
                 <div class="card-body pt-4">
-                     <!-- Pertanyaan -->
-                     <div class="mb-4">
-                        <p class="fs-5 fw-medium">{{ $indikator->pertanyaan }}</p>
-                    </div>
+                     @php
+                         $evDiri = isset($evaluasiDiris[$indikator->id]) ? $evaluasiDiris[$indikator->id] : null;
+                         $existing = isset($existingScores[$indikator->id]) ? $existingScores[$indikator->id] : null;
+                         $currentSkor = $existing ? explode(',', $existing->skor_pilihan) : [];
+                     @endphp
 
-                    <!-- Evaluasi Diri Section Removed -->
-
-                    @php
-                        $existing = isset($existingScores[$indikator->id]) ? $existingScores[$indikator->id] : null;
-                        $currentSkor = $existing ? explode(',', $existing->skor_pilihan) : [];
-                    @endphp
-
-                    <!-- Scoring Section -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold fs-6 text-dark">Penilaian Auditor <span class="text-danger">*</span></label>
-                        <div class="list-group">
-                            @foreach($indikator->rubrikSkors as $rubrik)
-                            <label class="list-group-item list-group-item-action rubrik-item d-flex align-items-center cursor-pointer">
-                                <input class="form-check-input me-3 skor-checkbox" 
-                                    type="checkbox" 
-                                    name="skor_{{ $indikator->id }}[]"
-                                    value="{{ $rubrik->skor }}"
-                                    data-indikator-id="{{ $indikator->id }}"
-                                    data-index="{{ $idx }}"
-                                    {{ in_array($rubrik->skor, $currentSkor) ? 'checked' : '' }}
-                                    {{ !$canEdit ? 'disabled' : '' }}>
-                                <div class="flex-grow-1">
-                                    <span class="badge bg-primary rounded-pill mb-1">Skor {{ $rubrik->skor }}</span>
-                                    <div class="text-muted">{{ $rubrik->deskripsi }}</div>
-                                </div>
-                            </label>
-                            @endforeach
+                     <!-- ===== BUNDLE: Isian Auditee ===== -->
+                     <div class="bundle bundle-auditee">
+                        <div class="bundle-header">
+                            <div class="bundle-icon"><i class="ti ti-user-check"></i></div>
+                            <div>
+                                <div class="bundle-title">Isian Auditee</div>
+                                <small class="text-muted" style="font-size: 0.75rem;">Data evaluasi diri dari unit yang diaudit</small>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Dokumen Pendukung -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Dokumen Pendukung Asesmen</label>
-                        @php
-                            $asesmen = isset($existingScores[$indikator->id]) ? $existingScores[$indikator->id] : null;
-                            $files = $asesmen && $asesmen->files ? $asesmen->files : collect();
-                        @endphp
-                        
-                        <div id="file-list-{{ $indikator->id }}" class="mb-2">
-                            @if($files->count() > 0)
-                            <ul class="list-group">
-                                @foreach($files as $file)
-                                <li class="list-group-item d-flex justify-content-between align-items-center" id="file-item-{{ $file->id }}">
-                                    <a href="{{ asset($file->file_path) }}" target="_blank">
-                                        <i class="ti ti-file me-1"></i>{{ $file->file_name }}
-                                    </a>
-                                    @if($canEdit)
-                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger btn-delete-file" data-file-id="{{ $file->id }}">
-                                        <i class="ti ti-trash"></i>
-                                    </button>
-                                    @endif
-                                </li>
-                                @endforeach
-                            </ul>
+                        <!-- Pertanyaan / Naskah -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-notes"></i> {{ $indikator->narasi_evaluasi_diri ? 'Naskah Evaluasi Diri' : 'Pertanyaan Indikator' }}</div>
+                            <div class="bundle-sub-content">
+                                @if($indikator->narasi_evaluasi_diri)
+                                    {!! nl2br(e($indikator->narasi_evaluasi_diri)) !!}
+                                @else
+                                    {{ $indikator->pertanyaan }}
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Jawaban Auditee -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-message-dots"></i> Jawaban Auditee</div>
+                            @if($evDiri && $evDiri->jawaban)
+                            <div class="bundle-sub-content">{!! strip_tags($evDiri->jawaban, '<table><thead><tbody><tr><th><td><div><a><p><ul><ol><li><img><strong><em><b><i><u><br><span><h1><h2><h3><h4><h5><h6><blockquote><pre><code><hr><sub><sup>') !!}</div>
+                            @else
+                            <div class="bundle-empty"><i class="ti ti-clipboard-off me-1"></i>Belum ada jawaban</div>
                             @endif
                         </div>
 
-                        @if($canEdit)
-                        <input type="file" class="form-control file-upload-input"
-                            data-indikator-id="{{ $indikator->id }}" data-sk-id="{{ $sk->id }}" multiple>
-                        <small class="text-muted">Upload dokumen pendukung (PDF, DOC, JPG, PNG)</small>
-                        @endif
-                    </div>
+                        <!-- Dokumen Pendukung -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-paperclip"></i> Dokumen Pendukung {{ $evDiri && $evDiri->files && $evDiri->files->count() > 0 ? '('.$evDiri->files->count().')' : '' }}</div>
+                            @if($evDiri && $evDiri->files && $evDiri->files->count() > 0)
+                            <div class="d-flex flex-column gap-2">
+                                @foreach($evDiri->files as $file)
+                                <a href="{{ asset($file->file_path) }}" target="_blank" class="bundle-file-item">
+                                    <div class="bundle-file-icon"><i class="ti ti-file-text"></i></div>
+                                    <span class="flex-grow-1 small fw-medium">{{ $file->file_name }}</span>
+                                    <i class="ti ti-external-link" style="font-size: 14px; opacity: 0.5;"></i>
+                                </a>
+                                @endforeach
+                            </div>
+                            @else
+                            <div class="bundle-empty"><i class="ti ti-file-off me-1"></i>Tidak ada dokumen</div>
+                            @endif
+                        </div>
+                     </div>
 
-                    <!-- Notes Section -->
-                    <div class="mb-3">
-                         <label class="form-label fw-bold">Catatan Asesor</label>
-                         <textarea class="form-control catatan-input"
-                            data-indikator-id="{{ $indikator->id }}"
-                            data-index="{{ $idx }}"
-                            rows="3"
-                            placeholder="Tuliskan catatan untuk auditee..."
-                            {{ !$canEdit ? 'readonly' : '' }}>{{ $existing ? $existing->catatan_asesor : '' }}</textarea>
-                    </div>
+                     <!-- ===== BUNDLE: Isian Auditor ===== -->
+                     <div class="bundle bundle-auditor">
+                        <div class="bundle-header">
+                            <div class="bundle-icon"><i class="ti ti-shield-check"></i></div>
+                            <div>
+                                <div class="bundle-title">Isian Auditor</div>
+                                <small class="text-muted" style="font-size: 0.75rem;">Penilaian dan catatan dari tim auditor</small>
+                            </div>
+                        </div>
+
+                        <!-- Indikator (Penentuan Nilai) -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-target"></i> Indikator Penilaian</div>
+                            <div class="bundle-sub-content fw-medium">{{ $indikator->pertanyaan }}</div>
+                        </div>
+
+                        <!-- Skor -->
+                        <div class="bundle-sub" style="background: transparent; border: none; padding: 0;">
+                            <div class="bundle-sub-label" style="padding: 0 16px;"><i class="ti ti-star"></i> Skor Penilaian <span class="text-danger">*</span></div>
+                            <div class="mt-2">
+                                @foreach($indikator->rubrikSkors as $rubrik)
+                                <label class="skor-rubrik-item {{ in_array($rubrik->skor, $currentSkor) ? 'selected' : '' }}">
+                                    <input class="form-check-input skor-radio" 
+                                        type="radio" 
+                                        name="skor_{{ $indikator->id }}"
+                                        value="{{ $rubrik->skor }}"
+                                        data-indikator-id="{{ $indikator->id }}"
+                                        data-index="{{ $idx }}"
+                                        {{ in_array($rubrik->skor, $currentSkor) ? 'checked' : '' }}
+                                        {{ !$canEdit ? 'disabled' : '' }}>
+                                    <div class="flex-grow-1">
+                                        <span class="skor-badge"><i class="ti ti-star-filled" style="font-size: 12px;"></i> Skor {{ $rubrik->skor }}</span>
+                                        <div class="skor-desc">{{ $rubrik->deskripsi }}</div>
+                                    </div>
+                                </label>
+                                @endforeach
+                                @if($canEdit)
+                                <button type="button" class="btn-clear-skor btn-clear-selection" data-indikator-id="{{ $indikator->id }}" data-index="{{ $idx }}">
+                                    <i class="ti ti-x"></i> Batalkan Pilihan
+                                </button>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Catatan Asesor -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-writing"></i> Catatan Asesor</div>
+                            <textarea class="form-control catatan-input"
+                                data-indikator-id="{{ $indikator->id }}"
+                                data-index="{{ $idx }}"
+                                rows="3"
+                                placeholder="Tuliskan catatan untuk auditee..."
+                                {{ !$canEdit ? 'readonly' : '' }}>{{ $existing ? $existing->catatan_asesor : '' }}</textarea>
+                        </div>
+                     </div>
 
                 </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary btn-prev" onclick="prevQuestion()" {{ $idx == 0 ? 'disabled' : '' }}>
-                        <i class="ti ti-arrow-left me-1"></i> Sebelumnya
-                    </button>
-                    
-                    @if($idx < count($indikators) - 1)
-                    <button type="button" class="btn btn-primary btn-next" onclick="nextQuestion()">
-                        Selanjutnya <i class="ti ti-arrow-right ms-1"></i>
-                    </button>
-                    @else
-                    <a href="{{ route('admin.ami.asesmen.index') }}" class="btn btn-success">
-                        <i class="ti ti-check me-1"></i> Selesai
-                    </a>
-                    @endif
+                <div class="card-footer">
+                    <div class="nav-footer">
+                        <button type="button" class="btn-nav btn-nav-prev btn-prev" onclick="prevQuestion()" {{ $idx == 0 ? 'disabled' : '' }}>
+                            <i class="ti ti-arrow-left"></i> <span class="btn-nav-text">Sebelumnya</span>
+                        </button>
+                        
+                        @if($idx < count($indikators) - 1)
+                        <button type="button" class="btn-nav btn-nav-next btn-next" onclick="nextQuestion()">
+                            <span class="btn-nav-text">Selanjutnya</span> <i class="ti ti-arrow-right"></i>
+                        </button>
+                        @else
+                        <a href="{{ route('admin.ami.asesmen.index') }}" class="btn-nav btn-nav-finish">
+                            <i class="ti ti-check"></i> <span class="btn-nav-text">Selesai</span>
+                        </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -238,7 +535,7 @@
     // Init Logic
     $(document).ready(function() {
         // Initialize status map
-        $('.skor-checkbox:checked').each(function() {
+        $('.skor-radio:checked').each(function() {
             var idx = $(this).data('index');
             statusMap[idx] = 'answered';
         });
@@ -307,23 +604,20 @@
         $('#progress-text').text('Progress: ' + answeredCount + '/' + totalQuestions);
     }
 
-    // Save skor on checkbox change
-    $(document).on('change', '.skor-checkbox', function() {
+    // Save skor on radio change
+    $(document).on('change', '.skor-radio', function() {
         var el = $(this);
         var indikatorId = el.data('indikator-id');
         var idx = el.data('index');
         
-        var selectedScores = [];
-        $('input[name="skor_' + indikatorId + '[]"]:checked').each(function() {
-            selectedScores.push($(this).val());
-        });
+        // Toggle selected class
+        el.closest('.bundle-auditor').find('.skor-rubrik-item').removeClass('selected');
+        el.closest('.skor-rubrik-item').addClass('selected');
+        
+        var selectedScores = [el.val()];
         
         // Update Status
-        if(selectedScores.length > 0) {
-            statusMap[idx] = 'answered';
-        } else {
-            statusMap[idx] = 'empty';
-        }
+        statusMap[idx] = 'answered';
         updateGridButton(idx);
         updateProgress();
         
@@ -331,13 +625,34 @@
         saveSkor(indikatorId, selectedScores, catatan);
     });
 
+    // Clear selection (batalkan pilihan)
+    $(document).on('click', '.btn-clear-selection', function() {
+        var indikatorId = $(this).data('indikator-id');
+        var idx = $(this).data('index');
+        
+        // Uncheck all radios for this indikator
+        $('input[name="skor_' + indikatorId + '"]').prop('checked', false);
+        
+        // Remove selected class
+        $(this).closest('.bundle-auditor').find('.skor-rubrik-item').removeClass('selected');
+        
+        // Update Status
+        statusMap[idx] = 'empty';
+        updateGridButton(idx);
+        updateProgress();
+        
+        var catatan = $('[data-indikator-id="' + indikatorId + '"].catatan-input').val();
+        saveSkor(indikatorId, [], catatan);
+    });
+
     // Save catatan on blur
     $(document).on('blur', '.catatan-input', function() {
         var indikatorId = $(this).data('indikator-id');
         var selectedScores = [];
-        $('input[name="skor_' + indikatorId + '[]"]:checked').each(function() {
-            selectedScores.push($(this).val());
-        });
+        var checkedRadio = $('input[name="skor_' + indikatorId + '"]:checked');
+        if (checkedRadio.length > 0) {
+            selectedScores.push(checkedRadio.val());
+        }
         var catatan = $(this).val();
 
         if (selectedScores.length > 0) {
@@ -409,92 +724,5 @@
         });
     });
 </script>
-<script>
-    // File upload
-    $(document).on('change', '.file-upload-input', function() {
-        var el = $(this);
-        var formData = new FormData();
-        formData.append('_token', '{{ csrf_token() }}');
-        formData.append('ami_sk_auditor_id', {{ $sk->id }});
-        formData.append('ami_indikator_id', el.data('indikator-id'));
-        
-        var files = el[0].files;
-        for (var i = 0; i < files.length; i++) {
-            formData.append('files[]', files[i]);
-        }
 
-        $.ajax({
-            url: "{{ route('admin.ami.asesmen.upload-file') }}",
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                if (res.status) {
-                    showToastr('success', 'success', 'File berhasil diupload');
-                     
-                    // Clear input
-                    el.val('');
-
-                    // Construct new list items
-                    var listContainer = $('#file-list-' + el.data('indikator-id'));
-                    var ul = listContainer.find('ul');
-                     
-                    // If no ul exists yet, create one
-                    if(ul.length === 0) {
-                        listContainer.html('<ul class="list-group mb-2"></ul>');
-                        ul = listContainer.find('ul');
-                    }
-
-                    // Append files
-                    if (res.files && res.files.length > 0) {
-                        res.files.forEach(function(file) {
-                            // Use base asset url
-                            var assetUrl = "{{ asset('') }}" + file.file_path;
-                            
-                            var li = `
-                                <li class="list-group-item d-flex justify-content-between align-items-center" id="file-item-${file.id}">
-                                    <a href="${assetUrl}" target="_blank">
-                                        <i class="ti ti-file me-1"></i>${file.file_name}
-                                    </a>
-                                    @if($canEdit)
-                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger btn-delete-file" data-file-id="${file.id}">
-                                        <i class="ti ti-trash"></i>
-                                    </button>
-                                    @endif
-                                </li>
-                            `;
-                            ul.append(li);
-                        });
-                    } else {
-                        location.reload();
-                    }
-                } else {
-                    showToastr('error', 'error', res.message);
-                }
-            }
-        });
-    });
-
-    // Delete file
-    $(document).on('click', '.btn-delete-file', function() {
-        var fileId = $(this).data('file-id');
-        if(!confirm('Hapus file ini?')) return;
-        $.ajax({
-            url: "{{ route('admin.ami.asesmen.delete-file') }}",
-            type: 'DELETE',
-            data: { _token: '{{ csrf_token() }}', file_id: fileId },
-            success: function(res) {
-                if (res.status) {
-                    showToastr('success', 'success', 'File dihapus');
-                    $('#file-item-' + fileId).fadeOut(function() { 
-                        $(this).remove(); 
-                    });
-                } else {
-                    showToastr('error', 'error', res.message);
-                }
-            }
-        });
-    });
-</script>
 @endpush

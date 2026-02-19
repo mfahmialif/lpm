@@ -40,6 +40,215 @@
     .indicator-card.active {
         display: block;
     }
+    /* === Bundle Styles === */
+    .bundle {
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .bundle::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 4px;
+    }
+    .bundle-auditee {
+        background: linear-gradient(135deg, #f8f7ff 0%, #f0efff 100%);
+        border: 1px solid rgba(115, 103, 240, 0.15);
+        box-shadow: 0 2px 10px rgba(115, 103, 240, 0.06);
+    }
+    .bundle-auditee::before {
+        background: linear-gradient(180deg, #7367f0, #9e95f5);
+    }
+    .bundle-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .bundle-header .bundle-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #7367f0, #9e95f5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    .bundle-header .bundle-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #5e50ee;
+    }
+    .bundle-sub {
+        background: #fff;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .bundle-sub:last-child { margin-bottom: 0; }
+    .bundle-sub-label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+        color: #7367f0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .bundle-sub-content {
+        font-size: 0.92rem;
+        line-height: 1.65;
+        color: #4a4a4a;
+    }
+    .bundle-file-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        background: #f8f7ff;
+        border-radius: 6px;
+        border: 1px solid rgba(115, 103, 240, 0.1);
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: #5e50ee;
+        overflow: hidden;
+        min-width: 0;
+    }
+    .bundle-file-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 0;
+    }
+    .bundle-file-item:hover {
+        background: #ece9fe;
+        border-color: #7367f0;
+        color: #7367f0;
+        transform: translateX(3px);
+    }
+    .bundle-file-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #e8e6fd, #d4d0fb);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7367f0;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+    .bundle-empty {
+        text-align: center;
+        padding: 14px;
+        color: #aaa;
+        font-style: italic;
+        font-size: 0.88rem;
+    }
+    .bundle-file-upload {
+        margin-top: 10px;
+        padding: 12px;
+        border: 2px dashed rgba(115, 103, 240, 0.2);
+        border-radius: 8px;
+        background: #faf9ff;
+        transition: border-color 0.2s;
+    }
+    .bundle-file-upload:hover {
+        border-color: rgba(115, 103, 240, 0.4);
+    }
+    .btn-delete-file-elegant {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        background: #fff;
+        color: #bbb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .btn-delete-file-elegant:hover {
+        border-color: #ea5455;
+        color: #ea5455;
+        background: #fff5f5;
+    }
+    /* Navigation Buttons */
+    .nav-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+    .btn-nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        text-decoration: none;
+    }
+    .btn-nav-prev {
+        background: #f0f0f5;
+        color: #555;
+    }
+    .btn-nav-prev:hover:not(:disabled) {
+        background: #e2e2ea;
+        color: #333;
+        transform: translateX(-2px);
+    }
+    .btn-nav-next {
+        background: linear-gradient(135deg, #7367f0, #9e95f5);
+        color: #fff;
+    }
+    .btn-nav-next:hover:not(:disabled) {
+        box-shadow: 0 4px 14px rgba(115, 103, 240, 0.35);
+        transform: translateX(2px);
+    }
+    .btn-nav-finish {
+        background: linear-gradient(135deg, #28c76f, #48da89);
+        color: #fff;
+    }
+    .btn-nav-finish:hover {
+        box-shadow: 0 4px 14px rgba(40, 199, 111, 0.35);
+    }
+    .btn-nav:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+    @media (max-width: 576px) {
+        .btn-nav {
+            flex: 1;
+            justify-content: center;
+            padding: 12px 10px;
+            font-size: 0.84rem;
+        }
+        .btn-nav .btn-nav-text {
+            display: none;
+        }
+    }
+    /* Summernote fullscreen z-index fix */
+    .note-editor.note-frame.fullscreen {
+        z-index: 99999 !important;
+    }
 </style>
 
 <div class="row mb-4">
@@ -116,74 +325,92 @@
                     </div>
                 </div>
                 <div class="card-body pt-4">
-                     <div class="mb-4">
-                        @if($indikator->narasi_evaluasi_diri)
-                            {!! nl2br(e($indikator->narasi_evaluasi_diri)) !!}
-                        @else
-                            <p class="fs-5">{{ $indikator->pertanyaan }}</p>
-                        @endif
-                    </div>
+                     @php
+                         $existing = isset($existingAnswers[$indikator->id]) ? $existingAnswers[$indikator->id] : null;
+                         $files = isset($existingFiles[$indikator->id]) ? $existingFiles[$indikator->id] : collect();
+                     @endphp
 
-                    @php
-                        $existing = isset($existingAnswers[$indikator->id]) ? $existingAnswers[$indikator->id] : null;
-                    @endphp
-
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Jawaban Evaluasi Diri <span class="text-danger">*</span></label>
-                        <textarea class="form-control jawaban-input"
-                            data-index="{{ $idx }}"
-                            data-indikator-id="{{ $indikator->id }}"
-                            rows="6"
-                            placeholder="Tuliskan jawaban evaluasi diri..."
-                            {{ !$canEdit ? 'readonly' : '' }}>{{ $existing ? $existing->jawaban : '' }}</textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Dokumen Pendukung</label>
-                        @php
-                            $files = isset($existingFiles[$indikator->id]) ? $existingFiles[$indikator->id] : collect();
-                        @endphp
-                        
-                        <div id="file-list-{{ $indikator->id }}" class="mb-2">
-                            @if($files->count() > 0)
-                            <ul class="list-group">
-                                @foreach($files as $file)
-                                <li class="list-group-item d-flex justify-content-between align-items-center" id="file-item-{{ $file->id }}">
-                                    <a href="{{ asset($file->file_path) }}" target="_blank">
-                                        <i class="ti ti-file me-1"></i>{{ $file->file_name }}
-                                    </a>
-                                    @if($canEdit)
-                                    <button type="button" class="btn btn-sm btn-icon btn-outline-danger btn-delete-file" data-file-id="{{ $file->id }}">
-                                        <i class="ti ti-trash"></i>
-                                    </button>
-                                    @endif
-                                </li>
-                                @endforeach
-                            </ul>
-                            @endif
+                     <!-- ===== BUNDLE: Isian Auditee ===== -->
+                     <div class="bundle bundle-auditee">
+                        <div class="bundle-header">
+                            <div class="bundle-icon"><i class="ti ti-clipboard-check"></i></div>
+                            <div>
+                                <div class="bundle-title">Isian Evaluasi Diri</div>
+                                <small class="text-muted" style="font-size: 0.75rem;">Lengkapi jawaban dan dokumen pendukung</small>
+                            </div>
                         </div>
 
-                        @if($canEdit)
-                        <input type="file" class="form-control file-upload-input"
-                            data-indikator-id="{{ $indikator->id }}" data-sk-id="{{ $sk->id }}" multiple>
-                        <small class="text-muted">Upload dokumen pendukung (PDF, DOC, JPG, PNG)</small>
+                        <!-- Pertanyaan / Naskah -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-notes"></i> {{ $indikator->narasi_evaluasi_diri ? 'Naskah Evaluasi Diri' : 'Pertanyaan Indikator' }}</div>
+                            <div class="bundle-sub-content">
+                                @if($indikator->narasi_evaluasi_diri)
+                                    {!! nl2br(e($indikator->narasi_evaluasi_diri)) !!}
+                                @else
+                                    {{ $indikator->pertanyaan }}
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Jawaban -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-message-dots"></i> Jawaban Evaluasi Diri <span class="text-danger">*</span></div>
+                            <textarea class="summernote-jawaban jawaban-input"
+                                data-index="{{ $idx }}"
+                                data-indikator-id="{{ $indikator->id }}"
+                                >{{ $existing ? $existing->jawaban : '' }}</textarea>
+                        </div>
+
+                        <!-- Dokumen Pendukung -->
+                        <div class="bundle-sub">
+                            <div class="bundle-sub-label"><i class="ti ti-paperclip"></i> Dokumen Pendukung {{ $files->count() > 0 ? '('.$files->count().')' : '' }}</div>
+                            <div id="file-list-{{ $indikator->id }}">
+                                @if($files->count() > 0)
+                                <div class="d-flex flex-column gap-2 mb-2">
+                                    @foreach($files as $file)
+                                    <div class="bundle-file-item" id="file-item-{{ $file->id }}">
+                                        <div class="bundle-file-icon"><i class="ti ti-file-text"></i></div>
+                                        <a href="{{ asset($file->file_path) }}" target="_blank" class="flex-grow-1 small fw-medium text-decoration-none" style="color: #5e50ee; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $file->file_name }}</a>
+                                        <i class="ti ti-external-link" style="font-size: 14px; opacity: 0.4;"></i>
+                                        @if($canEdit)
+                                        <button type="button" class="btn-delete-file-elegant btn-delete-file" data-file-id="{{ $file->id }}">
+                                            <i class="ti ti-trash" style="font-size: 13px;"></i>
+                                        </button>
+                                        @endif
+                                    </div>
+                                    @endforeach
+                                </div>
+                                @else
+                                <div class="bundle-empty"><i class="ti ti-file-off me-1"></i>Belum ada dokumen</div>
+                                @endif
+                            </div>
+                            @if($canEdit)
+                            <div class="bundle-file-upload">
+                                <input type="file" class="form-control form-control-sm file-upload-input"
+                                    data-indikator-id="{{ $indikator->id }}" data-sk-id="{{ $sk->id }}" multiple>
+                                <small class="text-muted mt-1 d-block" style="font-size: 0.78rem;"><i class="ti ti-info-circle me-1"></i>Upload dokumen pendukung (PDF, DOC, JPG, PNG)</small>
+                            </div>
+                            @endif
+                        </div>
+                     </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="nav-footer">
+                        <button type="button" class="btn-nav btn-nav-prev btn-prev" onclick="prevQuestion()" {{ $idx == 0 ? 'disabled' : '' }}>
+                            <i class="ti ti-arrow-left"></i> <span class="btn-nav-text">Sebelumnya</span>
+                        </button>
+                        
+                        @if($idx < count($indikators) - 1)
+                        <button type="button" class="btn-nav btn-nav-next btn-next" onclick="nextQuestion()">
+                            <span class="btn-nav-text">Selanjutnya</span> <i class="ti ti-arrow-right"></i>
+                        </button>
+                        @else
+                        <a href="{{ route('admin.ami.evaluasi-diri.index') }}" class="btn-nav btn-nav-finish">
+                            <i class="ti ti-check"></i> <span class="btn-nav-text">Selesai</span>
+                        </a>
                         @endif
                     </div>
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary btn-prev" onclick="prevQuestion()" {{ $idx == 0 ? 'disabled' : '' }}>
-                        <i class="ti ti-arrow-left me-1"></i> Sebelumnya
-                    </button>
-                    
-                    @if($idx < count($indikators) - 1)
-                    <button type="button" class="btn btn-primary btn-next" onclick="nextQuestion()">
-                        Selanjutnya <i class="ti ti-arrow-right ms-1"></i>
-                    </button>
-                    @else
-                    <a href="{{ route('admin.ami.evaluasi-diri.index') }}" class="btn btn-success">
-                        <i class="ti ti-check me-1"></i> Selesai
-                    </a>
-                    @endif
                 </div>
             </div>
         </div>
@@ -201,11 +428,66 @@
 
     // Init Logic
     $(document).ready(function() {
+        // Initialize summernote editors
+        $('.summernote-jawaban').each(function() {
+            var $el = $(this);
+            $el.summernote({
+                placeholder: 'Tuliskan jawaban evaluasi diri...',
+                tabsize: 2,
+                height: 200,
+                codeviewFilter: false,
+                codeviewIframeFilter: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview']]
+                ],
+                callbacks: {
+                    onBlur: function() {
+                        var $textarea = $(this);
+                        var indikatorId = $textarea.data('indikator-id');
+                        var idx = $textarea.data('index');
+                        var jawaban = $textarea.summernote('code');
+                        var plainText = $textarea.summernote('isEmpty') ? '' : jawaban;
+
+                        statusMap[idx] = plainText ? 'answered' : 'empty';
+                        updateGridButton(idx);
+                        updateProgress();
+
+                        $.ajax({
+                            url: "{{ route('admin.ami.evaluasi-diri.save-jawaban') }}",
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                ami_sk_auditor_id: {{ $sk->id }},
+                                ami_indikator_id: indikatorId,
+                                jawaban: jawaban
+                            },
+                            success: function(res) {
+                                if (res.status) {
+                                    showToastr('success', 'success', 'Jawaban tersimpan');
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            @if(!$canEdit)
+            $el.summernote('disable');
+            @endif
+        });
+
         // Initialize status map based on existing values
         $('.jawaban-input').each(function() {
             var idx = $(this).data('index');
-            var val = $(this).val();
-            statusMap[idx] = val && val.trim() !== '' ? 'answered' : 'empty';
+            var isEmpty = $(this).summernote('isEmpty');
+            statusMap[idx] = !isEmpty ? 'answered' : 'empty';
             updateGridButton(idx);
         });
 
@@ -273,35 +555,7 @@
         $('#progress-text').text('Progress: ' + answeredCount + '/' + totalQuestions);
     }
 
-    // Auto-save jawaban on blur
-    $(document).on('blur', '.jawaban-input', function() {
-        var el = $(this);
-        var indikatorId = el.data('indikator-id');
-        var idx = el.data('index');
-        var jawaban = el.val();
-        
-        // Update local status immediately for UI feedback
-        statusMap[idx] = jawaban && jawaban.trim() !== '' ? 'answered' : 'empty';
-        updateGridButton(idx);
-        updateProgress();
-
-        // Always save, even if empty (to allow clearing answer)
-        $.ajax({
-            url: "{{ route('admin.ami.evaluasi-diri.save-jawaban') }}",
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                ami_sk_auditor_id: {{ $sk->id }},
-                ami_indikator_id: indikatorId,
-                jawaban: jawaban
-            },
-            success: function(res) {
-                if (res.status) {
-                    showToastr('success', 'success', 'Jawaban tersimpan');
-                }
-            }
-        });
-    });
+    // (Summernote onBlur handles auto-save - see init above)
 
     // File upload
     $(document).on('change', '.file-upload-input', function() {
