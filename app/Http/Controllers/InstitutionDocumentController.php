@@ -7,6 +7,7 @@ use App\Models\DocumentSpmi;
 use App\Models\DocumentSiklusPpepp;
 use App\Models\DocumentStatutaUiiDalwa;
 use App\Models\DocumentRenstraUiiDalwa;
+use App\Models\DocumentRip;
 use App\Models\DocumentRenopUiiDalwa;
 use App\Models\DocumentSotkUiiDalwa;
 use App\Models\DocumentKurikulumProdi;
@@ -43,12 +44,13 @@ class InstitutionDocumentController extends Controller
         $unit_renstra = UnitDokument::where('jenis', 'Fakultas')->orderBy('nama', 'asc')->get();
         $unit_renstra = UnitDokument::where('jenis', 'Fakultas')->orderBy('nama', 'asc')->get();
         $unit_renop = UnitDokument::whereIn('jenis', ['Fakultas', 'Universitas', 'Pasca Sarjana'])->orderBy('nama', 'asc')->get();
+        $unit_rip = UnitDokument::whereIn('jenis', ['Fakultas', 'Universitas', 'Pasca Sarjana'])->orderBy('nama', 'asc')->get();
         // Laporan Benchmarking uses same unit types as Renop
         $unit_benchmarking = $unit_renop;
         $unit_pedoman = UnitDokument::whereIn('jenis', ['Fakultas', 'Universitas', 'Pasca Sarjana'])->orderBy('nama', 'asc')->get();
         $list_prodi = ProdiModel::orderBy('nama', 'asc')->get();
 
-        return view('institution-document.index', compact('units', 'prodis', 'prodiRps', 'unit_ppepp', 'list_prodi', 'unit_renstra', 'unit_renop', 'unit_benchmarking', 'unit_pedoman'));
+        return view('institution-document.index', compact('units', 'prodis', 'prodiRps', 'unit_ppepp', 'list_prodi', 'unit_renstra', 'unit_rip', 'unit_renop', 'unit_benchmarking', 'unit_pedoman'));
     }
 
     // Helper function untuk generate file button
@@ -188,6 +190,27 @@ class InstitutionDocumentController extends Controller
     public function dataRenop(Request $request)
     {
         $query = DocumentRenopUiiDalwa::with('unit')->orderBy('created_at', 'desc');
+
+        if ($request->has('unit_id') && $request->unit_id != '') {
+            $query->where('unit_id', $request->unit_id);
+        }
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('unit', function ($row) {
+                return $row->unit ? $row->unit->nama : '-';
+            })
+            ->addColumn('file', function ($row) {
+                return $this->generateFileButton($row->path);
+            })
+            ->rawColumns(['file'])
+            ->make(true);
+    }
+
+    // API untuk DataTables - RIP (Rencana Induk Pengembangan)
+    public function dataRip(Request $request)
+    {
+        $query = DocumentRip::with('unit')->orderBy('created_at', 'desc');
 
         if ($request->has('unit_id') && $request->unit_id != '') {
             $query->where('unit_id', $request->unit_id);

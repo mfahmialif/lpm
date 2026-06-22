@@ -45,6 +45,7 @@ use App\Http\Controllers\Admin\DocumentStatutaUiiDalwaController;
 use App\Http\Controllers\Admin\DocumentRenstraUiiDalwaController;
 use App\Http\Controllers\Admin\DocumentRenstraFakultasController;
 use App\Http\Controllers\Admin\DocumentRenopUiiDalwaController;
+use App\Http\Controllers\Admin\DocumentRipController;
 use App\Http\Controllers\Admin\DocumentPedomanController;
 use App\Http\Controllers\Admin\DocumentSotkUiiDalwaController;
 use App\Http\Controllers\Admin\DocumentKurikulumProdiController;
@@ -119,6 +120,7 @@ Route::prefix('institution-document')->group(function () {
     Route::get('/data/siklus-ppepp', [App\Http\Controllers\InstitutionDocumentController::class, 'dataSiklusPpepp'])->name('institution-document.data.siklus-ppepp');
     Route::get('/data/statuta', [App\Http\Controllers\InstitutionDocumentController::class, 'dataStatuta'])->name('institution-document.data.statuta');
     Route::get('/data/renstra', [App\Http\Controllers\InstitutionDocumentController::class, 'dataRenstra'])->name('institution-document.data.renstra');
+    Route::get('/data/rip', [App\Http\Controllers\InstitutionDocumentController::class, 'dataRip'])->name('institution-document.data.rip');
     Route::get('/data/renop', [App\Http\Controllers\InstitutionDocumentController::class, 'dataRenop'])->name('institution-document.data.renop');
     Route::get('/data/sotk', [App\Http\Controllers\InstitutionDocumentController::class, 'dataSotk'])->name('institution-document.data.sotk');
     Route::get('/data/kurikulum-prodi', [App\Http\Controllers\InstitutionDocumentController::class, 'dataKurikulumProdi'])->name('institution-document.data.kurikulum-prodi');
@@ -246,6 +248,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [UnitDokumentController::class, 'store'])->name('admin.unit-dokument.store');
         Route::put('/update', [UnitDokumentController::class, 'update'])->name('admin.unit-dokument.update');
         Route::delete('/delete', [UnitDokumentController::class, 'delete'])->name('admin.unit-dokument.delete');
+    });
+
+    // Document RIP (Rencana Induk Pengembangan)
+    Route::prefix('document-rip')->middleware('role:admin')->group(function () {
+        Route::get('/', [DocumentRipController::class, 'index'])->name('admin.document-rip.index');
+        Route::get('/data', [DocumentRipController::class, 'getData'])->name('admin.document-rip.data');
+        Route::post('/store', [DocumentRipController::class, 'store'])->name('admin.document-rip.store');
+        Route::put('/update/{id}', [DocumentRipController::class, 'update'])->name('admin.document-rip.update');
+        Route::delete('/destroy/{id}', [DocumentRipController::class, 'destroy'])->name('admin.document-rip.destroy');
     });
 
     // Document Renop UII Dalwa

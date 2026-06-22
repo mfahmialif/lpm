@@ -182,6 +182,13 @@
             "role": "admin"
         },
         {
+            "name": "Dokumen RIP",
+            "url": "/admin/document-rip",
+            "icon": "menu-icon tf-icons ti ti-map-2",
+            "slug": "admin.document-rip.",
+            "role": "admin"
+        },
+        {
             "name": "Dokumen Renop",
             "url": "/admin/document-renop-uii-dalwa",
             "icon": "menu-icon tf-icons ti ti-notes",

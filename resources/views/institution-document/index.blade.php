@@ -367,6 +367,50 @@
                 </div>
             </div>
 
+            {{-- 5b. RIP (Rencana Induk Pengembangan) --}}
+            <div class="accordion-item mb-3 border-0 shadow-sm rounded" data-aos="fade-up" data-aos-delay="220">
+                <h2 class="accordion-header" id="headingRip">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseRip" aria-expanded="false" aria-controls="collapseRip"
+                        data-table="rip">
+                        <i class="ti ti-map-2 me-2 fs-4"></i>
+                        <strong>RIP (Rencana Induk Pengembangan)</strong>
+                    </button>
+                </h2>
+                <div id="collapseRip" class="accordion-collapse collapse" aria-labelledby="headingRip"
+                    data-bs-parent="#accordionDocuments">
+                    <div class="accordion-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="filter-unit-rip" class="form-label">Filter Unit:</label>
+                                <select class="form-select" id="filter-unit-rip">
+                                    <option value="">-- Semua Unit --</option>
+                                    @foreach ($unit_rip as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="table-rip" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">No</th>
+                                        <th>Nama Dokumen</th>
+                                        <th>No Surat</th>
+                                        <th>Perihal</th>
+                                        <th>Yang Mengeluarkan</th>
+                                        <th>Unit</th>
+                                        <th width="10%">File</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{-- 6. Renop --}}
             <div class="accordion-item mb-3 border-0 shadow-sm rounded" data-aos="fade-up" data-aos-delay="250">
                 <h2 class="accordion-header" id="headingRenop">
@@ -858,7 +902,7 @@
 <script>
     $(document).ready(function() {
         // Initialize Select2 on prodi filter dropdowns
-        $('#filter-prodi-buku, #filter-prodi-jurnal, #filter-prodi-prosiding, #filter-prodi-artikel, #filter-prodi-rps, #filter-unit-siklus-ppepp, #filter-prodi-kurikulum, #filter-unit-renstra, #filter-unit-renop, #filter-unit-benchmarking, #filter-unit-evaluasi-ppepp, #filter-unit-pedoman').select2({
+        $('#filter-prodi-buku, #filter-prodi-jurnal, #filter-prodi-prosiding, #filter-prodi-artikel, #filter-prodi-rps, #filter-unit-siklus-ppepp, #filter-prodi-kurikulum, #filter-unit-renstra, #filter-unit-rip, #filter-unit-renop, #filter-unit-benchmarking, #filter-unit-evaluasi-ppepp, #filter-unit-pedoman').select2({
             theme: 'bootstrap-5',
             placeholder: '-- Pilih Filter --',
             allowClear: true,
@@ -1057,6 +1101,46 @@
             },
             'renstra': {
                 url: "{{ route('institution-document.data.renstra') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'no_surat',
+                        name: 'no_surat',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'perihal',
+                        name: 'perihal',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'yang_mengeluarkan',
+                        name: 'yang_mengeluarkan',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'unit',
+                        name: 'unit',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'file',
+                        name: 'file',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            },
+            'rip': {
+                url: "{{ route('institution-document.data.rip') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -1611,6 +1695,15 @@
                         }
                     };
                 }
+                // Special handling for rip with unit filter
+                else if (tableKey === 'rip') {
+                    ajaxConfig = {
+                        url: config.url,
+                        data: function(d) {
+                            d.unit_id = $('#filter-unit-rip').val();
+                        }
+                    };
+                }
                 // Special handling for renop with unit filter
                 else if (tableKey === 'renop') {
                     ajaxConfig = {
@@ -1749,6 +1842,13 @@
         $('#filter-unit-renstra').on('change', function() {
             if (initializedTables['renstra']) {
                 initializedTables['renstra'].ajax.reload();
+            }
+        });
+
+        // Event handler for unit filter on rip
+        $('#filter-unit-rip').on('change', function() {
+            if (initializedTables['rip']) {
+                initializedTables['rip'].ajax.reload();
             }
         });
 
