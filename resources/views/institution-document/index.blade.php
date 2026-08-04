@@ -162,7 +162,7 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Status</th>
-                                        <th width="10%">File</th>
+                                        <th width="12%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

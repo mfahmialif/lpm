@@ -137,6 +137,8 @@ Route::prefix('institution-document')->group(function () {
 
     // Download Route (tanpa storage:link)
     Route::get('/download/{path}', [App\Http\Controllers\InstitutionDocumentController::class, 'download'])->where('path', '.*')->name('institution-document.download');
+    // Preview Route (inline file viewing)
+    Route::get('/preview/{path}', [App\Http\Controllers\InstitutionDocumentController::class, 'preview'])->where('path', '.*')->name('institution-document.preview');
 });
 
 Route::prefix('addactivity/{code}')->group(function () {

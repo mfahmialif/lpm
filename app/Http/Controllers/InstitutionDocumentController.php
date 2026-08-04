@@ -57,17 +57,16 @@ class InstitutionDocumentController extends Controller
     private function generateFileButton($path)
     {
         if ($path) {
-            // Normalize backslashes to forward slashes (for Windows compatibility)
-            $normalizedPath = str_replace('\\', '/', $path);
+            $fileUrl = asset(str_replace('\\', '/', $path));
 
-            // Encode each path segment to handle special characters properly
-            $encodedPath = collect(explode('/', $normalizedPath))
-                ->map(fn($segment) => rawurlencode($segment))
-                ->implode('/');
-
-            return '<a href="' . url('institution-document/download/' . $encodedPath) . '" target="_blank" class="btn btn-sm btn-primary">
-                <i class="ti ti-download"></i> Unduh
-            </a>';
+            return '<div class="d-flex gap-1">
+                <a href="' . $fileUrl . '" target="_blank" class="btn btn-sm btn-info" title="Preview">
+                    <i class="ti ti-eye"></i>
+                </a>
+                <a href="' . $fileUrl . '" download target="_blank" class="btn btn-sm btn-primary" title="Unduh">
+                    <i class="ti ti-download"></i>
+                </a>
+            </div>';
         }
         return '<span class="badge bg-secondary">-</span>';
     }
@@ -402,19 +401,51 @@ class InstitutionDocumentController extends Controller
         // Decode URL-encoded path segments
         $decodedPath = rawurldecode($path);
 
-        // Normalize path separators (convert backslashes to forward slashes)
-        $normalizedPath = str_replace('\\', '/', $decodedPath);
+        $fullPath = $this->getRealFilePath($decodedPath);
 
-        // Remove any double slashes
-        $normalizedPath = preg_replace('#/+#', '/', $normalizedPath);
-
-        // Menggunakan Storage facade agar fleksibel dengan konfigurasi filesystem
-        // Ini akan bekerja baik jika file ada di storage/app/public ATAU jika disk public diarahkan ke lokasi lain
-        if (!Storage::disk('public')->exists($normalizedPath)) {
-            abort(404, 'File tidak ditemukan');
+        if (!$fullPath) {
+            $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $decodedPath));
+            return response()->json([
+                'error' => 'File tidak ditemukan (Download)',
+                'path_requested' => $decodedPath,
+                'paths_checked' => [
+                    storage_path('app/public/' . $normalizedPath),
+                    public_path('storage/' . $normalizedPath),
+                    base_path('../public_html/storage/' . $normalizedPath),
+                    base_path('../public/storage/' . $normalizedPath),
+                ]
+            ], 404);
         }
 
-        return Storage::disk('public')->download($normalizedPath);
+        return response()->download($fullPath);
+    }
+
+    // Method untuk preview file inline (tanpa download)
+    public function preview($path)
+    {
+        $decodedPath = rawurldecode($path);
+        $fullPath = $this->getRealFilePath($decodedPath);
+
+        if (!$fullPath) {
+            $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $decodedPath));
+            return response()->json([
+                'error' => 'File tidak ditemukan',
+                'path_requested' => $decodedPath,
+                'paths_checked' => [
+                    storage_path('app/public/' . $normalizedPath),
+                    public_path('storage/' . $normalizedPath),
+                    base_path('../public_html/storage/' . $normalizedPath),
+                    base_path('../public/storage/' . $normalizedPath),
+                ]
+            ], 404);
+        }
+
+        $mimeType = mime_content_type($fullPath);
+        $fileContent = file_get_contents($fullPath);
+
+        return response($fileContent, 200)
+            ->header('Content-Type', $mimeType)
+            ->header('Content-Disposition', 'inline; filename="' . basename($fullPath) . '"');
     }
 
     public function dataRps(Request $request)
@@ -431,5 +462,25 @@ class InstitutionDocumentController extends Controller
             'recordsFiltered' => 0,
             'data' => []
         ]);
+    }
+
+    public function getRealFilePath($path)
+    {
+        $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $path));
+
+        $possiblePaths = [
+            storage_path('app/public/' . $normalizedPath),
+            public_path('storage/' . $normalizedPath),
+            base_path('../public_html/storage/' . $normalizedPath),
+            base_path('../public/storage/' . $normalizedPath),
+        ];
+
+        foreach ($possiblePaths as $fullPath) {
+            if (file_exists($fullPath)) {
+                return $fullPath;
+            }
+        }
+
+        return null;
     }
 }
