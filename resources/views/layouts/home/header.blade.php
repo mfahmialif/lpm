@@ -9,9 +9,9 @@
 <meta name="theme-color" content="Red" />
 <meta property="og:site_name" content="LPM UII Dalwa" />
 <meta property="og:title" content="LPM UII Dalwa - Lembaga Penjaminan Mutu" />
-<meta property="og:description" content="Website resmi Lembaga Penjaminan Mutu Universitas Islam Indonesia Dalwa" />
+<meta property="og:description" content="Website resmi Lembaga Penjaminan Mutu Universitas Islam Internasional Darullughah Wadda'wah" />
 <meta name="description"
-    content="LPM UII Dalwa - Portal informasi dan dokumentasi kegiatan penjaminan mutu di lingkungan Universitas Islam Indonesia Dalwa" />
+    content="LPM UII Dalwa - Portal informasi dan dokumentasi kegiatan penjaminan mutu di lingkungan Universitas Islam Internasional Darullughah Wadda'wah" />
 
 @stack('meta')
     <!-- fonts -->
