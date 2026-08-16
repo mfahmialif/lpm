@@ -108,6 +108,13 @@
             "role": "admin"
         },
         {
+            "name": "Dakung Prodi",
+            "url": "/admin/dakung-prodi",
+            "icon": "menu-icon tf-icons ti ti-file-analytics",
+            "slug": "admin.dakung-prodi.",
+            "role": "admin"
+        },
+        {
             "name": "Certificate",
             "url": "/admin/sertifikat",
             "icon": "menu-icon tf-icons ti ti-certificate",

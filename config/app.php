@@ -175,6 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
 
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\MenuServiceProvider::class,

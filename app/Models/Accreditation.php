@@ -39,4 +39,12 @@ class Accreditation extends Model
     {
         return $this->hasMany(Requirement::class);
     }
+
+    /**
+     * Get the dakung prodi categories for this accreditation.
+     */
+    public function dakungProdiCategories()
+    {
+        return $this->hasMany(DakungProdiCategory::class)->orderBy('order_index');
+    }
 }

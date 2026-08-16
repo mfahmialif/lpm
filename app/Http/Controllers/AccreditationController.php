@@ -25,7 +25,14 @@ class AccreditationController extends Controller
     public function detail(Request $request, Accreditation $accreditation)
     {
         $requirements = Requirement::where('accreditation_id', $accreditation->id)->whereNull('parent_id')->get();
-        return view('accreditation.detail.index', compact('accreditation', 'requirements'));
+        $dakungProdiCategories = \App\Models\DakungProdiCategory::with(['files' => function($q) {
+                                        $q->orderBy('id', 'asc');
+                                    }])
+                                    ->where('accreditation_id', $accreditation->id)
+                                    ->orderBy('order_index', 'asc')
+                                    ->orderBy('id', 'asc')
+                                    ->get();
+        return view('accreditation.detail.index', compact('accreditation', 'requirements', 'dakungProdiCategories'));
     }
 
 }

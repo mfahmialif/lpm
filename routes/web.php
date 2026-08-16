@@ -100,6 +100,11 @@ Route::prefix('accreditation')->group(function () {
     Route::get('/detail/{accreditation}', [HomeAccreditationController::class, 'detail'])->name('accreditation.detail');
 });
 
+Route::prefix('dakung-prodi')->group(function () {
+    Route::get('/download/{file}', [\App\Http\Controllers\DakungProdiController::class, 'download'])->name('dakung-prodi.download');
+    Route::get('/preview/{file}', [\App\Http\Controllers\DakungProdiController::class, 'preview'])->name('dakung-prodi.preview');
+});
+
 Route::prefix('activity')->group(function () {
     Route::get('/', [HomeActivityController::class, 'index'])->name('activity.index');
     Route::get('/detail/{slug}', [HomeActivityController::class, 'detail'])->name('activity.detail');
@@ -413,6 +418,23 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         });
     });
 
+    Route::prefix('dakung-prodi')->middleware('role:admin,lpm')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'index'])->name('admin.dakung-prodi.index');
+        Route::get('/data', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'data'])->name('admin.dakung-prodi.data');
+        Route::get('/get-categories', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'getCategories'])->name('admin.dakung-prodi.get-categories');
+        Route::post('/store', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'store'])->name('admin.dakung-prodi.store');
+        Route::put('/update', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'update'])->name('admin.dakung-prodi.update');
+        Route::delete('/delete', [\App\Http\Controllers\Admin\DakungProdiCategoryController::class, 'delete'])->name('admin.dakung-prodi.delete');
+
+        Route::prefix('{dakungProdiCategory}/file')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\DakungProdiFileController::class, 'index'])->name('admin.dakung-prodi.file.index');
+            Route::get('/data', [\App\Http\Controllers\Admin\DakungProdiFileController::class, 'data'])->name('admin.dakung-prodi.file.data');
+            Route::post('/store', [\App\Http\Controllers\Admin\DakungProdiFileController::class, 'store'])->name('admin.dakung-prodi.file.store');
+            Route::put('/update', [\App\Http\Controllers\Admin\DakungProdiFileController::class, 'update'])->name('admin.dakung-prodi.file.update');
+            Route::delete('/delete', [\App\Http\Controllers\Admin\DakungProdiFileController::class, 'delete'])->name('admin.dakung-prodi.file.delete');
+        });
+    });
+
     // Akreditasi Kampus
     Route::prefix('akreditasi-kampus')->middleware('role:admin')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\AkreditasiKampusController::class, 'index'])->name('admin.akreditasi-kampus.index');
@@ -566,7 +588,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
         // Hasil Temuan (Global List)
         Route::get('/hasil-temuan', [\App\Http\Controllers\Admin\Ami\AmiHasilTemuanController::class, 'indexSk'])->name('admin.ami.hasil-temuan.list');
-        
+
         // Laporan Kinerja (Global List)
         Route::get('/laporan-kinerja', [\App\Http\Controllers\Admin\Ami\AmiLaporanKinerjaController::class, 'indexSk'])->name('admin.ami.laporan-kinerja.list');
 
