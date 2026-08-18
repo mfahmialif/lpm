@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('document_diferensiasi_misi', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('no_surat')->nullable();
+            $table->string('perihal')->nullable();
+            $table->string('yang_mengeluarkan')->nullable();
+            $table->string('path')->nullable()->comment('Lokasi file dokument yang di upload');
+            $table->enum('status', ['acc', 'tolak'])->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('document_diferensiasi_misi');
+    }
+};

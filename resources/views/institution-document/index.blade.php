@@ -93,6 +93,45 @@
         vertical-align: baseline;
         border-radius: 0.25rem;
     }
+
+    .shortlink-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-weight: 600;
+        color: #4f46e5;
+        text-decoration: none !important;
+        transition: all 0.2s ease;
+    }
+
+    .shortlink-pill:hover {
+        background: #eef2ff;
+        border-color: #cbd5e1;
+        color: #3730a3;
+        transform: translateY(-1px);
+    }
+
+    .btn-table-copy {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+        padding: 4px 8px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        transition: all 0.2s ease;
+    }
+
+    .btn-table-copy:hover {
+        background: #475569;
+        color: #ffffff;
+        transform: translateY(-1px);
+    }
 </style>
 @endpush
 
@@ -162,7 +201,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Status</th>
-                                        <th width="12%">Aksi</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -206,7 +246,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -238,7 +279,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -281,7 +323,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -313,7 +356,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -357,7 +401,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -401,7 +446,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -445,7 +491,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -477,7 +524,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -520,7 +568,8 @@
                                         <th>No Surat</th>
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -564,7 +613,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -608,7 +658,8 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -874,7 +925,42 @@
                                         <th>Perihal</th>
                                         <th>Yang Mengeluarkan</th>
                                         <th>Unit</th>
-                                        <th width="10%">File</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- 12. Diferensiasi Misi --}}
+            <div class="accordion-item mb-3 border-0 shadow-sm rounded" data-aos="fade-up" data-aos-delay="550">
+                <h2 class="accordion-header" id="headingDiferensiasiMisi">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseDiferensiasiMisi" aria-expanded="false"
+                        aria-controls="collapseDiferensiasiMisi" data-table="diferensiasi-misi">
+                        <i class="ti ti-compass me-2 fs-4"></i>
+                        <strong>Diferensiasi Misi</strong>
+                    </button>
+                </h2>
+                <div id="collapseDiferensiasiMisi" class="accordion-collapse collapse"
+                    aria-labelledby="headingDiferensiasiMisi" data-bs-parent="#accordionDocuments">
+                    <div class="accordion-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="table-diferensiasi-misi" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">No</th>
+                                        <th>Nama Dokumen</th>
+                                        <th>No Surat</th>
+                                        <th>Perihal</th>
+                                        <th>Yang Mengeluarkan</th>
+                                        <th>Status</th>
+                                        <th width="10%" class="text-center">File</th>
+                                        <th width="18%" class="text-center">Link Dokumen</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -952,6 +1038,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -991,6 +1083,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1024,6 +1122,12 @@
                     {
                         data: 'file',
                         name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
                         orderable: false,
                         searchable: false
                     }
@@ -1061,6 +1165,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1094,6 +1204,12 @@
                     {
                         data: 'file',
                         name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
                         orderable: false,
                         searchable: false
                     }
@@ -1136,6 +1252,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1174,6 +1296,12 @@
                     {
                         data: 'file',
                         name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
                         orderable: false,
                         searchable: false
                     }
@@ -1216,6 +1344,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1251,6 +1385,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1284,6 +1424,12 @@
                     {
                         data: 'file',
                         name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
                         orderable: false,
                         searchable: false
                     }
@@ -1326,6 +1472,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1366,6 +1518,12 @@
                         name: 'file',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
                     }
                 ]
             },
@@ -1404,6 +1562,59 @@
                     {
                         data: 'file',
                         name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            },
+            'diferensiasi-misi': {
+                url: "{{ route('institution-document.data.diferensiasi-misi') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'no_surat',
+                        name: 'no_surat',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'perihal',
+                        name: 'perihal',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'yang_mengeluarkan',
+                        name: 'yang_mengeluarkan',
+                        defaultContent: '-'
+                    },
+                    {
+                        data: 'status_badge',
+                        name: 'status',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'file',
+                        name: 'file',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'link',
+                        name: 'link',
                         orderable: false,
                         searchable: false
                     }
@@ -1913,6 +2124,34 @@
             if (initializedTables['rps']) {
                 initializedTables['rps'].ajax.reload();
             }
+        });
+
+        // Copy short link handler with interactive feedback
+        $(document).on('click', '.btn-copy-link', function(e) {
+            e.preventDefault();
+            const link = $(this).attr('data-link');
+            if (!link) return;
+            const btn = $(this);
+            navigator.clipboard.writeText(link).then(() => {
+                const originalHtml = btn.html();
+                btn.html('<i class="ti ti-check text-white"></i>');
+                btn.css({
+                    'background': '#10b981',
+                    'color': '#ffffff',
+                    'border-color': '#10b981'
+                });
+
+                setTimeout(() => {
+                    btn.html(originalHtml);
+                    btn.css({
+                        'background': '',
+                        'color': '',
+                        'border-color': ''
+                    });
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy link: ', err);
+            });
         });
     });
 </script>

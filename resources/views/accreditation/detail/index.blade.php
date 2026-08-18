@@ -229,6 +229,29 @@
             transform: translateY(-1px);
         }
 
+        .shortlink-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-weight: 600;
+            color: #4f46e5;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .shortlink-pill:hover {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+            color: #3730a3;
+            transform: translateY(-1px);
+        }
+
         /* File Icon Badges */
         .file-type-icon {
             width: 36px;
@@ -285,7 +308,7 @@
                     Dokumen & Instrument Akreditasi
                 </h2>
                 <p class="text-muted max-w-600 mx-auto" style="font-size: 1rem; color: #64748b;">
-                    Akses dan unduh berkas akreditasi prodi serta dokumen instrumen pendukung (SABTO) secara transparan dan terstruktur.
+                    Akses dan unduh berkas akreditasi prodi serta dokumen instrumen pendukung (SAPTO) secara transparan dan terstruktur.
                 </p>
 
                 {{-- Search & Controls (Disabled)
@@ -400,11 +423,11 @@
                                                     <table class="table table-modern align-middle">
                                                         <thead>
                                                             <tr>
-                                                                <th width="6%" class="text-center">No</th>
+                                                                <th width="5%" class="text-center">No</th>
                                                                 <th>Nama Berkas</th>
-                                                                <th width="12%" class="text-center">Preview</th>
-                                                                <th width="12%" class="text-center">Unduh</th>
-                                                                <th width="10%" class="text-center">Salin Link</th>
+                                                                <th width="11%" class="text-center">Preview</th>
+                                                                <th width="11%" class="text-center">Unduh</th>
+                                                                <th width="20%" class="text-center">Link Dokumen</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -423,6 +446,9 @@
                                                                         $iconClass = 'file-icon-excel';
                                                                         $biIcon = 'bi-file-earmark-excel';
                                                                     }
+                                                                    $serverDocUrl = $file->path ? asset($file->path) : null;
+                                                                    $shortCode = $file->short_code;
+                                                                    $shortLinkUrl = url('/s/' . $shortCode);
                                                                 @endphp
                                                                 <tr>
                                                                     <td class="text-center fw-semibold text-muted">{{ $fidx + 1 }}</td>
@@ -452,14 +478,15 @@
                                                                         </a>
                                                                     </td>
                                                                     <td class="text-center">
-                                                                        @php
-                                                                            $gdriveLink = ($file->upload_status === 'uploaded' && $file->gdrive_file_id) 
-                                                                                ? "https://drive.google.com/file/d/{$file->gdrive_file_id}/view" 
-                                                                                : route('dakung-prodi.preview', $file->id);
-                                                                        @endphp
-                                                                        <button type="button" class="btn-table-action btn-table-copy btn-copy-link" data-link="{{ $gdriveLink }}" title="{{ ($file->upload_status === 'uploaded' && $file->gdrive_file_id) ? 'Copy Google Drive Link' : 'Copy Preview Link' }}">
-                                                                            <i class="bi bi-link-45deg"></i> Link
-                                                                        </button>
+                                                                        <div class="d-flex align-items-center justify-content-center gap-1">
+                                                                            <a href="{{ $shortLinkUrl }}" target="_blank" class="shortlink-pill" title="Buka Dokumen (Short Link): {{ $shortLinkUrl }}">
+                                                                                <i class="bi bi-link-45deg"></i>
+                                                                                <span>/s/{{ $shortCode }}</span>
+                                                                            </a>
+                                                                            <button type="button" class="btn-table-action btn-table-copy btn-copy-link" data-link="{{ $shortLinkUrl }}" data-server-link="{{ $serverDocUrl }}" title="Salin Short Link ({{ $shortLinkUrl }})">
+                                                                                <i class="bi bi-clipboard"></i>
+                                                                            </button>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -551,9 +578,10 @@
             copyButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const link = this.getAttribute('data-link');
+                    if (!link) return;
                     navigator.clipboard.writeText(link).then(() => {
                         const originalHtml = this.innerHTML;
-                        this.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+                        this.innerHTML = '<i class="bi bi-check2 text-white"></i>';
                         this.style.background = '#10b981';
                         this.style.color = '#ffffff';
                         this.style.borderColor = '#10b981';

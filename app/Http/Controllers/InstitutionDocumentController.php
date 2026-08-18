@@ -14,6 +14,7 @@ use App\Models\DocumentKurikulumProdi;
 use App\Models\DocumentLaporanBanchmarking;
 use App\Models\DocumentLaporanEvaluasiPpepp;
 use App\Models\DocumentPedoman;
+use App\Models\DocumentDiferensiasiMisi;
 use App\Models\SkPendirianProdi;
 use App\Models\UnitDokument;
 use App\Models\Prodi as ProdiModel;
@@ -57,18 +58,43 @@ class InstitutionDocumentController extends Controller
     private function generateFileButton($path)
     {
         if ($path) {
-            $fileUrl = asset(str_replace('\\', '/', $path));
+            $cleanPath = ltrim(str_replace('\\', '/', $path), '/');
+            $previewUrl = route('institution-document.preview', ['path' => $cleanPath]);
+            $downloadUrl = route('institution-document.download', ['path' => $cleanPath]);
 
             return '<div class="d-flex gap-1">
-                <a href="' . $fileUrl . '" target="_blank" class="btn btn-sm btn-info" title="Preview">
+                <a href="' . $previewUrl . '" target="_blank" class="btn btn-sm btn-info" title="Preview">
                     <i class="ti ti-eye"></i>
                 </a>
-                <a href="' . $fileUrl . '" download target="_blank" class="btn btn-sm btn-primary" title="Unduh">
+                <a href="' . $downloadUrl . '" target="_blank" class="btn btn-sm btn-primary" title="Unduh">
                     <i class="ti ti-download"></i>
                 </a>
             </div>';
         }
         return '<span class="badge bg-secondary">-</span>';
+    }
+
+    // Helper function untuk generate short link button
+    private function generateLinkButton($type, $id, $path)
+    {
+        if (!$path) {
+            return '<span class="badge bg-secondary">-</span>';
+        }
+
+        $shortCode = \App\Models\DakungProdiFile::encodeDocumentCode($type, $id);
+        $shortUrl = url('/s/' . $shortCode);
+        $cleanPath = ltrim(str_replace('\\', '/', $path), '/');
+        $serverDocUrl = route('institution-document.preview', ['path' => $cleanPath]);
+
+        return '<div class="d-flex align-items-center justify-content-center gap-1">
+            <a href="' . $shortUrl . '" target="_blank" class="shortlink-pill" title="Buka Dokumen (Short Link): ' . $shortUrl . '">
+                <i class="ti ti-link"></i>
+                <span>/s/' . $shortCode . '</span>
+            </a>
+            <button type="button" class="btn-table-action btn-table-copy btn-copy-link" data-link="' . $shortUrl . '" data-server-link="' . $serverDocUrl . '" title="Salin Short Link (' . $shortUrl . ')">
+                <i class="ti ti-copy"></i>
+            </button>
+        </div>';
     }
 
     // API untuk DataTables - Keputusan Rektor
@@ -94,7 +120,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['unit_nama', 'file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_KEPUTUSAN_REKTOR, $row->id, $row->path);
+            })
+            ->rawColumns(['unit_nama', 'file', 'link'])
             ->make(true);
     }
 
@@ -115,7 +144,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['status_badge', 'file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_SK_PENDIRIAN_PRODI, $row->id, $row->path);
+            })
+            ->rawColumns(['status_badge', 'file', 'link'])
             ->make(true);
     }
 
@@ -128,7 +160,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_SPMI, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -147,7 +182,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_SIKLUS_PPEPP, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -160,7 +198,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_STATUTA, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -181,7 +222,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_RENSTRA, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -202,7 +246,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_RENOP, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -223,7 +270,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_RIP, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -236,7 +286,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_SOTK, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -254,7 +307,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_KURIKULUM_PRODI, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -275,7 +331,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_LAPORAN_BENCHMARKING, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -297,7 +356,10 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_LAPORAN_EVALUASI_PPEPP, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
             ->make(true);
     }
 
@@ -319,7 +381,34 @@ class InstitutionDocumentController extends Controller
             ->addColumn('file', function ($row) {
                 return $this->generateFileButton($row->path);
             })
-            ->rawColumns(['file'])
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_PEDOMAN, $row->id, $row->path);
+            })
+            ->rawColumns(['file', 'link'])
+            ->make(true);
+    }
+
+    // API untuk DataTables - Diferensiasi Misi
+    public function dataDiferensiasiMisi()
+    {
+        $data = DocumentDiferensiasiMisi::orderBy('created_at', 'desc')->get();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('status_badge', function ($row) {
+                if ($row->status === 'acc') {
+                    return '<span class="badge bg-success">ACC</span>';
+                } elseif ($row->status === 'tolak') {
+                    return '<span class="badge bg-danger">Tolak</span>';
+                }
+                return '<span class="badge bg-secondary">-</span>';
+            })
+            ->addColumn('file', function ($row) {
+                return $this->generateFileButton($row->path);
+            })
+            ->addColumn('link', function ($row) {
+                return $this->generateLinkButton(\App\Models\DakungProdiFile::TYPE_DIFERENSIASI_MISI, $row->id, $row->path);
+            })
+            ->rawColumns(['status_badge', 'file', 'link'])
             ->make(true);
     }
 
@@ -400,52 +489,79 @@ class InstitutionDocumentController extends Controller
     {
         // Decode URL-encoded path segments
         $decodedPath = rawurldecode($path);
-
         $fullPath = $this->getRealFilePath($decodedPath);
 
         if (!$fullPath) {
-            $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $decodedPath));
+            $docDiferensiasi = \App\Models\DocumentDiferensiasiMisi::where('path', $decodedPath)
+                ->orWhere('path', 'documents/' . ltrim($decodedPath, '/'))
+                ->orWhere('path', 'like', '%' . basename($decodedPath))
+                ->first();
+
+            if ($docDiferensiasi && !empty($docDiferensiasi->gdrive_file_id)) {
+                return redirect('https://drive.google.com/file/d/' . $docDiferensiasi->gdrive_file_id . '/view');
+            }
+
             return response()->json([
                 'error' => 'File tidak ditemukan (Download)',
                 'path_requested' => $decodedPath,
-                'paths_checked' => [
-                    storage_path('app/public/' . $normalizedPath),
-                    public_path('storage/' . $normalizedPath),
-                    base_path('../public_html/storage/' . $normalizedPath),
-                    base_path('../public/storage/' . $normalizedPath),
-                ]
             ], 404);
         }
 
-        return response()->download($fullPath);
+        return response()->download($fullPath, basename($fullPath));
     }
 
-    // Method untuk preview file inline (tanpa download)
+    // Method untuk preview file inline di tab baru (tanpa download)
     public function preview($path)
     {
         $decodedPath = rawurldecode($path);
         $fullPath = $this->getRealFilePath($decodedPath);
 
         if (!$fullPath) {
-            $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $decodedPath));
+            $docDiferensiasi = \App\Models\DocumentDiferensiasiMisi::where('path', $decodedPath)
+                ->orWhere('path', 'documents/' . ltrim($decodedPath, '/'))
+                ->orWhere('path', 'like', '%' . basename($decodedPath))
+                ->first();
+
+            if ($docDiferensiasi && !empty($docDiferensiasi->gdrive_file_id)) {
+                return redirect('https://drive.google.com/file/d/' . $docDiferensiasi->gdrive_file_id . '/view');
+            }
+
             return response()->json([
                 'error' => 'File tidak ditemukan',
                 'path_requested' => $decodedPath,
-                'paths_checked' => [
-                    storage_path('app/public/' . $normalizedPath),
-                    public_path('storage/' . $normalizedPath),
-                    base_path('../public_html/storage/' . $normalizedPath),
-                    base_path('../public/storage/' . $normalizedPath),
-                ]
             ], 404);
         }
 
-        $mimeType = mime_content_type($fullPath);
-        $fileContent = file_get_contents($fullPath);
+        $extension = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
 
-        return response($fileContent, 200)
-            ->header('Content-Type', $mimeType)
-            ->header('Content-Disposition', 'inline; filename="' . basename($fullPath) . '"');
+        // Word/Excel: preview menggunakan client-side viewer langsung di browser
+        $officeExtensions = ['doc', 'docx', 'xls', 'xlsx', 'csv'];
+        if (in_array($extension, $officeExtensions)) {
+            $fileUrl = asset($decodedPath);
+            $downloadUrl = route('institution-document.download', ['path' => $decodedPath]);
+            $filename = basename($fullPath);
+
+            return view('preview.office', compact('filename', 'fileUrl', 'downloadUrl', 'extension'));
+        }
+
+        $mimeTypes = [
+            'pdf'  => 'application/pdf',
+            'png'  => 'image/png',
+            'jpg'  => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif'  => 'image/gif',
+            'webp' => 'image/webp',
+            'svg'  => 'image/svg+xml',
+            'txt'  => 'text/plain',
+        ];
+
+        $mimeType = $mimeTypes[$extension] ?? (@mime_content_type($fullPath) ?: 'application/octet-stream');
+
+        // Menggunakan response()->file() agar browser menampilkan PDF/gambar secara inline di tab baru
+        return response()->file($fullPath, [
+            'Content-Type' => $mimeType,
+            'Content-Disposition' => 'inline; filename="' . basename($fullPath) . '"',
+        ]);
     }
 
     public function dataRps(Request $request)
@@ -466,17 +582,31 @@ class InstitutionDocumentController extends Controller
 
     public function getRealFilePath($path)
     {
-        $normalizedPath = preg_replace('#/+#', '/', str_replace('\\', '/', $path));
+        $normalizedPath = ltrim(preg_replace('#/+#', '/', str_replace('\\', '/', $path)), '/');
+        $cleanPathWithoutStorage = preg_replace('#^storage/#i', '', $normalizedPath);
+        $docPath = preg_replace('#^documents/#i', '', $cleanPathWithoutStorage);
 
         $possiblePaths = [
-            storage_path('app/public/' . $normalizedPath),
-            public_path('storage/' . $normalizedPath),
-            base_path('../public_html/storage/' . $normalizedPath),
-            base_path('../public/storage/' . $normalizedPath),
+            // 1. Production Server public_html/documents directory
+            base_path('../public_html/documents/' . $docPath),
+            base_path('../public_html/' . $cleanPathWithoutStorage),
+            base_path('../public_html/storage/' . $cleanPathWithoutStorage),
+
+            // 2. Local / Standard public directory
+            public_path('documents/' . $docPath),
+            public_path($cleanPathWithoutStorage),
+            public_path('storage/' . $cleanPathWithoutStorage),
+
+            // 3. Laravel storage app directory
+            storage_path('app/public/' . $cleanPathWithoutStorage),
+            storage_path('app/public/documents/' . $docPath),
+            storage_path('app/' . $cleanPathWithoutStorage),
+            base_path('../public/storage/' . $cleanPathWithoutStorage),
+            base_path($cleanPathWithoutStorage),
         ];
 
         foreach ($possiblePaths as $fullPath) {
-            if (file_exists($fullPath)) {
+            if (file_exists($fullPath) && is_file($fullPath)) {
                 return $fullPath;
             }
         }

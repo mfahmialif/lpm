@@ -170,7 +170,7 @@ class GoogleDriveService
         }
 
         try {
-            $fileId = $this->extractFileId($driveLink);
+            $fileId = $this->extractFileId($driveLink) ?: $driveLink;
             if ($fileId) {
                 $this->service->files->delete($fileId);
                 return true;

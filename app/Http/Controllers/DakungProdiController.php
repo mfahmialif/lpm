@@ -15,13 +15,28 @@ class DakungProdiController extends Controller
             return null;
         }
 
+        $cleanPath = ltrim(str_replace('\\', '/', $relativePath), '/');
+        $docPath = preg_replace('#^documents/#i', '', $cleanPath);
+
         $possiblePaths = [
-            base_path('../public_html/' . $relativePath),
-            public_path($relativePath),
+            // 1. Production Server public_html/documents directory
+            base_path('../public_html/documents/' . $docPath),
+            base_path('../public_html/' . $cleanPath),
+            base_path('../public_html/storage/' . $cleanPath),
+
+            // 2. Local / Standard public directory
+            public_path('documents/' . $docPath),
+            public_path($cleanPath),
+            public_path('storage/' . $cleanPath),
+
+            // 3. Laravel storage app directory
+            storage_path('app/public/' . $cleanPath),
+            storage_path('app/' . $cleanPath),
+            base_path($cleanPath),
         ];
 
         foreach ($possiblePaths as $p) {
-            if (file_exists($p)) {
+            if (file_exists($p) && is_file($p)) {
                 return $p;
             }
         }
@@ -34,17 +49,17 @@ class DakungProdiController extends Controller
      */
     public function download(DakungProdiFile $file)
     {
-        if ($file->upload_status === 'uploaded' && $file->gdrive_file_id) {
-            return redirect("https://drive.google.com/uc?id={$file->gdrive_file_id}&export=download");
-        }
-
         $filePath = $this->resolveFilePath($file->path);
 
-        if (!$filePath) {
-            abort(404, 'File not found');
+        if ($filePath && file_exists($filePath)) {
+            return response()->download($filePath, $file->original_name);
         }
 
-        return response()->download($filePath, $file->original_name);
+        if (!empty($file->path)) {
+            return redirect(asset($file->path));
+        }
+
+        abort(404, 'File tidak ditemukan di server.');
     }
 
     /**
@@ -52,21 +67,34 @@ class DakungProdiController extends Controller
      */
     public function preview(DakungProdiFile $file)
     {
-        if ($file->upload_status === 'uploaded' && $file->gdrive_file_id) {
-            return redirect("https://drive.google.com/file/d/{$file->gdrive_file_id}/preview");
-        }
-
         $filePath = $this->resolveFilePath($file->path);
 
-        if (!$filePath) {
-            abort(404, 'File not found');
+        if ($filePath && file_exists($filePath)) {
+            $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+            // Word/Excel: preview menggunakan client-side viewer langsung di browser
+            $officeExtensions = ['doc', 'docx', 'xls', 'xlsx', 'csv'];
+            if (in_array($extension, $officeExtensions)) {
+                $cleanPath = ltrim(str_replace('\\', '/', $file->path), '/');
+                $fileUrl = asset($cleanPath);
+                $downloadUrl = route('dakung-prodi.download', $file->id);
+                $filename = $file->original_name ?? basename($filePath);
+
+                return view('preview.office', compact('filename', 'fileUrl', 'downloadUrl', 'extension'));
+            }
+
+            $mimeType = @mime_content_type($filePath) ?: 'application/octet-stream';
+
+            return response()->file($filePath, [
+                'Content-Type' => $mimeType,
+                'Content-Disposition' => 'inline; filename="' . ($file->original_name ?? basename($filePath)) . '"'
+            ]);
         }
 
-        $mimeType = mime_content_type($filePath);
+        if (!empty($file->path)) {
+            return redirect(asset($file->path));
+        }
 
-        return response()->file($filePath, [
-            'Content-Type' => $mimeType,
-            'Content-Disposition' => 'inline; filename="' . $file->original_name . '"'
-        ]);
+        abort(404, 'File tidak ditemukan di server.');
     }
 }

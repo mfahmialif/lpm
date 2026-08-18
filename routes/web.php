@@ -62,6 +62,7 @@ use App\Http\Controllers\Admin\PeriodeLpmController as AdminPeriodeLpmController
 use App\Http\Controllers\Admin\SkorAkreditasiController as AdminSkorAkreditasiController;
 use App\Http\Controllers\SkorAkreditasiController;
 use App\Http\Controllers\Admin\SkPendirianProdiController;
+use App\Http\Controllers\Admin\DocumentDiferensiasiMisiController;
 
 
 /*
@@ -103,7 +104,11 @@ Route::prefix('accreditation')->group(function () {
 Route::prefix('dakung-prodi')->group(function () {
     Route::get('/download/{file}', [\App\Http\Controllers\DakungProdiController::class, 'download'])->name('dakung-prodi.download');
     Route::get('/preview/{file}', [\App\Http\Controllers\DakungProdiController::class, 'preview'])->name('dakung-prodi.preview');
+    Route::get('/s/{code}', [HomeAccreditationController::class, 'shortLink'])->name('dakung-prodi.shortlink.alt');
 });
+
+// Short Link Global Route
+Route::get('/s/{code}', [HomeAccreditationController::class, 'shortLink'])->name('dakung-prodi.shortlink');
 
 Route::prefix('activity')->group(function () {
     Route::get('/', [HomeActivityController::class, 'index'])->name('activity.index');
@@ -132,6 +137,7 @@ Route::prefix('institution-document')->group(function () {
     Route::get('/data/laporan-benchmarking', [App\Http\Controllers\InstitutionDocumentController::class, 'dataLaporanBenchmarking'])->name('institution-document.data.laporan-benchmarking');
     Route::get('/data/laporan-evaluasi-ppepp', [App\Http\Controllers\InstitutionDocumentController::class, 'dataLaporanEvaluasiPpepp'])->name('institution-document.data.laporan-evaluasi-ppepp');
     Route::get('/data/pedoman', [App\Http\Controllers\InstitutionDocumentController::class, 'dataPedoman'])->name('institution-document.data.pedoman');
+    Route::get('/data/diferensiasi-misi', [App\Http\Controllers\InstitutionDocumentController::class, 'dataDiferensiasiMisi'])->name('institution-document.data.diferensiasi-misi');
 
     // API Routes untuk External API (Buku, Jurnal, Prosiding, Artikel)
     Route::get('/data/buku', [App\Http\Controllers\InstitutionDocumentController::class, 'dataBuku'])->name('institution-document.data.buku');
@@ -291,6 +297,15 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/store', [DocumentPedomanController::class, 'store'])->name('admin.document-pedoman.store');
         Route::put('/update/{id}', [DocumentPedomanController::class, 'update'])->name('admin.document-pedoman.update');
         Route::delete('/destroy/{id}', [DocumentPedomanController::class, 'destroy'])->name('admin.document-pedoman.destroy');
+    });
+
+    // Document Diferensiasi Misi
+    Route::prefix('document-diferensiasi-misi')->middleware('role:admin')->group(function () {
+        Route::get('/', [DocumentDiferensiasiMisiController::class, 'index'])->name('admin.document-diferensiasi-misi.index');
+        Route::get('/data', [DocumentDiferensiasiMisiController::class, 'getData'])->name('admin.document-diferensiasi-misi.data');
+        Route::post('/store', [DocumentDiferensiasiMisiController::class, 'store'])->name('admin.document-diferensiasi-misi.store');
+        Route::put('/update/{id}', [DocumentDiferensiasiMisiController::class, 'update'])->name('admin.document-diferensiasi-misi.update');
+        Route::delete('/destroy/{id}', [DocumentDiferensiasiMisiController::class, 'destroy'])->name('admin.document-diferensiasi-misi.destroy');
     });
 
     // Document Kurikulum Prodi

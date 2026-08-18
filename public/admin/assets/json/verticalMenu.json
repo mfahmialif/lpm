@@ -231,6 +231,13 @@
             "role": "admin"
         },
         {
+            "name": "Diferensiasi Misi",
+            "url": "/admin/document-diferensiasi-misi",
+            "icon": "menu-icon tf-icons ti ti-compass",
+            "slug": "admin.document-diferensiasi-misi.",
+            "role": "admin"
+        },
+        {
             "menuHeader": "Kompetensi Dosen",
             "role": "admin"
         },
